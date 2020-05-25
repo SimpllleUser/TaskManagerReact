@@ -1,6 +1,6 @@
 import React from "react"
 import PostForm from "./components/PostForm"
-import Potsts from "./components/Potsts"
+import Posts from "./components/Posts"
 import FetchedPosts from "./components/FetchedPosts"
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <div className="row">
         <div className="col">
           <h2>Синхронные посты</h2>
-          <Potsts posts={[1, 2, 3]} />
+          <Posts posts={[1, 2, 3]} />
           </div>
         <div className="col">
         <h2>Асинхронные посты</h2>
