@@ -16,12 +16,16 @@ import {createPost} from '../redux/actions'
     console.log(this.state.title);
 
     const { title } = this.state;
+    if (!title){
+      return   
+    }
     const newPost = {
       title,
       id: Date.now().toString(),
     };
 
     this.props.createPost(newPost)
+   
   }
 
   changeInputHandler = (event) => {
