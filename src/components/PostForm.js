@@ -11,14 +11,14 @@ class PostForm extends React.Component {
             prioritySelect: '0',
             statusSelect: '0',
             priorities: [
-                {name: 'Highly', value: 3},
-                {name: 'Normal', value: 2},
-                {name: 'Low', value: 1}
+                {name: 'Highly', value: 3,class:'btn-danger'},
+                {name: 'Normal', value: 2,class:'btn-warning'},
+                {name: 'Low', value: 1,class:'btn-success'}
             ],
             statuses: [
-                {name: 'Inprogress', value: 2},
-                {name: 'Done', value: 3},
-                {name: 'Open', value: 1}
+                {name: 'Inprogress', value: 2, class:'btn-danger'},
+                {name: 'Done', value: 3, class:'btn-warning'},
+                {name: 'Open', value: 1, class:'btn-success'}
             ]
         };
 
@@ -27,17 +27,19 @@ class PostForm extends React.Component {
     submitHandler = (event) => {
         event.preventDefault();
 
-        const {title, description, statusSelect, prioritySelect} = this.state;
+        const {title, description,statuses, statusSelect, prioritySelect, priorities} = this.state;
         if (!title && !description) {
             return
         }
+
         const newPost = {
             id: Date.now().toString(),
             title,
             description,
-            statusSelect,
-            prioritySelect
+            status: statuses.find(status => status.name == statusSelect),
+            priority: priorities.find(priority => priority.name == prioritySelect)
         };
+        console.log("POST:", newPost)
         this.props.createPost(newPost)
     }
 

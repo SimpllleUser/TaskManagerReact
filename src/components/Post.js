@@ -15,7 +15,8 @@ export default ({post}) => {
                     {post.title}
                 </h5>
                 <hr/>
-                <p className="card-text">{post.description}</p>
+                <p className="card-text description-text">{post.description}</p>
+
                 <button
                     onClick={() => {
                         dispatch(deletePost(post.id));
