@@ -1,0 +1,15 @@
+.post-form {
+    //max-width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    div{
+        width: 500px;
+        margin: 10px;
+    }
+    .selectors-options{
+        padding-top: 5px;
+    }
+    .send-post{
+        margin-left: 20px;
+    }
+}
