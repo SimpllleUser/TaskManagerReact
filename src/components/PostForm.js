@@ -8,17 +8,17 @@ class PostForm extends React.Component {
         this.state = {
             title: "",
             description: "",
-            prioritySelect: '0',
-            statusSelect: '0',
-            priorities: [
-                {name: 'Highly', value: 3,class:'btn-danger'},
-                {name: 'Normal', value: 2,class:'btn-warning'},
-                {name: 'Low', value: 1,class:'btn-success'}
+            prioritySelect: '1',
+            statusSelect: '1',
+            priorities: [{name: 'Low', value: 1, class: 'badge-success'},
+                {name: 'Normal', value: 2, class: 'badge-warning'},
+                {name: 'Highly', value: 3, class: 'badge-danger'}
+
             ],
             statuses: [
-                {name: 'Inprogress', value: 2, class:'btn-danger'},
-                {name: 'Done', value: 3, class:'btn-warning'},
-                {name: 'Open', value: 1, class:'btn-success'}
+                {name: 'Open', value: 1, class: 'badge-success'},
+                {name: 'Inprogress', value: 2, class: 'badge-danger'},
+                {name: 'Done', value: 3, class: 'badge-warning'}
             ]
         };
 
@@ -27,7 +27,7 @@ class PostForm extends React.Component {
     submitHandler = (event) => {
         event.preventDefault();
 
-        const {title, description,statuses, statusSelect, prioritySelect, priorities} = this.state;
+        const {title, description, statuses, statusSelect, prioritySelect, priorities} = this.state;
         if (!title && !description) {
             return
         }
@@ -36,8 +36,8 @@ class PostForm extends React.Component {
             id: Date.now().toString(),
             title,
             description,
-            status: statuses.find(status => status.name == statusSelect),
-            priority: priorities.find(priority => priority.name == prioritySelect)
+            status: statuses.find(status => status.value == statusSelect),
+            priority: priorities.find(priority => priority.value == prioritySelect)
         };
         console.log("POST:", newPost)
         this.props.createPost(newPost)
@@ -60,8 +60,10 @@ class PostForm extends React.Component {
     }
 
     render() {
-        const PrioritySelector = this.state.priorities.map((priority) => <option key={priority.value} value={priority.name}>{priority.name}</option>)
-        const StatusSelector = this.state.statuses.map((status) => <option  key={status.value} value={status.name}>{status.name}</option>)
+        const PrioritySelector = this.state.priorities.map((priority) => <option key={priority.value}
+                                                                                 value={priority.value}>{priority.name}</option>)
+        const StatusSelector = this.state.statuses.map((status) => <option key={status.value}
+                                                                           value={status.value}>{status.name}</option>)
 
 
         return (
@@ -85,11 +87,13 @@ class PostForm extends React.Component {
                 </div>
                 <div className="selectors-options">
                     <label className="my-1 mr-2" htmlFor="priority">Priority</label>
-                    <select className="custom-select my-1 mr-sm-2" id="priority" onChange={this.prioritySelectorHandler}>
+                    <select className="custom-select my-1 mr-sm-2" id="priority" value={this.state.prioritySelect}
+                            onChange={this.prioritySelectorHandler}>
                         {PrioritySelector}
                     </select>
                     <label className="my-1 mr-2" htmlFor="status">Status</label>
-                    <select className="custom-select my-1 mr-sm-2" id="status" onChange={this.statusSelectorHandler}>
+                    <select className="custom-select my-1 mr-sm-2" id="status" value={this.state.statusSelect}
+                            onChange={this.statusSelectorHandler}>
                         {StatusSelector}
                     </select>
                 </div>
