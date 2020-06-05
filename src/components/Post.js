@@ -12,10 +12,10 @@ export default ({post}) => {
                 <h5 className={"card-title" + classMod(post.id)}>
                     <span>ID:{post.id}</span>
                     <hr/>
-                    {post.title}
+                    Title: {post.title}
                 </h5>
+                <p className="card-text description-text">Description<br/> {post.description}</p>
                 <hr/>
-                <p className="card-text description-text">{post.description}</p>
                 <div className='options'><span
                     className={'m-2 p-2 badge badge-pill ' + post.status.class}>{post.status.name}</span>
                     <span className={'m-2 p-2 badge badge-pill ' + post.priority.class}>{post.priority.name}</span>
