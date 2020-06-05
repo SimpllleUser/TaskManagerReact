@@ -1,6 +1,8 @@
-import React from "react";
-import {connect} from "react-redux";
+import React from "react"
+import {connect} from "react-redux"
+import {Redirect} from "react-router-dom"
 import {createPost} from '../redux/actions'
+
 
 class PostForm extends React.Component {
     constructor(props) {
@@ -9,6 +11,7 @@ class PostForm extends React.Component {
         this.descriptionInput = React.createRef();
 
         this.state = {
+            redirect: false,
             title: "",
             description: "",
             prioritySelect: '1',
@@ -48,7 +51,7 @@ class PostForm extends React.Component {
         // CLEAN INPUTS
         this.titleInput.current.value = ''
         this.descriptionInput.current.value = ''
-        this.setState({title: '',description:''})
+        this.setState({title: '', description: '', redirect: true})
     }
 
     changeInputHandler = (event) => {
@@ -72,7 +75,10 @@ class PostForm extends React.Component {
                                                                                  value={priority.value}>{priority.name}</option>)
         const StatusSelector = this.state.statuses.map((status) => <option key={status.value}
                                                                            value={status.value}>{status.name}</option>)
-
+        //REDIRECT ROUTE IF CREATE POST
+        if (this.state.redirect) {
+            return <Redirect to='/'/>
+        }
 
         return (
             <form className="post-form" onSubmit={this.submitHandler}>
@@ -90,7 +96,8 @@ class PostForm extends React.Component {
                             onChange={this.changeInputHandler}
                         />
                         <label htmlFor="description pt-2"> Description </label>
-                        <textarea className="form-control" onChange={this.changeInputHandler} ref={this.descriptionInput}
+                        <textarea className="form-control" onChange={this.changeInputHandler}
+                                  ref={this.descriptionInput}
                                   placeholder="Description"
                                   name="description" id="description" cols="30" rows="10"></textarea>
                     </div>

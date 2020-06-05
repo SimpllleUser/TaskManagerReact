@@ -16,7 +16,8 @@ export default ({post}) => {
                 </h5>
                 <hr/>
                 <p className="card-text description-text">{post.description}</p>
-                <div className='options'><span className={'m-2 p-2 badge badge-pill ' + post.status.class}>{post.status.name}</span>
+                <div className='options'><span
+                    className={'m-2 p-2 badge badge-pill ' + post.status.class}>{post.status.name}</span>
                     <span className={'m-2 p-2 badge badge-pill ' + post.priority.class}>{post.priority.name}</span>
                 </div>
                 <br/>
