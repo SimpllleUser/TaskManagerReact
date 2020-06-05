@@ -5,6 +5,9 @@ import {createPost} from '../redux/actions'
 class PostForm extends React.Component {
     constructor(props) {
         super(props);
+        this.titleInput = React.createRef();
+        this.descriptionInput = React.createRef();
+
         this.state = {
             title: "",
             description: "",
@@ -16,9 +19,9 @@ class PostForm extends React.Component {
 
             ],
             statuses: [
-                {name: 'Open', value: 1, class: 'badge-success'},
-                {name: 'Inprogress', value: 2, class: 'badge-danger'},
-                {name: 'Done', value: 3, class: 'badge-warning'}
+                {name: 'Open', value: 1, class: 'badge-primary'},
+                {name: 'Inprogress', value: 2, class: 'badge-warning'},
+                {name: 'Done', value: 3, class: 'badge-info'}
             ]
         };
 
@@ -26,12 +29,13 @@ class PostForm extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-
+        // INIT STATES
         const {title, description, statuses, statusSelect, prioritySelect, priorities} = this.state;
+        // VALIDATE INPUTS
         if (!title && !description) {
             return
         }
-
+        // CREATE POST
         const newPost = {
             id: Date.now().toString(),
             title,
@@ -39,8 +43,12 @@ class PostForm extends React.Component {
             status: statuses.find(status => status.value == statusSelect),
             priority: priorities.find(priority => priority.value == prioritySelect)
         };
-        console.log("POST:", newPost)
+        // SEND DATA ON REDUX
         this.props.createPost(newPost)
+        // CLEAN INPUTS
+        this.titleInput.current.value = ''
+        this.descriptionInput.current.value = ''
+        this.setState({title: '',description:''})
     }
 
     changeInputHandler = (event) => {
@@ -77,11 +85,13 @@ class PostForm extends React.Component {
                             id="title"
                             placeholder="title"
                             name="title"
+                            ref={this.titleInput}
                             value={this.title}
                             onChange={this.changeInputHandler}
                         />
                         <label htmlFor="description pt-2"> Description </label>
-                        <textarea className="form-control" onChange={this.changeInputHandler} placeholder="Description"
+                        <textarea className="form-control" onChange={this.changeInputHandler} ref={this.descriptionInput}
+                                  placeholder="Description"
                                   name="description" id="description" cols="30" rows="10"></textarea>
                     </div>
                 </div>
