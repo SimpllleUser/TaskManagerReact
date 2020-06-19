@@ -1,6 +1,9 @@
 import React from "react";
 import {useDispatch} from "react-redux";
 import {deletePost} from "../redux/actions";
+import { Router, Route, NavLink} from "react-router-dom";
+
+import EditPost from "../pages/EditPosts";
 
 export default ({post}) => {
     const classMod = val => val + " test";
@@ -8,6 +11,7 @@ export default ({post}) => {
 
     return (
         <div className="card m-2">
+            <Route path="/:id/:param?" component={EditPost} />
             <div className="card-body">
                 <h5 className={"card-title" + classMod(post.id)}>
                     <span>ID:{post.id}</span>
