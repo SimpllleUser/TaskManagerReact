@@ -1,28 +1,23 @@
 import React from "react"
-import PostForm from "./components/PostForm"
-import Posts from "./components/Posts"
-import FetchedPosts from "./components/FetchedPosts"
+import {BrowserRouter as Router, Route, NavLink} from "react-router-dom";
+import CreatePost from "./pages/CreatePost"
+import ListPosts from "./pages/ListPosts"
+import EditPost from "./pages/EditPosts"
 
 function App() {
-  return (
-    <div className="container pt-3">
-      <div className="row">
-        <div className="col"><PostForm/></div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <h2>Синхронные посты</h2>
-            <div className="post-list">
-                <Posts/>
+    const activePage = 'active btn btn-primary'
+    return (
+        <div className="container pt-3">
+            <div className="nav-links">
+                <Router>
+                    <NavLink exact to='/' activeClassName={activePage}>Список заданий</NavLink>
+                    <NavLink to='/create-post' activeClassName={activePage}>Создать задание</NavLink>
+                    <Route exact path="/" component={ListPosts}/>
+                    <Route exact path="/create-post" component={CreatePost}/>
+                </Router>
             </div>
-          </div>
-        <div className="col">
-        <h2>Асинхронные посты</h2>
-          <FetchedPosts />
-          </div>
-      </div>
-    </div>
-  );
+        </div>
+    );
 }
 
 export default App;

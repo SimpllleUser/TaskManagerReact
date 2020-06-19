@@ -1,24 +1,30 @@
-import React from "react";
-import {connect} from "react-redux";
+import React from "react"
+import {connect} from "react-redux"
+import {Redirect} from "react-router-dom"
 import {createPost} from '../redux/actions'
+
 
 class PostForm extends React.Component {
     constructor(props) {
         super(props);
+        this.titleInput = React.createRef();
+        this.descriptionInput = React.createRef();
+
         this.state = {
+            redirect: false,
             title: "",
             description: "",
-            prioritySelect: '0',
-            statusSelect: '0',
-            priorities: [
-                {name: 'Highly', value: 3},
-                {name: 'Normal', value: 2},
-                {name: 'Low', value: 1}
+            prioritySelect: '1',
+            statusSelect: '1',
+            priorities: [{name: 'Low', value: 1, class: 'badge-success'},
+                {name: 'Normal', value: 2, class: 'badge-warning'},
+                {name: 'Highly', value: 3, class: 'badge-danger'}
+
             ],
             statuses: [
-                {name: 'Inprogress', value: 2},
-                {name: 'Done', value: 3},
-                {name: 'Open', value: 1}
+                {name: 'Open', value: 1, class: 'badge-primary'},
+                {name: 'Inprogress', value: 2, class: 'badge-warning'},
+                {name: 'Done', value: 3, class: 'badge-info'}
             ]
         };
 
@@ -26,19 +32,26 @@ class PostForm extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-
-        const {title, description, statusSelect, prioritySelect} = this.state;
+        // INIT STATES
+        const {title, description, statuses, statusSelect, prioritySelect, priorities} = this.state;
+        // VALIDATE INPUTS
         if (!title && !description) {
             return
         }
+        // CREATE POST
         const newPost = {
             id: Date.now().toString(),
             title,
             description,
-            statusSelect,
-            prioritySelect
+            status: statuses.find(status => status.value == statusSelect),
+            priority: priorities.find(priority => priority.value == prioritySelect)
         };
+        // SEND DATA ON REDUX
         this.props.createPost(newPost)
+        // CLEAN INPUTS
+        this.titleInput.current.value = ''
+        this.descriptionInput.current.value = ''
+        this.setState({title: '', description: '', redirect: true})
     }
 
     changeInputHandler = (event) => {
@@ -58,9 +71,14 @@ class PostForm extends React.Component {
     }
 
     render() {
-        const PrioritySelector = this.state.priorities.map((priority) => <option key={priority.value} value={priority.name}>{priority.name}</option>)
-        const StatusSelector = this.state.statuses.map((status) => <option  key={status.value} value={status.name}>{status.name}</option>)
-
+        const PrioritySelector = this.state.priorities.map((priority) => <option key={priority.value}
+                                                                                 value={priority.value}>{priority.name}</option>)
+        const StatusSelector = this.state.statuses.map((status) => <option key={status.value}
+                                                                           value={status.value}>{status.name}</option>)
+        //REDIRECT ROUTE IF CREATE POST
+        if (this.state.redirect) {
+            return <Redirect to='/'/>
+        }
 
         return (
             <form className="post-form" onSubmit={this.submitHandler}>
@@ -73,21 +91,26 @@ class PostForm extends React.Component {
                             id="title"
                             placeholder="title"
                             name="title"
+                            ref={this.titleInput}
                             value={this.title}
                             onChange={this.changeInputHandler}
                         />
                         <label htmlFor="description pt-2"> Description </label>
-                        <textarea className="form-control" onChange={this.changeInputHandler} placeholder="Description"
+                        <textarea className="form-control" onChange={this.changeInputHandler}
+                                  ref={this.descriptionInput}
+                                  placeholder="Description"
                                   name="description" id="description" cols="30" rows="10"></textarea>
                     </div>
                 </div>
                 <div className="selectors-options">
                     <label className="my-1 mr-2" htmlFor="priority">Priority</label>
-                    <select className="custom-select my-1 mr-sm-2" id="priority" onChange={this.prioritySelectorHandler}>
+                    <select className="custom-select my-1 mr-sm-2" id="priority" value={this.state.prioritySelect}
+                            onChange={this.prioritySelectorHandler}>
                         {PrioritySelector}
                     </select>
                     <label className="my-1 mr-2" htmlFor="status">Status</label>
-                    <select className="custom-select my-1 mr-sm-2" id="status" onChange={this.statusSelectorHandler}>
+                    <select className="custom-select my-1 mr-sm-2" id="status" value={this.state.statusSelect}
+                            onChange={this.statusSelectorHandler}>
                         {StatusSelector}
                     </select>
                 </div>
