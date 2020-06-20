@@ -3,3 +3,4 @@ export const FECTH_POSTS = "POST/FECTH_POSTS";
 export const SHOW_LOADER = "APP/SHOW_LOADER";
 export const HIDE_LOADER = "APP/HIDE_LOADER";
 export const DELETE_POST = "APP/DELETE_POST";
+export const SET_EDIT_POST = "APP/SET_EDIT_POST"

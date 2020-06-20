@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import {deletePost} from "../redux/actions";
+import {deletePost, setEditablePost} from "../redux/actions";
 import { Router, Route, NavLink} from "react-router-dom";
 
 import EditPost from "../pages/EditPosts";
@@ -32,6 +32,14 @@ export default ({post}) => {
                     className="btn btn-danger"
                 >
                     Delete
+                </button>
+                <button
+                    onClick={() => {
+                        dispatch(setEditablePost(post));
+                    }}
+                    className="btn btn-warning"
+                >
+                    Edit
                 </button>
             </div>
         </div>
