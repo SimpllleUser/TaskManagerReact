@@ -4,12 +4,21 @@ class EditPost extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      post:{}
+    };
   }
+
+  componentWillMount(){
+    let posts = this.props.posts.find(p => p.id === this.props.match.params.id)
+    this.setState({post:posts})
+
+} 
+
   render() {
     return (
       <div>
-        <h2>Edit post {console.log(this.props)} </h2>
+        <h2>Edit post {console.log("!!!!!!!!",this.state.post)} </h2>
         <p>Id: {this.props.match.params.id}</p>
       </div>
     );
@@ -18,7 +27,7 @@ class EditPost extends React.Component {
 // export default EditPost;
 const mapStateToProps = (state) => {
   return {
-    selectEditablePost: state.posts.posts,
+    posts: state.posts.posts,
   };
 };
 export default connect(mapStateToProps, null)(EditPost);
