@@ -13,6 +13,7 @@ function App() {
                     <NavLink exact to='/' activeClassName={activePage}>Список заданий</NavLink>
                     <NavLink to='/create-post' activeClassName={activePage}>Создать задание</NavLink>
                     <Route exact path="/" component={ListPosts}/>
+                    <Route  path="/edit-post/:id" component={EditPost}/>
                     <Route exact path="/create-post" component={CreatePost}/>
                 </Router>
             </div>
