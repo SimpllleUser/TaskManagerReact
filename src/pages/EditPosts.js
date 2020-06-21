@@ -8,6 +8,8 @@ class EditPost extends React.Component {
 
     this.state = {
       post: {},
+      title: "",
+      description: "",
       prioritySelect: {},
       statusSelect: {},
       priorities: [
@@ -27,10 +29,13 @@ class EditPost extends React.Component {
     let post = this.props.posts.find(
       (p) => p.id === this.props.match.params.id
     );
-    this.setState({ post });
-    this.setState({prioritySelect:post.priority.value})
-    this.setState({statusSelect:post.status.value})
-
+    this.setState({
+      post,
+      title: post.title,
+      description: post.description,
+      prioritySelect: post.priority.value,
+      statusSelect: post.status.value,
+    });
   }
 
   changeInputHandler = (event) => {
@@ -44,11 +49,11 @@ class EditPost extends React.Component {
   };
 
   prioritySelectorHandler = (event) => {
-    this.setState({prioritySelect: event.target.value})
-}
-statusSelectorHandler = (event) => {
-    this.setState({statusSelect: event.target.value})
-}
+    this.setState({ prioritySelect: event.target.value });
+  };
+  statusSelectorHandler = (event) => {
+    this.setState({ statusSelect: event.target.value });
+  };
 
   render() {
     const PrioritySelector = this.state.priorities.map((priority) => (
@@ -63,8 +68,6 @@ statusSelectorHandler = (event) => {
     ));
     return (
       <div>
-        <h2>Edit post {console.log("!!!!!!!!", this.state.post)} </h2>
-        {/* <p>Id: {this.props.match.params.id}</p> */}
         <div className="inputs-text">
           <div className="form-group">
             <label htmlFor="title"> Title </label>
@@ -75,7 +78,7 @@ statusSelectorHandler = (event) => {
               placeholder="title"
               name="title"
               ref={this.titleInput}
-              value={this.state.post.title}
+              value={this.state.title}
               onChange={this.changeInputHandler}
             />
             <label htmlFor="description pt-2"> Description </label>
@@ -88,22 +91,34 @@ statusSelectorHandler = (event) => {
               id="description"
               cols="30"
               rows="10"
-              value={this.state.post.description}
+              value={this.state.description}
             ></textarea>
           </div>
         </div>
         <div className="selectors-options">
-                    <label className="my-1 mr-2" htmlFor="priority">Priority</label>
-                    <select className="custom-select my-1 mr-sm-2" id="priority" value={this.state.prioritySelect}
-                            onChange={this.prioritySelectorHandler}>
-                        {PrioritySelector}
-                    </select>
-                    <label className="my-1 mr-2" htmlFor="status">Status</label>
-                    <select className="custom-select my-1 mr-sm-2" id="status" value={this.state.statusSelect}
-                            onChange={this.statusSelectorHandler}>
-                        {StatusSelector}
-                    </select>
-                </div>
+          <label className="my-1 mr-2" htmlFor="priority">
+            Priority
+          </label>
+          <select
+            className="custom-select my-1 mr-sm-2"
+            id="priority"
+            value={this.state.prioritySelect}
+            onChange={this.prioritySelectorHandler}
+          >
+            {PrioritySelector}
+          </select>
+          <label className="my-1 mr-2" htmlFor="status">
+            Status
+          </label>
+          <select
+            className="custom-select my-1 mr-sm-2"
+            id="status"
+            value={this.state.statusSelect}
+            onChange={this.statusSelectorHandler}
+          >
+            {StatusSelector}
+          </select>
+        </div>
       </div>
     );
   }

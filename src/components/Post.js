@@ -24,11 +24,11 @@ export default ({ post }) => {
         </p>
         <hr />
         <div className="options">
+        <span className={"m-2 p-2 badge badge-pill " + post.priority.class}>
+            {post.priority.name}
+          </span>
           <span className={"m-2 p-2 badge badge-pill " + post.status.class}>
             {post.status.name}
-          </span>
-          <span className={"m-2 p-2 badge badge-pill " + post.priority.class}>
-            {post.priority.name}
           </span>
         </div>
         <br />
@@ -40,7 +40,7 @@ export default ({ post }) => {
         >
           Delete
         </button>
-        <NavLink to={`/edit-post/${post.id}`} className="btn btn-warning">
+        <NavLink to={`/edit-post/${post.id}`} className="bg-warning text-dark">
           Edit post
         </NavLink>
       </div>
