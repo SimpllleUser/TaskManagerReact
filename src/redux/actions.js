@@ -4,7 +4,7 @@ import {
     SHOW_LOADER,
     HIDE_LOADER,
     DELETE_POST,
-    SET_EDIT_POST
+    EDIT_POST
 } from "./types";
 
 export function createPost(post) {
@@ -30,8 +30,8 @@ export function deletePost(id) {
     return { type: DELETE_POST, id };
 }
 
-export function setEditablePost(post) {
-    return { type: SET_EDIT_POST, post }
+export function saveEditablePost(post) {
+    return { type: EDIT_POST, post }
 }
 
 export function fetchedPosts() {

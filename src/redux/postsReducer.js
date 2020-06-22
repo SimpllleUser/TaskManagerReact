@@ -1,4 +1,4 @@
-import { CREATE_POST, FECTH_POSTS, DELETE_POST, SET_EDIT_POST } from "./types";
+import { CREATE_POST, FECTH_POSTS, DELETE_POST, EDIT_POST } from "./types";
 
 const initialState = {
     posts: [],
@@ -20,11 +20,11 @@ export const postsReducer = (state = initialState, action) => {
                 ...state,
                 posts: state.posts.filter(p => p.id !== action.id)
             };
-        case SET_EDIT_POST:
-            console.log("SET_EDIT_POST", action)
+        case EDIT_POST:
+            console.log('POST', action.post, state.posts)
             return {
                 ...state,
-                selectEditablePost: action.post
+                posts: state.posts.concat([action.post], console.log([action.post]))
             }
 
         default:

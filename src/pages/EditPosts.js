@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { saveEditablePost } from "../redux/actions";
+
 class EditPost extends React.Component {
   constructor(props) {
     super(props);
@@ -48,6 +50,25 @@ class EditPost extends React.Component {
     }));
   };
 
+  saveEditPost = () => {
+    const {
+      title,
+      description,
+      statuses,
+      statusSelect,
+      prioritySelect,
+      priorities,
+    } = this.state;
+    const selectedPost = {
+      id: this.state.post.id,
+      title,
+      description,
+      status: statuses.find((status) => status.value == statusSelect),
+      priority: priorities.find((priority) => priority.value == prioritySelect),
+    };
+    this.props.saveEditablePost(selectedPost);
+  };
+
   prioritySelectorHandler = (event) => {
     this.setState({ prioritySelect: event.target.value });
   };
@@ -58,11 +79,13 @@ class EditPost extends React.Component {
   render() {
     const PrioritySelector = this.state.priorities.map((priority) => (
       <option key={priority.value} value={priority.value}>
+        
         {priority.name}
       </option>
     ));
     const StatusSelector = this.state.statuses.map((status) => (
       <option key={status.value} value={status.value}>
+        
         {status.name}
       </option>
     ));
@@ -119,6 +142,9 @@ class EditPost extends React.Component {
             {StatusSelector}
           </select>
         </div>
+        <button className="btn btn-success" onClick={this.saveEditPost}>
+          Save
+        </button>
       </div>
     );
   }
@@ -127,6 +153,11 @@ class EditPost extends React.Component {
 const mapStateToProps = (state) => {
   return {
     posts: state.posts.posts,
-  };
+  }
 };
-export default connect(mapStateToProps, null)(EditPost);
+
+const mapDispatchToProps = {
+  saveEditablePost
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditPost);
