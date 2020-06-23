@@ -3,7 +3,6 @@ import {connect} from "react-redux"
 import {Redirect} from "react-router-dom"
 import {createPost} from '../redux/actions'
 
-
 class PostForm extends React.Component {
     constructor(props) {
         super(props);
