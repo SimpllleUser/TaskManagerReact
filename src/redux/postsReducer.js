@@ -22,9 +22,11 @@ export const postsReducer = (state = initialState, action) => {
             };
         case EDIT_POST:
             console.log('POST', action.post, state.posts)
+            let post = action.post
             return {
                 ...state,
-                posts: state.posts.concat([action.post], console.log([action.post]))
+                posts: state.posts.map(p => p.id == post.id ? post : p)
+
             }
 
         default:
