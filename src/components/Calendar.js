@@ -3,9 +3,6 @@ import moment from "moment";
 
 const today = moment;
 
-const test = () => {
-  console.log("WORK");
-};
 const initMonth = () => {
   const MonthYear = today().format("MM-YYYY");
   let month = [];
