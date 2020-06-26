@@ -20,10 +20,15 @@ const initMonth = () => {
   return month
 }
 
+const listDay = initMonth().map((day) => <li key={day.num}>
+{day.num}  {day.name}
+</li>)
+
 const Calendar = () => {
   return (
     <div>
       <h1>Calendar</h1>
+      <div className="month">{listDay}</div>
       {console.log(initMonth())}
     </div>
   );
