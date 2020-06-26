@@ -26,7 +26,6 @@ export const postsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 posts: state.posts.map(p => p.id == post.id ? post : p)
-
             }
 
         default:
