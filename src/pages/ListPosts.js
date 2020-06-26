@@ -16,4 +16,8 @@ const ListPosts = () => (
   </div>
 );
 
+<<<<<<< HEAD
 export default ListPosts;
+=======
+export default ListPosts;
+>>>>>>> 0317c9932fef359a6711a9780d4fbfd61e90153e

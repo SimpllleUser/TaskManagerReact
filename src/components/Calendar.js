@@ -32,6 +32,7 @@ const listWeek = daysOfWeek.map((day) => (
   <div key={day}>{day}</div>
 ))
 
+
 const Calendar = () => {
   return (
     <div>
@@ -39,6 +40,7 @@ const Calendar = () => {
          {listWeek}
          {listDay}
           </div>
+
       {console.log(initMonth())}
     </div>
   );
