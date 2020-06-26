@@ -19,21 +19,22 @@ const initMonth = () => {
 const daysOfWeek = ["Mon", "Tue", "Wed", "Thus", "Fri", "Sut", "Sun"] 
 
 const listDay = initMonth().map((day) => (
-  <div key={day.num}>
-    {day.num}
+  <div className={"day " + day.name } key={day.num}>
+    <div className="dayNum">{day.num}</div>
     {/* {day.name} */}
   </div>
 ));
 
 const listWeek = daysOfWeek.map((day) => (
-  <div key={day}>{day}</div>
+  <div className="week" key={day}>{day}</div>
 ))
 
 
 const Calendar = () => {
   return (
     <div>
-      <h1> Calendar </h1> <div className="month">
+      <h1> Calendar </h1>
+      <div className="month">
          {listWeek}
          {listDay}
           </div>

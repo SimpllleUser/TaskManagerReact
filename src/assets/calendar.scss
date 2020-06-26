@@ -1,4 +1,23 @@
 .month {
     display: grid;
-    grid-template-columns: repeat(7, 1fr)
+    grid-template-columns: repeat(7, 1fr);
+    .week {
+        text-align: center;
+    }
+    .day {
+        text-align: right;
+        border: 1px solid;
+        margin: 1px;
+        height: 70px;
+        // padding-right: 10px;
+        .dayNum {
+            width: 17px;
+            height: 17px;
+            margin-left: auto;
+            margin-right: 5px;
+        }
+    }
+    .Sunday {
+        color: red;
+    }
 }
