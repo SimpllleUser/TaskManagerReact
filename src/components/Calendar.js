@@ -24,8 +24,13 @@ const Calendar = () => {
   
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thus", "Fri", "Sut", "Sun"];
   
+  const setBorder = (name) =>{
+    let border = name === 'Sunday' ? 'danger' : 'primary'
+    return `border border-${border}`
+  }
+
   const listDay = initMonth().map((day) => (
-    <div className={"day " + day.name} key={day.num}>
+    <div className={'day ' + setBorder(day.name)} key={day.num}>
       <div className="dayNum">{day.num}</div>
     </div>
   ));
