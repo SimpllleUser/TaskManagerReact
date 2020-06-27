@@ -1,14 +1,20 @@
 .navigation-calendar {
     display: flex;
     justify-content: center;
-    width: 100px;
+    // width: 100px;
     .name-month {
+        display: flex;
         width: 100px;
         text-align: center;
+        justify-content: center;
+        align-items: center;
     }
     .name-year {
+        display: flex;
         width: 100px;
         text-align: center;
+        justify-content: center;
+        align-items: center;
     }
     .prev {
         height: 30px;
@@ -31,7 +37,6 @@
         border: 1px solid;
         margin: 1px;
         height: 70px;
-        // padding-right: 10px;
         .dayNum {
             width: 17px;
             height: 17px;
