@@ -63,9 +63,13 @@ const Calendar = () => {
     setYear = +selectYear <= 1 ? setYear(2020) : setYear(+selectYear - 1)
   };
 
+  const nameMonth = () => {
+    return today(`${selectMonth}`).format('MMMM')
+  }
+
   return (
     <div>
-      <h1> Calendar </h1>
+      <h1> Calendar</h1>
       <div className="navigation-calendar year-header">
         <div className="prev year"onClick={prevYear}>-</div>
         <div className="name-year">{selectYear}</div>
@@ -73,7 +77,7 @@ const Calendar = () => {
       </div>
       <div className="navigation-calendar month-header">
         <div className="prev month" onClick={prevMonth}>-</div>
-        <div className="name-month">{selectMonth}</div>
+        <div className="name-month">{nameMonth()}</div>
         <div className="next month" onClick={nextMonth}>+</div>
       </div>
       <div className="month">
