@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ArrowLeft,ArrowRight } from 'react-feather';
 import moment from "moment";
 
 const today = moment;
@@ -23,7 +24,7 @@ const Calendar = () => {
   };
   
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thus", "Fri", "Sut", "Sun"];
-  
+  const size = 18
   const setBorder = (name) =>{
     let border = name === 'Sunday' ? 'danger' : 'primary'
     return `border border-${border}`
@@ -71,14 +72,14 @@ const Calendar = () => {
     <div>
       <h1> Calendar</h1>
       <div className="navigation-calendar year-header">
-        <div className="prev year"onClick={prevYear}>-</div>
+        <div className="prev year"onClick={prevYear}><ArrowLeft size={size} /></div>
         <div className="name-year">{selectYear}</div>
-        <div className="next year" onClick={nextYear}>+</div>
+        <div className="next year" onClick={nextYear}><ArrowRight size={size}/></div>
       </div>
       <div className="navigation-calendar month-header">
-        <div className="prev month" onClick={prevMonth}>-</div>
+        <div className="prev month" onClick={prevMonth}><ArrowLeft size={size} /></div>
         <div className="name-month">{nameMonth()}</div>
-        <div className="next month" onClick={nextMonth}>+</div>
+        <div className="next month" onClick={nextMonth}><ArrowRight size={size}/></div>
       </div>
       <div className="month">
         {listWeek}
