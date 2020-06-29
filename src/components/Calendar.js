@@ -10,8 +10,6 @@ const Calendar = () => {
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thus", "Fri", "Sut", "Sun"];
   const size = 18;
 
-
-
   const initMonth = () => {
     const MonthYear = today().format("MM-YYYY");
     let month = [];
@@ -38,16 +36,14 @@ const Calendar = () => {
   };
 
   const listDay = initMonth().map((day) => (
-    <div
-      className={"day " + setBorder(day.name)}
-      key={day.num}
-    >
-      <div className="dayNum">{day.num}</div>
+    <div className={"day " + setBorder(day.name)} key={day.num} onClick={() => { selectDay(day.num)}} >
+      <div className="dayNum"> {day.num} </div>
     </div>
   ));
 
   const listWeek = daysOfWeek.map((day) => (
     <div className="week" key={day}>
+      
       {day}
     </div>
   ));
@@ -80,12 +76,12 @@ const Calendar = () => {
 
   return (
     <div>
-      <h1> Calendar {selectDay()}</h1>
+      <h1> Calendar </h1>
       <div className="navigation-calendar year-header">
         <div className="prev year" onClick={prevYear}>
           <ArrowLeft size={size} />
         </div>
-        <div className="name-year">{selectYear}</div>
+        <div className="name-year"> {selectYear} </div>
         <div className="next year" onClick={nextYear}>
           <ArrowRight size={size} />
         </div>
@@ -94,14 +90,14 @@ const Calendar = () => {
         <div className="prev month" onClick={prevMonth}>
           <ArrowLeft size={size} />
         </div>
-        <div className="name-month">{nameMonth()}</div>
+        <div className="name-month"> {nameMonth()} </div>
         <div className="next month" onClick={nextMonth}>
           <ArrowRight size={size} />
         </div>
       </div>
       <div className="month">
-        {listWeek}
-        {listDay}
+        
+        {listWeek} {listDay}
       </div>
     </div>
   );
