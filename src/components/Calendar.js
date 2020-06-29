@@ -33,17 +33,23 @@ const Calendar = () => {
 
   const selectDay = (day) => {
     console.log("DAY", day);
+    // initMonth = []
   };
 
   const listDay = initMonth().map((day) => (
-    <div className={"day " + setBorder(day.name)} key={day.num} onClick={() => { selectDay(day.num)}} >
+    <div
+      className={"day " + setBorder(day.name)}
+      key={day.num}
+      onClick={() => {
+        selectDay(day.num);
+      }}
+    >
       <div className="dayNum"> {day.num} </div>
     </div>
   ));
 
   const listWeek = daysOfWeek.map((day) => (
     <div className="week" key={day}>
-      
       {day}
     </div>
   ));
@@ -76,7 +82,7 @@ const Calendar = () => {
 
   return (
     <div>
-      <h1> Calendar </h1>
+      <h1> Calendar</h1>
       <div className="navigation-calendar year-header">
         <div className="prev year" onClick={prevYear}>
           <ArrowLeft size={size} />
@@ -96,7 +102,6 @@ const Calendar = () => {
         </div>
       </div>
       <div className="month">
-        
         {listWeek} {listDay}
       </div>
     </div>
