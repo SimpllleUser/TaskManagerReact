@@ -37,7 +37,7 @@ class Calendar extends React.Component {
           month.push(data_day);
         }
         let firstElem = month[0].name
-        let lenthEmptDay = this.state.daysOfWeek.findIndex(m => m == firstElem )
+        let lenthEmptDay = this.state.daysOfWeek.findIndex(m => m === firstElem )
         let prevMonthDay = this.state.prevMonthDay(lenthEmptDay)
         return  prevMonthDay ? [...prevMonthDay, ...month] : month
       },
@@ -57,7 +57,7 @@ class Calendar extends React.Component {
 
   formatClassName = (day) => {
     const border = this.setBorder(day.name)
-    const selectDay =  this.state.selectDay == day.num && day.name != 'prevMonth' ? "select-day" : ""
+    const selectDay =  this.state.selectDay === day.num && day.name != 'prevMonth' ? "select-day" : ""
     return `day ${border} ${selectDay}`
   }
 
