@@ -2,8 +2,6 @@ import React from "react";
 import { ArrowLeft, ArrowRight } from "react-feather";
 import moment from "moment";
 
-// const today = moment;
-
 class Calendar extends React.Component {
   constructor(props) {
     super(props);
@@ -43,12 +41,25 @@ class Calendar extends React.Component {
         let prevMonthDay = this.state.prevMonthDay(lenthEmptDay)
         return  prevMonthDay ? [...prevMonthDay, ...month] : month
       },
+      selectDay:''
     };
   }
 
   selectDay = (day) => {
-    console.log("DAY", day);
+    this.setState({selectDay: day.num})
+
   };
+
+   setBorder = (name) => {
+    let border = name === "Sunday" ? "danger" : "primary";
+    return `border border-${border}`;
+  };
+
+  formatClassName = (day) => {
+    const border = this.setBorder(day.name)
+    const selectDay =  this.state.selectDay == day.num && day.name != 'prevMonth' ? "select-day" : ""
+    return `day ${border} ${selectDay}`
+  }
 
    nextMonth = () => {
      let selectMonth = +this.state.selectMonth
@@ -80,7 +91,7 @@ class Calendar extends React.Component {
   let selectYear = +this.state.selectYear
   selectYear--
   if(selectYear <= 1){
-    selectYear = 22020
+    selectYear = 2020
   }
   this.setState({selectYear})
   };
@@ -90,26 +101,20 @@ class Calendar extends React.Component {
   };
 
   render() {
-    var size = 48
-    // 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Tuesday','Sunday'
-    // const daysOfWeek = {}
+    const size = 48
       const listWeek = this.state.daysOfWeek.map((day) => (
         <div className="week" key={day}>
       {day}
     </div>
   ));
 
-    const setBorder = (name) => {
-    let border = name === "Sunday" ? "danger" : "primary";
-    return `border border-${border}`;
-  };
     const listDay = this.state.month().map((day) => (
     <div
-      className={day.name != 'prevMonth' ? "day " + setBorder(day.name) : "day " + 'prevMonth'}
+      className={`${this.formatClassName(day)} ${day.name}`}
       key={day.num + day.name}
       onClick = {() => {this.selectDay(day)}}
     >
-      <div className="dayNum">{day.num}</div>
+      <div className="dayNum" >{day.num}</div>
     </div>
   ));
     return (
