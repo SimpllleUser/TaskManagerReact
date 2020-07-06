@@ -4,7 +4,8 @@ import {
     SHOW_LOADER,
     HIDE_LOADER,
     DELETE_POST,
-    EDIT_POST
+    EDIT_POST,
+    CREATE_CALENDAR_EVENT
 } from "./types";
 
 export function createPost(post) {
@@ -46,4 +47,8 @@ export function fetchedPosts() {
             dispatch(hideLoader());
         }, 500);
     };
+}
+
+export function createEvent(event) {
+    return { type: CREATE_CALENDAR_EVENT, event }
 }

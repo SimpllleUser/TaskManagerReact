@@ -1,6 +1,7 @@
 import React from "react";
-import { ArrowLeft, ArrowRight } from "react-feather";
 import moment from "moment";
+import { ArrowLeft, ArrowRight } from "react-feather";
+import CalendarEvent from './CalendarEvent'
 
 class Calendar extends React.Component {
   constructor(props) {
@@ -119,7 +120,7 @@ class Calendar extends React.Component {
   ));
     return (
       <div>
-         <h1 > Calendar </h1>
+         <h1 > Календарь </h1>
       <div className="navigation-calendar year-header">
         <div className="prev year" onClick={this.prevYear}>
           <ArrowLeft size={size} />
@@ -141,7 +142,10 @@ class Calendar extends React.Component {
       <div className="month">
         {listWeek}
         {listDay}
-      </div> 
+      </div>
+      <div className="calendar-event col-6 border">
+       <CalendarEvent/> 
+      </div>
       </div>
     );
   }

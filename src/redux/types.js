@@ -4,3 +4,4 @@ export const SHOW_LOADER = "APP/SHOW_LOADER";
 export const HIDE_LOADER = "APP/HIDE_LOADER";
 export const DELETE_POST = "APP/DELETE_POST";
 export const EDIT_POST = "APP/EDIT_POST"
+export const CREATE_CALENDAR_EVENT = "CALENDAR/CREATE_EVENT"

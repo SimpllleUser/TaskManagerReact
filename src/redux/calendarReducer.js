@@ -1,7 +1,19 @@
-const stateInitial = {}
+import { CREATE_CALENDAR_EVENT } from "./types";
 
-export const calendarReducer = (state = stateInitial, action) => {
+const initialState = {
+    events: []
+}
+
+export const calendarReducer = (state = initialState, action) => {
     switch (action.type) {
-        default: return state
+        case CREATE_CALENDAR_EVENT:
+            console.log(action)
+            return {
+                ...state,
+                events: state.events.push(action.event)
+            }
+
+        default:
+            return state
     }
 }
