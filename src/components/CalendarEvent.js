@@ -50,7 +50,6 @@ class CalendarEvent extends React.Component {
     const events =  this.props.events.map((event) => (
       <div className="event card" key={event.id}> 
         <h3 className="evet-title card-header">{event.title}</h3>
-        <hr/>
         <p className="evet-description card-text">{event.description}</p>
       </div>
     ))
