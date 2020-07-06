@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {Redirect} from "react-router-dom"
+import { Redirect } from "react-router-dom";
 import { saveEditablePost } from "../redux/actions";
 
 class EditPost extends React.Component {
@@ -82,12 +82,14 @@ class EditPost extends React.Component {
   render() {
     const PrioritySelector = this.state.priorities.map((priority) => (
       <option key={priority.value} value={priority.value}>
-        {priority.name}{" "}
+        
+        {priority.name}
       </option>
     ));
     const StatusSelector = this.state.statuses.map((status) => (
       <option key={status.value} value={status.value}>
-        {status.name}{" "}
+        
+        {status.name}
       </option>
     ));
 
@@ -99,7 +101,7 @@ class EditPost extends React.Component {
       <div>
         <div className="inputs-text">
           <div className="form-group">
-            <label htmlFor="title"> Title </label>{" "}
+            <label htmlFor="title"> Title </label>
             <input
               type="text"
               className="form-control"
@@ -109,8 +111,8 @@ class EditPost extends React.Component {
               ref={this.titleInput}
               value={this.state.title}
               onChange={this.changeInputHandler}
-            />{" "}
-            <label htmlFor="description pt-2"> Description </label>{" "}
+            />
+            <label htmlFor="description pt-2"> Description </label>
             <textarea
               className="form-control"
               onChange={this.changeInputHandler}
@@ -121,38 +123,36 @@ class EditPost extends React.Component {
               cols="30"
               rows="10"
               value={this.state.description}
-            ></textarea>{" "}
-          </div>{" "}
-        </div>{" "}
+            ></textarea>
+          </div>
+        </div>
         <div className="selectors-options">
           <label className="my-1 mr-2" htmlFor="priority">
-            Priority{" "}
-          </label>{" "}
+            Priority
+          </label>
           <select
             className="custom-select my-1 mr-sm-2"
             id="priority"
             value={this.state.prioritySelect}
             onChange={this.prioritySelectorHandler}
           >
-            {" "}
-            {PrioritySelector}{" "}
-          </select>{" "}
+            {PrioritySelector}
+          </select>
           <label className="my-1 mr-2" htmlFor="status">
-            Status{" "}
-          </label>{" "}
+            Status
+          </label>
           <select
             className="custom-select my-1 mr-sm-2"
             id="status"
             value={this.state.statusSelect}
             onChange={this.statusSelectorHandler}
           >
-            {" "}
-            {StatusSelector}{" "}
-          </select>{" "}
-        </div>{" "}
+            {StatusSelector}
+          </select>
+        </div>
         <button className="btn btn-success" onClick={this.saveEditPost}>
-          Save{" "}
-        </button>{" "}
+          Save
+        </button>
       </div>
     );
   }
