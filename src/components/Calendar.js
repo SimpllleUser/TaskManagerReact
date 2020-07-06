@@ -1,150 +1,147 @@
-import React, { useState } from "react";
-import { ArrowLeft, ArrowRight, Divide } from "react-feather";
+import React from "react";
+import { ArrowLeft, ArrowRight } from "react-feather";
 import moment from "moment";
-
-const today = moment;
-
-// const Calendar = () => {
-//   let [selectYear, setYear] = useState(moment().format("YYYY"));
-//   let [selectMonth, setMonth] = useState(moment().format("M"));
-//   const daysOfWeek = ["Mon", "Tue", "Wed", "Thus", "Fri", "Sut", "Sun"];
-//   const size = 18;
-
-//   const initMonth = () => {
-//     const MonthYear = today().format("MM-YYYY");
-//     let month = [];
-//     let max_day = today(
-//       `${selectMonth}-${selectMonth}`,
-//       "YYYY-MM"
-//     ).daysInMonth();
-//     for (let i = 0; i < max_day; i++) {
-//       let num = i + 1;
-//       let name = today(`${num}-${MonthYear}`, "DD-MM-YYYY").format("dddd");
-//       let data_day = { num, name };
-//       month.push(data_day);
-//     }
-//     return month;
-//   };
-
-//   const setBorder = (name) => {
-//     let border = name === "Sunday" ? "danger" : "primary";
-//     return `border border-${border}`;
-//   };
-
-//   const selectDay = (day) => {
-//     console.log("DAY", day);
-//     // initMonth = []
-//   };
-
-//   const listDay = initMonth().map((day) => (
-//     <div
-//       className={"day " + setBorder(day.name)}
-//       key={day.num}
-//       onClick={() => {
-//         selectDay(day.num);
-//       }}
-//     >
-//       <div className="dayNum"> {day.num} </div>
-//     </div>
-//   ));
-
-//   const listWeek = daysOfWeek.map((day) => (
-//     <div className="week" key={day}>
-//       {day}
-//     </div>
-//   ));
-
-//   const nextMonth = () => {
-//     if (selectMonth >= 12) {
-//       selectMonth = 0;
-//       setYear(+selectYear + 1);
-//     }
-//     setMonth(+selectMonth + 1);
-//   };
-//   const prevMonth = () => {
-//     if (selectMonth <= 1) {
-//       selectMonth = 13;
-//       setYear(+selectYear - 1);
-//     }
-//     setMonth(+selectMonth - 1);
-//   };
-
-//   const nextYear = () => {
-//     setYear(+selectYear + 1);
-//   };
-//   const prevYear = () => {
-//     setYear = +selectYear <= 1 ? setYear(2020) : setYear(+selectYear - 1);
-//   };
-
-//   const nameMonth = (day) => {
-//     return today(`${selectMonth}`).format("MMMM");
-//   };
-
-//   return (
-//     <div>
-//       <h1> Calendar</h1>
-//       <div className="navigation-calendar year-header">
-//         <div className="prev year" onClick={prevYear}>
-//           <ArrowLeft size={size} />
-//         </div>
-//         <div className="name-year"> {selectYear} </div>
-//         <div className="next year" onClick={nextYear}>
-//           <ArrowRight size={size} />
-//         </div>
-//       </div>
-//       <div className="navigation-calendar month-header">
-//         <div className="prev month" onClick={prevMonth}>
-//           <ArrowLeft size={size} />
-//         </div>
-//         <div className="name-month"> {nameMonth()} </div>
-//         <div className="next month" onClick={nextMonth}>
-//           <ArrowRight size={size} />
-//         </div>
-//       </div>
-//       <div className="month">
-//         {listWeek} {listDay}
-//       </div>
-//     </div>
-//   );
-// };
 
 class Calendar extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      selectYaer: moment().format("YYYY"),
-      selectMonth: moment().format("M"),
-      // Формирование данных месяца в виде массива
+       daysOfWeek : ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+      selectMonth:moment().format("M"),
+      selectYear:moment().format("YYYY"),
+      prevMonthDay: (lenthDays) => {
+        let day = 0
+        let days = []
+        let lenthMonth = moment(
+         `${this.state.selectYear}-${this.state.selectMonth}`,
+         "YYYY-MM"
+       ).daysInMonth();
+       for (let i = 0; i < lenthDays; i++) {
+         const num =  lenthMonth - i
+           days.push({num, name: 'prevMonth'})
+       }
+       days = days.reverse() 
+       return lenthDays > 0 ? days : '' 
+      },
       month: () => {
-        const MonthYear = moment().format("MM-YYYY");
-        let month = [];
+        let month = []
         let max_day = moment(
-          `${this.state.selectMonth}-${this.state.selectMonth}`,
+          `${this.state.selectYear}-${this.state.selectMonth}`,
           "YYYY-MM"
         ).daysInMonth();
         for (let i = 0; i < max_day; i++) {
           let num = i + 1;
-          let name = moment(`${num}-${MonthYear}`, "DD-MM-YYYY").format("dddd");
+          let name = moment(`${this.state.selectYear}-${this.state.selectMonth}-${num}`).format('dddd')
           let data_day = { num, name };
           month.push(data_day);
         }
-        return month;
+        let firstElem = month[0].name
+        let lenthEmptDay = this.state.daysOfWeek.findIndex(m => m === firstElem )
+        let prevMonthDay = this.state.prevMonthDay(lenthEmptDay)
+        return  prevMonthDay ? [...prevMonthDay, ...month] : month
       },
+      selectDay:''
     };
   }
-  render() {
-      const listDay = this.state.month().map((day) => (
-    <div
-      className={"day " + day.name}
-      key={day.num}
 
+  selectDay = (day) => {
+    this.setState({selectDay: day.num})
+
+  };
+
+   setBorder = (name) => {
+    let border = name === "Sunday" ? "danger" : "primary";
+    return `border border-${border}`;
+  };
+
+  formatClassName = (day) => {
+    const border = this.setBorder(day.name)
+    const selectDay =  this.state.selectDay === day.num && day.name != 'prevMonth' ? "select-day" : ""
+    return `day ${border} ${selectDay}`
+  }
+
+   nextMonth = () => {
+     let selectMonth = +this.state.selectMonth
+     let selectYear = +this.state.selectYear
+    if (selectMonth >= 12) {
+      selectMonth = 0
+      selectYear++
+    }
+    selectMonth++
+    this.setState({selectMonth, selectYear})
+ }
+ prevMonth = () => {
+  let selectMonth = +this.state.selectMonth
+  let selectYear = +this.state.selectYear
+    if (selectMonth <= 1) {
+      selectMonth = 13;
+      selectYear--
+        }
+    selectMonth--
+    this.setState({selectMonth, selectYear})
+  };
+
+ nextYear = () => {
+  let selectYear = +this.state.selectYear
+  selectYear++
+  this.setState({selectYear})
+};
+ prevYear = () => {
+  let selectYear = +this.state.selectYear
+  selectYear--
+  if(selectYear <= 1){
+    selectYear = 2020
+  }
+  this.setState({selectYear})
+  };
+
+  nameMonth = (day) => {
+    return moment(`${this.state.selectMonth}`).format("MMMM");
+  };
+
+  render() {
+    const size = 48
+      const listWeek = this.state.daysOfWeek.map((day) => (
+        <div className="week" key={day}>
+      {day}
+    </div>
+  ));
+
+    const listDay = this.state.month().map((day) => (
+    <div
+      className={`${this.formatClassName(day)} ${day.name}`}
+      key={day.num + day.name}
+      onClick = {() => {this.selectDay(day)}}
     >
-      <div className="dayNum"> {day.num} </div>
+      <div className="dayNum" >{day.num}</div>
     </div>
   ));
     return (
       <div>
-        <h1>Month {console.log(this.state.month())} </h1>
+         <h1 > Calendar </h1>
+      <div className="navigation-calendar year-header">
+        <div className="prev year" onClick={this.prevYear}>
+          <ArrowLeft size={size} />
+        </div>
+        <div className="name-year">{this.state.selectYear}</div>
+        <div className="next year" onClick={this.nextYear}>
+          <ArrowRight size={size} />
+        </div>
+      </div>
+      <div className="navigation-calendar month-header">
+        <div className="prev month" onClick={this.prevMonth}>
+          <ArrowLeft size={size} />
+        </div>
+        <div className="name-month">{this.nameMonth()}</div>
+        <div className="next month" onClick={this.nextMonth}>
+          <ArrowRight size={size} />
+        </div>
+      </div>
+      <div className="month">
+        {listWeek}
+        {listDay}
+      </div> 
       </div>
     );
   }

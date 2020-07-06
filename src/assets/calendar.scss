@@ -35,19 +35,34 @@
 .month {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    .week {
+    .week_names {
         text-align: center;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
     }
     .day {
         text-align: right;
         border: 1px solid;
         margin: 1px;
         height: 70px;
+        border-radius: 3px;
         .dayNum {
             width: 17px;
             height: 17px;
             margin-left: auto;
             margin-right: 5px;
+        }
+        &.select-day {
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px;
+            opacity: 1;
+            transition: .5s;
+        }
+        &.prevMonth {
+            pointer-events: none;
+            color: white;
+            background-color: rgba(53, 53, 53, 0.671);
         }
     }
 }
