@@ -47,11 +47,19 @@ class CalendarEvent extends React.Component {
     this.setState({ title: "", description: "" });
   };
   render() {
+    const events =  this.props.events.map((event) => (
+      <div className="event card" key={event.id}> 
+        <h3 className="evet-title card-header">{event.title}</h3>
+        <hr/>
+        <p className="evet-description card-text">{event.description}</p>
+      </div>
+    ))
     return (
       <div>
-        <h3>Event From</h3>
+        {events}
+        <h3> Event From </h3>
         <form className="eventForm" onSubmit={this.submitHandler}>
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title"> Title </label>
           <input
             type="text"
             className="form-control"
@@ -82,7 +90,13 @@ class CalendarEvent extends React.Component {
   }
 }
 const mapDispatchToProps = {
-    createEvent,
-  };
-export default connect(null, mapDispatchToProps)(CalendarEvent)
+  createEvent,
+};
 
+const mapStateToProps = (state) => {
+  return {
+    events: state.calendar.events,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarEvent);

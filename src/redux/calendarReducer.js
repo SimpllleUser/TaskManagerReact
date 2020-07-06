@@ -7,10 +7,10 @@ const initialState = {
 export const calendarReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_CALENDAR_EVENT:
-            console.log(action)
+            console.log(state)
             return {
                 ...state,
-                events: state.events.push(action.event)
+                events: state.events.concat([action.event])
             }
 
         default:
