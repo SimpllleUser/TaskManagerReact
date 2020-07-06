@@ -10,22 +10,24 @@ class Calendar extends React.Component {
 
     this.state = {
        daysOfWeek : ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
-       prevMonthDay: (lenthDays) => {
-         let day = 0
-         let days = []
-         while(day < lenthDays){
-           day+=1
-           days.push(day)
-         }
-         if(days.length > 0){
-          return days
-        }
-        return
-       },
       selectMonth:moment().format("M"),
       selectYear:moment().format("YYYY"),
+      prevMonthDay: (lenthDays) => {
+        let day = 0
+        let days = []
+        let lenthMonth = moment(
+         `${this.state.selectYear}-${this.state.selectMonth}`,
+         "YYYY-MM"
+       ).daysInMonth();
+       for (let i = 0; i < lenthDays; i++) {
+         const num =  lenthMonth - i
+           days.push({num, name: 'prevMonth'})
+       }
+       days = days.reverse() 
+       return lenthDays > 0 ? days : '' 
+      },
       month: () => {
-        let month = [];
+        let month = []
         let max_day = moment(
           `${this.state.selectYear}-${this.state.selectMonth}`,
           "YYYY-MM"
@@ -103,8 +105,8 @@ class Calendar extends React.Component {
   };
     const listDay = this.state.month().map((day) => (
     <div
-      className={"day " + setBorder(day.name)}
-      key={day.num}
+      className={day.name != 'prevMonth' ? "day " + setBorder(day.name) : "day " + 'prevMonth'}
+      key={day.num + day.name}
       onClick = {() => {this.selectDay(day)}}
     >
       <div className="dayNum">{day.num}</div>
