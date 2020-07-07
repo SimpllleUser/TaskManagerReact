@@ -21,7 +21,6 @@ export const postsReducer = (state = initialState, action) => {
                 posts: state.posts.filter(p => p.id !== action.id)
             };
         case EDIT_POST:
-            console.log('POST', action.post, state.posts)
             let post = action.post
             return {
                 ...state,

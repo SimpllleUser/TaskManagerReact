@@ -2,13 +2,15 @@ import React from "react";
 import moment from "moment";
 import { ArrowLeft, ArrowRight } from "react-feather";
 import CalendarEvent from "./CalendarEvent";
+import { connect } from "react-redux";
+
 //** * !Реализовать получение выбраной даты в календаре через props function !!! */
 class Calendar extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      date: moment().format('DD-MM-YYYY'),
+      date: moment().format("DD-MM-YYYY"),
       daysOfWeek: [
         "Monday",
         "Tuesday",
@@ -21,7 +23,6 @@ class Calendar extends React.Component {
       selectMonth: moment().format("M"),
       selectYear: moment().format("YYYY"),
       prevMonthDay: (lenthDays) => {
-        let day = 0;
         let days = [];
         let lenthMonth = moment(
           `${this.state.selectYear}-${this.state.selectMonth}`,
@@ -62,8 +63,8 @@ class Calendar extends React.Component {
     const date = moment(
       `${this.state.selectMonth}-${day}-${this.state.selectYear}`
     ).format("DD-MM-YYYY");
-    this.setState({date})
-    console.log(date,this.state.selectMonth);
+    this.setState({ date });
+    console.log(date, this.state.selectMonth);
   };
 
   selectDay = (day) => {
@@ -79,7 +80,7 @@ class Calendar extends React.Component {
   formatClassName = (day) => {
     const border = this.setBorder(day.name);
     const selectDay =
-      this.state.selectDay === day.num && day.name != "prevMonth"
+      this.state.selectDay === day.num && day.name !== "prevMonth"
         ? "select-day"
         : "";
     return `day ${border} ${selectDay}`;
@@ -124,11 +125,26 @@ class Calendar extends React.Component {
     return moment(`${this.state.selectMonth}`).format("MMMM");
   };
 
+  setDateEvent(day){
+    
+    // Сделать по клиек открытие модалки с формой записи события 
+    // В календаре на дату запланированого события ставить иконку или метку
+    // Делать проверку на повторения дат событий
+
+    let month =  this.state.selectMonth
+    let year = this.state.selectYear
+    let date = moment(`${month}-${day}-${year}`).format('DD-MM-YYYY')
+    let eventDatet = this.props.events.find(e => date === e.date)
+    if(eventDatet !== undefined){
+      return `Title : ${eventDatet.title}
+Description : ${eventDatet.description}`
+    }
+  }
+
   render() {
     const size = 48;
     const listWeek = this.state.daysOfWeek.map((day) => (
       <div className="week" key={day}>
-        
         {day}
       </div>
     ));
@@ -141,11 +157,13 @@ class Calendar extends React.Component {
           this.selectDay(day);
         }}
       >
-        <div className="dayNum"> {day.num} </div>
+        {/* {this.setDateEvent(day.num) } */}
+        <div className="dayNum" data-placement="top" title={this.setDateEvent(day.num)}> {day.num} </div>
       </div>
     ));
     return (
       <div>
+        {console.log(this.props.events) }
         <h1> Календарь </h1>
         <div className="navigation-calendar year-header">
           <div className="prev year" onClick={this.prevYear}>
@@ -166,7 +184,6 @@ class Calendar extends React.Component {
           </div>
         </div>
         <div className="month">
-          
           {listWeek} {listDay}
         </div>
         <div className="calendar-event col-6 border">
@@ -177,4 +194,10 @@ class Calendar extends React.Component {
   }
 }
 
-export default Calendar;
+const mapStateToProps = (state) => {
+  return {
+    events: state.calendar.events,
+  };
+};
+
+export default connect(mapStateToProps, null)(Calendar);
