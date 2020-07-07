@@ -37,7 +37,7 @@ class CalendarEvent extends React.Component {
       id: Date.now().toString(),
       title,
       description,
-      date,
+      date: this.props.date
     };
     // SEND DATA ON REDUX
     this.props.createEvent(newEvent);
@@ -47,16 +47,15 @@ class CalendarEvent extends React.Component {
     this.setState({ title: "", description: "" });
   };
   render() {
-    const events =  this.props.events.map((event) => (
-      <div className="event card" key={event.id}> 
-        <h3 className="evet-title card-header">{event.title}</h3>
-        <p className="evet-description card-text">{event.description}</p>
+    const events = this.props.events.map((event) => (
+      <div className="event card" key={event.id}>
+        <h3 className="evet-title card-header"> {event.title} </h3>
+        <p className="evet-description card-text"> {event.description} </p>
       </div>
-    ))
+    ));
     return (
       <div>
-        {events}
-        <h3> Event From </h3>
+         {events} <h3> Event From </h3>
         <form className="eventForm" onSubmit={this.submitHandler}>
           <label htmlFor="title"> Title </label>
           <input

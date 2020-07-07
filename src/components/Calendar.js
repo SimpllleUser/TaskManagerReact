@@ -170,7 +170,7 @@ class Calendar extends React.Component {
           {listWeek} {listDay}
         </div>
         <div className="calendar-event col-6 border">
-          <CalendarEvent />
+          <CalendarEvent date={this.state.date} />
         </div>
       </div>
     );
