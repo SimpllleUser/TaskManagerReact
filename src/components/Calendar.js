@@ -1,8 +1,9 @@
 import React from "react";
 import moment from "moment";
+import { connect } from "react-redux";
 import { ArrowLeft, ArrowRight } from "react-feather";
 import CalendarEvent from "./CalendarEvent";
-import { connect } from "react-redux";
+import Modal from './Modal'
 
 //** * !Реализовать получение выбраной даты в календаре через props function !!! */
 class Calendar extends React.Component {
@@ -158,8 +159,14 @@ Description : ${eventDatet.description}`
         }}
       >
         {/* {this.setDateEvent(day.num) } */}
-        <div className="dayNum" data-placement="top" title={this.setDateEvent(day.num)}> {day.num} </div>
-      </div>
+        <Modal event={this.setDateEvent(day.num)}  day={day.num+day.name}/>
+        <div className="dayNum" data-placement="top">{day.num} </div>
+        <button type="button"  data-toggle="modal" data-target={"#date-"+day.num+day.name}>
+        {day.num}
+</button>
+        
+        
+         </div>
     ));
     return (
       <div>
