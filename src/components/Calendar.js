@@ -65,7 +65,6 @@ class Calendar extends React.Component {
       `${this.state.selectMonth}-${day}-${this.state.selectYear}`
     ).format("DD-MM-YYYY");
     this.setState({ date });
-    console.log(date, this.state.selectMonth);
   };
 
   selectDay = (day) => {
@@ -137,8 +136,7 @@ class Calendar extends React.Component {
     let date = moment(`${month}-${day}-${year}`).format('DD-MM-YYYY')
     let eventDatet = this.props.events.find(e => date === e.date)
     if(eventDatet !== undefined){
-      return `Title : ${eventDatet.title}
-Description : ${eventDatet.description}`
+      return {title: eventDatet.title, description: eventDatet.description}
     }
   }
 
@@ -158,19 +156,12 @@ Description : ${eventDatet.description}`
           this.selectDay(day);
         }}
       >
-        {/* {this.setDateEvent(day.num) } */}
-        <Modal event={this.setDateEvent(day.num)}  day={day.num+day.name}/>
-        <div className="dayNum" data-placement="top">{day.num} </div>
-        <button type="button"  data-toggle="modal" data-target={"#date-"+day.num+day.name}>
-        {day.num}
-</button>
-        
-        
+        {this.setDateEvent(day.num)  ? <Modal event={this.setDateEvent(day.num)}  day={day.num+day.name}/> : ''}
+        <div className="dayNum" data-toggle="modal" data-target={"#date-"+day.num+day.name} >{day.num} </div>        
          </div>
     ));
     return (
       <div>
-        {console.log(this.props.events) }
         <h1> Календарь </h1>
         <div className="navigation-calendar year-header">
           <div className="prev year" onClick={this.prevYear}>
