@@ -55,7 +55,7 @@ class CalendarEvent extends React.Component {
     ));
     return (
       <div>
-         {events} <h3> Event From </h3>
+        <h3> Event From </h3>
         <form className="eventForm" onSubmit={this.submitHandler}>
           <label htmlFor="title"> Title </label>
           <input

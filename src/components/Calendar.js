@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { connect } from "react-redux";
-import { ArrowLeft, ArrowRight } from "react-feather";
+import { ArrowLeft, ArrowRight,Circle,CheckCircle } from "react-feather";
 import CalendarEvent from "./CalendarEvent";
 import Modal from './Modal'
 
@@ -156,8 +156,9 @@ class Calendar extends React.Component {
           this.selectDay(day);
         }}
       >
-        {this.setDateEvent(day.num)  ? <Modal event={this.setDateEvent(day.num)}  day={day.num+day.name}/> : ''}
-        <div className="dayNum" data-toggle="modal" data-target={"#date-"+day.num+day.name} >{day.num} </div>        
+        {this.setDateEvent(day.num) ? <Modal event={this.setDateEvent(day.num)}  day={day.num+day.name}/> : ''}
+        {this.setDateEvent(day.num) ? <div className="dayNum" data-toggle="modal" data-target={"#date-"+day.num+day.name}> <div className="point-event"></div>  </div> : ''}
+        {day.num}        
          </div>
     ));
     return (
