@@ -1,9 +1,9 @@
 import React from "react";
 import moment from "moment";
 import { connect } from "react-redux";
-import { ArrowLeft, ArrowRight,Circle,CheckCircle } from "react-feather";
+import { ArrowLeft, ArrowRight, PlusCircle } from "react-feather";
 import CalendarEvent from "./CalendarEvent";
-import Modal from './Modal'
+import Modal from "./Modal";
 
 //** * !Реализовать получение выбраной даты в календаре через props function !!! */
 class Calendar extends React.Component {
@@ -57,9 +57,12 @@ class Calendar extends React.Component {
         let prevMonthDay = this.state.prevMonthDay(lenthEmptDay);
         return prevMonthDay ? [...prevMonthDay, ...month] : month;
       },
-      selectDay: "",
+      selectDay: +moment().format('D'),
     };
   }
+
+  
+
   selectDate = (day) => {
     const date = moment(
       `${this.state.selectMonth}-${day}-${this.state.selectYear}`
@@ -78,6 +81,7 @@ class Calendar extends React.Component {
   };
 
   formatClassName = (day) => {
+    console.log('day',day , 'selectday, this',this.state.selectDay)
     const border = this.setBorder(day.name);
     const selectDay =
       this.state.selectDay === day.num && day.name !== "prevMonth"
@@ -125,21 +129,20 @@ class Calendar extends React.Component {
     return moment(`${this.state.selectMonth}`).format("MMMM");
   };
 
-  setDateEvent(day){
-    
-    // Сделать по клиек открытие модалки с формой записи события 
+  setDateEvent(day) {
+    // Сделать по клиек открытие модалки с формой записи события
     // В календаре на дату запланированого события ставить иконку или метку
     // Делать проверку на повторения дат событий
 
-    let month =  this.state.selectMonth
-    let year = this.state.selectYear
-    let date = moment(`${month}-${day}-${year}`).format('DD-MM-YYYY')
-    let eventDatet = this.props.events.find(e => date === e.date)
-    if(eventDatet !== undefined){
-      return {title: eventDatet.title, description: eventDatet.description}
+    let month = this.state.selectMonth;
+    let year = this.state.selectYear;
+    let date = moment(`${month}-${day}-${year}`).format("DD-MM-YYYY");
+    let eventDatet = this.props.events.find((e) => date === e.date);
+    if (eventDatet !== undefined) {
+      return { title: eventDatet.title, description: eventDatet.description };
     }
   }
-
+  
   render() {
     const size = 48;
     const listWeek = this.state.daysOfWeek.map((day) => (
@@ -150,37 +153,47 @@ class Calendar extends React.Component {
 
     const listDay = this.state.month().map((day) => (
       <div
-        className={`${this.formatClassName(day)} ${day.name}`}
+        className={`'' + ${this.formatClassName(day)}`}
         key={day.num + day.name}
         onClick={() => {
           this.selectDay(day);
         }}
       >
-        {this.setDateEvent(day.num) ? <Modal event={this.setDateEvent(day.num)}  day={day.num+day.name}/> : ''}
-        {this.setDateEvent(day.num) ? <div className="dayNum" data-toggle="modal" data-target={"#date-"+day.num+day.name}> <div className="point-event"></div>  </div> : ''}
-        {day.num}        
-         </div>
+        {this.setDateEvent(day.num) ? (
+          <Modal event={this.setDateEvent(day.num)} day={day.num + day.name} />
+        ) : (
+          ""
+        )}
+        {this.setDateEvent(day.num) ? (
+          <div
+            className="dayNum"
+            data-toggle="modal"
+            data-target={"#date-" + day.num + day.name}
+          >
+            
+            <div className="point-event"></div>
+          </div>
+        ) : (
+          ""
+        )}
+        {day.num}
+      </div>
     ));
     return (
       <div>
-        <h1> Календарь </h1>
-        <div className="navigation-calendar year-header">
-          <div className="prev year" onClick={this.prevYear}>
-            <ArrowLeft size={size} />
+        <h1> Календарь</h1>
+        <div className="navigation-calendar border-bottom">
+          <div className="month-navigation">
+            <div className="prev month" onClick={this.prevMonth}>
+              <ArrowLeft size={size} />
+            </div>
+            <div className="name-month"> {this.nameMonth()} </div>
+            <div className="name-year"> {this.state.selectYear} </div>
+            <div className="next month" onClick={this.nextMonth}>
+              <ArrowRight size={size} />
+            </div>
           </div>
-          <div className="name-year"> {this.state.selectYear} </div>
-          <div className="next year" onClick={this.nextYear}>
-            <ArrowRight size={size} />
-          </div>
-        </div>
-        <div className="navigation-calendar month-header">
-          <div className="prev month" onClick={this.prevMonth}>
-            <ArrowLeft size={size} />
-          </div>
-          <div className="name-month"> {this.nameMonth()} </div>
-          <div className="next month" onClick={this.nextMonth}>
-            <ArrowRight size={size} />
-          </div>
+          <PlusCircle size="36" />
         </div>
         <div className="month">
           {listWeek} {listDay}

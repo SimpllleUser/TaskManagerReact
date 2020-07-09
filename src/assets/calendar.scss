@@ -1,42 +1,53 @@
 .navigation-calendar {
     display: flex;
-    justify-content: center;
-    // width: 100px;
-    .name-month {
-        display: flex;
-        width: 100px;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-    }
-    .name-year {
-        display: flex;
-        width: 100px;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-    }
-    .prev {
-        height: 30px;
-        width: 30px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    .month-navigation {
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-    .next {
-        height: 30px;
-        width: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        max-width: 200px;
+        .name-month {
+            display: flex;
+            width: 100px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        .name-year {
+            display: flex;
+            width: 100px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        .prev {
+            height: 30px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .next {
+            height: 30px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 }
 
 .month {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    padding-top: 15px;
     .week {
         text-align: center;
+        padding-bottom: 15px;
     }
     .week_names {
         text-align: center;
@@ -49,12 +60,14 @@
         margin: 1px;
         height: 70px;
         border-radius: 3px;
+        padding-top: 5px;
+        padding-right: 10px;
         .dayNum {
             width: 30px;
             height: 0px;
             position: relative;
             .point-event {
-                cursor:pointer;
+                cursor: pointer;
                 position: absolute;
                 width: 10px;
                 height: 10px;
