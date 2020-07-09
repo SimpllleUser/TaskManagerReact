@@ -130,9 +130,8 @@ class Calendar extends React.Component {
   };
 
   setDateEvent(day) {
-    // Сделать по клиек открытие модалки с формой записи события
-    // В календаре на дату запланированого события ставить иконку или метку
     // Делать проверку на повторения дат событий
+    //Справа выводить список событий
 
     let month = this.state.selectMonth;
     let year = this.state.selectYear;
