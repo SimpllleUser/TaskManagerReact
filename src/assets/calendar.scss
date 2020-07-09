@@ -110,3 +110,8 @@
         text-align: left;
     }
 }
+
+.event-block {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}

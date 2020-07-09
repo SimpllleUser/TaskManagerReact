@@ -1,26 +1,21 @@
 import React from "react";
+import CalendarEvent from "./CalendarEvent";
 const Modal = (props) => (
- <div class="modal fade" id={"date-"+props.day} role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-
-        <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id={"date-"+props.day}>{props.event.title}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>{props.event.description}</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+  <div
+    class="modal fade bd-example-modal-lg row"
+    id={"date-" + props.day}
+    role="dialog"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg modal-content">
+      <div class="modal-content event-block">
+        <div className="events-list">
+        <h1>Title event</h1>
+        <p>Description event</p>
         </div>
-      </div>
+          <CalendarEvent />
+          </div>
     </div>
- 
-)
-export default Modal
+  </div>
+);
+export default Modal;

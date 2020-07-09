@@ -159,12 +159,11 @@ class Calendar extends React.Component {
           this.selectDay(day);
         }}
       >
-        {this.setDateEvent(day.num) ? (
+        {true ? (
           <Modal event={this.setDateEvent(day.num)} day={day.num + day.name} />
         ) : (
           ""
         )}
-        {this.setDateEvent(day.num) ? (
           <div
             className="dayNum"
             data-toggle="modal"
@@ -173,9 +172,6 @@ class Calendar extends React.Component {
             
             <div className="point-event"></div>
           </div>
-        ) : (
-          ""
-        )}
         {day.num}
       </div>
     ));
@@ -193,14 +189,22 @@ class Calendar extends React.Component {
               <ArrowRight size={size} />
             </div>
           </div>
-          <PlusCircle size="36" />
+
+          <div
+            className="dayNum"
+            data-toggle="modal"
+            data-target={"#date-" + this.state.selectDay}
+          >
+            
+            <PlusCircle size="36" onClick={ true ? <Modal event={this.setDateEvent(this.state.selectDay)} day={this.state.selectDay}/> : ''} />
+          </div>
         </div>
         <div className="month">
           {listWeek} {listDay}
         </div>
-        <div className="calendar-event col-6 border">
+        {/* <div className="calendar-event col-6 border">
           <CalendarEvent date={this.state.date} />
-        </div>
+        </div> */}
       </div>
     );
   }
