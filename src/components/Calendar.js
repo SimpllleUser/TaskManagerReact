@@ -195,8 +195,8 @@ class Calendar extends React.Component {
             data-toggle="modal"
             data-target={"#date-" + this.state.selectDay}
           >
-            
-            <PlusCircle size="36" onClick={ true ? <Modal event={this.setDateEvent(this.state.selectDay)} day={this.state.selectDay}/> : ''} />
+            <Modal />
+            <PlusCircle size="36" data-toggle="modal" data-target=".bd-example-modal-lg"/>
           </div>
         </div>
         <div className="month">

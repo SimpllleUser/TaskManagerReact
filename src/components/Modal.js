@@ -3,9 +3,8 @@ import CalendarEvent from "./CalendarEvent";
 const Modal = (props) => (
   <div
     class="modal fade bd-example-modal-lg row"
-    id={"date-" + props.day}
-    role="dialog"
-    aria-hidden="true"
+    id="date-"
+    tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
   >
     <div class="modal-dialog modal-lg modal-content">
       <div class="modal-content event-block">
