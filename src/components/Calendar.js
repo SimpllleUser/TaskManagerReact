@@ -140,7 +140,7 @@ class Calendar extends React.Component {
       return { title: eventDatet.title, description: eventDatet.description };
     }
   }
-  
+
   render() {
     const size = 48;
     const listWeek = this.state.daysOfWeek.map((day) => (
@@ -167,6 +167,18 @@ class Calendar extends React.Component {
         {day.num}
       </div>
     ));
+
+    const eventsList = this.props.events.map(event => (<div className="events-list">
+      {event.date == this.state.date ?
+        <div className="event-iten">
+          {console.log(event.date, this.state.date)}
+          <h3>{event.title}</h3>
+          <p>{event.description}</p>
+          <small>{event.date}</small>
+          </div> : ''}
+      </div>))
+
+
     return (
       <div>
         <h1> Календарь</h1>
@@ -194,6 +206,8 @@ class Calendar extends React.Component {
         <div className="month">
           {listWeek} {listDay}
         </div>
+        {eventsList}
+        {console.log(this.props.events)}
       </div>
     );
   }
