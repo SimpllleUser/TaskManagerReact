@@ -1,3 +1,13 @@
+.calendar-block{
+    display: flex;
+.calendar{
+    width: 600px;
+}
+    .events-list{
+        width: 300px;
+    }
+}
+
 .navigation-calendar {
     display: flex;
     justify-content: space-between;
@@ -93,6 +103,7 @@
     }
 }
 
+
 .calendar-event {
     position: absolute;
     background-color: white;
@@ -114,4 +125,15 @@
 .event-block {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+.event-list{
+    width: 300px;
+    max-height: 450px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    .event-item{
+        width: 300px;
+    }
 }

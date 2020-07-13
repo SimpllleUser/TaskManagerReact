@@ -81,7 +81,6 @@ class Calendar extends React.Component {
   };
 
   formatClassName = (day) => {
-    console.log('day',day , 'selectday, this',this.state.selectDay)
     const border = this.setBorder(day.name);
     const selectDay =
       this.state.selectDay === day.num && day.name !== "prevMonth"
@@ -141,7 +140,7 @@ class Calendar extends React.Component {
       return { title: eventDatet.title, description: eventDatet.description };
     }
   }
-  
+
   render() {
     const size = 48;
     const listWeek = this.state.daysOfWeek.map((day) => (
@@ -158,25 +157,33 @@ class Calendar extends React.Component {
           this.selectDay(day);
         }}
       >
-        {true ? (
-          <Modal event={this.setDateEvent(day.num)} day={day.num + day.name} />
-        ) : (
-          ""
-        )}
+          {/*<Modal event={this.setDateEvent(day.num)} day={day.num + day.name} />*/}
           <div
             className="dayNum"
             data-toggle="modal"
             data-target={"#date-" + day.num + day.name}
           >
-            
-            <div className="point-event"></div>
           </div>
         {day.num}
       </div>
     ));
+
+    const eventsList = this.props.events.map(event => (<div className="event-item border">
+      {event.date == this.state.date ?
+        <div className="event-card ">
+          <div className="card-body">
+          {console.log(event.date, this.state.date)}
+          <h3 class="card-title border">Title: {event.title}</h3>
+          <p class="card-text" >Description: {event.description}</p>
+          <small className="border-top">{event.date}</small>
+          </div>
+        </div>: ''}
+      </div>))
+
+
     return (
-      <div>
-        <h1> Календарь</h1>
+      <div className="calendar-block">
+        <div className="calnedar">
         <div className="navigation-calendar border-bottom">
           <div className="month-navigation">
             <div className="prev month" onClick={this.prevMonth}>
@@ -194,16 +201,17 @@ class Calendar extends React.Component {
             data-toggle="modal"
             data-target={"#date-" + this.state.selectDay}
           >
-            <Modal />
+            <Modal date={this.state.date}/>
             <PlusCircle size="36" data-toggle="modal" data-target=".bd-example-modal-lg"/>
           </div>
         </div>
         <div className="month">
           {listWeek} {listDay}
         </div>
-        {/* <div className="calendar-event col-6 border">
-          <CalendarEvent date={this.state.date} />
-        </div> */}
+        </div>
+        <div className="event-list">
+        {eventsList}
+        </div>
       </div>
     );
   }
