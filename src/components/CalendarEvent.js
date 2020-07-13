@@ -27,7 +27,7 @@ class CalendarEvent extends React.Component {
   submitHandler = (event) => {
     event.preventDefault();
     // INIT STATES
-    const { title, description, date } = this.state;
+    const { title, description } = this.state;
     // VALIDATE INPUTS
     if (!title && !description) {
       return;
