@@ -168,20 +168,22 @@ class Calendar extends React.Component {
       </div>
     ));
 
-    const eventsList = this.props.events.map(event => (<div className="events-list">
+    const eventsList = this.props.events.map(event => (<div className="event-item border">
       {event.date == this.state.date ?
-        <div className="event-iten">
+        <div className="event-card ">
+          <div className="card-body">
           {console.log(event.date, this.state.date)}
-          <h3>{event.title}</h3>
-          <p>{event.description}</p>
-          <small>{event.date}</small>
-          </div> : ''}
+          <h3 class="card-title border">Title: {event.title}</h3>
+          <p class="card-text" >Description: {event.description}</p>
+          <small className="border-top">{event.date}</small>
+          </div>
+        </div>: ''}
       </div>))
 
 
     return (
-      <div>
-        <h1> Календарь</h1>
+      <div className="calendar-block">
+        <div className="calnedar">
         <div className="navigation-calendar border-bottom">
           <div className="month-navigation">
             <div className="prev month" onClick={this.prevMonth}>
@@ -206,8 +208,10 @@ class Calendar extends React.Component {
         <div className="month">
           {listWeek} {listDay}
         </div>
+        </div>
+        <div className="event-list">
         {eventsList}
-        {console.log(this.props.events)}
+        </div>
       </div>
     );
   }
