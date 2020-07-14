@@ -10,9 +10,10 @@ export default ({ task }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="card m-2">
+    <div className="task-card card m-2">
       <Route path="/:id/:param?" component={EditTask} />
       <div className="card-body">
+        <div className="card-detail-info">
         <h5 className={"card-title" + classMod(task.id)}>
           <span>ID:{task.id}</span>
           <hr />
@@ -22,16 +23,16 @@ export default ({ task }) => {
           Description
           <br /> {task.description}
         </p>
-        <hr />
+        </div>
         <div className="options">
-        <span className={"m-2 p-2 badge badge-pill " + task.priority.class}>
+        <span className={"m-1 p-1 badge badge-pill " + task.priority.class}>
             {task.priority.name}
           </span>
-          <span className={"m-2 p-2 badge badge-pill " + task.status.class}>
+          <span className={"m-1 p-1 badge badge-pill " + task.status.class}>
             {task.status.name}
           </span>
         </div>
-        <br />
+        <div className="actions">
         <button
           onClick={() => {
             dispatch(deleteTask(task.id));
@@ -43,6 +44,7 @@ export default ({ task }) => {
         <NavLink to={`/edit-task/${task.id}`} className="bg-warning text-dark">
           Edit task
         </NavLink>
+        </div>
       </div>
     </div>
   );
