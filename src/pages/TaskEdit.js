@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { saveEditableTask } from "../redux/actions";
 
+
 class EditTask extends React.Component {
   constructor(props) {
     super(props);
@@ -17,14 +18,14 @@ class EditTask extends React.Component {
       statusSelect: {},
       redirect: false,
       priorities: [
-        { name: "Low", value: 1, class: "badge-success" },
-        { name: "Normal", value: 2, class: "badge-warning" },
-        { name: "Highly", value: 3, class: "badge-danger" },
+        { name: "Low", value: 1, class: "success" },
+        { name: "Normal", value: 2, class: "warning" },
+        { name: "Highly", value: 3, class: "danger" },
       ],
       statuses: [
-        { name: "Open", value: 1, class: "badge-primary" },
-        { name: "Inprogress", value: 2, class: "badge-warning" },
-        { name: "Done", value: 3, class: "badge-info" },
+        { name: "Open", value: 1, class: "primary" },
+        { name: "Inprogress", value: 2, class: "warning" },
+        { name: "Done", value: 3, class: "info" },
       ],
     };
   }
@@ -82,13 +83,11 @@ class EditTask extends React.Component {
   render() {
     const PrioritySelector = this.state.priorities.map((priority) => (
       <option key={priority.value} value={priority.value}>
-        
         {priority.name}
       </option>
     ));
     const StatusSelector = this.state.statuses.map((status) => (
       <option key={status.value} value={status.value}>
-        
         {status.name}
       </option>
     ));
