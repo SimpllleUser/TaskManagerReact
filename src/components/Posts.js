@@ -6,9 +6,9 @@ import {NavLink} from "react-router-dom";
 
 const Posts = ({syncPosts}) => {
     if (!syncPosts.length) {
-        return <div className="jumbotron"><h1 className="display-4"> Постоп пока нет </h1>
+        return <div className="jumbotron"><h1 className="display-4"> Постов нет </h1>
             <hr className="my-4"/>
-            <p>Для создание можете перейти нижу по ссылке.</p>
+            <p>Для создания можете перейти ниже по ссылке.</p>
             <NavLink to='/create-post' className="btn btn-primary btn-lg">Создать пост</NavLink>
         </div>
     ;
