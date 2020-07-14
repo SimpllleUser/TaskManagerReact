@@ -6,14 +6,8 @@ const Modal = (props) => (
     id="date-"
     tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
   >
-    <div className="modal-dialog modal-lg modal-content">
-      <div className="modal-content event-block">
-        <div className="events-list">
-        <h1>Название:</h1>
-        <p>Описание:</p>
-        </div>
+    <div className="modal-dialog modal-lg modal-content p-5">
           <CalendarEvent date={props.date} />
-          </div>
     </div>
   </div>
 );
