@@ -1,7 +1,7 @@
-export const CREATE_POST = "POST/CREATE_POST";
-export const FECTH_POSTS = "POST/FECTH_POSTS";
+export const CREATE_TASK = "TASK/CREATE_TASK";
+export const FECTH_TASKS = "TASK/FECTH_TASKS";
 export const SHOW_LOADER = "APP/SHOW_LOADER";
 export const HIDE_LOADER = "APP/HIDE_LOADER";
-export const DELETE_POST = "APP/DELETE_POST";
-export const EDIT_POST = "APP/EDIT_POST"
+export const DELETE_TASK = "APP/DELETE_TASK";
+export const EDIT_TASK = "APP/EDIT_TASK"
 export const CREATE_CALENDAR_EVENT = "CALENDAR/CREATE_EVENT"

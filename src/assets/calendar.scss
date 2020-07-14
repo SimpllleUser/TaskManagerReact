@@ -1,9 +1,10 @@
-.calendar-block{
+.calendar-block {
     display: flex;
-.calendar{
-    width: 600px;
-}
-    .events-list{
+    max-width: 1000px;
+    .calendar {
+        width: 600px;
+    }
+    .events-list {
         width: 300px;
     }
 }
@@ -105,7 +106,6 @@
     }
 }
 
-
 .calendar-event {
     position: absolute;
     background-color: white;
@@ -128,14 +128,19 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
-.event-list{
-    width: 300px;
-    max-height: 450px;
+
+.event-list {
+    max-height: 460px;
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;
     flex-wrap: wrap;
-    .event-item{
-        width: 300px;
+    padding-left: 20px;
+    .event-item {
+        width: 450px;
+        .date.alert.alert-secondary {
+            padding: 5px;
+            font-size: 12px;
+        }
     }
 }

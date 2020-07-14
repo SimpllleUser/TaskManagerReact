@@ -77,7 +77,7 @@ class CalendarEvent extends React.Component {
             cols="30"
             rows="10"
           ></textarea>
-          <button className="btn btn-success send-post mt-1" type="submit">
+          <button className="btn btn-success send-task mt-1" type="submit">
             Сохранить
           </button>
         </form>

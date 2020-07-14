@@ -1,17 +1,17 @@
 import {
-    CREATE_POST,
-    FECTH_POSTS,
+    CREATE_TASK,
+    FECTH_TASKS,
     SHOW_LOADER,
     HIDE_LOADER,
-    DELETE_POST,
-    EDIT_POST,
+    DELETE_TASK,
+    EDIT_TASK,
     CREATE_CALENDAR_EVENT
 } from "./types";
 
-export function createPost(post) {
+export function createTask(task) {
     return {
-        type: CREATE_POST,
-        payload: post
+        type: CREATE_TASK,
+        payload: task
     };
 }
 
@@ -27,23 +27,23 @@ export function hideLoader() {
     };
 }
 
-export function deletePost(id) {
-    return { type: DELETE_POST, id };
+export function deleteTask(id) {
+    return { type: DELETE_TASK, id };
 }
 
-export function saveEditablePost(post) {
-    return { type: EDIT_POST, post }
+export function saveEditableTask(task) {
+    return { type: EDIT_TASK, task }
 }
 
-export function fetchedPosts() {
+export function fetchedTasks() {
     return async dispatch => {
         dispatch(showLoader());
         const response = await fetch(
-            "https://jsonplaceholder.typicode.com/posts?_limit=5"
+            "https://jsonplaceholder.typicode.com/tasks?_limit=5"
         );
         const json = await response.json();
         setTimeout(() => {
-            dispatch({ type: FECTH_POSTS, payload: json });
+            dispatch({ type: FECTH_TASKS, payload: json });
             dispatch(hideLoader());
         }, 500);
     };

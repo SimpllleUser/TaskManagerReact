@@ -1,27 +1,27 @@
 import React from "react";
 import {connect} from 'react-redux'
-import Post from "./Task";
+import Task from "./Task";
 import {NavLink} from "react-router-dom";
 
 
-const Tasks = ({syncPosts}) => {
-    if (!syncPosts.length) {
+const Tasks = ({syncTasks}) => {
+    if (!syncTasks.length) {
         return <div className="jumbotron"><h1 className="display-4">Заданий нет </h1>
             <hr className="my-4"/>
             <p>Для создания можете перейти ниже по ссылке.</p>
-            <NavLink to='/create-post' className="btn btn-primary btn-lg">Создать задание</NavLink>
+            <NavLink to='/create-task' className="btn btn-primary btn-lg">Создать задание</NavLink>
         </div>
     ;
     }
 
-    return syncPosts.map((post) =>
-        <Post post={post} key={post.id}/>
+    return syncTasks.map((task) =>
+        <Task task={task} key={task.id}/>
     );
     };
 
     const mapStateToProps = state =>{
         return {
-        syncPosts: state.posts.posts
+        syncTasks: state.tasks.tasks
     }
     }
 

@@ -5,6 +5,6 @@ import { calendarReducer } from './calendarReducer'
 
 export const rootReducer = combineReducers({
     calendar: calendarReducer,
-    posts: tasksReducer,
+    tasks: tasksReducer,
     app: appReducer
 })
