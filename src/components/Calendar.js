@@ -168,14 +168,14 @@ class Calendar extends React.Component {
       </div>
     ));
 
-    const eventsList = this.props.events.map(event => (<div className="event-item border">
+    const eventsList = this.props.events.map(event => (<div className="event-item">
       {event.date == this.state.date ?
-        <div className="event-card ">
+        <div className="event-card card">
           <div className="card-body">
           {console.log(event.date, this.state.date)}
-          <h3 className="card-title border">Title: {event.title}</h3>
+          <h3 className="card-title">Title: {event.title}</h3>
           <p className="card-text" >Description: {event.description}</p>
-          <small className="border-top">{event.date}</small>
+          <span className="date alert alert-secondary">{event.date}</span>
           </div>
         </div>: ''}
       </div>))
