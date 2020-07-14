@@ -220,7 +220,7 @@ class Calendar extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    events: [state.calendar.events, ...state.tasks.tasks]
+    events:  state.calendar.events.concat(state.tasks.tasks)
   };
 };
 
