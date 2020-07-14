@@ -10,7 +10,7 @@ export default ({ task }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="task-card card m-2">
+    <div className="task-card card 1">
       <Route path="/:id/:param?" component={EditTask} />
       <div className="card-body">
         <div className="card-detail-info">
