@@ -1,8 +1,8 @@
 import React from "react"
 import {BrowserRouter as Router, Route, NavLink} from "react-router-dom";
-import CreatePost from "./pages/CreatePost"
+import TaskCreate from "./pages/TaskCreate"
 import TaskList from "./pages/TaskList"
-import EditPost from "./pages/EditPosts"
+import EditPost from "./pages/TaskEdit"
 import EventCalebdar from "./pages/EventCalebdar"
 
 
@@ -18,7 +18,7 @@ function App() {
                     <Route exact path="/" component={TaskList}/>
                     <Route exact path="/event-calendar" component={EventCalebdar}/>
                     <Route  path="/edit-post/:id" component={EditPost}/>
-                    <Route exact path="/create-post" component={CreatePost}/>
+                    <Route exact path="/create-post" component={TaskCreate}/>
                 </Router>
             </div>
         </div>

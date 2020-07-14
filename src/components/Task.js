@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { deletePost, setEditablePost } from "../redux/actions";
 import { Router, Route, NavLink } from "react-router-dom";
 
-import EditPost from "../pages/EditPosts";
+import EditPost from "../pages/TaskEdit";
 
 export default ({ post }) => {
   const classMod = (val) => val + " test";
