@@ -173,8 +173,8 @@ class Calendar extends React.Component {
         <div className="event-card ">
           <div className="card-body">
           {console.log(event.date, this.state.date)}
-          <h3 class="card-title border">Title: {event.title}</h3>
-          <p class="card-text" >Description: {event.description}</p>
+          <h3 className="card-title border">Title: {event.title}</h3>
+          <p className="card-text" >Description: {event.description}</p>
           <small className="border-top">{event.date}</small>
           </div>
         </div>: ''}

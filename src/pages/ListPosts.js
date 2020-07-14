@@ -9,9 +9,6 @@ const ListPosts = () => (
       <div className="col-6">
         <Posts />
       </div>
-      <div className="col-6">
-        <Calendar />
-      </div>
     </div>
     {/* Modal  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".sel-modal">Large modal</button>
 
