@@ -57,23 +57,21 @@ class CalendarEvent extends React.Component {
       <div>
         <h3> Event From </h3>
         <form className="eventForm" onSubmit={this.submitHandler}>
-          <label htmlFor="title"> Title </label>
+          <label htmlFor="title"> Название </label>
           <input
             type="text"
             className="form-control"
             id="title"
-            placeholder="title"
             name="title"
             ref={this.titleInput}
             value={this.title}
             onChange={this.changeInputHandler}
           />
-          <label htmlFor="description pt-2"> Description </label>
+          <label htmlFor="description pt-2"> Описание </label>
           <textarea
             className="form-control"
             onChange={this.changeInputHandler}
             ref={this.descriptionInput}
-            placeholder="Description"
             name="description"
             id="description"
             cols="30"

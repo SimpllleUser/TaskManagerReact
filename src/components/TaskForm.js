@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { createPost } from "../redux/actions";
 
-class PostForm extends React.Component {
+class TaskForm extends React.Component {
   constructor(props) {
     super(props);
     this.titleInput = React.createRef();
@@ -97,23 +97,21 @@ class PostForm extends React.Component {
       <form className="post-form" onSubmit={this.submitHandler}>
         <div className="inputs-text">
           <div className="form-group">
-            <label htmlFor="title"> Title </label>
+            <label htmlFor="title"> Название </label>
             <input
               type="text"
               className="form-control"
               id="title"
-              placeholder="title"
               name="title"
               ref={this.titleInput}
               value={this.title}
               onChange={this.changeInputHandler}
             />
-            <label htmlFor="description pt-2"> Description </label>
+            <label htmlFor="description pt-2"> Описание </label>
             <textarea
               className="form-control"
               onChange={this.changeInputHandler}
               ref={this.descriptionInput}
-              placeholder="Description"
               name="description"
               id="description"
               cols="30"
@@ -126,7 +124,7 @@ class PostForm extends React.Component {
         <div className="selectors-options">
           <label className="my-1 mr-2" htmlFor="priority">
             
-            Priority
+            Приоритет
           </label>
           <select
             className="custom-select my-1 mr-sm-2"
@@ -139,7 +137,7 @@ class PostForm extends React.Component {
           </select>
           <label className="my-1 mr-2" htmlFor="status">
             
-            Status
+            Статус
           </label>
           <select
             className="custom-select my-1 mr-sm-2"
@@ -163,4 +161,4 @@ const mapDispatchToProps = {
   createPost,
 };
 
-export default connect(null, mapDispatchToProps)(PostForm);
+export default connect(null, mapDispatchToProps)(TaskForm);

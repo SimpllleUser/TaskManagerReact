@@ -6,7 +6,7 @@ const initialState = {
     selectEditablePost: {}
 };
 
-export const postsReducer = (state = initialState, action) => {
+export const tasksReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_POST:
             return {

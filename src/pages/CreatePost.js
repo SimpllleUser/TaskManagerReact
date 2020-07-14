@@ -1,9 +1,9 @@
 import React from "react";
-import PostForm from "../components/PostForm";
+import PostForm from "../components/TaskForm";
 
 const CreatePost = () => (
     <div>
-        <h2>Cretae post</h2>
+        <h2>Форма создания</h2>
         <PostForm/>
     </div>
 )
