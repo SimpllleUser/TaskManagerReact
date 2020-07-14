@@ -183,6 +183,7 @@ class Calendar extends React.Component {
 
     return (
       <div className="calendar-block">
+        {console.log(this.props.events)}
         <div className="calnedar">
         <div className="navigation-calendar border-bottom">
           <div className="month-navigation">
@@ -219,7 +220,7 @@ class Calendar extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.calendar.events,
+    events: [state.calendar.events, ...state.tasks.tasks]
   };
 };
 

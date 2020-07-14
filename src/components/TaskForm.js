@@ -1,8 +1,8 @@
 import React from "react";
 import moment from 'moment'
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { createTask } from "../redux/actions";
+import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
+import {createTask} from "../redux/actions";
 
 class TaskForm extends React.Component {
     constructor(props) {
@@ -17,14 +17,14 @@ class TaskForm extends React.Component {
             prioritySelect: "1",
             statusSelect: "1",
             priorities: [
-                { name: "Low", value: 1, class: "badge-success" },
-                { name: "Normal", value: 2, class: "badge-warning" },
-                { name: "Highly", value: 3, class: "badge-danger" },
+                {name: "Low", value: 1, class: "badge-success"},
+                {name: "Normal", value: 2, class: "badge-warning"},
+                {name: "Highly", value: 3, class: "badge-danger"},
             ],
             statuses: [
-                { name: "Open", value: 1, class: "badge-primary" },
-                { name: "Inprogress", value: 2, class: "badge-warning" },
-                { name: "Done", value: 3, class: "badge-info" },
+                {name: "Open", value: 1, class: "badge-primary"},
+                {name: "Inprogress", value: 2, class: "badge-warning"},
+                {name: "Done", value: 3, class: "badge-info"},
             ],
         };
     }
@@ -58,113 +58,115 @@ class TaskForm extends React.Component {
         // CLEAN INPUTS
         this.titleInput.current.value = "";
         this.descriptionInput.current.value = "";
-        this.setState({ title: "", description: "", redirect: true });
+        this.setState({title: "", description: "", redirect: true});
     };
 
     changeInputHandler = (event) => {
         event.persist();
         this.setState((prev) => ({
             ...prev,
-            ... {
+            ...{
                 [event.target.name]: event.target.value,
             },
         }));
     };
     prioritySelectorHandler = (event) => {
-        this.setState({ prioritySelect: event.target.value });
+        this.setState({prioritySelect: event.target.value});
     };
     statusSelectorHandler = (event) => {
-        this.setState({ statusSelect: event.target.value });
+        this.setState({statusSelect: event.target.value});
     };
 
     render() {
-        const PrioritySelector = this.state.priorities.map((priority) => ( <
-            option key = { priority.value }
-            value = { priority.value } >
+        const PrioritySelector = this.state.priorities.map((priority) => (<
+            option key={priority.value}
+                   value={priority.value}>
 
-            { priority.name } <
-            /option>
-        ));
-        const StatusSelector = this.state.statuses.map((status) => ( <
-            option key = { status.value }
-            value = { status.value } >
+            {priority.name}
+            <
+                /option>
+                ));
+                const StatusSelector = this.state.statuses.map((status) => ( <
+                option key={status.value}
+                       value={status.value}>
 
-            { status.name } <
-            /option>
-        ));
-        {/*//REDIRECT ROUTE IF CREATE POST*/}
-        if (this.state.redirect){
-            return <Redirect to = "/" /> ;
-        }
+                {status.name}
+                <
+                    /option>
+                    ));
+                    {/*//REDIRECT ROUTE IF CREATE POST*/}
+                    if (this.state.redirect){
+                    return <Redirect to = "/" /> ;
+                }
 
-        return ( <
-            form className = "task-form"
-            onSubmit = { this.submitHandler } >
-            <
-            div className = "inputs-text" >
-            <
-            div className = "form-group" >
-            <
-            label htmlFor = "title" > Название < /label> <
-            input type = "text"
-            className = "form-control"
-            id = "title"
-            name = "title"
-            ref = { this.titleInput }
-            value = { this.title }
-            onChange = { this.changeInputHandler }
-            /> <
-            label htmlFor = "description pt-2" > Описание < /label> <
-            textarea className = "form-control"
-            onChange = { this.changeInputHandler }
-            ref = { this.descriptionInput }
-            name = "description"
-            id = "description"
-            cols = "30"
-            rows = "10" >
+                    return ( <
+                    form className="task-form"
+                         onSubmit={this.submitHandler}>
+                    <
+                        div className="inputs-text">
+                        <
+                            div className="form-group">
+                            <
+                                label htmlFor="title"> Название < /label> <
+                                input type="text"
+                                      className="form-control"
+                                      id="title"
+                                      name="title"
+                                      ref={this.titleInput}
+                                      value={this.title}
+                                      onChange={this.changeInputHandler}
+                            /> <
+                                label htmlFor="description pt-2"> Описание < /label> <
+                                textarea className="form-control"
+                                         onChange={this.changeInputHandler}
+                                         ref={this.descriptionInput}
+                                         name="description"
+                                         id="description"
+                                         cols="30"
+                                         rows="10">
 
             <
-            /textarea> < /
-            div > <
-            /div> <
-            div className = "selectors-options" >
+                /textarea> < /
+                div> <
+                /div> <
+                div className="selectors-options">
             <
-            label className = "my-1 mr-2"
-            htmlFor = "priority" >
+                label className="my-1 mr-2"
+                      htmlFor="priority">
 
             Приоритет <
-            /label> <
-            select className = "custom-select my-1 mr-sm-2"
-            id = "priority"
-            value = { this.state.prioritySelect }
-            onChange = { this.prioritySelectorHandler } >
+                /label> <
+                select className="custom-select my-1 mr-sm-2"
+                       id="priority"
+                       value={this.state.prioritySelect}
+                       onChange={this.prioritySelectorHandler}>
 
-            { PrioritySelector } <
-            /select> <
-            label className = "my-1 mr-2"
-            htmlFor = "status" >
+            {PrioritySelector} <
+                /select> <
+                label className="my-1 mr-2"
+                      htmlFor="status">
 
             Статус <
-            /label> <
-            select className = "custom-select my-1 mr-sm-2"
-            id = "status"
-            value = { this.state.statusSelect }
-            onChange = { this.statusSelectorHandler } >
+                /label> <
+                select className="custom-select my-1 mr-sm-2"
+                       id="status"
+                       value={this.state.statusSelect}
+                       onChange={this.statusSelectorHandler}>
 
-            { StatusSelector } <
-            /select> < /
-            div > <
-            button className = "btn btn-success send-task"
-            type = "submit" >
+            {StatusSelector} <
+                /select> < /
+                div> <
+                button className="btn btn-success send-task"
+                       type="submit">
             Создать <
-            /button> < /
-            form >
+                /button> < /
+                form>
         );
     }
 }
 
 const mapDispatchToProps = {
-    createTask
-};
+                createTask
+            };
 
 export default connect(null, mapDispatchToProps)(TaskForm);
