@@ -1,16 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { saveEditablePost } from "../redux/actions";
+import { saveEditableTask } from "../redux/actions";
 
-class EditPost extends React.Component {
+class EditTask extends React.Component {
   constructor(props) {
     super(props);
     this.titleInput = React.createRef();
     this.descriptionInput = React.createRef();
 
     this.state = {
-      post: {},
+      task: {},
       title: "",
       description: "",
       prioritySelect: {},
@@ -30,15 +30,15 @@ class EditPost extends React.Component {
   }
 
   componentWillMount() {
-    let post = this.props.posts.find(
+    let task = this.props.tasks.find(
       (p) => p.id === this.props.match.params.id
     );
     this.setState({
-      post,
-      title: post.title,
-      description: post.description,
-      prioritySelect: post.priority.value,
-      statusSelect: post.status.value,
+      task,
+      title: task.title,
+      description: task.description,
+      prioritySelect: task.priority.value,
+      statusSelect: task.status.value,
     });
   }
 
@@ -52,7 +52,7 @@ class EditPost extends React.Component {
     }));
   };
 
-  saveEditPost = () => {
+  saveEditTask = () => {
     const {
       title,
       description,
@@ -61,14 +61,14 @@ class EditPost extends React.Component {
       prioritySelect,
       priorities,
     } = this.state;
-    const selectedPost = {
-      id: this.state.post.id,
+    const selectedTask = {
+      id: this.state.task.id,
       title,
       description,
       status: statuses.find((status) => status.value == statusSelect),
       priority: priorities.find((priority) => priority.value == prioritySelect),
     };
-    this.props.saveEditablePost(selectedPost);
+    this.props.saveEditableTask(selectedTask);
     this.setState({ redirect: true });
   };
 
@@ -150,22 +150,22 @@ class EditPost extends React.Component {
             {StatusSelector}
           </select>
         </div>
-        <button className="btn btn-success" onClick={this.saveEditPost}>
+        <button className="btn btn-success" onClick={this.saveEditTask}>
           Save
         </button>
       </div>
     );
   }
 }
-// export default EditPost;
+// export default EditTask;
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts.posts,
+    tasks: state.tasks.tasks,
   };
 };
 
 const mapDispatchToProps = {
-  saveEditablePost,
+  saveEditableTask,
 };
 // mapStateToProps => GET STATE FROM STORE // mapDispatchToProps IINCLUDE methods REDUX
-export default connect(mapStateToProps, mapDispatchToProps)(EditPost);
+export default connect(mapStateToProps, mapDispatchToProps)(EditTask);

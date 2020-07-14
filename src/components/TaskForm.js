@@ -2,7 +2,7 @@ import React from "react";
 import moment from 'moment'
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { createPost } from "../redux/actions";
+import { createTask } from "../redux/actions";
 
 class TaskForm extends React.Component {
     constructor(props) {
@@ -45,7 +45,7 @@ class TaskForm extends React.Component {
             return;
         }
         // CREATE POST
-        const newPost = {
+        const newTask = {
             id: Date.now().toString(),
             title,
             description,
@@ -54,7 +54,7 @@ class TaskForm extends React.Component {
             date: moment().format("DD-MM-YYYY")
         };
         // SEND DATA ON REDUX
-        this.props.createPost(newPost);
+        this.props.createTask(newTask);
         // CLEAN INPUTS
         this.titleInput.current.value = "";
         this.descriptionInput.current.value = "";
@@ -92,13 +92,13 @@ class TaskForm extends React.Component {
             { status.name } <
             /option>
         ));
-        //REDIRECT ROUTE IF CREATE POST
-        if (this.state.redirect) {
-            return <Redirect to = "/" / > ;
+        {/*//REDIRECT ROUTE IF CREATE POST*/}
+        if (this.state.redirect){
+            return <Redirect to = "/" /> ;
         }
 
         return ( <
-            form className = "post-form"
+            form className = "task-form"
             onSubmit = { this.submitHandler } >
             <
             div className = "inputs-text" >
@@ -154,7 +154,7 @@ class TaskForm extends React.Component {
             { StatusSelector } <
             /select> < /
             div > <
-            button className = "btn btn-success send-post"
+            button className = "btn btn-success send-task"
             type = "submit" >
             Создать <
             /button> < /
@@ -164,7 +164,7 @@ class TaskForm extends React.Component {
 }
 
 const mapDispatchToProps = {
-    createPost,
+    createTask
 };
 
 export default connect(null, mapDispatchToProps)(TaskForm);

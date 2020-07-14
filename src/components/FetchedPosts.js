@@ -1,27 +1,27 @@
 import React from "react";
-import Post from "./Task";
+import Task from "./Task";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchedPosts } from "../redux/actions";
+import { fetchedTasks } from "../redux/actions";
 import {Loader} from "./Loader"
 
 export default () => {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts.fetchedPosts);
+  const tasks = useSelector((state) => state.tasks.fetchedTasks);
   const loading = useSelector((state) => state.app.loading);
 
   if (loading) {
     return <Loader/>
   }
 
-  if (!posts.length) {
+  if (!tasks.length) {
     return (
       <button
         className="btn btn-primary"
-        onClick={() => dispatch(fetchedPosts())} 
+        onClick={() => dispatch(fetchedTasks())}
       >
         Загрузить
       </button>
     );
   }
-  return posts.map((post) => <Post post={post} key={post.id} />);
+  return tasks.map((task) => <Task task={task} key={task.id} />);
 };

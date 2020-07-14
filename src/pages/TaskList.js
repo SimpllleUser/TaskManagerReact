@@ -1,5 +1,5 @@
 import React from "react";
-import Posts from "../components/Tasks";
+import Tasks from "../components/Tasks";
 import Calendar from "../components/Calendar";
 
 const TaskList = () => (
@@ -7,7 +7,7 @@ const TaskList = () => (
     <h2> Список заданий </h2>
     <div className="row">
       <div className="col-6">
-        <Posts />
+        <Tasks />
       </div>
     </div>
     {/* Modal  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".sel-modal">Large modal</button>
