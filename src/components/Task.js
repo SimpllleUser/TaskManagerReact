@@ -33,10 +33,10 @@ export default ({ task }) => {
           </p>
         </div>
         <div className="options">
-          <span className={"m-1 p-1 badge badge-pill " + task.priority.class}>
+          <span className={"m-1 p-1 badge badge-pill badge-" + task.priority.class}>
             {task.priority.name}
           </span>
-          <span className={"m-1 p-1 badge badge-pill " + task.status.class}>
+          <span className={"m-1 p-1 badge badge-pill badge-" + task.status.class}>
             {task.status.name}
           </span>
         </div>
