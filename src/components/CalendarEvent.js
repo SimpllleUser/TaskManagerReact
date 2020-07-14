@@ -24,8 +24,8 @@ class CalendarEvent extends React.Component {
     }));
   };
 
-  submitHandler = (event) => {
-    event.preventDefault();
+  saveForm = () => {
+    // event.preventDefault();
     // INIT STATES
     const { title, description } = this.state;
     // VALIDATE INPUTS
@@ -55,7 +55,7 @@ class CalendarEvent extends React.Component {
     ));
     return (
       <div>
-        <h3> Event From </h3>
+        <h3> Форма события </h3>
         <form className="eventForm" onSubmit={this.submitHandler}>
           <label htmlFor="title"> Название </label>
           <input
@@ -77,8 +77,11 @@ class CalendarEvent extends React.Component {
             cols="30"
             rows="10"
           ></textarea>
-          <button className="btn btn-success send-task mt-1" type="submit">
+
+          <button className="btn btn-success send-task mt-1"  onClick={this.saveForm}>
+          <div data-dismiss="modal" aria-label="Close" >
             Сохранить
+            </div>
           </button>
         </form>
       </div>
