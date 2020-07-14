@@ -4,6 +4,8 @@ import TaskCreate from "./pages/TaskCreate"
 import TaskList from "./pages/TaskList"
 import EditTask from "./pages/TaskEdit"
 import EventCalebdar from "./pages/EventCalebdar"
+import TaskDetail from "./pages/TaskDetail"
+
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
                     <Route exact path="/" component={TaskList}/>
                     <Route exact path="/event-calendar" component={EventCalebdar}/>
                     <Route  path="/edit-task/:id" component={EditTask}/>
+                    <Route  path="/detail-task/:id" component={TaskDetail}/>
                     <Route exact path="/create-task" component={TaskCreate}/>
                 </Router>
             </div>
