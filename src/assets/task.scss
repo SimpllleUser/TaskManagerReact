@@ -1,5 +1,13 @@
-.description-text{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.description-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tasks-list {
+    display: flex;
+    flex-wrap: wrap;
+    .task-card {
+        width: 350px;
+    }
 }

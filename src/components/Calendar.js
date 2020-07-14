@@ -151,7 +151,7 @@ class Calendar extends React.Component {
 
     const listDay = this.state.month().map((day) => (
       <div
-        className={`'' + ${this.formatClassName(day)}`}
+        className={`${day.name} + ${this.formatClassName(day)}`}
         key={day.num + day.name}
         onClick={() => {
           this.selectDay(day);
@@ -172,7 +172,6 @@ class Calendar extends React.Component {
       {event.date == this.state.date ?
         <div className="event-card card">
           <div className="card-body">
-          {console.log(event.date, this.state.date)}
           <h3 className="card-title">Title: {event.title}</h3>
           <p className="card-text" >Description: {event.description}</p>
           <span className="date alert alert-secondary">{event.date}</span>
