@@ -1,10 +1,10 @@
 import React from "react";
-import Posts from "../components/Posts";
+import Posts from "../components/Tasks";
 import Calendar from "../components/Calendar";
 
-const ListPosts = () => (
+const TaskList = () => (
   <div>
-    <h2> Lists posts </h2>
+    <h2> Список заданий </h2>
     <div className="row">
       <div className="col-6">
         <Posts />
@@ -22,4 +22,4 @@ const ListPosts = () => (
   </div>
 );
 
-export default ListPosts;
+export default TaskList;

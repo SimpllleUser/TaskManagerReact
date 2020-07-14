@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import { postsReducer } from './postsReducer'
+import { tasksReducer } from './tasksReducer'
 import { appReducer } from './appReducer'
 import { calendarReducer } from './calendarReducer'
 
 export const rootReducer = combineReducers({
     calendar: calendarReducer,
-    posts: postsReducer,
+    posts: tasksReducer,
     app: appReducer
 })

@@ -3,7 +3,7 @@ import Calendar from "../components/Calendar";
 
 const EventCalebdar = () => (
     <div>
-        <h2>Event Calendar</h2>
+        <h2>Календарь событий</h2>
         <Calendar/>
 
     </div>

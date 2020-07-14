@@ -9,8 +9,8 @@ const Modal = (props) => (
     <div className="modal-dialog modal-lg modal-content">
       <div className="modal-content event-block">
         <div className="events-list">
-        <h1>Title event</h1>
-        <p>Description event</p>
+        <h1>Название:</h1>
+        <p>Описание:</p>
         </div>
           <CalendarEvent date={props.date} />
           </div>

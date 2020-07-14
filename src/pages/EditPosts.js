@@ -101,23 +101,23 @@ class EditPost extends React.Component {
       <div>
         <div className="inputs-text">
           <div className="form-group">
-            <label htmlFor="title"> Title </label>
+            <label htmlFor="title"> Название </label>
             <input
               type="text"
               className="form-control"
               id="title"
-              placeholder="title"
+              placeholder="название"
               name="title"
               ref={this.titleInput}
               value={this.state.title}
               onChange={this.changeInputHandler}
             />
-            <label htmlFor="description pt-2"> Description </label>
+            <label htmlFor="description pt-2"> Описание </label>
             <textarea
               className="form-control"
               onChange={this.changeInputHandler}
               ref={this.descriptionInput}
-              placeholder="Description"
+              placeholder="описание"
               name="description"
               id="description"
               cols="30"
