@@ -9,10 +9,26 @@ import {
 } from "./types";
 
 export function createTask(task) {
-    return {
-        type: CREATE_TASK,
-        payload: task
-    };
+    console.log(task.status.name)
+    fetch('http://localhost:8080/api/tasks', {
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        method: "POST",
+        body: JSON.stringify({
+            title: task.title,
+            description: task.description,
+            status: task.status,
+            priority: task.priority
+        })
+    }).then(res => {
+        console.log("res.json === ", res.json())
+    }).then(
+        task => {
+            return {
+                type: CREATE_TASK,
+                payload: task
+            };
+        }
+    )
 }
 
 export function showLoader() {
