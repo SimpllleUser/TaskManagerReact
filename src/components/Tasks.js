@@ -1,14 +1,17 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {connect} from 'react-redux'
-import Task from "./Task";
 import {NavLink} from "react-router-dom";
+import Task from "./Task";
+import { getAllTasks } from "../redux/actions";
 
-const test ="asdasdasd"
 
-const Tasks = ({syncTasks}) => {
-    if (!syncTasks.length) {
+
+const Tasks = (props) => {
+    useEffect(() => {
+        props.getAllTasks()
+      });
+    if(props.syncTasks === undefined) {
         return <div className="jumbotron"><h1 className="display-4">Заданий нет </h1>
-        {test}
             <hr className="my-4"/>
             <p>Для создания можете перейти ниже по ссылке.</p>
             <NavLink to='/create-task' className="btn btn-primary btn-lg">Создать задание</NavLink>
@@ -16,9 +19,10 @@ const Tasks = ({syncTasks}) => {
     ;
     }
 
-    return syncTasks.map((task) =>
+    return props.syncTasks.map((task) =>
         <Task task={task} key={task.id}/>
     );
+
     };
 
     const mapStateToProps = state =>{
@@ -26,5 +30,7 @@ const Tasks = ({syncTasks}) => {
         syncTasks: state.tasks.tasks
     }
     }
-
-    export default connect(mapStateToProps, null)(Tasks)
+    const mapDispatchToProps = {
+        getAllTasks,
+      };
+    export default connect(mapStateToProps, mapDispatchToProps)(Tasks)

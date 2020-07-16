@@ -9,7 +9,6 @@ const initialState = {
 export const tasksReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_TASK:
-            console.log(action.task)
             return {
                 ...state,
                 tasks: state.tasks.concat([action.task])
@@ -26,9 +25,8 @@ export const tasksReducer = (state = initialState, action) => {
             return {
                 ...state,
                 tasks: state.tasks.map(p => p.id == task.id ? task : p)
-            }
+            };
         case GET_ALLTASKS:
-            alert()
             return {
                 ...state,
                 tasks: state.tasks = action.tasks

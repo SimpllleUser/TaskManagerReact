@@ -25,9 +25,17 @@ export function createTask(task) {
 }
 
 export function getAllTasks() {
-    return {
-        type: GET_ALLTASKS,
+
+    return (dispatch, stateTask) => {
+
+        axios.get('http://localhost:8080/api/tasks').then(
+            response => dispatch({ type: GET_ALLTASKS, tasks: response.data }),
+        )
     }
+
+    // return {
+    //     type: GET_ALLTASKS,
+    // }
 }
 
 export function showLoader() {
