@@ -1,4 +1,4 @@
-import { CREATE_TASK, FECTH_TASKS, DELETE_TASK, EDIT_TASK } from "./types";
+import { CREATE_TASK, FECTH_TASKS, DELETE_TASK, EDIT_TASK, GET_ALLTASKS } from "./types";
 
 const initialState = {
     tasks: [],
@@ -9,7 +9,6 @@ const initialState = {
 export const tasksReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_TASK:
-            console.log(action.task)
             return {
                 ...state,
                 tasks: state.tasks.concat([action.task])
@@ -26,8 +25,12 @@ export const tasksReducer = (state = initialState, action) => {
             return {
                 ...state,
                 tasks: state.tasks.map(p => p.id == task.id ? task : p)
+            };
+        case GET_ALLTASKS:
+            return {
+                ...state,
+                tasks: state.tasks = action.tasks
             }
-
         default:
             return state;
     }
