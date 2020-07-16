@@ -9,9 +9,10 @@ const initialState = {
 export const tasksReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_TASK:
+            console.log(action.task)
             return {
                 ...state,
-                tasks: state.tasks.concat([action.payload])
+                tasks: state.tasks.concat([action.task])
             };
         case FECTH_TASKS:
             return {...state, fetchedTasks: action.payload };

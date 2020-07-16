@@ -10,14 +10,16 @@ import {
 } from "./types";
 
 export function createTask(task) {
+    return (dispatch, stateTask) => {
 
-    return dispatch => {
-        return axios.post('http://localhost:8080/api/tasks', {
+        axios.post('http://localhost:8080/api/tasks', {
             title: task.title,
             description: task.description,
             status: task.status,
             priority: task.priority
-        })
+        }).then(
+            response => dispatch({ type: CREATE_TASK, task: response.data }),
+        )
     }
 }
 
