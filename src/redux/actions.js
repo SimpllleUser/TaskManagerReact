@@ -1,6 +1,7 @@
 import axios from "axios"
 import {
     CREATE_TASK,
+    GET_ALLTASKS,
     FECTH_TASKS,
     SHOW_LOADER,
     HIDE_LOADER,
@@ -20,6 +21,12 @@ export function createTask(task) {
         }).then(
             response => dispatch({ type: CREATE_TASK, task: response.data }),
         )
+    }
+}
+
+export function getAllTasks() {
+    return {
+        type: GET_ALLTASKS,
     }
 }
 
