@@ -1,3 +1,4 @@
+import axios from "axios"
 import {
     CREATE_TASK,
     FECTH_TASKS,
@@ -9,26 +10,17 @@ import {
 } from "./types";
 
 export function createTask(task) {
-    console.log(task.status.name)
-    fetch('http://localhost:8080/api/tasks', {
-        headers: { "Content-Type": "application/json; charset=utf-8" },
-        method: "POST",
-        body: JSON.stringify({
+    return (dispatch, stateTask) => {
+
+        axios.post('http://localhost:8080/api/tasks', {
             title: task.title,
             description: task.description,
             status: task.status,
             priority: task.priority
-        })
-    }).then(res => {
-        console.log("res.json === ", res.json())
-    }).then(
-        task => {
-            return {
-                type: CREATE_TASK,
-                payload: task
-            };
-        }
-    )
+        }).then(
+            response => dispatch({ type: CREATE_TASK, task: response.data }),
+        )
+    }
 }
 
 export function showLoader() {
