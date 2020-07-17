@@ -51,8 +51,18 @@ export function hideLoader() {
 }
 
 export function deleteTask(id) {
-    alert()
-    return { type: DELETE_TASK, id };
+
+    return (dispatch, stateTask) => {
+        console.log(id)
+        axios.delete(URL_API + '/tasks/' + id)
+            .then(
+                response => {
+                    dispatch({ type: DELETE_TASK, id })
+                }
+            )
+    }
+
+    // return { type: DELETE_TASK, id };
 }
 
 export function saveEditableTask(task) {
