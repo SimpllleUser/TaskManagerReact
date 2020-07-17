@@ -16,17 +16,10 @@ export default ({ task }) => {
       <div className="card-body">
         <div className="card-detail-info">
           <h5 className={"card-title" + classMod(task.id)}>
-            <span>
-              ID:
-              <NavLink
-                to={`/detail-task/${task.id}`}
-                className="bg-primary text-white"
-              >
-                {task.id}
-              </NavLink>
-            </span>
-            <hr />
+            <NavLink to={`/detail-task/${task.id}`}>
             Title: {task.title}
+            </NavLink>
+
           </h5>
           <p className="card-text description-text">
             Description
@@ -34,17 +27,8 @@ export default ({ task }) => {
           </p>
         </div>
         <div className="options">
-          <span className={"m-1 p-1 badge badge-pill badge-"}>
-          {/* + task.priority.class */}
-            {/* {task.priority.name} */}
-          </span>
-          {/* + task.status.class */}
-          <SelectorElement data={task.priority} type="priority" />
-          <SelectorElement data={task.status} type="status" />
-
-          <span className={"m-1 p-1 badge badge-pill badge-" }>
-            {task.status.name}
-          </span>
+             <SelectorElement  data={task.priority} type="priority" />
+          <SelectorElement  data={task.status} type="status" />
         </div>
         <div className="actions">
           <button
@@ -57,7 +41,7 @@ export default ({ task }) => {
           </button>
           <NavLink
             to={`/edit-task/${task.id}`}
-            className="bg-warning text-dark"
+            className="btn btn-warning text-dark"
           >
             Edit task
           </NavLink>

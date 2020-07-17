@@ -13,8 +13,8 @@ const data = {     "priority":  [
       ]}
 
       var select_element = data[props.type].find(elem => elem.name == props.data)
-    return <div>
-      <span class={'badge badge-pill badge-' + select_element.class}>{select_element.name}</span>
+    return <div class={'badge badge-pill badge-' + select_element.class}>
+      {select_element.name}
     </div>
 }
 

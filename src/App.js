@@ -14,9 +14,11 @@ function App() {
         <div className="container pt-3">
             <div className="nav-links">
                 <Router>
+                    <div className="main-links">
                     <NavLink exact to='/' activeClassName={activePage}>Список заданий</NavLink>
                     <NavLink to='/create-task' activeClassName={activePage}>Создать задание</NavLink>
                     <NavLink to='/event-calendar' activeClassName={activePage}>Календарь событий</NavLink>
+                    </div>
                     <Route exact path="/" component={TaskList}/>
                     <Route exact path="/event-calendar" component={EventCalebdar}/>
                     <Route  path="/edit-task/:id" component={EditTask}/>

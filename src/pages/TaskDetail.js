@@ -3,7 +3,8 @@ import { Redirect, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../redux/actions";
-import { Edit2, X } from "react-feather";
+import { Edit2, Trash2 } from "react-feather";
+import SelectorElement from "../components/SelectorElement"
 
 const TaskDetail = (props) => {
   const dispatch = useDispatch();
@@ -24,12 +25,8 @@ const TaskDetail = (props) => {
         <h3 className="title display-4">{task.title}</h3>
         <p className="description my-4">{task.description}</p>
         <div className="options">
-          <div className={"status border border-" + task.status.class}>
-            {task.status.name}
-          </div>
-          <div className={"priority border border-" + task.priority.class}>
-            {task.priority.name}
-          </div>
+        <SelectorElement data={task.priority} type="priority" />
+          <SelectorElement data={task.status} type="status" />
         </div>
         <div className="actions">
           <NavLink className="edit-detail" to={`/edit-task/${task.id}`}>
@@ -40,7 +37,7 @@ const TaskDetail = (props) => {
               dispatch(deleteTask(task.id));
             }}
           >
-            <X size={size}/>
+            <Trash2 size={size}/>
           </div>
         </div>
         <small>{task.date}</small>
