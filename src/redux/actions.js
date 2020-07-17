@@ -10,11 +10,13 @@ import {
     CREATE_CALENDAR_EVENT
 } from "./types";
 
+const URL_API = 'http://localhost:8080/api'
+
 export function createTask(task) {
 
     return (dispatch, stateTask) => {
 
-        axios.post('http://localhost:8080/api/tasks', {
+        axios.post(URL_API + '/tasks', {
             title: task.title,
             description: task.description,
             status: task.status,
@@ -30,14 +32,10 @@ export function getAllTasks() {
 
     return (dispatch, stateTask) => {
 
-        axios.get('http://localhost:8080/api/tasks').then(
+        axios.get(URL_API + '/tasks').then(
             response => dispatch({ type: GET_ALLTASKS, tasks: response.data }),
         )
     }
-
-    // return {
-    //     type: GET_ALLTASKS,
-    // }
 }
 
 export function showLoader() {
@@ -53,6 +51,7 @@ export function hideLoader() {
 }
 
 export function deleteTask(id) {
+    alert()
     return { type: DELETE_TASK, id };
 }
 
