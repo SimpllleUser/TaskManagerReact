@@ -4,6 +4,7 @@ import { deleteTask, setEditableTask } from "../redux/actions";
 import { Router, Route, NavLink } from "react-router-dom";
 
 import EditTask from "../pages/TaskEdit";
+import SelectorElement from "./SelectorElement";
 
 export default ({ task }) => {
   const classMod = (val) => val + " test";
@@ -33,10 +34,15 @@ export default ({ task }) => {
           </p>
         </div>
         <div className="options">
-          <span className={"m-1 p-1 badge badge-pill badge-" + task.priority.class}>
-            {task.priority.name}
+          <span className={"m-1 p-1 badge badge-pill badge-"}>
+          {/* + task.priority.class */}
+            {/* {task.priority.name} */}
           </span>
-          <span className={"m-1 p-1 badge badge-pill badge-" + task.status.class}>
+          {/* + task.status.class */}
+          <SelectorElement data={task.priority} type="priority" />
+          <SelectorElement data={task.status} type="status" />
+
+          <span className={"m-1 p-1 badge badge-pill badge-" }>
             {task.status.name}
           </span>
         </div>

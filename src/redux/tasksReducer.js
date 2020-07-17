@@ -1,4 +1,4 @@
-import { CREATE_TASK, FECTH_TASKS, DELETE_TASK, EDIT_TASK } from "./types";
+import { CREATE_TASK, FECTH_TASKS, DELETE_TASK, EDIT_TASK, GET_ALLTASKS } from "./types";
 
 const initialState = {
     tasks: [],
@@ -11,7 +11,7 @@ export const tasksReducer = (state = initialState, action) => {
         case CREATE_TASK:
             return {
                 ...state,
-                tasks: state.tasks.concat([action.payload])
+                tasks: state.tasks.concat([action.task])
             };
         case FECTH_TASKS:
             return {...state, fetchedTasks: action.payload };
@@ -25,8 +25,12 @@ export const tasksReducer = (state = initialState, action) => {
             return {
                 ...state,
                 tasks: state.tasks.map(p => p.id == task.id ? task : p)
+            };
+        case GET_ALLTASKS:
+            return {
+                ...state,
+                tasks: state.tasks = action.tasks
             }
-
         default:
             return state;
     }

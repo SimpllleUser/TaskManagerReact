@@ -1,6 +1,7 @@
 import axios from "axios"
 import {
     CREATE_TASK,
+    GET_ALLTASKS,
     FECTH_TASKS,
     SHOW_LOADER,
     HIDE_LOADER,
@@ -10,22 +11,33 @@ import {
 } from "./types";
 
 export function createTask(task) {
-    axios.post('http://localhost:8080/api/tasks', {
+
+    return (dispatch, stateTask) => {
+
+        axios.post('http://localhost:8080/api/tasks', {
             title: task.title,
             description: task.description,
             status: task.status,
             priority: task.priority
-        }).then(response => {
-            console.log("respone task", response.data)
-            return {
-                type: CREATE_TASK,
-                payload: response.data
-            };
-        })
-        // return {
-        //     type: CREATE_TASK,
-        //     payload: task
-        // };
+
+        }).then(
+            response => dispatch({ type: CREATE_TASK, task: response.data }),
+        )
+    }
+}
+
+export function getAllTasks() {
+
+    return (dispatch, stateTask) => {
+
+        axios.get('http://localhost:8080/api/tasks').then(
+            response => dispatch({ type: GET_ALLTASKS, tasks: response.data }),
+        )
+    }
+
+    // return {
+    //     type: GET_ALLTASKS,
+    // }
 }
 
 export function showLoader() {
