@@ -12,9 +12,9 @@ const data = {     "priority":  [
         { name: "Done", value: 3, class: "info" },
       ]}
 
-      const select_element = data[props.type].find(elem => elem.name == props.data)
+      var select_element = data[props.type].find(elem => elem.name == props.data)
     return <div>
-        <h3>Selector element{console.log(select_element)}</h3>
+      <span class={'badge badge-pill badge-' + select_element.class}>{select_element.name}</span>
     </div>
 }
 
