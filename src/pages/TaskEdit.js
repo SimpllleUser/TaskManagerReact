@@ -15,17 +15,17 @@ class EditTask extends React.Component {
       description: "",
       redirect: false,
       priorities: [
-        { name: "Low", value: 1, class: "success" },
-        { name: "Normal", value: 2, class: "warning" },
-        { name: "Highly", value: 3, class: "danger" },
+        { name: "Low", class: "success" },
+        { name: "Normal", class: "warning" },
+        { name: "Highly", class: "danger" },
       ],
       statuses: [
-        { name: "Open", value: 1, class: "primary" },
-        { name: "Inprogress", value: 2, class: "warning" },
-        { name: "Done", value: 3, class: "info" },
+        { name: "Open", class: "primary" },
+        { name: "Inprogress", class: "warning" },
+        { name: "Done", class: "info" },
       ],
-      prioritySelect: 1,
-      statusSelect: 1
+      prioritySelect: "Normal",
+      statusSelect: "Open",
     };
   }
 
@@ -37,8 +37,7 @@ class EditTask extends React.Component {
       task,
       title: task.title,
       description: task.description,
-      prioritySelect: task.priority.value || 1,
-      statusSelect: task.status.value || 1,
+      prioritySelect: task.priority,
     });
   }
 
@@ -66,32 +65,45 @@ class EditTask extends React.Component {
       id: this.state.task.id,
       title,
       description,
-      status: statuses.find((status) => status.value == statusSelect).name || 'Open',
-      priority: priorities.find((priority) => priority.value == prioritySelect).name || 'Normal',
+      status: statusSelect,
+      priority: prioritySelect
     };
     this.props.saveEditableTask(selectedTask);
     this.setState({ redirect: true });
   };
 
-  prioritySelectorHandler = (event) => {
-    this.setState({ prioritySelect: event.target.value });
+  setStatusTask = (status) => {
+    this.setState({ statusSelect: status });
   };
-  statusSelectorHandler = (event) => {
-    this.setState({ statusSelect: event.target.value });
+
+  setPriorityTask = (priority) => {
+    this.setState({ prioritySelect: priority });
   };
 
   render() {
-    const PrioritySelector = this.state.priorities.map((priority) => (
-      <option key={priority.value} value={priority.value}>
-        
-        {priority.name}
-      </option>
-    ));
-    const StatusSelector = this.state.statuses.map((status) => (
-      <option key={status.value} value={status.value}>
-        
+
+    const itemsStatuses = this.state.statuses.map((status) => (
+      <a
+        className="dropdown-item"
+        onClick={() => {
+          this.setStatusTask(status.name);
+        }}
+        key={status.name}
+      >
         {status.name}
-      </option>
+      </a>
+    ));
+
+    const itemsPriorities = this.state.priorities.map((priority) => (
+      <a
+        className="dropdown-item"
+        onClick={() => {
+          this.setPriorityTask(priority.name);
+        }}
+        key={priority.name}
+      >
+        {priority.name}
+      </a>
     ));
 
     if (this.state.redirect) {
@@ -99,8 +111,7 @@ class EditTask extends React.Component {
     }
 
     return (
-      <div>
-        {console.log("prioritySelect",this.state.prioritySelect)}
+      <div className="task-edit">
         <div className="inputs-text">
           <div className="form-group">
             <label htmlFor="title"> Название </label>
@@ -128,29 +139,28 @@ class EditTask extends React.Component {
             ></textarea>
           </div>
         </div>
-        <div className="selectors-options">
-          <label className="my-1 mr-2" htmlFor="priority">
-            Priority
-          </label>
-          <select
-            className="custom-select my-1 mr-sm-2"
-            id="priority"
-            value={this.state.prioritySelect}
-            onChange={this.prioritySelectorHandler}
+        <div className="options">
+        <div className="statuses btn-group">
+          <button
+            className="btn btn-primary dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
           >
-            {PrioritySelector}
-          </select>
-          <label className="my-1 mr-2" htmlFor="status">
-            Status
-          </label>
-          <select
-            className="custom-select my-1 mr-sm-2"
-            id="status"
-            value={this.state.statusSelect}
-            onChange={this.statusSelectorHandler}
+            {this.state.statusSelect}
+          </button>
+          <div className="dropdown-menu">{itemsStatuses}</div>
+        </div>
+
+        <div className="priorities btn-group">
+          <button
+            className="btn btn-primary dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
           >
-            {StatusSelector}
-          </select>
+            {this.state.prioritySelect}
+          </button>
+          <div className="dropdown-menu">{itemsPriorities}</div>
+        </div>
         </div>
         <button className="btn btn-success" onClick={this.saveEditTask}>
           Save

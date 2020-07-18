@@ -2,14 +2,26 @@
     //max-width: 500px;
     display: flex;
     flex-wrap: wrap;
-    div{
+    div {
         width: 500px;
         margin: 10px;
     }
-    .selectors-options{
+    .selectors-options {
         padding-top: 5px;
     }
-    .send-task{
+    .send-task {
         margin-left: 20px;
+    }
+}
+
+.task-edit {
+    .options {
+        display: flex;
+        max-width: 400px;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        div {
+            width: 180px;
+        }
     }
 }

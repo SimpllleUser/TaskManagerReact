@@ -46,6 +46,7 @@ export default ({ task }) => {
             Edit task
           </NavLink>
         </div>
+
       </div>
     </div>
   );
