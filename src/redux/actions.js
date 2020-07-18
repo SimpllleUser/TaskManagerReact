@@ -51,8 +51,9 @@ export function hideLoader() {
 }
 
 export function deleteTask(id) {
+
     return (dispatch, stateTask) => {
-        axios.delete(URL_API + '/' + id)
+        axios.delete(URL_API + '/tasks/' + id)
             .then(
                 response => {
                     dispatch({ type: DELETE_TASK, id })
