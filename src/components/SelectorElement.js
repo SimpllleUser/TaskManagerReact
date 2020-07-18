@@ -13,7 +13,9 @@ const data = {     "priority":  [
       ]}
 
       var select_element = data[props.type].find(elem => elem.name == props.data)
-    return <div className={'badge badge-pill badge-' + select_element.class}>
+    return <div className="selected-element-option">
+      <div className={'badge badge-pill badge-' + select_element.class}>  
+      </div>
       {select_element.name}
     </div>
 }

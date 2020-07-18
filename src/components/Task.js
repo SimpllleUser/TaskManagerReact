@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteTask, setEditableTask } from "../redux/actions";
-import { Router, Route, NavLink } from "react-router-dom";
+import { deleteTask } from "../redux/actions";
+import { Route, NavLink } from "react-router-dom";
+import { Edit2, Trash2 } from "react-feather";
 
 import EditTask from "../pages/TaskEdit";
 import SelectorElement from "./SelectorElement";
@@ -11,42 +12,35 @@ export default ({ task }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="task-card card 1">
+    <div  className="task-card card">
       <Route path="/:id/:param?" component={EditTask} />
       <div className="card-body">
         <div className="card-detail-info">
-          <h5 className={"card-title" + classMod(task.id)}>
-            <NavLink to={`/detail-task/${task.id}`}>
-            Title: {task.title}
-            </NavLink>
-
+          <h5 className={"card-title " + classMod(task.id)}>
+            <NavLink to={`/detail-task/${task.id}`}>{task.title}</NavLink>
           </h5>
-          <p className="card-text description-text">
-            Description
-            <br /> {task.description}
-          </p>
+          <div className="options">
+          <SelectorElement data={task.priority} type="priority" />
+          <SelectorElement data={task.status} type="status" />
         </div>
-        <div className="options">
-             <SelectorElement  data={task.priority} type="priority" />
-          <SelectorElement  data={task.status} type="status" />
         </div>
+
         <div className="actions">
-          <button
+          <div className="delete_task">          <Trash2
+            className="text-secondary"
             onClick={() => {
               dispatch(deleteTask(task.id));
             }}
-            className="btn btn-danger"
-          >
-            Delete
-          </button>
-          <NavLink
-            to={`/edit-task/${task.id}`}
-            className="btn btn-warning text-dark"
-          >
-            Edit task
-          </NavLink>
-        </div>
+          /></div>
 
+          <div className="edit_task">
+          <NavLink className="text-secondary" to={`/edit-task/${task.id}`}>
+            <Edit2 />
+          </NavLink>
+          </div>
+
+
+        </div>
       </div>
     </div>
   );
