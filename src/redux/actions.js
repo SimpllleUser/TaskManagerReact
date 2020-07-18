@@ -51,10 +51,8 @@ export function hideLoader() {
 }
 
 export function deleteTask(id) {
-
     return (dispatch, stateTask) => {
-        console.log(id)
-        axios.delete(URL_API + '/tasks/' + id)
+        axios.delete(URL_API + '/' + id)
             .then(
                 response => {
                     dispatch({ type: DELETE_TASK, id })
@@ -66,7 +64,21 @@ export function deleteTask(id) {
 }
 
 export function saveEditableTask(task) {
-    return { type: EDIT_TASK, task }
+    console.log('EDITABLE TASK', task)
+    return (dispatch, stateTask) => {
+        axios.put(URL_API + '/tasks/' + task.id, {
+                title: task.title,
+                description: task.description,
+                priority: task.priority,
+                status: task.status,
+            })
+            .then(
+                response => {
+                    dispatch({ type: EDIT_TASK, task })
+                    console.log('response', response)
+                }
+            )
+    }
 }
 
 export function fetchedTasks() {
