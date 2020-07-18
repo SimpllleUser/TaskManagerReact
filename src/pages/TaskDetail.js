@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment"
 import { Redirect, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -19,6 +20,7 @@ const TaskDetail = (props) => {
     <div className="jumbotron" id="task-detail">
       <div className="task-body">
         <h3 className="title display-4"> {task.title} </h3>
+        <hr/>
         <p className="description my-4"> {task.description} </p>
         <div className="options">
           <SelectorElement data={task.priority} type="priority" />
@@ -39,7 +41,7 @@ const TaskDetail = (props) => {
             <Trash2 size={size} />
           </div>
         </div>
-        <small> {task.date} </small>
+        <small className="date-created"> {moment(task.createdAt).format("DD-MMMM-YYYY")} </small>
     </div>
   );
 };
