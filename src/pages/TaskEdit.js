@@ -13,8 +13,6 @@ class EditTask extends React.Component {
       task: {},
       title: "",
       description: "",
-      prioritySelect: {},
-      statusSelect: {},
       redirect: false,
       priorities: [
         { name: "Low", value: 1, class: "success" },
@@ -26,6 +24,8 @@ class EditTask extends React.Component {
         { name: "Inprogress", value: 2, class: "warning" },
         { name: "Done", value: 3, class: "info" },
       ],
+      prioritySelect: 1,
+      statusSelect: 1
     };
   }
 
@@ -37,8 +37,8 @@ class EditTask extends React.Component {
       task,
       title: task.title,
       description: task.description,
-      prioritySelect: task.priority.value,
-      statusSelect: task.status.value,
+      prioritySelect: task.priority.value || 1,
+      statusSelect: task.status.value || 1,
     });
   }
 
@@ -61,12 +61,13 @@ class EditTask extends React.Component {
       prioritySelect,
       priorities,
     } = this.state;
+
     const selectedTask = {
       id: this.state.task.id,
       title,
       description,
-      status: statuses.find((status) => status.value == statusSelect).name,
-      priority: priorities.find((priority) => priority.value == prioritySelect).name,
+      status: statuses.find((status) => status.value == statusSelect).name || 'Open',
+      priority: priorities.find((priority) => priority.value == prioritySelect).name || 'Normal',
     };
     this.props.saveEditableTask(selectedTask);
     this.setState({ redirect: true });
@@ -82,14 +83,14 @@ class EditTask extends React.Component {
   render() {
     const PrioritySelector = this.state.priorities.map((priority) => (
       <option key={priority.value} value={priority.value}>
-        {" "}
-        {priority.name}{" "}
+        
+        {priority.name}
       </option>
     ));
     const StatusSelector = this.state.statuses.map((status) => (
       <option key={status.value} value={status.value}>
-        {" "}
-        {status.name}{" "}
+        
+        {status.name}
       </option>
     ));
 
@@ -99,9 +100,10 @@ class EditTask extends React.Component {
 
     return (
       <div>
+        {console.log("prioritySelect",this.state.prioritySelect)}
         <div className="inputs-text">
           <div className="form-group">
-            <label htmlFor="title"> Название </label>{" "}
+            <label htmlFor="title"> Название </label>
             <input
               type="text"
               className="form-control"
@@ -111,8 +113,8 @@ class EditTask extends React.Component {
               ref={this.titleInput}
               value={this.state.title}
               onChange={this.changeInputHandler}
-            />{" "}
-            <label htmlFor="description pt-2"> Описание </label>{" "}
+            />
+            <label htmlFor="description pt-2"> Описание </label>
             <textarea
               className="form-control"
               onChange={this.changeInputHandler}
@@ -123,36 +125,36 @@ class EditTask extends React.Component {
               cols="30"
               rows="10"
               value={this.state.description}
-            ></textarea>{" "}
-          </div>{" "}
-        </div>{" "}
+            ></textarea>
+          </div>
+        </div>
         <div className="selectors-options">
           <label className="my-1 mr-2" htmlFor="priority">
-            Priority{" "}
-          </label>{" "}
+            Priority
+          </label>
           <select
             className="custom-select my-1 mr-sm-2"
             id="priority"
             value={this.state.prioritySelect}
             onChange={this.prioritySelectorHandler}
           >
-            {PrioritySelector}{" "}
-          </select>{" "}
+            {PrioritySelector}
+          </select>
           <label className="my-1 mr-2" htmlFor="status">
-            Status{" "}
-          </label>{" "}
+            Status
+          </label>
           <select
             className="custom-select my-1 mr-sm-2"
             id="status"
             value={this.state.statusSelect}
             onChange={this.statusSelectorHandler}
           >
-            {StatusSelector}{" "}
-          </select>{" "}
-        </div>{" "}
+            {StatusSelector}
+          </select>
+        </div>
         <button className="btn btn-success" onClick={this.saveEditTask}>
-          Save{" "}
-        </button>{" "}
+          Save
+        </button>
       </div>
     );
   }
