@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { saveEditableTask } from "../redux/actions";
 
-
 class EditTask extends React.Component {
   constructor(props) {
     super(props);
@@ -83,11 +82,13 @@ class EditTask extends React.Component {
   render() {
     const PrioritySelector = this.state.priorities.map((priority) => (
       <option key={priority.value} value={priority.value}>
+        
         {priority.name}
       </option>
     ));
     const StatusSelector = this.state.statuses.map((status) => (
       <option key={status.value} value={status.value}>
+        
         {status.name}
       </option>
     ));
