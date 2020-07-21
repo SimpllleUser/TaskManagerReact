@@ -97,5 +97,14 @@ export function fetchedTasks() {
 }
 
 export function createEvent(event) {
-    return { type: CREATE_CALENDAR_EVENT, event }
+    return (dispatch, stateTask) => {
+
+        axios.post(URL_API + '/calendar-event', {
+            title: event.title,
+            description: event.description,
+            date: event.date
+        }).then(
+            response => dispatch({ type: CREATE_CALENDAR_EVENT, event }),
+        )
+    }
 }
