@@ -1,4 +1,4 @@
-import { CREATE_CALENDAR_EVENT } from "./types";
+import { CREATE_CALENDAR_EVENT, GET_ALLEVENTS } from "./types";
 
 const initialState = {
     events: []
@@ -10,6 +10,11 @@ export const calendarReducer = (state = initialState, action) => {
             return {
                 ...state,
                 events: state.events.concat([action.event])
+            }
+        case GET_ALLEVENTS:
+            return {
+                ...state,
+                events: state.events = action.events
             }
 
         default:

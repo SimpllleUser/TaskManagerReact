@@ -7,7 +7,8 @@ import {
     HIDE_LOADER,
     DELETE_TASK,
     EDIT_TASK,
-    CREATE_CALENDAR_EVENT
+    CREATE_CALENDAR_EVENT,
+    GET_ALLEVENTS
 } from "./types";
 
 const URL_API = 'http://localhost:8080/api'
@@ -96,6 +97,16 @@ export function fetchedTasks() {
     };
 }
 
+export function getAllEvents(event) {
+    return (dispatch, stateEvent) => {
+
+        axios.get(URL_API + '/calendar-event').then(
+            response => dispatch({ type: GET_ALLEVENTS, events: response.data }),
+        )
+    }
+}
+
+
 export function createEvent(event) {
     return (dispatch, stateTask) => {
 
@@ -104,7 +115,7 @@ export function createEvent(event) {
             description: event.description,
             date: event.date
         }).then(
-            response => dispatch({ type: CREATE_CALENDAR_EVENT, event }),
+            response => dispatch({ type: CREATE_CALENDAR_EVENT, events: response.data }),
         )
     }
 }

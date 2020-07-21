@@ -3,6 +3,8 @@ import moment from "moment";
 import { connect } from "react-redux";
 import { ArrowLeft, ArrowRight, PlusCircle } from "react-feather";
 import CalendarEvent from "./CalendarEvent";
+import { getAllEvents } from "../redux/actions";
+
 import Modal from "./Modal";
 
 //** * !Реализовать получение выбраной даты в календаре через props function !!! */
@@ -61,6 +63,9 @@ class Calendar extends React.Component {
     };
   }
 
+  componentDidMount(){
+    this.props.getAllEvents()
+  }
   
 
   selectDate = (day) => {
@@ -222,5 +227,8 @@ const mapStateToProps = (state) => {
     events:  state.calendar.events.concat(state.tasks.tasks)
   };
 };
+const mapDispatchToProps = {
+  getAllEvents
+}
 
-export default connect(mapStateToProps, null)(Calendar);
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
