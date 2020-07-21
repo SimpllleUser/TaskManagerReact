@@ -2,7 +2,6 @@ import React from "react";
 import moment from "moment";
 import { connect } from "react-redux";
 import { ArrowLeft, ArrowRight, PlusCircle } from "react-feather";
-import CalendarEvent from "./CalendarEvent";
 import { getAllEvents } from "../redux/actions";
 
 import Modal from "./Modal";
@@ -63,7 +62,7 @@ class Calendar extends React.Component {
     };
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.props.getAllEvents()
   }
   
@@ -173,8 +172,8 @@ class Calendar extends React.Component {
       </div>
     ));
 
-    const eventsList = this.props.events.map(event => (<div className="event-item">
-      {event.date == this.state.date ?
+    const eventsList = this.props.events.map((event, index) => (<div className="event-item" key={index}>
+       {event.date === this.state.date ?
         <div className="event-card card">
           <div className="card-body">
           <h3 className="card-title">Title: {event.title}</h3>
@@ -187,7 +186,6 @@ class Calendar extends React.Component {
 
     return (
       <div className="calendar-block">
-        {console.log(this.props.events)}
         <div className="calnedar">
         <div className="navigation-calendar border-bottom">
           <div className="month-navigation">

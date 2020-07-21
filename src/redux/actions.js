@@ -14,7 +14,6 @@ import {
 const URL_API = 'http://localhost:8080/api'
 
 export function createTask(task) {
-
     return (dispatch, stateTask) => {
 
         axios.post(URL_API + '/tasks', {
@@ -66,7 +65,6 @@ export function deleteTask(id) {
 }
 
 export function saveEditableTask(task) {
-    console.log('EDITABLE TASK', task)
     return (dispatch, stateTask) => {
         axios.put(URL_API + '/tasks/' + task.id, {
                 title: task.title,
@@ -77,7 +75,6 @@ export function saveEditableTask(task) {
             .then(
                 response => {
                     dispatch({ type: EDIT_TASK, task })
-                    console.log('response', response)
                 }
             )
     }
@@ -97,11 +94,10 @@ export function fetchedTasks() {
     };
 }
 
-export function getAllEvents(event) {
+export function getAllEvents() {
     return (dispatch, stateEvent) => {
-
         axios.get(URL_API + '/calendar-event').then(
-            response => dispatch({ type: GET_ALLEVENTS, events: response.data }),
+            response => dispatch({ type: GET_ALLEVENTS, events: response.data })
         )
     }
 }
@@ -115,7 +111,7 @@ export function createEvent(event) {
             description: event.description,
             date: event.date
         }).then(
-            response => dispatch({ type: CREATE_CALENDAR_EVENT, events: response.data }),
+            response => dispatch({ type: CREATE_CALENDAR_EVENT, event: response.data })
         )
     }
 }
