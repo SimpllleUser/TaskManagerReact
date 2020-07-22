@@ -51,12 +51,7 @@ class CalendarEvent extends React.Component {
     this.setState({ title: "", description: "" });
   };
   render() {
-     this.props.events.map((event) => (
-      <div className="event card" key={event.id}>
-        <h3 className="evet-title card-header"> {event.title} </h3>
-        <p className="evet-description card-text"> {event.description} </p>
-      </div>
-    ));
+
     return (
       <div>
         <h3> Форма события </h3>{console.log(this.props.events)}
