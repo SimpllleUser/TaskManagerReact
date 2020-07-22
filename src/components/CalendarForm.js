@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createEvent } from "../redux/actions";
+import { getAllTasks } from "../redux/actions";
+
 
 class CalendarEvent extends React.Component {
   constructor(props) {
@@ -12,6 +14,9 @@ class CalendarEvent extends React.Component {
       description: "",
       date: "",
     };
+  }
+  componentDidMount() {
+    this.props.getAllTasks();
   }
 
   changeInputHandler = (event) => {
@@ -89,6 +94,7 @@ class CalendarEvent extends React.Component {
 }
 const mapDispatchToProps = {
   createEvent,
+  getAllTasks
 };
 
 const mapStateToProps = (state) => {
