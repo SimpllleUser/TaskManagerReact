@@ -20,7 +20,8 @@ export function createTask(task) {
             title: task.title,
             description: task.description,
             status: task.status,
-            priority: task.priority
+            priority: task.priority,
+            date: task.date
 
         }).then(
             response => dispatch({ type: CREATE_TASK, task: response.data }),

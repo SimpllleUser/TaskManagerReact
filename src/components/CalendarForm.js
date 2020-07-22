@@ -25,7 +25,6 @@ class CalendarEvent extends React.Component {
   };
 
   saveForm = () => {
-    // event.preventDefault();
     // INIT STATES
     const { title, description } = this.state;
     // VALIDATE INPUTS
@@ -47,7 +46,7 @@ class CalendarEvent extends React.Component {
     this.setState({ title: "", description: "" });
   };
   render() {
-    const events = this.props.events.map((event) => (
+     this.props.events.map((event) => (
       <div className="event card" key={event.id}>
         <h3 className="evet-title card-header"> {event.title} </h3>
         <p className="evet-description card-text"> {event.description} </p>
@@ -55,7 +54,7 @@ class CalendarEvent extends React.Component {
     ));
     return (
       <div>
-        <h3> Форма события </h3>
+        <h3> Форма события </h3>{console.log(this.props.events)}
         <form className="eventForm" onSubmit={this.submitHandler}>
           <label htmlFor="title"> Название </label>
           <input
@@ -94,7 +93,9 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.calendar.events,
+    events: [state.calendar.events, ...state.tasks.tasks],
+    tasks: state.tasks.tasks
+
   };
 };
 

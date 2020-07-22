@@ -5,9 +5,7 @@ import Task from "./Task";
 import { getAllTasks } from "../redux/actions";
 
 class Tasks extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
 
   componentDidMount() {
     this.props.getAllTasks();
