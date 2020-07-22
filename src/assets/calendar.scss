@@ -55,7 +55,6 @@
 .month {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    padding-top: 15px;
     .week {
         text-align: center;
         padding-bottom: 15px;

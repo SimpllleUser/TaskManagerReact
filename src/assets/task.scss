@@ -38,8 +38,11 @@
     }
 }
 
-.badge:empty {
-    display: block;
+.selected-element-option {
+    cursor: pointer;
+    .badge:empty {
+        display: block;
+    }
 }
 
 //TASK DETAIL PAGE

@@ -60,8 +60,6 @@ export function deleteTask(id) {
                 }
             )
     }
-
-    // return { type: DELETE_TASK, id };
 }
 
 export function saveEditableTask(task) {
