@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getAllTasks } from "../redux/actions";
 import EventCard from "./EventCard"
-import Task from "./Task";
+import { NavLink } from "react-router-dom";
 
 class EventList extends React.Component {
 
@@ -19,8 +19,7 @@ class EventList extends React.Component {
                 {console.log('event-list',this.props.events)}
                 {
                     this.props.events.map((event) => (
-
-                        event.status ? <div className="event-task bg-primary"><h6>Task</h6><EventCard key={event} event={event}></EventCard></div> : <EventCard key={event} event={event}></EventCard> 
+                        event.status ? <NavLink to={`/detail-task/${event.id}`} id="event-task"><EventCard key={event} event={event}></EventCard></NavLink> : <EventCard key={event} event={event}></EventCard> 
                     ))
                 }
             </div>

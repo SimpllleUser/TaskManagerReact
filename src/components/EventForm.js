@@ -33,7 +33,7 @@ class CalendarEvent extends React.Component {
     // INIT STATES
     const { title, description } = this.state;
     // VALIDATE INPUTS
-    if (!title && !description) {
+    if (!title || !description) {
       return;
     }
     // CREATE POST
