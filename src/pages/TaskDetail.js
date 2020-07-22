@@ -17,7 +17,7 @@ class TaskDetail extends React.Component {
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     let r = this
     let task = axios.get('http://localhost:8080/api/tasks/'+this.props.match.params.id).then(
       response => {
@@ -38,14 +38,13 @@ class TaskDetail extends React.Component {
   }
   return (
     <div className="jumbotron" id="task-detail">
-      {console.log('11111',this.state.task)}
       <div className="task-body">
         <h3 className="title display-4"> {this.state.task.title} </h3>
         <hr/>
         <p className="description my-4"> {this.state.task.description} </p>
         <div className="options">
-          {/* <SelectorElement data={this.state.task.priority} type="priority" />
-          <SelectorElement data={this.state.task.status} type="status" /> */}
+          <SelectorElement data={this.state.task.priority} type="priority" />
+          <SelectorElement data={this.state.task.status} type="status" /> 
         </div>
         </div>
 

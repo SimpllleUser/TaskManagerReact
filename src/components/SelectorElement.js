@@ -13,11 +13,14 @@ const data = {     "priority":  [
       ]}
 
       var select_element = data[props.type].find(elem => elem.name == props.data)
-    return <div className="selected-element-option">
-      <div className={'badge badge-pill badge-' + select_element.class}>  
+      
+      
+    return select_element != undefined ?  <div className="selected-element-option">
+      <div className={'badge badge-pill badge-'+select_element.class }> 
       </div>
-      {select_element.name}
-    </div>
+      {select_element.name} 
+
+    </div> : `<h3>Ошибка словлена<h3>`
 }
 
 export default SelectorElement
