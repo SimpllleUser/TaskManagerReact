@@ -55,7 +55,6 @@
 .month {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    padding-top: 15px;
     .week {
         text-align: center;
         padding-bottom: 15px;
@@ -142,5 +141,31 @@
             padding: 5px;
             font-size: 12px;
         }
+    }
+}
+
+//Event card
+#event-task {
+    min-height: 200px;
+    text-decoration: none;
+    small {
+        opacity: .5;
+    }
+    &:hover {
+        text-decoration: none;
+    }
+    p.evet-description.card-text {
+        color: initial;
+    }
+}
+
+#event-card {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 400px;
+    min-height: 100px;
+    margin-top: 20px;
+    p.evet-description.card-text {
+        padding: 25px;
     }
 }

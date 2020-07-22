@@ -25,7 +25,7 @@ export const tasksReducer = (state = initialState, action) => {
             console.log(task)
             return {
                 ...state,
-                tasks: state.tasks.map(p => p.id == task.id ? task : p)
+                tasks: state.tasks.map(p => p.id === task.id ? task : p)
             };
         case GET_ALLTASKS:
             return {

@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Task from "./Task";
 import { getAllTasks } from "../redux/actions";
 
 class Tasks extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
 
   componentDidMount() {
     this.props.getAllTasks();

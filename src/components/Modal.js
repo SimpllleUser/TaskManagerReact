@@ -1,5 +1,5 @@
 import React from "react";
-import CalendarEvent from "./CalendarEvent";
+import CalendarEvent from "./EventForm";
 const Modal = (props) => (
   <div
       className="modal fade bd-example-modal-lg row"

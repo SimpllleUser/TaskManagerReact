@@ -90,9 +90,7 @@ class TaskForm extends React.Component {
         {status.name}
       </option>
     ));
-    {
       /*//REDIRECT ROUTE IF CREATE POST*/
-    }
     if (this.state.redirect) {
       return <Redirect to="/" />;
     }
