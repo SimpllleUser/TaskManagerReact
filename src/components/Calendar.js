@@ -215,7 +215,6 @@ class Calendar extends React.Component {
         </div>
         <div className="event-list">
         <EventList select_date={this.state.date} />
-
         </div>
       </div>
     );

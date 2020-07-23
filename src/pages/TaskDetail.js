@@ -23,13 +23,22 @@ class TaskDetail extends React.Component {
         let task = response.data;
         this.setState({ task });
       });
+  // Нативный способ запроса на получение задания
+  //   fetch('http://localhost:8080/api/tasks/' + this.props.match.params.id)
+  //   .then((response) => {
+  //     return response.json();
+  //   })
+  //   .then((data) => {
+  //     console.log('data',data);
+  //     this.setState({ task: data });
+  //   });
   }
 
   render() {
     const size = 20;
-    if (this.state.task === undefined) {
-      return <Redirect to="/" />;
-    }
+    // if (this.state.task === undefined) {
+    //   return <Redirect to="/" />;
+    // }
     return (
       <div className="jumbotron" id="task-detail">
         <div className="task-body">

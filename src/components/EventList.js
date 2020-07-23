@@ -9,7 +9,6 @@ class EventList extends React.Component {
   componentDidMount() {
     this.props.getAllTasks();
   }
-
   render() {
     const filter_event = this.props.events.filter(
       (e) => e.date === this.props.select_date
