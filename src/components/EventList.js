@@ -18,7 +18,7 @@ class EventList extends React.Component {
     render(){
 
         let filter_events = this.props.events.filter(e => e.date == this.props.select_date)
-
+        // Если фильтр не нужен просто выводить => this.props.events
         return <div id="event-list">
                 <h1>Event list</h1>
                 {
