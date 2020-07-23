@@ -25,7 +25,6 @@ class EventList extends React.Component {
               key={event.id}
               id="event-task"
             >
-              
               <EventCard key={event.id} event={event}>
                 
               </EventCard>
