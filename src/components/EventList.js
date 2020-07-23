@@ -14,10 +14,11 @@ class EventList extends React.Component {
     const filter_event = this.props.events.filter(
       (e) => e.date === this.props.select_date
     );
-
+    if(filter_event.length >  0){
     return (
       <div id="event-list">
         <h1> Список событий</h1>
+        {console.log(filter_event)}
         {filter_event.map((event) =>
           event.status ? (
             <NavLink
@@ -37,7 +38,15 @@ class EventList extends React.Component {
         )}
       </div>
     );
+  }else{
+    return(
+      <div>
+        <h5>По выбранной дате событий нет</h5>
+      </div>
+    )
   }
+}
+
 }
 const mapDispatchToProps = {
   getAllTasks,
