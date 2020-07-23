@@ -101,7 +101,6 @@ export function getAllEvents() {
     }
 }
 
-
 export function createEvent(event) {
     return (dispatch, stateTask) => {
 
@@ -112,5 +111,28 @@ export function createEvent(event) {
         }).then(
             response => dispatch({ type: CREATE_CALENDAR_EVENT, event: response.data })
         )
+    }
+}
+
+
+export function deleteEvent(id) {
+    return (dispatch, stateTask) => {
+        axios.post(URL_API + '/calendar-event/' + id).then(
+            response => dispatch({ type: GET_ALLEVENTS, events: response.data })
+        )
+    }
+}
+
+export function editEvent(event) {
+    return (dispatch, stateEvent) => {
+        axios.put(URL_API + '/calendar-event/' + task.id, {
+                title: event.title,
+                description: event.description,
+            })
+            .then(
+                response => {
+                    dispatch({ event: EDIT_EVENT, event })
+                }
+            )
     }
 }
