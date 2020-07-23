@@ -8,7 +8,8 @@ import {
     DELETE_TASK,
     EDIT_TASK,
     CREATE_CALENDAR_EVENT,
-    GET_ALLEVENTS
+    GET_ALLEVENTS,
+    DELETE_EVENT
 } from "./types";
 
 const URL_API = 'http://localhost:8080/api'
@@ -112,5 +113,14 @@ export function createEvent(event) {
         }).then(
             response => dispatch({ type: CREATE_CALENDAR_EVENT, event: response.data })
         )
+    }
+}
+
+export function deleteEvent(id) {
+    return (dispatch, stateTask) => {
+        axios.delete(URL_API + '/calendar-event/' + id)
+            .then(
+                response => dispatch({ type: DELETE_EVENT, id: id })
+            )
     }
 }

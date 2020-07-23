@@ -6,20 +6,16 @@ import { NavLink } from "react-router-dom";
 
 class EventList extends React.Component {
 
-    // constructor(props){
-    //     super(props)
-    // }
-
     componentDidMount() {
         this.props.getAllTasks();
     }
+
     render(){
         return <div id="event-list">
                 <h1>Event list</h1>
-                {console.log('event-list',this.props.events)}
                 {
                     this.props.events.map((event) => (
-                        event.status ? <NavLink to={`/detail-task/${event.id}`} id="event-task"><EventCard key={event} event={event}></EventCard></NavLink> : <EventCard key={event} event={event}></EventCard> 
+                        event.status ? <NavLink to={`/detail-task/${event.id}`} key={event.id}id="event-task"><EventCard key={event.id} event={event}></EventCard></NavLink> : <EventCard key={event.id} event={event}></EventCard> 
                     ))
                 }
             </div>
