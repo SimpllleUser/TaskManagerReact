@@ -13,13 +13,17 @@ class EventList extends React.Component {
     componentDidMount() {
         this.props.getAllTasks();
     }
+
+
     render(){
+
+        let filter_events = this.props.events.filter(e => e.date == this.props.select_date)
+
         return <div id="event-list">
                 <h1>Event list</h1>
-                {console.log('event-list',this.props.events)}
                 {
-                    this.props.events.map((event) => (
-                        event.status ? <NavLink to={`/detail-task/${event.id}`} id="event-task"><EventCard key={event} event={event}></EventCard></NavLink> : <EventCard key={event} event={event}></EventCard> 
+                    filter_events.map((event) => (
+                        event.status ? <NavLink to={`/detail-task/${event.id}`} id="event-task" key={event.id}><EventCard key={event} event={event}></EventCard></NavLink> : <EventCard key={event.id} event={event}></EventCard> 
                     ))
                 }
             </div>
