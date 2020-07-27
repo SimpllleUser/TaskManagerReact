@@ -169,7 +169,20 @@
         padding: 25px;
     }
     .actions {
+        display: flex;
+        justify-content: space-between;
         margin: 0 10px 10px 10px;
-        margin-left: auto;
+        div {
+            svg {
+                transition: .5s;
+                opacity: .7;
+                &:hover {
+                    padding: 3px;
+                    border-radius: 3px;
+                    transition: .5;
+                    opacity: 1;
+                }
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { X, PlusCircle } from "react-feather";
+import { X, Edit2 } from "react-feather";
 import { deleteEvent } from "../redux/actions";
 import EventEdit from './EventEdit'
 
@@ -20,6 +20,10 @@ const EventCard = (props) => {
         ""
       )}
       <div className="actions">
+        <div className="edit_task">
+          <EventEdit id={id} />
+          <Edit2 className="text-primary"  data-toggle="modal" data-target={`.${id}`}/>
+        </div>
         <div className="delete_event">
           <X
             className="text-danger border border-danger rounded"
@@ -27,11 +31,6 @@ const EventCard = (props) => {
               dispatch(deleteEvent(props.event.id));
             }}
           />
-        </div>
-
-        <div className="edit_task">
-          <EventEdit id={id} />
-        <PlusCircle size="36" data-toggle="modal" data-target={`.${id}`}/>
         </div>
       </div>
     </div>
