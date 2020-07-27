@@ -162,7 +162,6 @@ class Calendar extends React.Component {
           this.selectDay(day);
         }}
       >
-          {/*<Modal event={this.setDateEvent(day.num)} day={day.num + day.name} />*/}
           <div
             className="dayNum"
             data-toggle="modal"
@@ -172,17 +171,6 @@ class Calendar extends React.Component {
         {day.num}
       </div>
     ));
-
-    // const eventsList = this.props.events.map((event, index) => (<div className="event-item" key={index}>
-    //    {event.date === this.state.date ?
-    //     <div className="event-card card">
-    //       <div className="card-body">
-    //       <h3 className="card-title">Title: {event.title}</h3>
-    //       <p className="card-text" >Description: {event.description}</p>
-    //       <span className="date alert alert-secondary">{event.date}</span>
-    //       </div>
-    //     </div>: ''}
-    //   </div>))
 
 
     return (
@@ -205,8 +193,8 @@ class Calendar extends React.Component {
             data-toggle="modal"
             data-target={"#date-" + this.state.selectDay}
           >
-            <Modal date={this.state.date}/>
-            <PlusCircle size="36" data-toggle="modal" data-target=".bd-example-modal-lg"/>
+            <Modal date={this.state.date} forElement="form-create-event"/>
+            <PlusCircle size="36" data-toggle="modal" data-target=".form-create-event"/>
           </div>
         </div>
         <div className="month">

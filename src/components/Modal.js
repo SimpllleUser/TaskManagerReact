@@ -1,13 +1,14 @@
 import React from "react";
-import CalendarEvent from "./EventForm";
+import EventForm from "./EventForm";
 const Modal = (props) => (
   <div
-      className="modal fade bd-example-modal-lg row"
+      className={`modal fade ${props.forElement} row`}
     id="date-"
     tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
   >
+    {props.forElement}
     <div className="modal-dialog modal-lg modal-content p-5">
-          <CalendarEvent date={props.date} />
+          <EventForm date={props.date} />
     </div>
   </div>
 );
