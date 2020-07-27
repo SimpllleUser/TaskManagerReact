@@ -1,26 +1,37 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createEvent } from "../redux/actions";
-import { getAllTasks } from "../redux/actions";
+import axios from "axios"
+import { saveEditableEvent } from "../redux/actions";
 
 
-class CalendarEvent extends React.Component {
+
+class EditEvent extends React.Component {
   constructor(props) {
     super(props);
     this.titleInput = React.createRef();
     this.descriptionInput = React.createRef();
     this.state = {
-      title: "",
-      description: "",
-      date: "",
+        title: '',
+        description: ''
     };
   }
+
   componentDidMount() {
-    this.props.getAllTasks();
+    axios
+      .get("http://localhost:8080/api/calendar-event/" + this.props.id)
+      .then((response) => {
+        this.setState({
+          id: response.data.id,
+          title: response.data.title,
+          description: response.data.description,
+          date: response.data.date 
+          });
+      });
   }
 
   changeInputHandler = (event) => {
     event.persist();
+    console.log('event.target.value', event.target.value)
     this.setState((prev) => ({
       ...prev,
       ...{
@@ -31,30 +42,31 @@ class CalendarEvent extends React.Component {
 
   saveForm = () => {
     // INIT STATES
-    const { title, description } = this.state;
+    const { id,title, description, date } = this.state;
     // VALIDATE INPUTS
     if (!title || !description) {
       return;
     }
     // CREATE POST
-    const newEvent = {
-      id: Date.now().toString(),
+    const event = {
+      id,
       title,
       description,
-      date: this.props.date
+      date
     };
     // SEND DATA ON REDUX
-    this.props.createEvent(newEvent);
+    this.props.saveEditableEvent(event);
     // CLEAN INPUTS
-    this.titleInput.current.value = "";
-    this.descriptionInput.current.value = "";
-    this.setState({ title: "", description: "" });
+
   };
   render() {
-
     return (
-      <div>
-        <h3> Форма события </h3>
+        <div
+      className={`modal fade ${this.props.id} row`}
+    id="date-"
+    tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+  ><div className="modal-dialog modal-lg modal-content p-5">
+        <h3> Форма реадктирования события </h3>
         <form className="eventForm" onSubmit={this.submitHandler}>
           <label htmlFor="title"> Название </label>
           <input
@@ -63,7 +75,7 @@ class CalendarEvent extends React.Component {
             id="title"
             name="title"
             ref={this.titleInput}
-            value={this.title}
+            value={this.state.title}
             onChange={this.changeInputHandler}
           />
           <label htmlFor="description pt-2"> Описание </label>
@@ -71,33 +83,28 @@ class CalendarEvent extends React.Component {
             className="form-control"
             onChange={this.changeInputHandler}
             ref={this.descriptionInput}
+            value={this.state.description}
             name="description"
             id="description"
             cols="30"
             rows="10"
           ></textarea>
 
-          <button className="btn btn-success send-task mt-1"  onClick={this.saveForm}>
-          <div data-dismiss="modal" aria-label="Close" >
+          <button className="btn btn-success send-task mt-1"  onClick={this.saveEditEvent}>
+          <div data-dismiss="modal" aria-label="Close"  onClick={() => {this.saveForm()}}>
             Сохранить
             </div>
           </button>
         </form>
+        </div>
       </div>
     );
   }
 }
 const mapDispatchToProps = {
-  createEvent,
-  getAllTasks
+    saveEditableEvent,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    events: [state.calendar.events, ...state.tasks.tasks],
-    tasks: state.tasks.tasks
 
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(CalendarEvent);
+export default connect(null, mapDispatchToProps)(EditEvent);

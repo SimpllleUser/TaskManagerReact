@@ -9,7 +9,8 @@ import {
     EDIT_TASK,
     CREATE_CALENDAR_EVENT,
     GET_ALLEVENTS,
-    DELETE_EVENT
+    DELETE_EVENT,
+    EDIT_EVENT
 } from "./types";
 
 const URL_API = 'http://localhost:8080/api'
@@ -31,7 +32,6 @@ export function createTask(task) {
 }
 
 export function getAllTasks() {
-
     return (dispatch, stateTask) => {
 
         axios.get(URL_API + '/tasks').then(
@@ -105,7 +105,6 @@ export function getAllEvents() {
 
 export function createEvent(event) {
     return (dispatch, stateTask) => {
-
         axios.post(URL_API + '/calendar-event', {
             title: event.title,
             description: event.description,
@@ -121,6 +120,20 @@ export function deleteEvent(id) {
         axios.delete(URL_API + '/calendar-event/' + id)
             .then(
                 response => dispatch({ type: DELETE_EVENT, id: id })
+            )
+    }
+}
+
+export function saveEditableEvent(event) {
+    return (dispatch, stateTask) => {
+        axios.put(URL_API + '/calendar-event/' + event.id, {
+                title: event.title,
+                description: event.description,
+            })
+            .then(
+                response => {
+                    dispatch({ type: EDIT_EVENT, event })
+                }
             )
     }
 }

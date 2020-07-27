@@ -17,23 +17,9 @@ class EventList extends React.Component {
     return (
       <div id="event-list">
         <h1> Список событий</h1>
-        {console.log(filter_event)}
         {filter_event.map((event) =>
-          event.status ? (
-            <NavLink
-              to={`/detail-task/${event.id}`}
-              key={event.id}
-              id="event-task"
-            >
-              <EventCard key={event.id} event={event}>
-                
-              </EventCard>
-            </NavLink>
-          ) : (
             <EventCard key={event.id} event={event}>
-              
             </EventCard>
-          )
         )}
       </div>
     );
