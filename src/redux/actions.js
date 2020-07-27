@@ -126,7 +126,6 @@ export function deleteEvent(id) {
 
 export function saveEditableEvent(event) {
     return (dispatch, stateTask) => {
-        console.log("action", event)
         axios.put(URL_API + '/calendar-event/' + event.id, {
                 title: event.title,
                 description: event.description,
