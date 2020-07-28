@@ -36,9 +36,9 @@ class TaskDetail extends React.Component {
 
   render() {
     const size = 20;
-    // if (this.state.task === undefined) {
-    //   return <Redirect to="/" />;
-    // }
+    if (this.state.task === undefined) {
+      return <Redirect to="/" />;
+    }
     return (
       <div className="jumbotron" id="task-detail">
         <div className="task-body">
@@ -48,6 +48,7 @@ class TaskDetail extends React.Component {
           <div className="options">
             <SelectorElement name={this.state.task.priority} type="priority" />
             <SelectorElement name={this.state.task.status} type="status" />
+            <SelectorElement name={this.state.task.type} type="type" />
           </div>
         </div>
 

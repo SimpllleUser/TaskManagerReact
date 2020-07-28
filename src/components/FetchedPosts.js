@@ -1,5 +1,5 @@
 import React from "react";
-import Task from "./Task";
+import Task from "../Task/Task";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchedTasks } from "../redux/actions";
 import {Loader} from "./Loader"

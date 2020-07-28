@@ -3,7 +3,7 @@ import moment from "moment";
 import { connect } from "react-redux";
 import { ArrowLeft, ArrowRight, PlusCircle } from "react-feather";
 import { getAllEvents } from "../redux/actions";
-import EventList from "./EventList"
+import EventList from "../Event/EventList"
 
 import Modal from "./Modal";
 

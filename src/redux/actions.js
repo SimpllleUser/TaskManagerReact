@@ -23,6 +23,7 @@ export function createTask(task) {
             description: task.description,
             status: task.status,
             priority: task.priority,
+            type: task.type,
             date: task.date
 
         }).then(
@@ -71,6 +72,7 @@ export function saveEditableTask(task) {
                 description: task.description,
                 priority: task.priority,
                 status: task.status,
+                type: task.type,
             })
             .then(
                 response => {

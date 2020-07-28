@@ -1,5 +1,5 @@
 import React from "react";
-import Tasks from "../components/Tasks";
+import Tasks from "../Task/Tasks";
 const TaskList = () => (
   <div>
     <h2> Список заданий </h2>

@@ -24,6 +24,11 @@ class EditTask extends React.Component {
         { name: "Inprogress", class: "warning" },
         { name: "Done", class: "info" },
       ],
+      types: [
+        { name: "Feature", value: 1, class: "primary" },
+        { name: "Bug", value: 2, class: "warning" },
+        { name: "Story", value: 3, class: "info" },
+      ],
       prioritySelect: "Normal",
       statusSelect: "Open",
     };
@@ -33,11 +38,13 @@ class EditTask extends React.Component {
     let task = this.props.tasks.find(
       (p) => p.id === this.props.match.params.id
     );
+
     this.setState({
       task,
       title: task.title,
       description: task.description,
       prioritySelect: task.priority,
+      typeSelect: task.type,
     });
   }
 
@@ -59,6 +66,8 @@ class EditTask extends React.Component {
       statusSelect,
       prioritySelect,
       priorities,
+      typeSelect,
+      types
     } = this.state;
 
     const selectedTask = {
@@ -78,6 +87,10 @@ class EditTask extends React.Component {
 
   setPriorityTask = (priority) => {
     this.setState({ prioritySelect: priority });
+  };
+
+  setTypeTask = (type) => {
+    this.setState({ typeSelect: type });
   };
 
   render() {
@@ -104,6 +117,18 @@ class EditTask extends React.Component {
       >
         {priority.name}
       </a>
+    ));
+
+    const itemsTypes = this.state.priorities.map((type) => (
+        <a
+            className="dropdown-item"
+            onClick={() => {
+              this.setTypeTask(type.name);
+            }}
+            key={type.name}
+        >
+          {type.name}
+        </a>
     ));
 
     if (this.state.redirect) {
@@ -161,6 +186,17 @@ class EditTask extends React.Component {
           </button>
           <div className="dropdown-menu">{itemsPriorities}</div>
         </div>
+
+          <div className="types btn-group">
+            <button
+                className="btn btn-primary dropdown-toggle"
+                type="button"
+                data-toggle="dropdown"
+            >
+              {this.state.typeSelect}
+            </button>
+            <div className="dropdown-menu">{itemsTypes}</div>
+          </div>
         </div>
         <button className="btn btn-success" onClick={this.saveEditTask}>
           Save

@@ -1,5 +1,5 @@
 import React from "react";
-import EventForm from "./EventForm";
+import EventForm from "../Event/EventForm";
 const Modal = (props) => (
   <div
       className={`modal fade ${props.forElement} row`}

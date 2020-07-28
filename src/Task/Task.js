@@ -5,7 +5,7 @@ import { Route, NavLink } from "react-router-dom";
 import { Edit2, Trash2 } from "react-feather";
 
 import EditTask from "../pages/TaskEdit";
-import SelectorElement from "./SelectorElement";
+import SelectorElement from "../components/SelectorElement";
 
 export default ({ task }) => {
   const dispatch = useDispatch();
@@ -21,6 +21,8 @@ export default ({ task }) => {
           <div className="options">
             <SelectorElement name={task.priority} type="priority" />
             <SelectorElement name={task.status} type="status" />
+            <SelectorElement name={task.type} type="type" />
+
           </div>
         </div>
         <div className="actions">

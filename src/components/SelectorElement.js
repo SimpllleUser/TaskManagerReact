@@ -11,6 +11,11 @@ const data = {
     { name: "Inprogress", value: 2, class: "warning" },
     { name: "Done", value: 3, class: "info" },
   ],
+    type:[
+        { name: "Feature", value: 1, class: "primary" },
+        { name: "Bug", value: 2, class: "warning" },
+        { name: "Story", value: 3, class: "info" },
+    ]
 };
 
 const SelectorElement = (props) => {

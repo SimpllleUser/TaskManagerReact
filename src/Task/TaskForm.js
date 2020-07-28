@@ -16,6 +16,7 @@ class TaskForm extends React.Component {
       description: "",
       prioritySelect: "1",
       statusSelect: "1",
+      typeSelect: "1",
       priorities: [
         { name: "Low", value: 1, class: "success" },
         { name: "Normal", value: 2, class: "warning" },
@@ -26,6 +27,11 @@ class TaskForm extends React.Component {
         { name: "Inprogress", value: 2, class: "warning" },
         { name: "Done", value: 3, class: "info" },
       ],
+      types: [
+        { name: "Feature", value: 1, class: "primary" },
+        { name: "Bug", value: 2, class: "warning" },
+        { name: "Story", value: 3, class: "info" },
+      ]
     };
   }
 
@@ -39,6 +45,8 @@ class TaskForm extends React.Component {
       statusSelect,
       prioritySelect,
       priorities,
+      typeSelect,
+      types
     } = this.state;
     // VALIDATE INPUTS
     if (!title && !description) {
@@ -51,6 +59,7 @@ class TaskForm extends React.Component {
       description,
       status: statuses.find((status) => status.value == statusSelect).name,
       priority: priorities.find((priority) => priority.value == prioritySelect).name,
+      type: types.find((type) => type.value == typeSelect).name,
       date: moment().format("DD-MM-YYYY"),
     };
     // SEND DATA ON REDUX
@@ -76,19 +85,26 @@ class TaskForm extends React.Component {
   statusSelectorHandler = (event) => {
     this.setState({ statusSelect: event.target.value });
   };
+  typeSelectorHandler = (event) => {
+    this.setState({ typeSelect: event.target.value });
+  };
 
   render() {
     const PrioritySelector = this.state.priorities.map((priority) => (
       <option key={priority.value} value={priority.value}>
-        
         {priority.name}
       </option>
     ));
     const StatusSelector = this.state.statuses.map((status) => (
       <option key={status.value} value={status.value}>
-        
         {status.name}
       </option>
+    ));
+
+    const TypeSelector = this.state.types.map((type) => (
+        <option key={type.value} value={type.value}>
+          {type.name}
+        </option>
     ));
       /*//REDIRECT ROUTE IF CREATE POST*/
     if (this.state.redirect) {
@@ -131,7 +147,6 @@ class TaskForm extends React.Component {
             value={this.state.prioritySelect}
             onChange={this.prioritySelectorHandler}
           >
-            
             {PrioritySelector}
           </select>
           <label className="my-1 mr-2" htmlFor="status">
@@ -143,8 +158,18 @@ class TaskForm extends React.Component {
             value={this.state.statusSelect}
             onChange={this.statusSelectorHandler}
           >
-            
             {StatusSelector}
+          </select>
+          <label className="my-1 mr-2" htmlFor="type">
+            Тип
+          </label>
+          <select
+              className="custom-select my-1 mr-sm-1"
+              id="type"
+              value={this.state.typeSelect}
+              onChange={this.typeSelectorHandler}
+          >
+            {TypeSelector}
           </select>
         </div>
         <button className="btn btn-success send-task" type="submit">
