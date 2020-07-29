@@ -41,6 +41,9 @@ class ModalWorkLog extends React.Component {
 
   render() {
     return (
+      <div class="modal fade" id={this.props.id} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
       <div className="modal-workLog">
         <form className="task-form" onSubmit={this.submitHandler}>
             <label htmlFor="workLog">Work log</label>
@@ -57,6 +60,9 @@ class ModalWorkLog extends React.Component {
             Сохранить
         </button>
         </form>
+      </div>
+      </div>
+      </div>
       </div>
     );
   }
