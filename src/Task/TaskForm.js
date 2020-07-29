@@ -9,11 +9,14 @@ class TaskForm extends React.Component {
     super(props);
     this.titleInput = React.createRef();
     this.descriptionInput = React.createRef();
+    this.estimateInput = React.createRef();
+    
 
     this.state = {
       redirect: false,
       title: "",
       description: "",
+      estimate: 0,
       prioritySelect: "1",
       statusSelect: "1",
       typeSelect: "1",
@@ -41,6 +44,7 @@ class TaskForm extends React.Component {
     const {
       title,
       description,
+      estimate,
       statuses,
       statusSelect,
       prioritySelect,
@@ -57,6 +61,7 @@ class TaskForm extends React.Component {
       id: Date.now().toString(),
       title,
       description,
+      estimate,
       status: statuses.find((status) => status.value == statusSelect).name,
       priority: priorities.find((priority) => priority.value == prioritySelect).name,
       type: types.find((type) => type.value == typeSelect).name,
@@ -64,14 +69,18 @@ class TaskForm extends React.Component {
     };
     // SEND DATA ON REDUX
     this.props.createTask(newTask);
+    console.log('STATE',this.state)
+    console.log('newTask ', newTask)
     // CLEAN INPUTS
     this.titleInput.current.value = "";
     this.descriptionInput.current.value = "";
-    this.setState({ title: "", description: "", redirect: true });
+    this.estimateInput.current.value = "";
+    this.setState({ title: "", description: "", estimate: "",redirect: true });
   };
 
   changeInputHandler = (event) => {
     event.persist();
+    console.log("event.target.value", event.target.value)
     this.setState((prev) => ({
       ...prev,
       ...{
@@ -135,6 +144,16 @@ class TaskForm extends React.Component {
               cols="30"
               rows="10"
             ></textarea>
+            <label htmlFor="estimate"> Часов </label>
+            <input
+              type="number"
+              className="form-control"
+              id="estimate"
+              name="estimate"
+              ref={this.estimateInput}
+              value={this.estimate}
+              onChange={this.changeInputHandler}
+            />
           </div>
         </div>
         <div className="selectors-options">
