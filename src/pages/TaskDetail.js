@@ -51,7 +51,7 @@ class TaskDetail extends React.Component {
           <p className="description my-4"> {this.state.task.description} </p>
           <ModalWorkLog id={this.state.task.id} workLog={this.state.task.workLog} />
 
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target={'#' + this.state.task.id}>
+          <button type="button" className="btn btn-primary" data-toggle="modal" data-target={'#' + this.state.task.id}>
             Add work-log
           </button>
 

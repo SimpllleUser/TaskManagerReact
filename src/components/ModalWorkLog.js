@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios"
+import axios from "axios";
 
 class ModalWorkLog extends React.Component {
   constructor(props) {
@@ -14,7 +14,6 @@ class ModalWorkLog extends React.Component {
 
   changeInputHandler = (event) => {
     event.persist();
-    console.log("event.target.value", event.target.value)
     this.setState((prev) => ({
       ...prev,
       ...{
@@ -23,46 +22,72 @@ class ModalWorkLog extends React.Component {
     }));
   };
 
-  setWorkLof = (oldWorkLog, newWorkLog) =>{
-    return +oldWorkLog + +newWorkLog
-  }
+  setWorkLof = (oldWorkLog, newWorkLog) => {
+    return +oldWorkLog + +newWorkLog;
+  };
 
   submitHandler = (event) => {
     event.preventDefault();
-    const {workLog} = this.state
-    if(!workLog) {return}
-    axios.put('http://localhost:8080/api/tasks/work-log/' + this.props.id,{
-        workLog: +this.props.workLog + +workLog
-    }).then( response => {
-        console.log(response)
+    const { workLog } = this.state;
+    if (!workLog || workLog < 1) {
+      return;
     }
-    )
-  }
+    axios
+      .put("http://localhost:8080/api/tasks/work-log/" + this.props.id, {
+        workLog: +this.props.workLog + +workLog,
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  };
 
   render() {
     return (
-      <div class="modal fade" id={this.props.id} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div className="modal-workLog">
-        <form className="task-form" onSubmit={this.submitHandler}>
-            <label htmlFor="workLog">Work log</label>
-            <input
-              type="text"
-              className="form-control"
-              id="workLog"
-              name="workLog"
-              ref={this.workLogInput}
-              value={this.workLog}
-              onChange={this.changeInputHandler}
-            />
-        <button className="btn btn-success send-task" type="submit">
-            Сохранить
-        </button>
-        </form>
-      </div>
-      </div>
-      </div>
+      <div
+      className="modal fade modal-worklLog"
+        id={this.props.id}
+        tabIndex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Work log</h5>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              <div className="modal-workLog">
+                <form className="task-form" onSubmit={this.submitHandler}>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="workLog"
+                    name="workLog"
+                    ref={this.workLogInput}
+                    value={this.workLog}
+                    onChange={this.changeInputHandler}
+                  />
+                  <button
+                    className="btn btn-success send-task"
+                    data-dismiss="modal"
+                    type="submit"
+                  >
+                    Сохранить
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

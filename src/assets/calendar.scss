@@ -186,3 +186,17 @@
         }
     }
 }
+
+.modal-worklLog {
+    form {
+        display: flex;
+        flex-wrap: nowrap;
+        input {
+            width: 80%;
+        }
+        button {
+            width: 20% !important;
+            padding: 0;
+        }
+    }
+}
