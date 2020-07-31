@@ -27,7 +27,7 @@ class SelectorForm extends React.Component {
     }
 
     componentDidMount(){
-      this.props.sendData("SOME DATAT FROM CHILDER")
+      this.props.updateData(this.state["priority-value"])
     }
 
 

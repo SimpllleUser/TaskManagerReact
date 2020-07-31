@@ -10,9 +10,9 @@ import SelectorForm from  "../components/SelectorForm"
 
 export default ({ task }) => {
   const dispatch = useDispatch();
-  const getData = (val) =>  {
-    // do not forget to bind getData in constructor
-    console.log(val);
+  var text = ''
+  const updateData = (val) =>  {
+    text =  val  
 }
   return (
     <div className="task-card card">
@@ -20,9 +20,10 @@ export default ({ task }) => {
       <div className="card-body">
         <div className="card-detail-info">
           <h5 className="card-title ">
-            <NavLink to={`/detail-task/${task.id}`}>{task.title}</NavLink>
+            <NavLink to={`/detail-task/${task.id}`}>{task.title}             {text}
+</NavLink>
           </h5>
-          <SelectorForm getData={getData} data={"priority"} />
+          <SelectorForm updateData={updateData} data={"priority"} />
           {/* <SelectorForm data={"type"} /> */}
 
           <div className="options">
@@ -33,7 +34,6 @@ export default ({ task }) => {
         </div>
         <div className="actions">
           <div className="delete_task">
-            
             <Trash2
               className="text-secondary"
               onClick={() => {
