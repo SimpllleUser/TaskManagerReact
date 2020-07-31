@@ -6,10 +6,14 @@ import { Edit2, Trash2 } from "react-feather";
 
 import EditTask from "../pages/TaskEdit";
 import SelectorElement from "../components/SelectorElement";
+import SelectorForm from  "../components/SelectorForm"
 
 export default ({ task }) => {
   const dispatch = useDispatch();
-
+  const getData = (val) =>  {
+    // do not forget to bind getData in constructor
+    console.log(val);
+}
   return (
     <div className="task-card card">
       <Route path="/:id/:param?" component={EditTask} />
@@ -18,11 +22,13 @@ export default ({ task }) => {
           <h5 className="card-title ">
             <NavLink to={`/detail-task/${task.id}`}>{task.title}</NavLink>
           </h5>
+          <SelectorForm getData={getData} data={"priority"} />
+          {/* <SelectorForm data={"type"} /> */}
+
           <div className="options">
             <SelectorElement name={task.priority} type="priority" />
             <SelectorElement name={task.status} type="status" />
             <SelectorElement name={task.type} type="type" />
-
           </div>
         </div>
         <div className="actions">
