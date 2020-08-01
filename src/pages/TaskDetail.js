@@ -6,6 +6,8 @@ import { Edit2, Trash2 } from "react-feather";
 import SelectorElement from "../components/SelectorElement";
 import axios from "axios";
 import { connect } from "react-redux";
+import ModalWorkLog from "../components/ModalWorkLog"
+
 
 class TaskDetail extends React.Component {
   constructor(props) {
@@ -43,8 +45,17 @@ class TaskDetail extends React.Component {
       <div className="jumbotron" id="task-detail">
         <div className="task-body">
           <h3 className="title display-4"> {this.state.task.title} </h3>
+          <div>estimate: {this.state.task.estimate}ч</div>
+          <div>workLog: {this.state.task.workLog}ч</div>
           <hr />
           <p className="description my-4"> {this.state.task.description} </p>
+          <ModalWorkLog id={this.state.task.id} workLog={this.state.task.workLog} />
+
+          <button type="button" className="btn btn-primary" data-toggle="modal" data-target={'#' + this.state.task.id}>
+            Add work-log
+          </button>
+
+
           <div className="options">
             <SelectorElement name={this.state.task.priority} type="priority" />
             <SelectorElement name={this.state.task.status} type="status" />

@@ -80,7 +80,6 @@ class TaskForm extends React.Component {
 
   changeInputHandler = (event) => {
     event.persist();
-    console.log("event.target.value", event.target.value)
     this.setState((prev) => ({
       ...prev,
       ...{
