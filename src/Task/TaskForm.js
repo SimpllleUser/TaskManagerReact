@@ -3,6 +3,7 @@ import moment from "moment";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { createTask } from "../redux/actions";
+import SelectorForm from "../components/SelectorForm";
 
 class TaskForm extends React.Component {
   constructor(props) {
@@ -10,33 +11,21 @@ class TaskForm extends React.Component {
     this.titleInput = React.createRef();
     this.descriptionInput = React.createRef();
     this.estimateInput = React.createRef();
-    
 
     this.state = {
       redirect: false,
       title: "",
       description: "",
       estimate: 0,
-      prioritySelect: "1",
-      statusSelect: "1",
-      typeSelect: "1",
-      priorities: [
-        { name: "Low", value: 1, class: "success" },
-        { name: "Normal", value: 2, class: "warning" },
-        { name: "Highly", value: 3, class: "danger" },
-      ],
-      statuses: [
-        { name: "Open", value: 1, class: "primary" },
-        { name: "Inprogress", value: 2, class: "warning" },
-        { name: "Done", value: 3, class: "info" },
-      ],
-      types: [
-        { name: "Feature", value: 1, class: "primary" },
-        { name: "Bug", value: 2, class: "warning" },
-        { name: "Story", value: 3, class: "info" },
-      ]
+      priority: "Low",
+      status: "Open",
+      type: "Feature"
     };
   }
+
+  updateData = (val) => {
+    return val;
+  };
 
   submitHandler = (event) => {
     event.preventDefault();
@@ -45,12 +34,6 @@ class TaskForm extends React.Component {
       title,
       description,
       estimate,
-      statuses,
-      statusSelect,
-      prioritySelect,
-      priorities,
-      typeSelect,
-      types
     } = this.state;
     // VALIDATE INPUTS
     if (!title && !description) {
@@ -62,20 +45,20 @@ class TaskForm extends React.Component {
       title,
       description,
       estimate,
-      status: statuses.find((status) => status.value == statusSelect).name,
-      priority: priorities.find((priority) => priority.value == prioritySelect).name,
-      type: types.find((type) => type.value == typeSelect).name,
+      status: this.state.status,
+      priority: this.state.priority,
+      type: this.state.type,
       date: moment().format("DD-MM-YYYY"),
     };
     // SEND DATA ON REDUX
     this.props.createTask(newTask);
-    console.log('STATE',this.state)
-    console.log('newTask ', newTask)
+    console.log("STATE", this.state);
+    console.log("newTask ", newTask);
     // CLEAN INPUTS
     this.titleInput.current.value = "";
     this.descriptionInput.current.value = "";
     this.estimateInput.current.value = "";
-    this.setState({ title: "", description: "", estimate: "",redirect: true });
+    this.setState({ title: "", description: "", estimate: "", redirect: true });
   };
 
   changeInputHandler = (event) => {
@@ -87,34 +70,26 @@ class TaskForm extends React.Component {
       },
     }));
   };
-  prioritySelectorHandler = (event) => {
-    this.setState({ prioritySelect: event.target.value });
+
+
+
+  updateDataPriority = (data) => {
+    if (this.state.priority != data.value) {
+      this.setState({ [data.name]: data.value });
+    }
   };
-  statusSelectorHandler = (event) => {
-    this.setState({ statusSelect: event.target.value });
+  updateDataStatus = (data) => {
+    if (this.state.status != data.value) {
+      this.setState({ [data.name]: data.value });
+    }
   };
-  typeSelectorHandler = (event) => {
-    this.setState({ typeSelect: event.target.value });
+  updateDataType = (data) => {
+    if (this.state.type != data.value) {
+      this.setState({ [data.name]: data.value });
+    }
   };
 
   render() {
-    const PrioritySelector = this.state.priorities.map((priority) => (
-      <option key={priority.value} value={priority.value}>
-        {priority.name}
-      </option>
-    ));
-    const StatusSelector = this.state.statuses.map((status) => (
-      <option key={status.value} value={status.value}>
-        {status.name}
-      </option>
-    ));
-
-    const TypeSelector = this.state.types.map((type) => (
-        <option key={type.value} value={type.value}>
-          {type.name}
-        </option>
-    ));
-      /*//REDIRECT ROUTE IF CREATE POST*/
     if (this.state.redirect) {
       return <Redirect to="/" />;
     }
@@ -156,39 +131,9 @@ class TaskForm extends React.Component {
           </div>
         </div>
         <div className="selectors-options">
-          <label className="my-1 mr-2" htmlFor="priority">
-            Приоритет
-          </label>
-          <select
-            className="custom-select my-1 mr-sm-1"
-            id="priority"
-            value={this.state.prioritySelect}
-            onChange={this.prioritySelectorHandler}
-          >
-            {PrioritySelector}
-          </select>
-          <label className="my-1 mr-2" htmlFor="status">
-            Статус
-          </label>
-          <select
-            className="custom-select my-1 mr-sm-1"
-            id="status"
-            value={this.state.statusSelect}
-            onChange={this.statusSelectorHandler}
-          >
-            {StatusSelector}
-          </select>
-          <label className="my-1 mr-2" htmlFor="type">
-            Тип
-          </label>
-          <select
-              className="custom-select my-1 mr-sm-1"
-              id="type"
-              value={this.state.typeSelect}
-              onChange={this.typeSelectorHandler}
-          >
-            {TypeSelector}
-          </select>
+          <SelectorForm updateData={this.updateDataPriority} data={"priority"} />
+          <SelectorForm updateData={this.updateDataStatus} data={"status"} />
+          <SelectorForm updateData={this.updateDataType} data={"type"} />
         </div>
         <button className="btn btn-success send-task" type="submit">
           Создать
