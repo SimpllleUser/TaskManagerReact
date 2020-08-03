@@ -6,26 +6,19 @@ import { Edit2, Trash2 } from "react-feather";
 
 import EditTask from "../pages/TaskEdit";
 import SelectorElement from "../components/SelectorElement";
-import SelectorForm from  "../components/SelectorForm"
 
 export default ({ task }) => {
   const dispatch = useDispatch();
-  var text = ''
-  const updateData = (val) =>  {
-    text =  val  
-}
+
   return (
     <div className="task-card card">
       <Route path="/:id/:param?" component={EditTask} />
       <div className="card-body">
         <div className="card-detail-info">
           <h5 className="card-title ">
-            <NavLink to={`/detail-task/${task.id}`}>{task.title}             {text}
-</NavLink>
+            <NavLink to={`/detail-task/${task.id}`}>{task.title}</NavLink>
           </h5>
-          <SelectorForm updateData={updateData} data={"priority"} />
-          {/* <SelectorForm data={"type"} /> */}
-
+        {console.log(task)}
           <div className="options">
             <SelectorElement name={task.priority} type="priority" />
             <SelectorElement name={task.status} type="status" />

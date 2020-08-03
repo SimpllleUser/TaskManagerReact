@@ -6,15 +6,15 @@ const data = {
     { name: "Normal", value: 2, class: "warning" },
     { name: "Highly", value: 3, class: "danger" },
   ],
-  status: [
-    { name: "Open", value: 1, class: "primary" },
-    { name: "Inprogress", value: 2, class: "warning" },
-    { name: "Done", value: 3, class: "info" },
-  ],
     type:[
         { name: "Feature", value: 1, class: "primary" },
         { name: "Bug", value: 2, class: "warning" },
         { name: "Story", value: 3, class: "info" },
+    ],
+    status: [
+      { name: "Open", value: 1, class: "primary" },
+      { name: "Inprogress", value: 2, class: "warning" },
+      { name: "Done", value: 3, class: "info" },
     ]
 };
 
