@@ -15,8 +15,6 @@ class Tasks extends React.Component {
     axios
     .get("http://localhost:8080/api/tasks")
     .then((response) => {
-      let tasks = response.data;
-      console.log("tasks",tasks)
       this.setState({ tasks: response.data });
     });
   }
