@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios"
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { saveEditableTask } from "../redux/actions";
@@ -35,17 +36,21 @@ class EditTask extends React.Component {
   }
 
   componentWillMount() {
-    let task = this.props.tasks.find(
-      (p) => p.id === this.props.match.params.id
-    );
+    axios
+    .get("http://localhost:8080/api/tasks/" + this.props.match.params.id)
+    .then((response) => {
+      let task = response.data;
+      console.log("tasks",task)
+      this.setState({
+        task,
+        title: task.title,
+        description: task.description,
+        prioritySelect: task.priority,
+        statusSelect: task.status,
+        typeSelect: task.type,
+      });    });
 
-    this.setState({
-      task,
-      title: task.title,
-      description: task.description,
-      prioritySelect: task.priority,
-      typeSelect: task.type,
-    });
+
   }
 
   changeInputHandler = (event) => {
