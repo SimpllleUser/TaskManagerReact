@@ -19,7 +19,6 @@ class Tasks extends React.Component {
       console.log("tasks",tasks)
       this.setState({ tasks: response.data });
     });
-
   }
 
   render() {

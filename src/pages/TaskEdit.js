@@ -32,6 +32,7 @@ class EditTask extends React.Component {
       ],
       prioritySelect: "Normal",
       statusSelect: "Open",
+      typeSelect: "Feature"
     };
   }
 
@@ -80,7 +81,8 @@ class EditTask extends React.Component {
       title,
       description,
       status: statusSelect,
-      priority: prioritySelect
+      priority: prioritySelect,
+      type: typeSelect
     };
     this.props.saveEditableTask(selectedTask);
     this.setState({ redirect: true });
@@ -124,7 +126,7 @@ class EditTask extends React.Component {
       </a>
     ));
 
-    const itemsTypes = this.state.priorities.map((type) => (
+    const itemsTypes = this.state.types.map((type) => (
         <a
             className="dropdown-item"
             onClick={() => {
