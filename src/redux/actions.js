@@ -18,7 +18,6 @@ const URL_API = 'http://localhost:8080/api'
 export function createTask(task) {
     return (dispatch, stateTask) => {
 
-        console.log('task -- ', task)
         axios.post(URL_API + '/tasks', {
             title: task.title,
             description: task.description,

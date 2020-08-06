@@ -18,11 +18,11 @@ export default ({ task }) => {
           <h5 className="card-title ">
             <NavLink to={`/detail-task/${task.id}`}>{task.title}</NavLink>
           </h5>
-        {console.log(task)}
           <div className="options">
-            <SelectorElement name={task.priority} type="priority" />
             <SelectorElement name={task.status} type="status" />
             <SelectorElement name={task.type} type="type" />
+            <SelectorElement name={task.priority} type="priority" />
+
           </div>
         </div>
         <div className="actions">

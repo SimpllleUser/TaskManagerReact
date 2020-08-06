@@ -29,7 +29,6 @@ class SelectorForm extends React.Component {
     const data = this.state[this.props.data].filter(
       (el) => el.value == this.state[this.props.data + "-value"])[0];
 
-      console.log("DATA: ", data)
       if(data !== undefined){
         this.props.updateData({ value: data.name, name: this.props.data })
       }

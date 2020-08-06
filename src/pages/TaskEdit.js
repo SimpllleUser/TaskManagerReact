@@ -41,7 +41,6 @@ class EditTask extends React.Component {
     .get("http://localhost:8080/api/tasks/" + this.props.match.params.id)
     .then((response) => {
       let task = response.data;
-      console.log("tasks",task)
       this.setState({
         task,
         title: task.title,
@@ -182,7 +181,16 @@ class EditTask extends React.Component {
           </button>
           <div className="dropdown-menu">{itemsStatuses}</div>
         </div>
-
+        <div className="types btn-group">
+            <button
+                className="btn btn-primary dropdown-toggle"
+                type="button"
+                data-toggle="dropdown"
+            >
+              {this.state.typeSelect}
+            </button>
+            <div className="dropdown-menu">{itemsTypes}</div>
+          </div>
         <div className="priorities btn-group">
           <button
             className="btn btn-primary dropdown-toggle"
@@ -193,17 +201,6 @@ class EditTask extends React.Component {
           </button>
           <div className="dropdown-menu">{itemsPriorities}</div>
         </div>
-
-          <div className="types btn-group">
-            <button
-                className="btn btn-primary dropdown-toggle"
-                type="button"
-                data-toggle="dropdown"
-            >
-              {this.state.typeSelect}
-            </button>
-            <div className="dropdown-menu">{itemsTypes}</div>
-          </div>
         </div>
         <button className="btn btn-success" onClick={this.saveEditTask}>
           Save
