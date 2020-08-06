@@ -52,8 +52,6 @@ class TaskForm extends React.Component {
     };
     // SEND DATA ON REDUX
     this.props.createTask(newTask);
-    console.log("STATE", this.state);
-    console.log("newTask ", newTask);
     // CLEAN INPUTS
     this.titleInput.current.value = "";
     this.descriptionInput.current.value = "";
@@ -131,9 +129,10 @@ class TaskForm extends React.Component {
           </div>
         </div>
         <div className="selectors-options">
-          <SelectorForm updateData={this.updateDataPriority} data={"priority"} />
           <SelectorForm updateData={this.updateDataStatus} data={"status"} />
           <SelectorForm updateData={this.updateDataType} data={"type"} />
+          <SelectorForm updateData={this.updateDataPriority} data={"priority"} />
+
         </div>
         <button className="btn btn-success send-task" type="submit">
           Создать

@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios"
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { saveEditableTask } from "../redux/actions";
@@ -31,21 +32,25 @@ class EditTask extends React.Component {
       ],
       prioritySelect: "Normal",
       statusSelect: "Open",
+      typeSelect: "Feature"
     };
   }
 
   componentWillMount() {
-    let task = this.props.tasks.find(
-      (p) => p.id === this.props.match.params.id
-    );
+    axios
+    .get("http://localhost:8080/api/tasks/" + this.props.match.params.id)
+    .then((response) => {
+      let task = response.data;
+      this.setState({
+        task,
+        title: task.title,
+        description: task.description,
+        prioritySelect: task.priority,
+        statusSelect: task.status,
+        typeSelect: task.type,
+      });    });
 
-    this.setState({
-      task,
-      title: task.title,
-      description: task.description,
-      prioritySelect: task.priority,
-      typeSelect: task.type,
-    });
+
   }
 
   changeInputHandler = (event) => {
@@ -75,7 +80,8 @@ class EditTask extends React.Component {
       title,
       description,
       status: statusSelect,
-      priority: prioritySelect
+      priority: prioritySelect,
+      type: typeSelect
     };
     this.props.saveEditableTask(selectedTask);
     this.setState({ redirect: true });
@@ -119,7 +125,7 @@ class EditTask extends React.Component {
       </a>
     ));
 
-    const itemsTypes = this.state.priorities.map((type) => (
+    const itemsTypes = this.state.types.map((type) => (
         <a
             className="dropdown-item"
             onClick={() => {
@@ -175,7 +181,16 @@ class EditTask extends React.Component {
           </button>
           <div className="dropdown-menu">{itemsStatuses}</div>
         </div>
-
+        <div className="types btn-group">
+            <button
+                className="btn btn-primary dropdown-toggle"
+                type="button"
+                data-toggle="dropdown"
+            >
+              {this.state.typeSelect}
+            </button>
+            <div className="dropdown-menu">{itemsTypes}</div>
+          </div>
         <div className="priorities btn-group">
           <button
             className="btn btn-primary dropdown-toggle"
@@ -186,17 +201,6 @@ class EditTask extends React.Component {
           </button>
           <div className="dropdown-menu">{itemsPriorities}</div>
         </div>
-
-          <div className="types btn-group">
-            <button
-                className="btn btn-primary dropdown-toggle"
-                type="button"
-                data-toggle="dropdown"
-            >
-              {this.state.typeSelect}
-            </button>
-            <div className="dropdown-menu">{itemsTypes}</div>
-          </div>
         </div>
         <button className="btn btn-success" onClick={this.saveEditTask}>
           Save
