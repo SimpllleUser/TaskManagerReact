@@ -33,7 +33,15 @@ class TaskDetail extends React.Component {
   //   .then((data) => {
   //     console.log('data',data);
   //     this.setState({ task: data });
-  //   });
+  //   });  
+  }
+
+  changeWorkLog = (data) => {
+    if(this.state.task.workLog != data){
+      // this.setState({task['workLog']: data})
+      this.setState(prev => ({ ...prev, task: { ...prev.task, workLog: data } })) // Пример обновления свойства внутри state
+    }
+    
   }
 
   render() {
@@ -49,7 +57,7 @@ class TaskDetail extends React.Component {
           <div>workLog: {this.state.task.workLog}ч</div>
           <hr />
           <p className="description my-4"> {this.state.task.description} </p>
-          <ModalWorkLog id={this.state.task.id} workLog={this.state.task.workLog} />
+          <ModalWorkLog changeWorkLog={this.changeWorkLog} id={this.state.task.id} workLog={this.state.task.workLog} />
 
           <button type="button" className="btn btn-primary" data-toggle="modal" data-target={'#' + this.state.task.id}>
             Add work-log
