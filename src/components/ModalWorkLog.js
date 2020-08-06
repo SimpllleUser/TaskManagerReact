@@ -22,23 +22,23 @@ class ModalWorkLog extends React.Component {
     }));
   };
 
-  setWorkLof = (oldWorkLog, newWorkLog) => {
-    return +oldWorkLog + +newWorkLog;
-  };
-
-  submitHandler = (event) => {
-    event.preventDefault();
+  setWorkLog = () => {
+    console.log("setWorkLog")
     const { workLog } = this.state;
     if (!workLog || workLog < 1) {
       return;
     }
+    const newWorkLog = +this.props.workLog + +workLog
+    this.props.changeWorkLog(newWorkLog)
     axios
       .put("http://localhost:8080/api/tasks/work-log/" + this.props.id, {
-        workLog: +this.props.workLog + +workLog,
+        workLog: newWorkLog,
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
       });
+      this.workLogInput.current.value = "";
+      this.setState({workLog: 0})
   };
 
   render() {
@@ -79,7 +79,7 @@ class ModalWorkLog extends React.Component {
                   <button
                     className="btn btn-success send-task"
                     data-dismiss="modal"
-                    type="submit"
+                    onClick={() => {this.setWorkLog()}}
                   >
                     Сохранить
                   </button>
