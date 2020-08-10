@@ -129,7 +129,7 @@ class TaskForm extends React.Component {
           </div>
         </div>
         <div className="selectors-options">
-          <SelectorForm updateData={this.updateDataStatus} data={"status"} />
+          {/* <SelectorForm updateData={this.updateDataStatus} data={"status"} /> */}
           <SelectorForm updateData={this.updateDataType} data={"type"} />
           <SelectorForm updateData={this.updateDataPriority} data={"priority"} />
 

@@ -4,9 +4,9 @@ class SelectorForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      "priority-value": 1,
-      "types-value": 1,
-      "status-value": 1,
+      "priority-value":'',
+      "types-value": '',
+      "status-value": '',
       priority: [
         { name: "Low", value: 1, class: "success" },
         { name: "Normal", value: 2, class: "warning" },
