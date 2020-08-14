@@ -4,55 +4,50 @@ class SelectorForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      "priority-value":'',
-      "types-value": '',
-      "status-value": '',
-      priority: [
-        { name: "Low", value: 1, class: "success" },
-        { name: "Normal", value: 2, class: "warning" },
-        { name: "Highly", value: 3, class: "danger" },
-      ],
-      type: [
-        { name: "Feature", value: 1, class: "primary" },
-        { name: "Bug", value: 2, class: "warning" },
-        { name: "Story", value: 3, class: "info" },
-      ],
-      status: [
-        { name: "Open", value: 1, class: "primary" },
-        { name: "Inprogress", value: 2, class: "warning" },
-        { name: "Done", value: 3, class: "info" },
-      ],
+      "priority-value": "",
+      "type-value": "",
+      "status-value": "",
+      priority: ["Low", "Normal", "Highly"],
+      type: ["Feature", "Bug", "Story"],
+      status: ["Open", "Inprogress", "Done"],
     };
   }
 
-  componentDidUpdate() {
-    const data = this.state[this.props.data].filter(
-      (el) => el.value == this.state[this.props.data + "-value"])[0];
-
-      if(data !== undefined){
-        this.props.updateData({ value: data.name, name: this.props.data })
-      }
+  componentDidMount() {
+    // console.log("value", this.props.value);
+    let name = this.props.value;
+    if (name) {
+      this.setState({ [this.props.data + "-value"]: name });
+      
+    }
   }
 
+  // componentWillUpdate() {
+  //       this.state[this.props.data + "-value"] ? this.props.updateData(this.state[this.props.data + "-value"]) : console.log("test");
+
+  // }
+
   SelectorHandler = (event) => {
+    this.props.updateData(event.target.value)
     this.setState({ [this.props.data + "-value"]: event.target.value });
   };
 
   render() {
-    const Selector = this.state[this.props.data].map((option) => (
-      <option key={option.value} value={option.value}>
-        {option.name}
+    const Selector = this.state[this.props.data].map((option, index) => (
+      <option key={index} value={option}>
+        {option}
       </option>
     ));
     return (
       <div id="selector">
         <label className="my-1 mr-2" htmlFor="priority">
-          Test
+          {this.props.data || " "}
+          {console.log(this.state[this.props.data + "-value"] + ' - ' + this.props.value)}
         </label>
         <select
           className="custom-select my-1 mr-sm-1"
           id="priority"
-          value={this.state[this.props.data + "-value"]}
+          value={this.state[this.props.data + "-value"] || this.props.value}
           onChange={this.SelectorHandler}
         >
           {Selector}

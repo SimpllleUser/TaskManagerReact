@@ -1,8 +1,9 @@
 import React from "react";
-import axios from "axios"
+import axios from "axios";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { saveEditableTask } from "../redux/actions";
+import SelectorForm from "../components/SelectorForm";
 
 class EditTask extends React.Component {
   constructor(props) {
@@ -15,42 +16,26 @@ class EditTask extends React.Component {
       title: "",
       description: "",
       redirect: false,
-      priorities: [
-        { name: "Low", class: "success" },
-        { name: "Normal", class: "warning" },
-        { name: "Highly", class: "danger" },
-      ],
-      statuses: [
-        { name: "Open", class: "primary" },
-        { name: "Inprogress", class: "warning" },
-        { name: "Done", class: "info" },
-      ],
-      types: [
-        { name: "Feature", value: 1, class: "primary" },
-        { name: "Bug", value: 2, class: "warning" },
-        { name: "Story", value: 3, class: "info" },
-      ],
-      prioritySelect: "Normal",
-      statusSelect: "Open",
-      typeSelect: "Feature"
+      priority: "",
+      status: "",
+      type: "",
     };
   }
 
   componentWillMount() {
     axios
-    .get("http://localhost:8080/api/tasks/" + this.props.match.params.id)
-    .then((response) => {
-      let task = response.data;
-      this.setState({
-        task,
-        title: task.title,
-        description: task.description,
-        prioritySelect: task.priority,
-        statusSelect: task.status,
-        typeSelect: task.type,
-      });    });
-
-
+      .get("http://localhost:8080/api/tasks/" + this.props.match.params.id)
+      .then((response) => {
+        let task = response.data;
+        this.setState({
+          task,
+          title: task.title,
+          description: task.description,
+          priority: task.priority,
+          status: task.status,
+          type: task.type,
+        });
+      });
   }
 
   changeInputHandler = (event) => {
@@ -67,76 +52,43 @@ class EditTask extends React.Component {
     const {
       title,
       description,
-      statuses,
-      statusSelect,
-      prioritySelect,
-      priorities,
-      typeSelect,
-      types
+      // status ,
+      // priority ,
+      // type
     } = this.state;
 
     const selectedTask = {
       id: this.state.task.id,
       title,
       description,
-      status: statusSelect,
-      priority: prioritySelect,
-      type: typeSelect
+      status: this.state.status,
+      priority: this.state.priority,
+      type: this.state.type,
     };
+    console.log("save task", selectedTask);
     this.props.saveEditableTask(selectedTask);
     this.setState({ redirect: true });
   };
 
-  setStatusTask = (status) => {
-    this.setState({ statusSelect: status });
+  updateDataStatus = (data) => {
+    console.log("updateDataStatus", data + this.state.status)
+    if(this.state.status != data) {
+      this.setState({ status: data });
+    }
   };
-
-  setPriorityTask = (priority) => {
-    this.setState({ prioritySelect: priority });
+  updateDataType = (data) => {
+    console.log("updateDataType", data + this.state.type)
+    if (this.state.type != data) {
+      this.setState({ type: data });
+    }
   };
-
-  setTypeTask = (type) => {
-    this.setState({ typeSelect: type });
+  updateDataPriority = (data) => {
+    console.log("updateDataStatus", data + this.state.priority)
+    if (this.state.updateDataPriority != data) {
+      this.setState({ priority: data });
+    }
   };
-
   render() {
-
-    const itemsStatuses = this.state.statuses.map((status) => (
-      <a
-        className="dropdown-item"
-        onClick={() => {
-          this.setStatusTask(status.name);
-        }}
-        key={status.name}
-      >
-        {status.name}
-      </a>
-    ));
-
-    const itemsPriorities = this.state.priorities.map((priority) => (
-      <a
-        className="dropdown-item"
-        onClick={() => {
-          this.setPriorityTask(priority.name);
-        }}
-        key={priority.name}
-      >
-        {priority.name}
-      </a>
-    ));
-
-    const itemsTypes = this.state.types.map((type) => (
-        <a
-            className="dropdown-item"
-            onClick={() => {
-              this.setTypeTask(type.name);
-            }}
-            key={type.name}
-        >
-          {type.name}
-        </a>
-    ));
-
     if (this.state.redirect) {
       return <Redirect to="/" />;
     }
@@ -171,36 +123,21 @@ class EditTask extends React.Component {
           </div>
         </div>
         <div className="options">
-        <div className="statuses btn-group">
-          <button
-            className="btn btn-primary dropdown-toggle"
-            type="button"
-            data-toggle="dropdown"
-          >
-            {this.state.statusSelect}
-          </button>
-          <div className="dropdown-menu">{itemsStatuses}</div>
-        </div>
-        <div className="types btn-group">
-            <button
-                className="btn btn-primary dropdown-toggle"
-                type="button"
-                data-toggle="dropdown"
-            >
-              {this.state.typeSelect}
-            </button>
-            <div className="dropdown-menu">{itemsTypes}</div>
-          </div>
-        <div className="priorities btn-group">
-          <button
-            className="btn btn-primary dropdown-toggle"
-            type="button"
-            data-toggle="dropdown"
-          >
-            {this.state.prioritySelect}
-          </button>
-          <div className="dropdown-menu">{itemsPriorities}</div>
-        </div>
+          <SelectorForm
+            updateData={this.updateDataStatus}
+            data={"status"}
+            value={this.state.status}
+          />
+                   <SelectorForm
+            updateData={this.updateDataType}
+            data={"type"}
+            value={this.state.type}
+          />
+                   <SelectorForm
+            updateData={this.updateDataPriority}
+            data={"priority"}
+            value={this.state.priority}
+          />
         </div>
         <button className="btn btn-success" onClick={this.saveEditTask}>
           Save
