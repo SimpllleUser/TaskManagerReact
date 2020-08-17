@@ -7,7 +7,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { rootReducer } from "./redux/rootReducer";
 import "./assets/app.scss";
-
+process.env.TEST = '1111111111111'
 const store = createStore(
   rootReducer,
   compose(
@@ -17,6 +17,7 @@ const store = createStore(
       : (f) => f
   )
 );
+
 
 const app = (
   <Provider store={store}>
