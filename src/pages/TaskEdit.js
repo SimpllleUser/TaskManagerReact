@@ -52,9 +52,6 @@ class EditTask extends React.Component {
     const {
       title,
       description,
-      // status ,
-      // priority ,
-      // type
     } = this.state;
 
     const selectedTask = {
@@ -65,25 +62,21 @@ class EditTask extends React.Component {
       priority: this.state.priority,
       type: this.state.type,
     };
-    console.log("save task", selectedTask);
     this.props.saveEditableTask(selectedTask);
     this.setState({ redirect: true });
   };
 
   updateDataStatus = (data) => {
-    console.log("updateDataStatus", data + this.state.status)
     if(this.state.status != data) {
       this.setState({ status: data });
     }
   };
   updateDataType = (data) => {
-    console.log("updateDataType", data + this.state.type)
     if (this.state.type != data) {
       this.setState({ type: data });
     }
   };
   updateDataPriority = (data) => {
-    console.log("updateDataStatus", data + this.state.priority)
     if (this.state.updateDataPriority != data) {
       this.setState({ priority: data });
     }

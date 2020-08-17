@@ -14,18 +14,12 @@ class SelectorForm extends React.Component {
   }
 
   componentDidMount() {
-    // console.log("value", this.props.value);
     let name = this.props.value;
     if (name) {
       this.setState({ [this.props.data + "-value"]: name });
       
     }
   }
-
-  // componentWillUpdate() {
-  //       this.state[this.props.data + "-value"] ? this.props.updateData(this.state[this.props.data + "-value"]) : console.log("test");
-
-  // }
 
   SelectorHandler = (event) => {
     this.props.updateData(event.target.value)
