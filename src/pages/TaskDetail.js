@@ -56,7 +56,6 @@ class TaskDetail extends React.Component {
           <div>estimate: {this.state.task.estimate}ч</div>
           <div>workLog: {this.state.task.workLog}ч</div>
           <hr />
-          {console.log(process.env)}
           <p className="description my-4"> {this.state.task.description} </p>
           <ModalWorkLog changeWorkLog={this.changeWorkLog} id={this.state.task.id} workLog={this.state.task.workLog} />
 

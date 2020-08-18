@@ -22,7 +22,7 @@ const TaskList = (props) => {
     .get("http://localhost:8080/api/tasks")
     .then((response) => {
       setTasks(tasks = response.data)
-      getAllTasks(response.data)
+      props.getAllTasks(response.data)
     });
     }, [])
 
@@ -32,7 +32,6 @@ const TaskList = (props) => {
     //.map((task, index) => <Task task={task} key={index}/>)
 
   return (<div>
-    {console.log(props.tasks,'tasksState')}
     <h2> Список заданий </h2>
     <div className="row">
       <div className="col-12 tasks-list">
@@ -42,9 +41,13 @@ const TaskList = (props) => {
   </div>)
 };
 
+const mapDispatchToProps = {
+  getAllTasks,
+};
+
 const mapStateToProps = (state) => {
   return {
     tasks: state.tasks.tasks,
   };
 };
-export default connect(mapStateToProps, getAllTasks)(TaskList);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList);

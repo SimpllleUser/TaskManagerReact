@@ -23,7 +23,6 @@ class ModalWorkLog extends React.Component {
   };
 
   setWorkLog = () => {
-    console.log("setWorkLog")
     const { workLog } = this.state;
     if (!workLog || workLog < 1) {
       return;

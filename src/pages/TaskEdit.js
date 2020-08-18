@@ -49,10 +49,7 @@ class EditTask extends React.Component {
   };
 
   saveEditTask = () => {
-    const {
-      title,
-      description,
-    } = this.state;
+    const { title, description } = this.state;
 
     const selectedTask = {
       id: this.state.task.id,
@@ -67,7 +64,7 @@ class EditTask extends React.Component {
   };
 
   updateDataStatus = (data) => {
-    if(this.state.status != data) {
+    if (this.state.status != data) {
       this.setState({ status: data });
     }
   };
@@ -121,12 +118,12 @@ class EditTask extends React.Component {
             data={"status"}
             value={this.state.status}
           />
-                   <SelectorForm
+          <SelectorForm
             updateData={this.updateDataType}
             data={"type"}
             value={this.state.type}
           />
-                   <SelectorForm
+          <SelectorForm
             updateData={this.updateDataPriority}
             data={"priority"}
             value={this.state.priority}
