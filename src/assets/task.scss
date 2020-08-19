@@ -5,9 +5,11 @@
     background: #FFFFFF;
     box-shadow: 0px 16px 24px rgba(50, 50, 71, 0.08), 0px 12px 12px rgba(50, 50, 71, 0.08);
     border-radius: 10px;
+    transition: .5s;
+    position: relative;
     .card-body {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        //grid-template-columns: repeat(2, 1fr);
         padding: 10px;
         .card-title {
             a {
@@ -17,23 +19,52 @@
         }
     }
     .options {
-        width: 200px;
+        //width: 200px;
         display: flex;
         justify-content: space-between;
         div {
             width: 95px;
         }
     }
+    &:hover {
+        .actions {
+            transition: .5s;
+            display: flex;
+            position: absolute;
+            flex-wrap: wrap;
+            z-index: 9999;
+            right: 0;
+            max-width: 35px;
+        }
+    }
     .actions {
-        display: flex;
-        flex-wrap: wrap;
-        width: 25px;
+        transition: .5s;
+        display: none;
+        width: 100%;
         align-items: center;
-        margin-left: auto;
+        top: 0;
+        height: 100%;
+        background-color: rgba(78, 78, 78, 0.965);
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
         div {
             width: 100%;
             display: flex;
             justify-content: center;
+            svg {
+                stroke: white;
+                transition: .5s;
+            }
+        }
+        .delete_task:hover {
+            svg {
+                stroke: rgba(255, 0, 0, 0.815);
+            }
+        }
+        .edit_task:hover {
+            svg {
+                stroke: rgb(255, 179, 0);
+            }
         }
     }
 }
