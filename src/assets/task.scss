@@ -82,6 +82,7 @@
     background-color: #e9ecef52;
     display: grid;
     box-shadow: 0px 16px 24px rgba(50, 50, 71, 0.08), 0px 12px 12px rgba(50, 50, 71, 0.08);
+    position: relative;
     grid-template-columns: repeat(2, 1fr);
     .description {
         min-height: 100px;
@@ -89,7 +90,7 @@
     .options {
         display: flex;
         justify-content: space-between;
-        max-width: 210px;
+        max-width: 350px;
         div {
             width: 100px;
             .badge.badge-pill {
@@ -103,12 +104,22 @@
         display: flex;
         flex-wrap: wrap;
         width: 25px;
+        display: none;
+        position: absolute;
         div {
             width: 100%;
         }
     }
+    .task-work {
+        margin-top: 25px;
+        button {
+            margin-top: 25px;
+        }
+    }
     .date-created {
-        margin-top: 10px;
+        position: absolute;
         opacity: .5;
+        bottom: 10px;
+        right: 10px;
     }
 }
