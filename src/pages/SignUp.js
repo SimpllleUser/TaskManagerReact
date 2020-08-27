@@ -1,73 +1,56 @@
-import React from "react"
-import axios from "axios"
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-class SignUp extends React.Component{
-    constructor(props){
-        super(props)
-        this.loginInput = React.createRef();
-        this.passwordInput = React.createRef();
+const SignUp = () => {
+  const [form, setForm] = useState({login:'',password:''});
 
-        this.state = {
-            login: "",
-            password: ""
-        }
+  const submitHandler = (event) => {
+    event.preventDefault();
+    const { login, password } = form;
+    console.log(login, password);
+    if (password.trim().length > 4 && login.trim().length > 4) {
+      axios
+        .post("http://localhost:8080/api/auth/signup", {
+          password,
+          username: login,
+        })
+        .then((res) => {
+          console.log(res);
+        });
     }
+    console.log(login, password);
+  };
 
-    submitHandler = (event) => {
-        event.preventDefault();
-        const {login, password} = this.state
-        if(password.trim().length > 4 && login.trim().length > 4){
-            axios.post('http://localhost:8080/api/auth/signup',{
-                password,
-                login
-            }).then(res => {console.log(res)})
-        }
-        console.log(login, password)
-    }
+  const changeInputHandler = (event) => {
+    setForm({...form, [event.target.name]: event.target.value})
+  };
 
-    changeInputHandler = (event) => {
-        event.persist();
-        console.log(event.target.value)
-        this.setState((prev) => ({
-          ...prev,
-          ...{
-            [event.target.name]: event.target.value,
-          },
-        }));
-      };
-
-    render(){
-        return (
-            <div>
-            <h1>SignUp</h1>
-            <form onSubmit={this.submitHandler}>
-            <label htmlFor="login"> Login </label>
-            <input
-              type="text"
-              className="form-control"
-              id="login"
-              name="login"
-              ref={this.loginInput}
-              value={this.login}
-              onChange={this.changeInputHandler}
-            />
-            <label htmlFor="password"> Password </label>
-            <input
-              type="text"
-              className="form-control"
-              id="password"
-              name="password"
-              ref={this.passwordInput}
-              value={this.password}
-              onChange={this.changeInputHandler}
-            />
-                    <button className="btn btn-success send-task mt-2" type="submit">
+  return (
+    <div>
+      <h1>SignUp</h1>
+      <form onSubmit={submitHandler}>
+        <label htmlFor="login"> Login </label>
+        <input
+          type="text"
+          className="form-control"
+          id="login"
+          name="login"
+          onChange={changeInputHandler}
+        />
+        <label htmlFor="password"> Password </label>
+        <input
+          type="text"
+          className="form-control"
+          id="password"
+          name="password"
+          onChange={changeInputHandler}
+        />
+        <button className="btn btn-success send-task mt-2" type="submit">
           Регистрация
         </button>
-            </form>
-        </div>
-        )
-    }
-}
+      </form>
+    </div>
+  );
+};
 
-export default SignUp
+export default SignUp;
