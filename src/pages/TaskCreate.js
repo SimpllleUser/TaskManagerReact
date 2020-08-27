@@ -8,4 +8,4 @@ const TaskCreate = () => (
     </div>
 )
 
-export  default TaskCreate
+export default TaskCreate
