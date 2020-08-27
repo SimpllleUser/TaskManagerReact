@@ -1,53 +1,20 @@
 import React from "react";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import TaskCreate from "./pages/TaskCreate";
-import TaskList from "./pages/TaskList";
-import EditTask from "./pages/TaskEdit";
-import EventCalebdar from "./pages/EventCalebdar";
-import TaskDetail from "./pages/TaskDetail";
-import SignUp from "./pages/SignUp";
-import SignIn from "./pages/SignIn";
-
+import { BrowserRouter } from "react-router-dom";
+import {useRoutes} from './routes'
 
 
 function App() {
+  const routes = useRoutes(true);
   const activePage = "active btn btn-primary";
   return (
     <div className="container pt-3">
+      <a href="/signIn" className="btn btn-primary">signIn</a>
+      <a href="/signUp" className="btn btn-primary ml-2">signUp</a>
+
       <div className="nav-links">
-        <Router>
-          <div className="main-links">
-            <NavLink exact to="/" activeClassName={activePage}>
-              
-              Список заданий
-            </NavLink>
-            <NavLink to="/create-task" activeClassName={activePage}>
-              
-              Создать задание
-            </NavLink>
-            <NavLink to="/event-calendar" activeClassName={activePage}>
-              
-              Календарь событий
-            </NavLink>
-            <NavLink to="/SignUp" activeClassName={activePage}>
-              
-              Регистрация
-            </NavLink>
-            <NavLink to="/SignIn" activeClassName={activePage}>
-              
-              Вход
-            </NavLink>
-          </div>
-          <Route exact path="/" component={TaskList} />
-          <Route exact path="/event-calendar" component={EventCalebdar} />
-          <Route path="/edit-task/:id" component={EditTask} />
-          <Route path="/detail-task/:id" component={TaskDetail} />
-          <Route exact path="/create-task" component={TaskCreate} />
-          <Route path="/SignUp" component={SignUp} />
-          <Route path="/SignIn" component={SignIn} />
-
-
-        </Router>
+        <BrowserRouter>
+      {routes}
+      </BrowserRouter>
       </div>
     </div>
   );
