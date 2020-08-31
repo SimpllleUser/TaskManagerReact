@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, Router } from "react-router-dom";
 import TaskCreate from "./pages/TaskCreate";
 import TaskList from "./pages/TaskList";
 import EditTask from "./pages/TaskEdit";
@@ -11,7 +11,9 @@ import SignIn from "./pages/SignIn";
 export const useRoutes = (isAuthUser) => {
   if (isAuthUser) {
     return (
+
       <Switch>
+
         <Route exact path="/">
           <TaskList />
         </Route>
@@ -33,6 +35,8 @@ export const useRoutes = (isAuthUser) => {
         <Route path="/signIn" exact>
           <SignIn />
         </Route>
+
+
         <Redirect to="/"/>
       </Switch>
     );

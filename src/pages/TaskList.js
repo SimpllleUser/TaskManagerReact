@@ -5,13 +5,6 @@ import { connect } from "react-redux";
 import Task from "../Task/Task";
 import { getElementError } from "@testing-library/react";
 
-// componentWillMount() {
-//   axios
-//   .get("http://localhost:8080/api/tasks")
-//   .then((response) => {
-//     this.setState({ tasks: response.data });
-//   });
-// }
 
 const TaskList = (props) => {
   let [tasks, setTasks] = useState([]);

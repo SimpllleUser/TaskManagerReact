@@ -1,20 +1,32 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import {useRoutes} from './routes'
 
-
 function App() {
-  const routes = useRoutes(true);
   const activePage = "active btn btn-primary";
+  const routes = useRoutes(true)
+
   return (
     <div className="container pt-3">
-      <a href="/signIn" className="btn btn-primary">signIn</a>
-      <a href="/signUp" className="btn btn-primary ml-2">signUp</a>
-
       <div className="nav-links">
-        <BrowserRouter>
-      {routes}
-      </BrowserRouter>
+        
+        <Router>
+          <div className="main-links">
+            <NavLink exact to="/" activeClassName={activePage}>
+              
+              Список заданий
+            </NavLink>
+            <NavLink to="/create-task" activeClassName={activePage}>
+              
+              Создать задание
+            </NavLink>
+            <NavLink to="/event-calendar" activeClassName={activePage}>
+              
+              Календарь событий
+            </NavLink>
+          </div>
+          {routes}
+        </Router>
       </div>
     </div>
   );
