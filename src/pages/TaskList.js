@@ -5,13 +5,6 @@ import { connect } from "react-redux";
 import Task from "../Task/Task";
 import { getElementError } from "@testing-library/react";
 
-// componentWillMount() {
-//   axios
-//   .get("http://localhost:8080/api/tasks")
-//   .then((response) => {
-//     this.setState({ tasks: response.data });
-//   });
-// }
 
 const TaskList = (props) => {
   let [tasks, setTasks] = useState([]);
@@ -26,8 +19,8 @@ const TaskList = (props) => {
   const rowsByStatus = () => {
     var elements = [
       { name: "Open", tasks: [] },
-      { name: "Done", tasks: [] },
       { name: "Inprogress", tasks: [] },
+      { name: "Done", tasks: [] }
     ];
 
     elements.forEach(
@@ -46,7 +39,6 @@ const TaskList = (props) => {
           {rowsByStatus().map((el, index) => (
             <div className={'block-' + el.name} key={index}>
               <h3 className={"el-name-" + el.name}>{el.name}</h3>
-              {console.log(el.name)}
               <div className={"list-" + el.name}>
                 {el.tasks.map((task, index) => (
                   <Task task={task} key={index} />

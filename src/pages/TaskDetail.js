@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
-import { Redirect, NavLink } from "react-router-dom";
+import { Redirect, NavLink, useParams } from "react-router-dom";
 import { deleteTask } from "../redux/actions";
 import { Edit2, Trash2 } from "react-feather";
 import SelectorElement from "../components/SelectorElement";
@@ -8,22 +8,20 @@ import axios from "axios";
 import { connect } from "react-redux";
 import ModalWorkLog from "../components/ModalWorkLog";
 
-class TaskDetail extends React.Component {
-  constructor(props) {
-    super(props);
+const TaskDetail = (props) => {
+  // componentDidMount() {
+    let [task, setTask] = useState({})
+    useEffect(
+      () => {
+        axios
+        .get("http://localhost:8080/api/tasks/" + id)
+        .then((response) => {
+          let task = response.data;
+          setTask(task);
+        });
+      }
+    )
 
-    this.state = {
-      task: {},
-    };
-  }
-
-  componentDidMount() {
-    axios
-      .get("http://localhost:8080/api/tasks/" + this.props.match.params.id)
-      .then((response) => {
-        let task = response.data;
-        this.setState({ task });
-      });
     // Нативный способ запроса на получение задания
     //   fetch('http://localhost:8080/api/tasks/' + this.props.match.params.id)
     //   .then((response) => {
@@ -33,10 +31,10 @@ class TaskDetail extends React.Component {
     //     console.log('data',data);
     //     this.setState({ task: data });
     //   });
-  }
+  // }
 
-  changeWorkLog = (data) => {
-    if (this.state.task.workLog != data) {
+  const changeWorkLog = (data) => {
+    if (task.workLog != data) {
       // this.setState({task['workLog']: data})
       this.setState((prev) => ({
         ...prev,
@@ -44,38 +42,40 @@ class TaskDetail extends React.Component {
       })); // Пример обновления свойства внутри state
     }
   };
+  let { id } = useParams()
 
-  render() {
+
     const size = 20;
-    if (this.state.task === undefined) {
+    if (task === undefined) {
       return <Redirect to="/" />;
     }
     return (
       <div className="jumbotron" id="task-detail">
         <div className="task-body">
-          <h3 className="title display-4"> {this.state.task.title} </h3>
+          <h3 className="title display-4"> {task.title} </h3>
           <hr />
-          <p className="description my-4"> {this.state.task.description} </p>
+          {console.log(id)}
+          <p className="description my-4"> {task.description} </p>
           <ModalWorkLog
-            changeWorkLog={this.changeWorkLog}
-            id={this.state.task.id}
-            workLog={this.state.task.workLog}
+            changeWorkLog={changeWorkLog}
+            id={task.id}
+            workLog={task.workLog}
           />
         </div>
         <div className="task-elements">
         <div className="options">
-            <SelectorElement name={this.state.task.priority} type="priority" />
-            <SelectorElement name={this.state.task.status} type="status" />
-            <SelectorElement name={this.state.task.type} type="type" />
+            <SelectorElement name={task.priority} type="priority" />
+            <SelectorElement name={task.status} type="status" />
+            <SelectorElement name={task.type} type="type" />
           </div>
           <div className="task-work">
-          <div>estimate: {this.state.task.estimate}ч</div>
-          <div>workLog: {this.state.task.workLog}ч</div>
+          <div>estimate: {task.estimate}ч</div>
+          <div>workLog: {task.workLog}ч</div>
           <button
             type="button"
             className="btn btn-primary"
             data-toggle="modal"
-            data-target={"#" + this.state.task.id}
+            data-target={"#" + task.id}
           >
             Add work-log
           </button>
@@ -84,14 +84,14 @@ class TaskDetail extends React.Component {
           <div className="actions">
             <NavLink
               className="edit-detail"
-              to={`/edit-task/${this.state.task.id}`}
+              to={`/edit-task/${task.id}`}
             >
               <Edit2 className="text-secondary" size={size} />
             </NavLink>
             <div
               className="text-secondary trash-detail"
               onClick={() => {
-                deleteTask(this.state.task.id);
+                deleteTask(task.id);
               }}
             >
               <Trash2 size={size} />
@@ -99,14 +99,13 @@ class TaskDetail extends React.Component {
           </div>
                  <small className="date-created">
          
-          {moment(this.state.task.createdAt).format("DD-MMMM-YYYY")}
+          {moment(task.createdAt).format("DD-MMMM-YYYY")}
         </small>
         </div>
 
  
       </div>
     );
-  }
 }
 
 const mapDispatchToProps = {
