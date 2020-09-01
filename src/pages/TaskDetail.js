@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import ModalWorkLog from "../components/ModalWorkLog";
 
 const TaskDetail = (props) => {
-  // componentDidMount() {
+    let { id } = useParams()
     let [task, setTask] = useState({})
     useEffect(
       () => {
@@ -22,27 +22,11 @@ const TaskDetail = (props) => {
       }
     )
 
-    // Нативный способ запроса на получение задания
-    //   fetch('http://localhost:8080/api/tasks/' + this.props.match.params.id)
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     console.log('data',data);
-    //     this.setState({ task: data });
-    //   });
-  // }
-
   const changeWorkLog = (data) => {
     if (task.workLog != data) {
-      // this.setState({task['workLog']: data})
-      this.setState((prev) => ({
-        ...prev,
-        task: { ...prev.task, workLog: data },
-      })); // Пример обновления свойства внутри state
+      setTask({...task,workLog:data})
     }
   };
-  let { id } = useParams()
 
 
     const size = 20;

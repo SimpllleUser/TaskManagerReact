@@ -6,38 +6,8 @@ import { saveEditableTask } from "../redux/actions";
 import SelectorForm from "../components/SelectorForm";
 
 const  EditTask = (props) => {
-    // super(props);
-    // this.titleInput = React.createRef();
-    // this.descriptionInput = React.createRef();
 
-  //   this.state = {
-  //     task: {},
-  //     title: "",
-  //     description: "",
-  //     redirect: false,
-  //     priority: "",
-  //     status: "",
-  //     type: "",
-  //   };
-  // }
-
-  // componentWillMount() {
-  //   axios
-  //     .get("http://localhost:8080/api/tasks/" + this.props.match.params.id)
-  //     .then((response) => {
-  //       let task = response.data;
-  //       this.setState({
-  //         task,
-  //         title: task.title,
-  //         description: task.description,
-  //         priority: task.priority,
-  //         status: task.status,
-  //         type: task.type,
-  //       });
-  //     });
-  // }
   let { id } = useParams()
-
   let [task, setTask] = useState({})
   let [redirect, setRedirect] = useState(false)
   useEffect(
