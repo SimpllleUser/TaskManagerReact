@@ -2,27 +2,25 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const SignIn = () => {
-  const [form, setForm] = useState({login:'',password:''});
-
-  const submitHandler = (event) => {
+  const [form, setForm] = useState({ login: "", password: "" });
+  const [user, setUser] = useState("");
+  const submitHandler = async (event) => {
     event.preventDefault();
     const { login, password } = form;
-    console.log(login, password);
     if (password.trim().length > 4 && login.trim().length > 4) {
-      axios
-        .post("http://localhost:8080/api/auth/signup", {
+      const loginUser = await axios.post(
+        "http://localhost:8080/api/auth/signin",
+        {
           password,
           username: login,
-        })
-        .then((res) => {
-          console.log(res);
-        });
+        }
+      );
+      setUser(loginUser.data);
     }
-    console.log(login, password);
   };
 
   const changeInputHandler = (event) => {
-    setForm({...form, [event.target.name]: event.target.value})
+    setForm({ ...form, [event.target.name]: event.target.value });
   };
 
   return (
