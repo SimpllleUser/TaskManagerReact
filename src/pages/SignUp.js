@@ -1,33 +1,40 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 const SignUp = () => {
-  const [form, setForm] = useState({login:'',password:''});
+  const [form, setForm] = useState({ username: "", email: "", password: "" });
+  const [user, setUser] = useState('')
+  const [redirect, setRedirect] = useState(false);
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
-    const { login, password } = form;
-    console.log(login, password);
-    if (password.trim().length > 4 && login.trim().length > 4) {
-      axios
+    const { username,email, password } = form;
+    console.log(username, password);
+    //if (password.trim().length > 4 && username.trim().length > 4) {
+      const registerUser = await axios
         .post("http://localhost:8080/api/auth/signup", {
-          password,
-          username: login,
+          username,
+          email,
+          password
         })
-        .then((res) => {
-          console.log(res);
-        });
-    }
-    console.log(login, password);
+
+        setUser(registerUser.data)
+        localStorage.setItem("user", user.accessToken);
+   
+    //}
+    console.log(username, password);
   };
 
   const changeInputHandler = (event) => {
-    setForm({...form, [event.target.name]: event.target.value})
+    setForm({ ...form, [event.target.name]: event.target.value });
   };
-
+  if (redirect) {
+    return <Redirect to="/" />;
+  }
   return (
     <div>
-      <h1>SignUp</h1>
+      <h1> SignUp </h1>
       <form onSubmit={submitHandler}>
         <label htmlFor="login"> Login </label>
         <input
@@ -35,6 +42,14 @@ const SignUp = () => {
           className="form-control"
           id="login"
           name="login"
+          onChange={changeInputHandler}
+        />
+         <label htmlFor="email"> Email </label>
+        <input
+          type="text"
+          className="form-control"
+          id="email"
+          name="email"
           onChange={changeInputHandler}
         />
         <label htmlFor="password"> Password </label>

@@ -4,7 +4,8 @@ import {useRoutes} from './routes'
 
 function App() {
   const activePage = "active btn btn-primary";
-  const routes = useRoutes(true)
+  const access = !!localStorage.getItem('user')
+  const routes = useRoutes(access)
 
   return (
     <div className="container pt-3">

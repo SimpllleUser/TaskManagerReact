@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
+
 import axios from "axios";
 
 const SignIn = () => {
   const [form, setForm] = useState({ login: "", password: "" });
   const [user, setUser] = useState("");
+  const [redirect, setRedirect] = useState(false);
   const submitHandler = async (event) => {
     event.preventDefault();
     const { login, password } = form;
@@ -16,13 +19,18 @@ const SignIn = () => {
         }
       );
       setUser(loginUser.data);
+      localStorage.setItem("user", user.accessToken);
+      setRedirect(!!localStorage.getItem("user"));
+      console.log(localStorage.getItem("user"));
     }
   };
 
   const changeInputHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
-
+  if (redirect) {
+    return <Redirect to="/" />;
+  }
   return (
     <div>
       <h1>SignIn</h1>
