@@ -1,0 +1,7 @@
+export const CREATE_TASK = "TASK/CREATE_TASK";
+export const GET_ALLTASKS = "TASK/GET_ALLTASKS"
+export const FECTH_TASKS = "TASK/FECTH_TASKS";
+export const SHOW_LOADER = "APP/SHOW_LOADER";
+export const HIDE_LOADER = "APP/HIDE_LOADER";
+export const DELETE_TASK = "APP/DELETE_TASK";
+export const EDIT_TASK = "APP/EDIT_TASK"
