@@ -1,58 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+const SelectorForm = (props) => {
 
-class SelectorForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      "priority-value": "",
-      "type-value": "",
-      "status-value": "",
-      priority: ["Low", "Normal", "Highly"],
-      type: ["Feature", "Bug", "Story"],
-      status: ["Open", "Inprogress", "Done"],
+  const [selectorData, setSelectorData] = useState({
+    "priority-value": "",
+    "type-value": "",
+    "status-value": "",
+    priority: ["Low", "Normal", "Highly"],
+    type: ["Feature", "Bug", "Story"],
+    status: ["Open", "Inprogress", "Done"],
+    //   };
+  });
+  useEffect(() => {
+    const initSelector = () => {
+      let name = props.value;
+      if (name) {
+        setSelectorData({ ...selectorData, [props.data + "-value"]: name });
+      }
     };
-  }
+    initSelector();
+  }, [props.value]);
 
-  componentDidMount() {
-    let name = this.props.value;
-    if (name) {
-      this.setState({
-        [this.props.data + "-value"]: name,
-      });
-    }
-  }
+  const SelectorHandler = (event) => {
+    props.updateData(event.target.value);
 
-  SelectorHandler = (event) => {
-    this.props.updateData(event.target.value);
-    this.setState({
-      [this.props.data + "-value"]: event.target.value,
+    setSelectorData({
+      ...selectorData,
+      [props.data + "-value"]: event.target.value,
     });
   };
 
-  render() {
-    const Selector = this.state[this.props.data].map((option, index) => (
-      <option key={index} value={option}>
-        
-        {option}
-      </option>
-    ));
-    return (
-      <div id="selector">
-        <label className="my-1 mr-2" htmlFor="priority">
-          
-          {this.props.data || " "}
-        </label>
-        <select
-          className="custom-select my-1 mr-sm-1"
-          id="priority"
-          value={this.state[this.props.data + "-value"] || this.props.value}
-          onChange={this.SelectorHandler}
-        >
-          {Selector}
-        </select>
-      </div>
-    );
-  }
-}
+  const Selector = selectorData[props.data].map((option, index) => (
+    <option key={index} value={option}>
+      {option}
+    </option>
+  ));
+  return (
+    <div id="selector">
+      <label className="my-1 mr-2" htmlFor="priority">
+        {props.data || " "}
+      </label>
+      <select
+        className="custom-select my-1 mr-sm-1"
+        id="priority"
+        value={setSelectorData[props.data + "-value"] || props.value}
+        onChange={SelectorHandler}
+      >
+        {Selector}
+      </select>
+    </div>
+  );
+};
 
 export default SelectorForm;
