@@ -3,7 +3,7 @@ import { getAllTasks } from "../store/tasks/actions";
 import {useDispatch, useSelector } from "react-redux";
 import Task from "../Task/Task";
 
-const TaskList = (props) => {
+const TaskList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllTasks());

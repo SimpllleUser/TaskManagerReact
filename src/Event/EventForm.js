@@ -1,103 +1,71 @@
-import React from "react";
-import { connect } from "react-redux";
-import { createEvent } from "../redux/actions";
-import { getAllTasks } from "../redux/actions";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createEvent } from "../store/events/actions";
+import { getAllTasks } from "../store/tasks/actions";
 
+const CalendarEvent = (props) => {
+  const dispatch = useDispatch();
+  const [eventForm, setEventFrom] = useState({
+    title: "",
+    description: "",
+    date: "",
+  });
 
-class CalendarEvent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.titleInput = React.createRef();
-    this.descriptionInput = React.createRef();
-    this.state = {
-      title: "",
-      description: "",
-      date: "",
-    };
-  }
-  componentDidMount() {
-    this.props.getAllTasks();
-  }
+  useEffect(() => {
+    dispatch(getAllTasks());
+  }, []);
 
-  changeInputHandler = (event) => {
+  const changeInputHandler = (event) => {
     event.persist();
-    this.setState((prev) => ({
-      ...prev,
-      ...{
-        [event.target.name]: event.target.value,
-      },
-    }));
+    setEventFrom({ ...eventForm, [event.target.name]: event.target.value });
   };
 
-  saveForm = () => {
-    // INIT STATES
-    const { title, description } = this.state;
-    // VALIDATE INPUTS
-    if (!title || !description) {
+  const saveForm = () => {
+    const { title, description } = eventForm;
+    if (!title.trim() || !description.trim()) {
       return;
     }
-    // CREATE POST
     const newEvent = {
       id: Date.now().toString(),
       title,
       description,
-      date: this.props.date
+      date: props.date,
     };
-    // SEND DATA ON REDUX
-    this.props.createEvent(newEvent);
-    // CLEAN INPUTS
-    this.titleInput.current.value = "";
-    this.descriptionInput.current.value = "";
-    this.setState({ title: "", description: "" });
+    dispatch(createEvent(newEvent));
+    setEventFrom({});
   };
-  render() {
+  return (
+    <div>
+      <h3> Форма события </h3>
+      <form className="eventForm">
+        <label htmlFor="title"> Название </label>
+        <input
+          type="text"
+          className="form-control"
+          id="title"
+          name="title"
+          onChange={changeInputHandler}
+        />
+        <label htmlFor="description pt-2"> Описание </label>
+        <textarea
+          className="form-control"
+          onChange={changeInputHandler}
+          name="description"
+          id="description"
+          cols="30"
+          rows="10"
+        ></textarea>
 
-    return (
-      <div>
-        <h3> Форма события </h3>
-        <form className="eventForm" onSubmit={this.submitHandler}>
-          <label htmlFor="title"> Название </label>
-          <input
-            type="text"
-            className="form-control"
-            id="title"
-            name="title"
-            ref={this.titleInput}
-            value={this.title}
-            onChange={this.changeInputHandler}
-          />
-          <label htmlFor="description pt-2"> Описание </label>
-          <textarea
-            className="form-control"
-            onChange={this.changeInputHandler}
-            ref={this.descriptionInput}
-            name="description"
-            id="description"
-            cols="30"
-            rows="10"
-          ></textarea>
-
-          <button className="btn btn-success send-task mt-1"  onClick={this.saveForm}>
-          <div data-dismiss="modal" aria-label="Close" >
+        <button
+          className="btn btn-success send-task mt-1"
+          onClick={() => saveForm()}
+        >
+          <div data-dismiss="modal" aria-label="Close">
             Сохранить
-            </div>
-          </button>
-        </form>
-      </div>
-    );
-  }
-}
-const mapDispatchToProps = {
-  createEvent,
-  getAllTasks
+          </div>
+        </button>
+      </form>
+    </div>
+  );
 };
-
-const mapStateToProps = (state) => {
-  return {
-    events: [state.calendar.events, ...state.tasks.tasks],
-    tasks: state.tasks.tasks
-
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CalendarEvent);
+export default CalendarEvent;

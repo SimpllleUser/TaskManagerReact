@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { createTask } from "../redux/actions";
+import { createTask } from "../store/tasks/actions";
 import SelectorForm from "../components/SelectorForm";
 
 class TaskForm extends React.Component {
@@ -89,7 +89,7 @@ class TaskForm extends React.Component {
       <form className="task-form" onSubmit={this.submitHandler}>
         <div className="inputs-text">
           <div className="form-group">
-            <label htmlFor="title"> Название </label>
+            <label htmlFor="title"> Название </label>{" "}
             <input
               type="text"
               className="form-control"
@@ -98,8 +98,8 @@ class TaskForm extends React.Component {
               ref={this.titleInput}
               value={this.title}
               onChange={this.changeInputHandler}
-            />
-            <label htmlFor="description pt-2"> Описание </label>
+            />{" "}
+            <label htmlFor="description pt-2"> Описание </label>{" "}
             <textarea
               className="form-control"
               onChange={this.changeInputHandler}
@@ -108,8 +108,8 @@ class TaskForm extends React.Component {
               id="description"
               cols="30"
               rows="10"
-            ></textarea>
-            <label htmlFor="estimate"> Часов </label>
+            ></textarea>{" "}
+            <label htmlFor="estimate"> Часов </label>{" "}
             <input
               type="number"
               className="form-control"
@@ -118,21 +118,20 @@ class TaskForm extends React.Component {
               ref={this.estimateInput}
               value={this.estimate}
               onChange={this.changeInputHandler}
-            />
-          </div>
-        </div>
+            />{" "}
+          </div>{" "}
+        </div>{" "}
         <div className="selectors-options">
-          
-          {/* <SelectorForm updateData={this.updateDataStatus} data={"status"} /> */}
-          <SelectorForm updateData={this.updateDataType} data={"type"} />
+          {/* <SelectorForm updateData={this.updateDataStatus} data={"status"} /> */}{" "}
+          <SelectorForm updateData={this.updateDataType} data={"type"} />{" "}
           <SelectorForm
             updateData={this.updateDataPriority}
             data={"priority"}
-          />
-        </div>
+          />{" "}
+        </div>{" "}
         <button className="btn btn-success send-task" type="submit">
-          Создать
-        </button>
+          Создать{" "}
+        </button>{" "}
       </form>
     );
   }

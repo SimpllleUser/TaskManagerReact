@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { createTask } from "../redux/actions";
+import { createTask } from "../store/tasks/actions";
 import SelectorForm from "../components/SelectorForm";
 
 class TaskForm extends React.Component {
@@ -19,7 +19,7 @@ class TaskForm extends React.Component {
       estimate: 0,
       priority: "Low",
       status: "Open",
-      type: "Feature"
+      type: "Feature",
     };
   }
 
@@ -30,11 +30,7 @@ class TaskForm extends React.Component {
   submitHandler = (event) => {
     event.preventDefault();
     // INIT STATES
-    const {
-      title,
-      description,
-      estimate,
-    } = this.state;
+    const { title, description, estimate } = this.state;
     // VALIDATE INPUTS
     if (!title && !description) {
       return;
@@ -68,8 +64,6 @@ class TaskForm extends React.Component {
       },
     }));
   };
-
-
 
   updateDataPriority = (data) => {
     if (this.state.priority != data.value) {
@@ -131,8 +125,10 @@ class TaskForm extends React.Component {
         <div className="selectors-options">
           {/* <SelectorForm updateData={this.updateDataStatus} data={"status"} /> */}
           <SelectorForm updateData={this.updateDataType} data={"type"} />
-          <SelectorForm updateData={this.updateDataPriority} data={"priority"} />
-
+          <SelectorForm
+            updateData={this.updateDataPriority}
+            data={"priority"}
+          />
         </div>
         <button className="btn btn-success send-task" type="submit">
           Создать

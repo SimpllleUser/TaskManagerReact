@@ -1,8 +1,8 @@
 import React from "react";
 import Task from "../Task/Task";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchedTasks } from "../redux/actions";
-import {Loader} from "./Loader"
+import { fetchedTasks } from "../store/events/actions";
+import { Loader } from "./Loader";
 
 export default () => {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ export default () => {
   const loading = useSelector((state) => state.app.loading);
 
   if (loading) {
-    return <Loader/>
+    return <Loader />;
   }
 
   if (!tasks.length) {
@@ -19,7 +19,7 @@ export default () => {
         className="btn btn-primary"
         onClick={() => dispatch(fetchedTasks())}
       >
-        Загрузить
+        Загрузить{" "}
       </button>
     );
   }

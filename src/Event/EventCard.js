@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { X, Edit2 } from "react-feather";
-import { deleteEvent } from "../redux/actions";
+import { deleteEvent } from "../store/events/actions";
 import EventEdit from './EventEdit'
 
 const EventCard = (props) => {

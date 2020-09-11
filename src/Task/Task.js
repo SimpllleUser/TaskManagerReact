@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteTask } from "../redux/actions";
+import { deleteTask } from "../old_redux/actions";
 import { Route, NavLink } from "react-router-dom";
 import { Edit2, Trash2 } from "react-feather";
 
@@ -22,7 +22,6 @@ export default ({ task }) => {
             <SelectorElement name={task.status} type="status" />
             <SelectorElement name={task.type} type="type" />
             <SelectorElement name={task.priority} type="priority" />
-
           </div>
         </div>
         <div className="actions">
