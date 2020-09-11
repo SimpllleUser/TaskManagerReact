@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const ModalWorkLog = (props) => {
-  const [workLog, setworkLog] = useState(0);
+  const [workLog, setworkLog] = useState("");
 
   const changeInputHandler = (event) => {
     event.persist();
