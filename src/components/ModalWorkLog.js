@@ -1,95 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
-class ModalWorkLog extends React.Component {
-  constructor(props) {
-    super(props);
+const ModalWorkLog = (props) => {
+  const [workLog, setworkLog] = useState(0);
 
-    this.workLogInput = React.createRef();
-
-    this.state = {
-      workLog: "",
-    };
-  }
-
-  changeInputHandler = (event) => {
+  const changeInputHandler = (event) => {
     event.persist();
-    this.setState((prev) => ({
-      ...prev,
-      ...{
-        [event.target.name]: event.target.value,
-      },
-    }));
+    setworkLog(event.target.value);
   };
 
-  setWorkLog = () => {
-    const { workLog } = this.state;
+  const seNewtWorkLog = () => {
     if (!workLog || workLog < 1) {
       return;
     }
-    const newWorkLog = +this.props.workLog + +workLog
-    this.props.changeWorkLog(newWorkLog)
+    const newWorkLog = +props.workLog + +workLog;
+    props.changeWorkLog(newWorkLog);
     axios
-      .put("http://localhost:8080/api/tasks/work-log/" + this.props.id, {
+      .put("http://localhost:8080/api/tasks/work-log/" + props.id, {
         workLog: newWorkLog,
       })
       .then((response) => {
-        // console.log(response);
+        console.log(response);
       });
-      this.workLogInput.current.value = "";
-      this.setState({workLog: 0})
+    setworkLog(0);
   };
 
-  render() {
-    return (
-      <div
+  return (
+    <div
       className="modal fade modal-worklLog"
-        id={this.props.id}
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Work log</h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <div className="modal-workLog">
-                <form className="task-form" onSubmit={this.submitHandler}>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="workLog"
-                    name="workLog"
-                    ref={this.workLogInput}
-                    value={this.workLog}
-                    onChange={this.changeInputHandler}
-                  />
-                  <button
-                    className="btn btn-success send-task"
-                    data-dismiss="modal"
-                    onClick={() => {this.setWorkLog()}}
-                  >
-                    Сохранить
-                  </button>
-                </form>
+      id={props.id}
+      tabIndex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog modal-dialog-centered" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">Work log</h5>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body">
+            <div className="modal-workLog">
+              <div className="task-form">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="workLog"
+                  name="workLog"
+                  value={workLog}
+                  onChange={changeInputHandler}
+                />
+                <button
+                  className="btn btn-success send-task"
+                  data-dismiss="modal"
+                  onClick={() => {
+                    seNewtWorkLog();
+                  }}
+                >
+                  Сохранить
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default ModalWorkLog;
