@@ -27,7 +27,6 @@ const EditEvent = (props) => {
   }, [props.id]);
 
   const changeInputHandler = (event) => {
-    console.log(event);
     setEventForm({ ...eventForm, [event.target.name]: event.target.value });
   };
 
