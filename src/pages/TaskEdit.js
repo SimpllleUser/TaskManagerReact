@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import { saveEditableTask } from "../redux/actions";
+import { saveEditableTask } from "../old_redux/actions";
 import SelectorForm from "../components/SelectorForm";
 
 const EditTask = (props) => {

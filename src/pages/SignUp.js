@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 const SignUp = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState("");
   const [redirect, setRedirect] = useState(false);
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    const { username,email, password } = form;
+    const { username, email, password } = form;
     console.log(username, password);
     //if (password.trim().length > 4 && username.trim().length > 4) {
-      const registerUser = await axios
-        .post("http://localhost:8080/api/auth/signup", {
-          username,
-          email,
-          password
-        })
+    const registerUser = await axios.post(
+      "http://localhost:8080/api/auth/signup",
+      {
+        username,
+        email,
+        password,
+      }
+    );
 
-        setUser(registerUser.data)
-        localStorage.setItem("user", user.accessToken);
-   
+    setUser(registerUser.data);
+    localStorage.setItem("user", user.accessToken);
+
     //}
     console.log(username, password);
   };
@@ -32,6 +34,8 @@ const SignUp = () => {
   if (redirect) {
     return <Redirect to="/" />;
   }
+
+  
   return (
     <div>
       <h1> SignUp </h1>
@@ -44,7 +48,7 @@ const SignUp = () => {
           name="login"
           onChange={changeInputHandler}
         />
-         <label htmlFor="email"> Email </label>
+        <label htmlFor="email"> Email </label>
         <input
           type="text"
           className="form-control"

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { Redirect, NavLink, useParams } from "react-router-dom";
-import { deleteTask } from "../redux/actions";
+import { deleteTask } from "../store/tasks/actions";
 import { Edit2, Trash2 } from "react-feather";
 import SelectorElement from "../components/SelectorElement";
 import axios from "axios";

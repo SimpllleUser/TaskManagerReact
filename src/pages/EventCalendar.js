@@ -2,11 +2,10 @@ import React from "react";
 import Calendar from "../components/Calendar";
 
 const EventCalebdar = () => (
-    <div>
-        <h2>Календарь событий</h2>
-        <Calendar/>
+  <div>
+    <h2>Календарь событий</h2>
+    <Calendar />
+  </div>
+);
 
-    </div>
-)
-
-export default EventCalebdar
+export default EventCalebdar;

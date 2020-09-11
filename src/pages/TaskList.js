@@ -1,44 +1,41 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { getAllTasks } from "../redux/actions";
-import { connect } from "react-redux";
+import React, {useEffect } from "react";
+import { getAllTasks } from "../store/tasks/actions";
+import {useDispatch, useSelector } from "react-redux";
 import Task from "../Task/Task";
-import { getElementError } from "@testing-library/react";
 
-
-const TaskList = (props) => {
-  let [tasks, setTasks] = useState([]);
+const TaskList = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
-    axios.get("http://localhost:8080/api/tasks").then((response) => {
-      setTasks((tasks = response.data));
-      props.getAllTasks(response.data);
-    });
+    dispatch(getAllTasks());
   }, []);
+
+  const tasks = useSelector((state) => state.tasks.tasks);
 
   //getAllTasks
   const rowsByStatus = () => {
     var elements = [
       { name: "Open", tasks: [] },
       { name: "Inprogress", tasks: [] },
-      { name: "Done", tasks: [] }
+      { name: "Done", tasks: [] },
     ];
 
     elements.forEach(
-      (el) => (el.tasks = props.tasks.filter((task) => task.status == el.name))
+      (el) => (el.tasks = tasks.filter((task) => task.status == el.name))
     );
     return elements;
   };
-  // const taskList = props.tasks
-  //   ? props.tasks.map((task, index) => <Task task={task} key={index} />)
-  //   : "";
+  const taskList = tasks
+    ? tasks.map((task, index) => <Task task={task} key={index} />)
+    : "";
   return (
     <div id="task-dashboard">
       <h2> Список заданий </h2>
       <div className="row">
+        {console.log("tasks", tasks)}
         <div className="col-12 tasks-list">
           {rowsByStatus().map((el, index) => (
-            <div className={'block-' + el.name} key={index}>
-              <h3 className={"el-name-" + el.name}>{el.name}</h3>
+            <div className={"block-" + el.name} key={index}>
+              <h3 className={"el-name-" + el.name}> {el.name} </h3>
               <div className={"list-" + el.name}>
                 {el.tasks.map((task, index) => (
                   <Task task={task} key={index} />
@@ -46,20 +43,11 @@ const TaskList = (props) => {
               </div>
             </div>
           ))}
-          <div></div>
+          <div> </div>
         </div>
       </div>
     </div>
   );
 };
 
-const mapDispatchToProps = {
-  getAllTasks,
-};
-
-const mapStateToProps = (state) => {
-  return {
-    tasks: state.tasks.tasks,
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
+export default TaskList;
