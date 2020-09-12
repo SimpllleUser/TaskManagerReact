@@ -5,7 +5,6 @@ import axios from "axios";
 
 const SignUp = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
-  // const [user, setUser] = useState("");
   const [redirect, setRedirect] = useState(false);
   const auth = useContext(AuthContext)
 
