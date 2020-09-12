@@ -31,7 +31,6 @@ const TaskList = () => {
     <div id="task-dashboard">
       <h2> Список заданий </h2>
       <div className="row">
-        {console.log("tasks", tasks)}
         <div className="col-12 tasks-list">
           {rowsByStatus().map((el, index) => (
             <div className={"block-" + el.name} key={index}>

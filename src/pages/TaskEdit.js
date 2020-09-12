@@ -13,7 +13,6 @@ const EditTask = (props) => {
     axios.get("http://localhost:8080/api/tasks/" + id).then((response) => {
       let task = response.data;
       setTask(task);
-      console.log(task);
     });
   }, []);
 

@@ -18,7 +18,6 @@ const TaskForm = () => {
   const [redirect, setRedirect] = useState(false);
 
   const submitHandler = () => {
-
     const { title, description, estimate, status, priority, type } = task; // this.state;
 
     if (!title && !description) {
@@ -30,15 +29,13 @@ const TaskForm = () => {
       title,
       description,
       estimate,
-      status, 
+      status,
       priority,
       type,
       date: moment().format("DD-MM-YYYY"),
     };
-    console.log(newTask)
     dispatch(createTask(newTask));
-    setRedirect(true)
-
+    setRedirect(true);
   };
   const changeInputHandler = (event) => {
     setTask({ ...task, [event.target.name]: event.target.value });
@@ -55,12 +52,17 @@ const TaskForm = () => {
     }
   };
 
-  if(redirect){
-    return <Redirect  to={{
-      pathname: "/"}}/>
+  if (redirect) {
+    return (
+      <Redirect
+        to={{
+          pathname: "/",
+        }}
+      />
+    );
   }
   return (
-    <div className="task-form" >
+    <div className="task-form">
       <div className="inputs-text">
         <div className="form-group">
           <label htmlFor="title"> Название </label>
@@ -97,7 +99,12 @@ const TaskForm = () => {
         <SelectorForm updateData={updateDataType} data={"type"} />
         <SelectorForm updateData={updateDataPriority} data={"priority"} />
       </div>
-      <button className="btn btn-success send-task" onClick={() => {submitHandler()}}>
+      <button
+        className="btn btn-success send-task"
+        onClick={() => {
+          submitHandler();
+        }}
+      >
         Создать
       </button>
     </div>

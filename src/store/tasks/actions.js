@@ -35,7 +35,6 @@ export const getAllTasks = () => async(dispatch) => {
     try {
         const res = await axios.get(URL_API + '/tasks')
         const tasks = res.data
-        console.log('GET_ALLTASKS', tasks)
         dispatch({
             type: GET_ALLTASKS,
             tasks

@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import moment from "moment";
 import { ArrowLeft, ArrowRight, PlusCircle } from "react-feather";
 import EventList from "../Event/EventList";
 import Modal from "./Modal";
 import { getAllEvents } from "../store/events/actions";
 import { getAllTasks } from "../store/tasks/actions";
-//import { connect } from "react-redux";
 
-//** * !Реализовать получение выбраной даты в календаре через props function !!! */
 const Calendar = (props) => {
   const dispatch = useDispatch();
 
@@ -37,10 +35,7 @@ const Calendar = (props) => {
   ));
   const setPrevMonthDay = (lenthDays) => {
     let days = [];
-    let lenthMonth = moment(
-      `${yearNow}-${monthNow}`,
-      "YYYY-MM"
-    ).daysInMonth();
+    let lenthMonth = moment(`${yearNow}-${monthNow}`, "YYYY-MM").daysInMonth();
     for (let i = 0; i < lenthDays; i++) {
       const num = lenthMonth - i;
       days.push({ num, name: "prevMonth" });
@@ -70,10 +65,10 @@ const Calendar = (props) => {
     let prevYear = +yearNow;
     if (prevMonth <= 1) {
       setMonthNow(13);
-      prevYear--
+      prevYear--;
       setYearNow(prevYear);
     }
-    prevMonth--
+    prevMonth--;
     setMonthNow(prevMonth);
   };
 
@@ -84,9 +79,8 @@ const Calendar = (props) => {
       nextMonth = 0;
       setYearNow(nextYear++);
     }
-    nextMonth++
+    nextMonth++;
     setMonthNow(nextMonth);
-    console.log(monthNow)
   };
 
   const setBorder = (name) => {
@@ -97,10 +91,8 @@ const Calendar = (props) => {
   const formatClassName = (day) => {
     const border = setBorder(day.name);
     const selectDay =
-    dayNow === day.num && day.name !== "prevMonth"
-      ? "select-day"
-      : "";
-      return `day ${border} ${selectDay}`;
+      dayNow === day.num && day.name !== "prevMonth" ? "select-day" : "";
+    return `day ${border} ${selectDay}`;
   };
 
   const setSelectDate = (day) => {

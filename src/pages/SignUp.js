@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 const SignUp = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
-  const [user, setUser] = useState("");
+  // const [user, setUser] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const auth = useContext(AuthContext)
 
-  const submitHandler = async (event) => {
-    event.preventDefault();
+  const submitHandler = async () => {
     const { username, email, password } = form;
-    console.log(username, password);
-    //if (password.trim().length > 4 && username.trim().length > 4) {
-    const registerUser = await axios.post(
+
+    if (password.trim().length >= 4 && username.trim().length >= 4) {
+    const res = await axios.post(
       "http://localhost:8080/api/auth/signup",
       {
         username,
@@ -20,32 +21,36 @@ const SignUp = () => {
         password,
       }
     );
-
-    setUser(registerUser.data);
-    localStorage.setItem("user", user.accessToken);
-
-    //}
-    console.log(username, password);
+    auth.login(res.data.accessToken, res.data.id)
+      setRedirect(!!res.data.accessToken && !!res.data.id)
+    }
   };
 
   const changeInputHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
   if (redirect) {
-    return <Redirect to="/" />;
-  }
+    if (redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/",
+          }}
+        />
+      );
+    }
 
-  
+  }
   return (
     <div>
       <h1> SignUp </h1>
-      <form onSubmit={submitHandler}>
+      <div>
         <label htmlFor="login"> Login </label>
         <input
           type="text"
           className="form-control"
           id="login"
-          name="login"
+          name="username"
           onChange={changeInputHandler}
         />
         <label htmlFor="email"> Email </label>
@@ -64,10 +69,10 @@ const SignUp = () => {
           name="password"
           onChange={changeInputHandler}
         />
-        <button className="btn btn-success send-task mt-2" type="submit">
+        <button className="btn btn-success send-task mt-2" onClick={() => {submitHandler()}}>
           Регистрация
         </button>
-      </form>
+      </div>
     </div>
   );
 };
