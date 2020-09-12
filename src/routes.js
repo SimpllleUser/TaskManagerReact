@@ -29,14 +29,6 @@ export const useRoutes = (isAuthUser) => {
         <Route exact path="/create-task">
           <TaskCreate />
         </Route>
-        <Route path="/signUp" exact>
-          <SignUp />
-        </Route>
-        <Route path="/signIn" exact>
-          <SignIn />
-        </Route>
-
-
         <Redirect to="/"/>
       </Switch>
     );

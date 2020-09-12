@@ -57,7 +57,7 @@ const SignIn = () => {
           name="password"
           onChange={changeInputHandler}
         />
-        <button className="btn btn-success send-task mt-2" type="submit">
+        <button className="btn btn-success send-task mt-2">
           Вход
         </button>
       </form>
