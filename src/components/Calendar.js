@@ -70,9 +70,11 @@ const Calendar = (props) => {
     let prevYear = +yearNow;
     if (prevMonth <= 1) {
       setMonthNow(13);
-      setYearNow(prevYear--);
+      prevYear--
+      setYearNow(prevYear);
     }
-    setMonthNow(prevMonth--);
+    prevMonth--
+    setMonthNow(prevMonth);
   };
 
   const setNextMonth = () => {
@@ -82,7 +84,9 @@ const Calendar = (props) => {
       nextMonth = 0;
       setYearNow(nextYear++);
     }
-    setMonthNow(nextMonth++);
+    nextMonth++
+    setMonthNow(nextMonth);
+    console.log(monthNow)
   };
 
   const setBorder = (name) => {
