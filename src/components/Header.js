@@ -5,21 +5,21 @@ import { AuthContext } from "../context/AuthContext";
 const Header = () => {
   const history = useHistory;
   const auth = useContext(AuthContext);
-  const activePage = "active btn btn-primary";
+  const activePage = "active btn btn-light";
   const logoutHandler = () => {
     auth.logout()
     return <Redirect to="/"/>
   };
   return (
-    <header>
+    <header className="navbar navbar-dark bg-light">
       <div className="main-links">
-        <NavLink exact to="/" activeClassName={activePage}>
+        <NavLink exact to="/" activeClassName={activePage} className="btn btn-outline-primary">
           Список заданий
         </NavLink>
-        <NavLink to="/create-task" activeClassName={activePage}>
+        <NavLink to="/create-task" activeClassName={activePage} className="btn btn-outline-primary">
           Создать задание
         </NavLink>
-        <NavLink to="/event-calendar" activeClassName={activePage}>
+        <NavLink to="/event-calendar" activeClassName={activePage} className="btn btn-outline-primary">
           Календарь событий
         </NavLink>
         <button
