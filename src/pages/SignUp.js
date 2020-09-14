@@ -1,45 +1,39 @@
-import React, { useState,useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
+
 import axios from "axios";
 
 const SignUp = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [redirect, setRedirect] = useState(false);
-  const auth = useContext(AuthContext)
 
   const submitHandler = async () => {
     const { username, email, password } = form;
 
     if (password.trim().length >= 4 && username.trim().length >= 4) {
-    const res = await axios.post(
-      "http://localhost:8080/api/auth/signup",
-      {
-        username,
-        email,
-        password,
+      try {
+        const res = await axios.post("http://localhost:8080/api/auth/signup", {
+          username,
+          email,
+          password,
+        });
+        if(res.data.allow){
+       setRedirect(res.data.allow)
       }
-    );
-    auth.login(res.data.accessToken, res.data.id)
-      setRedirect(!!res.data.accessToken && !!res.data.id)
+      } catch (err) {
+        console.log('err',err);
+      }
     }
   };
 
   const changeInputHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
-  if (redirect) {
-    if (redirect) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/",
-          }}
-        />
-      );
-    }
-
+  if(redirect){
+    return <Redirect to="/" />;
   }
+
   return (
     <div>
       <h1> SignUp </h1>
@@ -68,9 +62,15 @@ const SignUp = () => {
           name="password"
           onChange={changeInputHandler}
         />
-        <button className="btn btn-success send-task mt-2" onClick={() => {submitHandler()}}>
+        <button
+          className="btn btn-success send-task mt-2"
+          onClick={() => {
+            submitHandler();
+          }}
+        >
           Регистрация
         </button>
+        <NavLink to="/SignIn">Авторизация</NavLink>
       </div>
     </div>
   );

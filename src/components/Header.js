@@ -24,7 +24,7 @@ const Header = () => {
         </NavLink>
         <button
           type="button"
-          class="btn btn-dark btn-logout"
+          className="btn btn-dark btn-logout"
           onClick={() => {
             logoutHandler();
           }}

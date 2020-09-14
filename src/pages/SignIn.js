@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
 
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
@@ -8,7 +9,7 @@ import { AuthContext } from "../context/AuthContext";
 const SignIn = () => {
   const [form, setForm] = useState({ login: "", password: "" });
   // const [user, setUser] = useState("");
-  const auth = useContext(AuthContext)
+  const auth = useContext(AuthContext);
   const [redirect, setRedirect] = useState(false);
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -18,9 +19,8 @@ const SignIn = () => {
         password,
         username: login,
       });
-      auth.login(res.data.accessToken, res.data.id)
-      setRedirect(!!res.data.accessToken && !!res.data.id)
-
+      auth.login(res.data.accessToken, res.data.id);
+      setRedirect(!!res.data.accessToken && !!res.data.id);
     }
   };
 
@@ -57,9 +57,8 @@ const SignIn = () => {
           name="password"
           onChange={changeInputHandler}
         />
-        <button className="btn btn-success send-task mt-2">
-          Вход
-        </button>
+        <button className="btn btn-success send-task mt-2">Вход</button>
+        <NavLink to="/SignUp">Регистрация</NavLink>
       </form>
     </div>
   );
