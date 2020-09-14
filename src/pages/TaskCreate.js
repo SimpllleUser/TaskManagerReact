@@ -62,8 +62,8 @@ const TaskForm = () => {
     );
   }
   return (
-    <div className="task-form">
-      <div className="inputs-text">
+    <div className="task-form row">
+      <div className="inputs-text col-6">
         <div className="form-group">
           <label htmlFor="title"> Название </label>
           <input
@@ -93,20 +93,21 @@ const TaskForm = () => {
             onChange={changeInputHandler}
           />
         </div>
-      </div>
-      <div className="selectors-options">
-        {/* <SelectorForm updateData={this.updateDataStatus} data={"status"} /> */}
-        <SelectorForm updateData={updateDataType} data={"type"} />
-        <SelectorForm updateData={updateDataPriority} data={"priority"} />
-      </div>
-      <button
-        className="btn btn-success send-task"
+        <button
+        className="btn btn-success ml-2"
         onClick={() => {
           submitHandler();
         }}
       >
         Создать
       </button>
+      </div>
+      <div className="selectors-options col-6">
+        {/* <SelectorForm updateData={this.updateDataStatus} data={"status"} /> */}
+        <SelectorForm updateData={updateDataType} data={"type"} />
+        <SelectorForm updateData={updateDataPriority} data={"priority"} />
+      </div>
+
     </div>
   );
 };

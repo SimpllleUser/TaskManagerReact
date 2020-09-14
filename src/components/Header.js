@@ -12,6 +12,10 @@ const Header = () => {
   };
   return (
     <header className="navbar navbar-dark bg-light">
+            <h3 className="title m-auto" >Task manager
+            <hr/>
+            </h3>
+
       <div className="main-links">
         <NavLink exact to="/" activeClassName={activePage} className="btn btn-outline-primary">
           Список заданий

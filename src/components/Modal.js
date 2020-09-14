@@ -6,7 +6,6 @@ const Modal = (props) => (
     id="date-"
     tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
   >
-    {props.forElement}
     <div className="modal-dialog modal-lg modal-content p-5">
           <EventForm date={props.date} />
     </div>
