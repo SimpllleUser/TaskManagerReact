@@ -35,9 +35,9 @@ const SignUp = () => {
   }
 
   return (
-    <div>
-      <h1> SignUp </h1>
-      <div>
+    <div className="auth-form">
+      <h1 className="text-center"> SignUp </h1>
+      <form onSubmit={submitHandler}>
         <label htmlFor="login"> Login </label>
         <input
           type="text"
@@ -62,16 +62,17 @@ const SignUp = () => {
           name="password"
           onChange={changeInputHandler}
         />
+        <div className="btn-form mt-2"></div>
         <button
-          className="btn btn-success send-task mt-2"
-          onClick={() => {
-            submitHandler();
-          }}
+          className="btn btn-success send-task m-1"
+          // onClick={() => {
+          //   submitHandler();
+          // }}
         >
           Регистрация
         </button>
-        <NavLink to="/SignIn">Авторизация</NavLink>
-      </div>
+        <NavLink to="/SignIn" className="btn btn-outline-primary m-1">Авторизация</NavLink>
+      </form>
     </div>
   );
 };

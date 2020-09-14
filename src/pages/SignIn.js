@@ -38,8 +38,8 @@ const SignIn = () => {
     );
   }
   return (
-    <div>
-      <h1>SignIn</h1>
+    <div className="auth-form">
+      <h1 className="text-center">SignIn</h1>
       <form onSubmit={submitHandler}>
         <label htmlFor="login"> Login </label>
         <input
@@ -57,8 +57,12 @@ const SignIn = () => {
           name="password"
           onChange={changeInputHandler}
         />
-        <button className="btn btn-success send-task mt-2">Вход</button>
-        <NavLink to="/SignUp">Регистрация</NavLink>
+        <div className="btn-form mt-2">
+          <button className="btn btn-success send-task m-1">Вход</button>
+          <NavLink to="/SignUp" className="btn btn-outline-primary m-1">
+            Регистрация
+          </NavLink>
+        </div>
       </form>
     </div>
   );

@@ -10,7 +10,6 @@ function App() {
   const routes = useRoutes(isAuthenticated);
   return (
     <div className="container pt-3">
-      <div className="nav-links">
         <AuthContext.Provider
           value={{ token, login, logout, userId, isAuthenticated }}
         >
@@ -25,7 +24,6 @@ function App() {
             {routes}
           </Router>
         </AuthContext.Provider>
-      </div>
     </div>
   );
 }
