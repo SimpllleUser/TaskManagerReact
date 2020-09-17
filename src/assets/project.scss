@@ -1,0 +1,22 @@
+    .project_create {
+        &_description {
+            textarea {
+                resize: none;
+                height: 300px;
+            }
+        }
+    }
+    
+    .project_list_container {
+        .projetcs_list {
+            display: flex;
+            .project_card {
+                width: 400px;
+                height: 200px;
+                margin: 5px;
+                .card-text {
+                    height: 100px;
+                }
+            }
+        }
+    }

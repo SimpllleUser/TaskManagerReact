@@ -1,27 +1,26 @@
 import { useState, useCallback } from "react"
-
+import axios from "axios"
+// !FIX useHtpp add useCallback
 export const useHttp = () => {
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
+    const [err, setErr] = useState(null)
 
-    const request = useCallback(async(url, method = 'GET', body = null, headers = {}) => {
+    const request = useCallback(async(url, method = 'get', body = null) => {
         setLoading(true)
         try {
-            const response = await fetch(url, { method, body, headers })
-            const data = await response.json()
-
-            if (!data) {
-                throw new Error(data.message || 'Ошибка при выполнении запроса')
-            }
-
-            return data
-        } catch (e) {
+            const res = await axios[method](url)
+            const data = res.data
             setLoading(false)
-            setError(e.message)
-            throw e
+            return data
+        } catch (error) {
+            setLoading(false)
+            console.log(error)
         }
-    }, [])
-    const clearError = () => setError(null)
 
-    return { loading, request, error, clearError }
+    }, [])
+
+    const clearErr = useCallback(() => setErr(null), [])
+
+    return { loading, request, err, clearErr }
+
 }

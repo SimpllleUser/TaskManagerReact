@@ -7,7 +7,7 @@ const TaskList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllTasks());
-  }, []);
+  }, [dispatch]);
 
   const tasks = useSelector((state) => state.tasks.tasks);
 

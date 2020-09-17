@@ -26,6 +26,12 @@ const Header = () => {
         <NavLink to="/event-calendar" activeClassName={activePage} className="btn btn-outline-primary">
           Календарь событий
         </NavLink>
+        <NavLink to="/create-project" activeClassName={activePage} className="btn btn-outline-primary">
+          Создать проект
+        </NavLink>
+        <NavLink to="/projects-list" activeClassName={activePage} className="btn btn-outline-primary">
+          Проекты
+        </NavLink>
         <button
           type="button"
           className="btn btn-dark btn-logout"
