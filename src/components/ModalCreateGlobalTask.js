@@ -47,15 +47,15 @@ const ModalCreateGlobalTask = (props) => {
       </div>
       <div className="modal-body global_taskForm" >
         <form onSubmit={submitHandler}>
-            <div className="global_taskForm-title">
+            <div className="global_taskForm-title" >
                 <label htmlFor="title">Title</label>
-                <input type="text" name="title" value={global_task.title} onChange={changeInputHandler} />
+                <input type="text" name="title" className="form-control" value={global_task.title} onChange={changeInputHandler} />
             </div>
             <div className="global_taskForm-description">
                 <label htmlFor="description">Description</label>
-                <textarea name="description" cols="30" rows="10" value={global_task.description} onChange={changeInputHandler} ></textarea>
+                <textarea name="description" cols="30" rows="10" className="form-control" value={global_task.description} onChange={changeInputHandler} ></textarea>
             </div>
-            <button type="submit" className="btn btn-success" aria-hidden="true">Create</button>
+            <button type="submit" className="btn btn-success m-2" aria-hidden="true">Create</button>
 
         </form>
       </div>
