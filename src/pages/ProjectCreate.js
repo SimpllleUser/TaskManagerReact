@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import { createProject } from "../store/project/actions";
+import { connect, useDispatch } from "react-redux";
 
 const ProjectCreate = () => {
+  const dispatch = useDispatch();
+
   const [redirect, setRedirect] = useState(false);
   const [projectForm, setProjectForm] = useState({
     title: "",
@@ -19,16 +23,11 @@ const ProjectCreate = () => {
     const { title, description } = projectForm;
 
     if (title.trim() && description.trim()) {
-      try {
-        const res = axios.post("http://localhost:8080/api/project", {
-          title,
-          description,
-        });
-        console.log(res);
-        setRedirect(true);
-      } catch (err) {
-        console.log("err", err);
+      const newProject = {
+        title,
+        description
       }
+      dispatch(createProject(newProject))
     }
   };
   if (redirect) {

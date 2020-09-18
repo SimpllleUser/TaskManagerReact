@@ -1,5 +1,5 @@
 import axios from "axios"
-import { CREATE_TASK, DELETE_TASK } from "./tasks/types";
+// import { CREATE_TASK, DELETE_TASK } from "../tasks/types";
 import { CREATE_G_TASK, DELETE_G_TASK, EDIT_G_TASK } from "./types";
 
 const URL_API = 'http://localhost:8080/api'
@@ -28,22 +28,22 @@ export const deleteGlobalTask = (id, global_taskId) => {
 export const editGlobalTask = (id, task) => {
     return async(dispatch, stateTask) => {
         await axios.delete(URL_API + '/project/delete/global_task', { data: { id, task } })
-        dispatch({ type: DELETE_G_TASK, task })
+        dispatch({ type: EDIT_G_TASK, task })
     }
 }
 
-export const createTaskinGlobalTask = (id, task) => {
-    return async(dispatch, stateTask) => {
-        await axios.post(URL_API + '/global_task/create-task', { id, task })
-            // dispatch({ type: ADD_TASK_ID, id })
-        dispatch({ type: CREATE_TASK, task })
+// export const createTask_inGlobalTask = (id, task) => {
+//     return async(dispatch, stateTask) => {
+//         await axios.post(URL_API + '/global_task/create-task', { id, task })
+//             // dispatch({ type: ADD_TASK_ID, id })
+//         dispatch({ type: CREATE_G_TASK, task })
 
-    }
-}
+//     }
+// }
 
-export const deleteTaskinGlobalTask = (id, task_id) => {
-    return async(dispatch, stateTask) => {
-        await axios.delete(URL_API + '/global_task/delete-task', { data: { id, task_id } })
-        dispatch({ type: DELETE_TASK, id: task_id })
-    }
-}
+// export const deleteTask_inGlobalTask = (id, task_id) => {
+//     return async(dispatch, stateTask) => {
+//         await axios.delete(URL_API + '/global_task/delete-task', { data: { id, task_id } })
+//         dispatch({ type: DELETE_TASK, id: task_id })
+//     }
+// }

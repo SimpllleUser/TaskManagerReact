@@ -3,11 +3,14 @@ import { CREATE_PROJECT, GET_PROJECTS, DELETE_PROJECT, EDIT_PROJECT } from "./ty
 const URL_API = 'http://localhost:8080/api'
 
 
-export function getProjects() {
+export function getAllProjects() {
+
     return async(dispatch, stateEvent) => {
         try {
             const response = await axios.get(URL_API + '/project')
-            dispatch({ type: GET_PROJECTS, events: response.data })
+            console.log('GET_PROJECTS', response.data)
+
+            dispatch({ type: GET_PROJECTS, projects: response.data })
         } catch (err) {
             console.log("ERR", err.message)
         }
@@ -16,12 +19,15 @@ export function getProjects() {
 
 
 export function createProject(project) {
+    console.log('CREATE_PROJECT', project)
+    const { title, description } = project
     return async(dispatch, stateTask) => {
         try {
             const response = await axios.post(URL_API + '/project', {
-                project
+                title,
+                description
             })
-            dispatch({ type: CREATE_PROJECT, event: response.data })
+            dispatch({ type: CREATE_PROJECT, project })
         } catch (err) {
             console.log("ERR", err.message)
         }
