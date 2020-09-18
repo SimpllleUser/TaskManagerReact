@@ -30,7 +30,7 @@ const ModalCreateGlobalTask = (props) => {
 
   return (
     <div
-    className="modal fade"
+      className="modal fade"
       id="create-create-global_task"
       tabIndex="-1"
       role="dialog"

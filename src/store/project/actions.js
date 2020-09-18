@@ -36,6 +36,7 @@ export function createProject(project) {
 }
 
 export function deleteProject(id) {
+    console.log('DELETE_PROJECT', id)
     return async(dispatch, stateTask) => {
         await axios.delete(URL_API + '/project/' + id)
         dispatch({ type: DELETE_PROJECT, id })

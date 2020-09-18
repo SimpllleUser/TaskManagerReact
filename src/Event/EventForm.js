@@ -64,6 +64,8 @@ const CalendarEvent = (props) => {
             Сохранить
           </div>
         </button>
+        <button type="button" class="btn btn-secondary mt-1 ml-1" data-dismiss="modal">Close</button>
+
       </form>
     </div>
   );
