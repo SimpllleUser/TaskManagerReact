@@ -22,7 +22,7 @@ const projects = useSelector((state) => state.projects.projects);
 //       return <h3>Loading</h3>
 // }
 // else{
-  const projectsList =  projects ? projects.map((project, index) => <ProjectCard key={index} id={project._id} title={project.title} description={project.description}/>)  : (<h3>Список проектов пуст! : (</h3>)
+  const projectsList =  projects ? projects.map((project, index) => <ProjectCard key={index} id={project.id} title={project.title} description={project.description}/>)  : (<h3>Список проектов пуст! : (</h3>)
   
   return (
     <div className="project_list_container">

@@ -3,17 +3,16 @@ import { connect, useDispatch } from "react-redux";
 import { editProject } from "../store/project/actions";
 
 const ModalEditProject = ({ project }) => {
-    console.log('ModalEditProject', project)
-
     const dispatch = useDispatch();
 
     const [projectForm, setProjectForm] = useState(project)
 
     const submitHandler = (event) => {
         event.preventDefault();
-        const { title, description } = projectForm;
+        const { id, title, description } = projectForm;
         if (title.trim() && description.trim()) {
             const editabelProject = {
+                id,
                 title,
                 description
             }
@@ -28,7 +27,7 @@ const ModalEditProject = ({ project }) => {
     return (
         <div
             className={"modal project"+project.id}
-            tabindex="-1" role="dialog"
+             role="dialog"
         >
             <div className="modal-content">
                 <div className="modal-header">
@@ -63,10 +62,6 @@ const ModalEditProject = ({ project }) => {
                         </div>
                         <button className="btn btn-success m-2">Save</button>
                     </form>
-                </div>
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" className="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

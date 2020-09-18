@@ -23,13 +23,14 @@ export const projectsReducer = (state = initialState, action) => {
             console.log('DELETE_PROJECT', state, action.id)
             return {
                 ...state,
-                projects: state.projects.filter(project => project._id !== action.id)
+                projects: state.projects.filter(project => project.id !== action.id)
             };
         case EDIT_PROJECT:
-            let project = action.project
+            console.log("EDIT_PROJECT", state)
+            const project = action.project
             return {
                 ...state,
-                projects: state.projects.map(e => e.id === project._id ? project : e)
+                projects: state.projects.map(p => p.id === project.id ? project : p)
             };
         default:
             return state

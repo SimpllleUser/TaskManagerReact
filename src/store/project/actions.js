@@ -44,10 +44,12 @@ export function deleteProject(id) {
 }
 
 export function editProject(project) {
+    console.log("EDIT_PROJECT", project)
+    const { id, title, description } = project
     return async(dispatch, stateTask) => {
-        await axios.put(URL_API + '/project/' + project.id, {
-            title: project.title,
-            description: project.description,
+        await axios.put(URL_API + '/project/' + id, {
+            title,
+            description,
         })
         dispatch({ type: EDIT_PROJECT, project })
     }
