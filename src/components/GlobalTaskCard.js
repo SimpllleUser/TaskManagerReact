@@ -8,7 +8,6 @@ const GlobalTaskCard = ({ id,global_taskId, title, description }) => {
 
     return (
         <div className="global_taskKard">
-            {id}
             {global_taskId}
             <h4>
                 <NavLink to={`tasks/list/` + global_taskId}>

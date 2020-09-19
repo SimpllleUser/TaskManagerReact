@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import moment from "moment";
 import { connect, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { createTask } from "../store/tasks/actions";
+import { createTaskInGlobal_task } from "../store/tasks/actions";
 import SelectorForm from "../components/SelectorForm";
 // class TaskForm extends React.Component {
 const TaskForm = () => {
@@ -34,7 +34,7 @@ const TaskForm = () => {
       type,
       date: moment().format("DD-MM-YYYY"),
     };
-    dispatch(createTask(newTask));
+    dispatch(createTaskInGlobal_task(newTask));
     setRedirect(true);
   };
   const changeInputHandler = (event) => {
@@ -94,12 +94,12 @@ const TaskForm = () => {
           />
         </div>
         <button
-        className="btn btn-success ml-2"
-        onClick={() => {
-          submitHandler();
-        }}
-      >
-        Создать
+          className="btn btn-success ml-2"
+          onClick={() => {
+            submitHandler();
+          }}
+        >
+          Создать
       </button>
       </div>
       <div className="selectors-options col-6">

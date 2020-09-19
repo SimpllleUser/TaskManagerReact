@@ -101,3 +101,14 @@ export function fetchedTasks() {
         }, 500);
     };
 }
+
+export const createTaskInGlobal_task = (task) => {
+    console.log("CREATE TASK IN GLOBAL_TASK", task)
+    return async(dispatch, stateTask) => {
+
+        const res = await axios.post(URL_API + '/tasks/create/in_global-task', {
+            task
+        })
+        console.log("RES CREATE TASK", res.data)
+    }
+}
