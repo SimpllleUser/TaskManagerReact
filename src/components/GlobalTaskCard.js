@@ -19,6 +19,9 @@ const GlobalTaskCard = ({ id,global_taskId, title, description }) => {
                 <p>{description}</p>
                 {/* <span>Progress</span>00% */}
                 <button onClick={() => { dispatch(deleteGlobalTask(id,global_taskId)) }} className="btn btn-danger global_task-delete" >&times;</button>
+                <button className="btn btn-warning">Edit</button>
+                {/* <button onClick={() => { dispatch(deleteGlobalTask(id,global_taskId)) }} className="btn btn-danger global_task-delete" >&times;</button> */}
+
             </div>
         </div>
     )
