@@ -26,7 +26,7 @@ const ProjectDetail = () => {
 
   const global_tasksList = global_tasks?.map((global_task, index) => (
     <li key={index} className="list-group-item">
-        <GlobalTaskCard id={id} global_taskId={global_task._id} title={global_task.title} description={global_task.description} />
+        <GlobalTaskCard id={id} global_taskId={global_task.id} title={global_task.title} description={global_task.description} />
     </li>
   ));
 

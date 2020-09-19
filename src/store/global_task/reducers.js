@@ -22,7 +22,7 @@ export const global_taskReducer = (state = initialState, action) => {
         case DELETE_G_TASK:
             return {
                 ...state,
-                global_tasks: state.global_tasks.filter(g_task => g_task._id != action.id)
+                global_tasks: state.global_tasks.filter(g_task => g_task.id != action.id)
             };
         case EDIT_G_TASK:
             let global_task = action.global_task
