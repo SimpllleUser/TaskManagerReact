@@ -34,6 +34,7 @@ const TaskForm = () => {
       type,
       date: moment().format("DD-MM-YYYY"),
     };
+
     dispatch(createTaskInGlobal_task(newTask));
     setRedirect(true);
   };

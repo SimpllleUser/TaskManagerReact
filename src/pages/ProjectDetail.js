@@ -32,7 +32,6 @@ const ProjectDetail = () => {
 
   return (
     <div className="project_detail">
-      {console.log('global_tasks',global_tasks)}
       <div className="base_info_project">
         <h3>{project.title}</h3>
         <p>{project.description}</p>

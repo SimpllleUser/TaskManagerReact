@@ -10,6 +10,7 @@ import SignIn from "./pages/SignIn";
 import ProjectCreate from "./pages/ProjectCreate";
 import ProjectsList from "./pages/ProjectsList";
 import ProjectDetail from "./pages/ProjectDetail"
+import GlobalTaskDetail from "./pages/GlobalTaskDetail";
 
 
 
@@ -41,6 +42,9 @@ export const useRoutes = (isAuthUser) => {
         </Route>
         <Route exact path="/detail-project/:id">
           <ProjectDetail />
+        </Route>
+        <Route exact path="/detail-global_task/:id">
+          <GlobalTaskDetail/>
         </Route>
         
         <Redirect to="/"/>

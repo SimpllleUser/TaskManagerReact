@@ -10,7 +10,7 @@ const GlobalTaskCard = ({ id,global_taskId, title, description }) => {
         <div className="global_taskKard">
             {global_taskId}
             <h4>
-                <NavLink to={`tasks/list/` + global_taskId}>
+                <NavLink to={`/detail-global_task/` + global_taskId}>
                     {title}
                 </NavLink>
             </h4>
