@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import moment from "moment";
-import { connect, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { createTaskInGlobal_task } from "../store/tasks/actions";
 import SelectorForm from "../components/SelectorForm";
-// class TaskForm extends React.Component {
-const TaskForm = () => {
+const TaskForm = ({id}) => {
   const dispatch = useDispatch();
   const [task, setTask] = useState({
     title: "",
@@ -35,7 +33,7 @@ const TaskForm = () => {
       date: moment().format("DD-MM-YYYY"),
     };
 
-    dispatch(createTaskInGlobal_task(newTask));
+    dispatch(createTaskInGlobal_task({id,newTask}));
     setRedirect(true);
   };
   const changeInputHandler = (event) => {
@@ -53,18 +51,10 @@ const TaskForm = () => {
     }
   };
 
-  if (redirect) {
-    return (
-      <Redirect
-        to={{
-          pathname: "/",
-        }}
-      />
-    );
-  }
   return (
-    <div className="task-form row">
-      <div className="inputs-text col-6">
+    <div className="task-form">
+      {id}
+      <div className="inputs-text">
         <div className="form-group">
           <label htmlFor="title"> Название </label>
           <input
@@ -96,6 +86,7 @@ const TaskForm = () => {
         </div>
         <button
           className="btn btn-success ml-2"
+          data-dismiss="modal" aria-label="Close"
           onClick={() => {
             submitHandler();
           }}
@@ -103,7 +94,7 @@ const TaskForm = () => {
           Создать
       </button>
       </div>
-      <div className="selectors-options col-6">
+      <div className="selectors-options">
         {/* <SelectorForm updateData={this.updateDataStatus} data={"status"} /> */}
         <SelectorForm updateData={updateDataType} data={"type"} />
         <SelectorForm updateData={updateDataPriority} data={"priority"} />

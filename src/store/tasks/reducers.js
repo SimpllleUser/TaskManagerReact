@@ -1,7 +1,7 @@
 import { CREATE_TASK, FECTH_TASKS, DELETE_TASK, EDIT_TASK, GET_ALLTASKS } from "./types";
 
 const initialState = {
-    tasks: [1, 2, 3, 4, 5, 6],
+    tasks: [],
     fetchedTasks: [],
     selectEditableTask: {}
 };
@@ -18,7 +18,7 @@ export const tasksReducer = (state = initialState, action) => {
         case DELETE_TASK:
             return {
                 ...state,
-                tasks: state.tasks.filter(p => p.id !== action.id)
+                tasks: state.tasks.filter(task => task.id != action.id)
             };
         case EDIT_TASK:
             let task = action.task

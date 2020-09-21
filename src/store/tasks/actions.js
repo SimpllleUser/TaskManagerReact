@@ -102,13 +102,35 @@ export function fetchedTasks() {
     };
 }
 
-export const createTaskInGlobal_task = (task) => {
-    console.log("CREATE TASK IN GLOBAL_TASK", task)
+export const createTaskInGlobal_task = (payload) => {
+    const { id, newTask } = payload
+    return async(dispatch, stateTask) => {
+        const res = await axios.post(URL_API + '/tasks/create/in_global-task', {
+            id,
+            task: newTask
+        })
+        dispatch({ type: CREATE_TASK, task: res.data })
+    }
+}
+
+export const deleteTaskInGlobal_task = (payload) => {
+    const { id, taskId } = payload
+
     return async(dispatch, stateTask) => {
 
-        const res = await axios.post(URL_API + '/tasks/create/in_global-task', {
-            task
+        await axios.delete(URL_API + '/tasks/delete/in_global-task', {
+            data: {
+                id,
+                taskId
+            }
         })
-        console.log("RES CREATE TASK", res.data)
+        dispatch({ type: DELETE_TASK, id: taskId })
+    }
+}
+
+export const initTasks = (tasks) => {
+    return {
+        type: GET_ALLTASKS,
+        tasks
     }
 }

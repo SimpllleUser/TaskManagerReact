@@ -27,7 +27,7 @@ export function createProject(project) {
                 title,
                 description
             })
-            dispatch({ type: CREATE_PROJECT, project })
+            dispatch({ type: CREATE_PROJECT, project: response })
         } catch (err) {
             console.log("ERR", err.message)
         }

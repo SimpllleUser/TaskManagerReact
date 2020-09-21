@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {createGlobalTask} from "../store/global_task/actions"
-// import axios from "axios"
 const ModalCreateGlobalTask = (props) => {
   const dispatch = useDispatch();
 
@@ -54,7 +53,6 @@ const ModalCreateGlobalTask = (props) => {
                 <textarea name="description" cols="30" rows="10" className="form-control" value={global_task.description} onChange={changeInputHandler} ></textarea>
               </div>
               <button type="submit" className="btn btn-success m-2" aria-hidden="true">Create</button>
-
             </form>
           </div>
         </div>
