@@ -32,7 +32,7 @@ const TaskForm = ({id}) => {
       type,
       date: moment().format("DD-MM-YYYY"),
     };
-
+    
     dispatch(createTaskInGlobal_task({id,newTask}));
     setRedirect(true);
   };
@@ -40,20 +40,18 @@ const TaskForm = ({id}) => {
     setTask({ ...task, [event.target.name]: event.target.value });
   };
   const updateDataPriority = (data) => {
-    if (task.priority != data.value) {
-      setTask({ ...task, [data.name]: data.value });
+    if (task.priority != data) {
+      setTask({ ...task, priority: data });
     }
   };
 
   const updateDataType = (data) => {
-    if (task.type != data.value) {
-      setTask({ ...task, [data.name]: data.value });
-    }
+      setTask({ ...task, type: data });
+    console.log("TASK",task)
   };
 
   return (
     <div className="task-form">
-      {id}
       <div className="inputs-text">
         <div className="form-group">
           <label htmlFor="title"> Название </label>

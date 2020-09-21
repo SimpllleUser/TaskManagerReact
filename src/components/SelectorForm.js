@@ -18,15 +18,15 @@ const SelectorForm = (props) => {
       }
     };
     initSelector();
-  }, [props.value]);
+  }, [props.data, props.value, selectorData]);
 
   const SelectorHandler = (event) => {
     props.updateData(event.target.value);
-
     setSelectorData({
       ...selectorData,
       [props.data + "-value"]: event.target.value,
     });
+
   };
 
   const Selector = selectorData[props.data].map((option, index) => (
@@ -36,8 +36,10 @@ const SelectorForm = (props) => {
   ));
   return (
     <div id="selector">
+      {selectorData[props.data + "-value"]}
       <label className="my-1 mr-2" htmlFor="priority">
-        {props.data || " "}
+        {console.log("DATA",props)}
+        {props.data}
       </label>
       <select
         className="custom-select my-1 mr-sm-1"
