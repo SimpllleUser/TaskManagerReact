@@ -8,7 +8,6 @@ export function getAllProjects() {
     return async(dispatch, stateEvent) => {
         try {
             const response = await axios.get(URL_API + '/project')
-            console.log('GET_PROJECTS', response.data)
 
             dispatch({ type: GET_PROJECTS, projects: response.data })
         } catch (err) {
@@ -19,7 +18,6 @@ export function getAllProjects() {
 
 
 export function createProject(project) {
-    console.log('CREATE_PROJECT', project)
     const { title, description } = project
     return async(dispatch, stateTask) => {
         try {
@@ -36,7 +34,6 @@ export function createProject(project) {
 }
 
 export function deleteProject(id) {
-    console.log('DELETE_PROJECT', id)
     return async(dispatch, stateTask) => {
         await axios.delete(URL_API + '/project/' + id)
         dispatch({ type: DELETE_PROJECT, id })
@@ -44,7 +41,6 @@ export function deleteProject(id) {
 }
 
 export function editProject(project) {
-    console.log("EDIT_PROJECT", project)
     const { id, title, description } = project
     return async(dispatch, stateTask) => {
         await axios.put(URL_API + '/project/' + id, {

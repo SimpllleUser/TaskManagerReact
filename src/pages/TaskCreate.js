@@ -43,10 +43,14 @@ const TaskForm = ({id}) => {
     if (task.priority != data) {
       setTask({ ...task, priority: data });
     }
+    console.log("TASK",task)
   };
 
   const updateDataType = (data) => {
+    console.log('VALUE',data)
+    if (task.type != data) {
       setTask({ ...task, type: data });
+    }
     console.log("TASK",task)
   };
 

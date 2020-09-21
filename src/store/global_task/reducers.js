@@ -8,13 +8,11 @@ const initialState = {
 export const global_taskReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_G_TASK:
-            console.log('CREATE_G_TASK', action)
             return {
                 ...state,
                 global_tasks: state.global_tasks.concat([action.global_task])
             }
         case SET_G_TASKS:
-            console.log(action.global_tasks)
             return {
                 ...state,
                 global_tasks: state.global_tasks = action.global_tasks

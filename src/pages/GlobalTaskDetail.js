@@ -15,7 +15,6 @@ const GlobalTaskDetail = () => {
     const getGlobalTask = async () => {
       const res = await request("http://localhost:8080/api/global_task/" + id);
       setGlobal_task(res);
-      console.log("RES",res.tasks)
       dispatch(initTasks(res.tasks))
 
     };
@@ -24,7 +23,6 @@ const GlobalTaskDetail = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
   return (
     <div className="global_task--detail">
-      {console.log(global_task)}
       <h1>Detail global_task</h1>
       <div className="base_info_project">
         <h3>{global_task.title}</h3>

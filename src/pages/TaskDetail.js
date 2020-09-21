@@ -33,7 +33,6 @@ const TaskDetail = (props) => {
       <div className="task-body">
         <h3 className="title display-4"> {task.title} </h3>
         <hr />
-        {console.log(id)}
         <p className="description my-4"> {task.description} </p>
         <ModalWorkLog
           changeWorkLog={changeWorkLog}

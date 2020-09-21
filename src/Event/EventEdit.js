@@ -19,8 +19,8 @@ const EditEvent = (props) => {
           "http://localhost:8080/api/calendar-event/" + props.id
         );
         setEventForm(res.data);
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        console.log(err);
       }
     };
     getEvent();
@@ -53,7 +53,6 @@ const EditEvent = (props) => {
       aria-labelledby="myLargeModalLabel"
       aria-hidden="true"
     >
-      {console.log("EVNET", eventForm)}
       <div className="modal-dialog modal-lg modal-content p-5">
         <h3> Форма реадктирования события </h3>
         <form className="eventForm">

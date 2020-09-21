@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { connect } from "react-redux";
+import { useHttp } from "../hooks/http.hook";
+import {useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { saveEditableTask } from "../store/tasks/actions";
 import SelectorForm from "../components/SelectorForm";
@@ -9,12 +10,18 @@ const EditTask = (props) => {
   let { id } = useParams();
   let [task, setTask] = useState({});
   let [redirect, setRedirect] = useState(false);
+  const dispatch = useDispatch();
+  const { request, loading } = useHttp();
+
   useEffect(() => {
-    axios.get("http://localhost:8080/api/tasks/" + id).then((response) => {
-      let task = response.data;
-      setTask(task);
-    });
-  }, []);
+    const getTask = async () => {
+      const res = await request("http://localhost:8080/api/tasks/id=" + id);
+      setTask(res);
+      console.log("RES",res)
+    };
+    getTask();
+  }, [id, request]);
+      //axios.get("http://localhost:8080/api/tasks/" + id)
 
   const changeInputHandler = (event) => {
     setTask({ ...task, [event.target.name]: event.target.value });
@@ -31,7 +38,7 @@ const EditTask = (props) => {
       priority: task.priority,
       type: task.type,
     };
-    props.saveEditableTask(selectedTask);
+    dispatch(saveEditableTask(selectedTask));
     setRedirect(true);
   };
 
@@ -106,14 +113,14 @@ const EditTask = (props) => {
   );
 };
 // export default EditTask;
-const mapStateToProps = (state) => {
-  return {
-    tasks: state.tasks.tasks,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     tasks: state.tasks.tasks,
+//   };
+// };
 
-const mapDispatchToProps = {
-  saveEditableTask,
-};
+// const mapDispatchToProps = {
+//   saveEditableTask,
+// };
 // mapStateToProps => GET STATE FROM STORE // mapDispatchToProps IINCLUDE methods REDUX
-export default connect(mapStateToProps, mapDispatchToProps)(EditTask);
+export default EditTask;

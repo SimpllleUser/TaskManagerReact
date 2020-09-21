@@ -18,7 +18,7 @@ const SelectorForm = (props) => {
       }
     };
     initSelector();
-  }, [props.data, props.value, selectorData]);
+  }, [props]);
 
   const SelectorHandler = (event) => {
     props.updateData(event.target.value);
@@ -38,7 +38,6 @@ const SelectorForm = (props) => {
     <div id="selector">
       {selectorData[props.data + "-value"]}
       <label className="my-1 mr-2" htmlFor="priority">
-        {console.log("DATA",props)}
         {props.data}
       </label>
       <select
