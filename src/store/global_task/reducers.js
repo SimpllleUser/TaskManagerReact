@@ -21,13 +21,14 @@ export const global_taskReducer = (state = initialState, action) => {
             return {
                 ...state,
                 global_tasks: state.global_tasks.filter(g_task => g_task.id != action.id)
-            };
+            }
         case EDIT_G_TASK:
             let global_task = action.global_task
+            console.log("STATE", state)
             return {
                 ...state,
                 global_tasks: state.global_tasks.map(g_task => g_task.id === global_task.id ? global_task : g_task)
-            };
+            }
         default:
             return state
     }

@@ -13,7 +13,7 @@ export const createGlobalTask = (id, global_task) => {
 export const getTaskFromGlobalTasks = (global_task) => {
     return async(dispatch, stateEvent) => {
         await axios.put(URL_API + '/global-task/' + global_task._id, { global_task })
-        dispatch({ type: EDIT_G_TASK, global_task })
+            // dispatch({ type: EDIT_G_TASK, global_task })
     }
 }
 
@@ -24,10 +24,12 @@ export const deleteGlobalTask = (id, global_taskId) => {
     }
 }
 
-export const editGlobalTask = (id, task) => {
+export const editGlobalTask = (global_task) => {
+
     return async(dispatch, stateTask) => {
-        await axios.delete(URL_API + '/project/delete/global_task', { data: { id, task } })
-        dispatch({ type: EDIT_G_TASK, task })
+        const res = await axios.put(URL_API + '/global_task/' + global_task.id, { global_task })
+        console.log("RES", res)
+        dispatch({ type: EDIT_G_TASK, global_task: global_task })
     }
 }
 
