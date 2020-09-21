@@ -4,19 +4,24 @@ import { Redirect, NavLink, useParams } from "react-router-dom";
 import { deleteTask } from "../store/tasks/actions";
 import { Edit2, Trash2 } from "react-feather";
 import SelectorElement from "../components/SelectorElement";
-import axios from "axios";
-import { connect } from "react-redux";
+import { useHttp } from "../hooks/http.hook";
+import {useDispatch, useSelector } from "react-redux";
+
 import ModalWorkLog from "../components/ModalWorkLog";
 
 const TaskDetail = (props) => {
   let { id } = useParams();
   let [task, setTask] = useState({});
+  const dispatch = useDispatch();
+  const { request, loading } = useHttp();
   useEffect(() => {
-    axios.get("http://localhost:8080/api/tasks/" + id).then((response) => {
-      let task = response.data;
-      setTask(task);
-    });
-  });
+    const getTask = async () => {
+      const res = await request("http://localhost:8080/api/tasks/id=" + id);
+      setTask(res);
+      console.log("RES",res)
+    };
+    getTask();
+  }, [id, request]);
 
   const changeWorkLog = (data) => {
     if (task.workLog != data) {
@@ -66,7 +71,7 @@ const TaskDetail = (props) => {
           <div
             className="text-secondary trash-detail"
             onClick={() => {
-              deleteTask(task.id);
+              dispatch(deleteTask(task.id));
             }}
           >
             <Trash2 size={size} />
@@ -80,8 +85,8 @@ const TaskDetail = (props) => {
   );
 };
 
-const mapDispatchToProps = {
-  deleteTask,
-};
+// const mapDispatchToProps = {
+//   deleteTask,
+// };
 
-export default connect(null, mapDispatchToProps)(TaskDetail);
+export default TaskDetail;

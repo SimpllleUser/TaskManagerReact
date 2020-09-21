@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useHttp } from "../hooks/http.hook";
-import {useDispatch, useSelector } from "react-redux";
+import {useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { saveEditableTask } from "../store/tasks/actions";
 import SelectorForm from "../components/SelectorForm";
@@ -21,7 +20,6 @@ const EditTask = (props) => {
     };
     getTask();
   }, [id, request]);
-      //axios.get("http://localhost:8080/api/tasks/" + id)
 
   const changeInputHandler = (event) => {
     setTask({ ...task, [event.target.name]: event.target.value });
