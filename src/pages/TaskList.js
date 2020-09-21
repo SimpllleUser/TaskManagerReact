@@ -11,7 +11,6 @@ const TaskList = () => {
 
   const tasks = useSelector((state) => state.tasks.tasks);
 
-  //getAllTasks
   const rowsByStatus = () => {
     var elements = [
       { name: "Open", tasks: [] },
