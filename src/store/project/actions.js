@@ -3,50 +3,40 @@ import { CREATE_PROJECT, GET_PROJECTS, DELETE_PROJECT, EDIT_PROJECT } from "./ty
 const URL_API = 'http://localhost:8080/api'
 
 
-export function getAllProjects() {
+export const getAllProjects = () => async(dispatch) => {
 
-    return async(dispatch, stateEvent) => {
-        try {
-            const response = await axios.get(URL_API + '/project')
-
-            dispatch({ type: GET_PROJECTS, projects: response.data })
-        } catch (err) {
-            console.log("ERR", err.message)
-        }
+    try {
+        const response = await axios.get(URL_API + '/project')
+        dispatch({ type: GET_PROJECTS, projects: response.data })
+    } catch (err) {
+        console.log("ERR", err.message)
     }
+
 }
 
-
-export function createProject(project) {
+export const createProject = (project) => async(dispatch) => {
     const { title, description } = project
-    return async(dispatch, stateTask) => {
-        try {
-            const response = await axios.post(URL_API + '/project', {
-                title,
-                description
-            })
-            dispatch({ type: CREATE_PROJECT, project: response })
-        } catch (err) {
-            console.log("ERR", err.message)
-        }
-
-    }
-}
-
-export function deleteProject(id) {
-    return async(dispatch, stateTask) => {
-        await axios.delete(URL_API + '/project/' + id)
-        dispatch({ type: DELETE_PROJECT, id })
-    }
-}
-
-export function editProject(project) {
-    const { id, title, description } = project
-    return async(dispatch, stateTask) => {
-        await axios.put(URL_API + '/project/' + id, {
+    try {
+        const response = await axios.post(URL_API + '/project', {
             title,
-            description,
+            description
         })
-        dispatch({ type: EDIT_PROJECT, project })
+        dispatch({ type: CREATE_PROJECT, project: response })
+    } catch (err) {
+        console.log("ERR", err.message)
     }
+}
+
+export const deleteProject = (id) => async(dispatch) => {
+    await axios.delete(URL_API + '/project/' + id)
+    dispatch({ type: DELETE_PROJECT, id })
+}
+
+export const editProject = (project) => async(dispatch) => {
+    const { id, title, description } = project
+    await axios.put(URL_API + '/project/' + id, {
+        title,
+        description,
+    })
+    dispatch({ type: EDIT_PROJECT, project })
 }

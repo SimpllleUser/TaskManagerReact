@@ -8,7 +8,6 @@ const GlobalTaskCard = ({ id,global_taskId, title, description }) => {
 
     return (
         <div className="global_task">
-            {global_taskId}
             <h4>
                 <NavLink to={`/detail-global_task/` + global_taskId}>
                     {title}
@@ -20,8 +19,6 @@ const GlobalTaskCard = ({ id,global_taskId, title, description }) => {
                 <button onClick={() => { dispatch(deleteGlobalTask(id,global_taskId)) }} className="btn btn-danger global_task-delete" >&times;</button>
             <ModalEditGlobalTask  global_task={{ id:global_taskId,title,description }} />
                 <button className="btn btn-warning" data-toggle="modal" data-target={".global_task" + global_taskId}>Edit</button>
-                {/* <button onClick={() => { dispatch(deleteGlobalTask(id,global_taskId)) }} className="btn btn-danger global_task-delete" >&times;</button> */}
-
             </div>
         </div>
     )

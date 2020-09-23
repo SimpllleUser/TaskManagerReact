@@ -3,7 +3,6 @@ import { BrowserRouter as Router, NavLink, Redirect } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const Header = () => {
-  const history = useHistory;
   const auth = useContext(AuthContext);
   const activePage = "active btn btn-light";
   const logoutHandler = () => {

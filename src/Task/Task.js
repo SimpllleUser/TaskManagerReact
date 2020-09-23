@@ -4,7 +4,6 @@ import {deleteTaskInGlobal_task} from "../store/tasks/actions"
 import {  NavLink } from "react-router-dom";
 import { Edit2, Trash2 } from "react-feather";
 
-// import EditTask from "../pages/TaskEdit";
 import SelectorElement from "../components/SelectorElement";
 
 export default ({ global_taskId,task }) => {

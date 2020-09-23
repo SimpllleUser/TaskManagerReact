@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import { Redirect, NavLink, useParams } from "react-router-dom";
-import { deleteTask } from "../store/tasks/actions";
-import { Edit2, Trash2 } from "react-feather";
+import { Redirect, useParams } from "react-router-dom";
 import SelectorElement from "../components/SelectorElement";
 import { useHttp } from "../hooks/http.hook";
-import {useDispatch, useSelector } from "react-redux";
 
 import ModalWorkLog from "../components/ModalWorkLog";
 
-const TaskDetail = (props) => {
+const TaskDetail = () => {
   let { id } = useParams();
   let [task, setTask] = useState({});
-  const dispatch = useDispatch();
-  const { request, loading } = useHttp();
+  const { request } = useHttp();
   useEffect(() => {
     const getTask = async () => {
       const res = await request("http://localhost:8080/api/tasks/id=" + id);
@@ -29,7 +25,6 @@ const TaskDetail = (props) => {
     }
   };
 
-  const size = 20;
   if (task === undefined) {
     return <Redirect to="/" />;
   }
@@ -62,20 +57,6 @@ const TaskDetail = (props) => {
           >
             Add work-log
           </button>
-        </div>
-
-        <div className="actions">
-          <NavLink className="edit-detail" to={`/edit-task/${task.id}`}>
-            <Edit2 className="text-secondary" size={size} />
-          </NavLink>
-          <div
-            className="text-secondary trash-detail"
-            onClick={() => {
-              dispatch(deleteTask(task.id));
-            }}
-          >
-            <Trash2 size={size} />
-          </div>
         </div>
         <small className="date-created">
           {moment(task.createdAt).format("DD-MMMM-YYYY")}

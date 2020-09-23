@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { createEvent } from "../store/events/actions";
-import { getAllTasks } from "../store/tasks/actions";
 
 const CalendarEvent = (props) => {
   const dispatch = useDispatch();
@@ -10,10 +9,6 @@ const CalendarEvent = (props) => {
     description: "",
     date: "",
   });
-
-  useEffect(() => {
-    dispatch(getAllTasks());
-  }, []);
 
   const changeInputHandler = (event) => {
     event.persist();

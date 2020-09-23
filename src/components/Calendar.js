@@ -5,13 +5,11 @@ import { ArrowLeft, ArrowRight, PlusCircle } from "react-feather";
 import EventList from "../Event/EventList";
 import Modal from "./Modal";
 import { getAllEvents } from "../store/events/actions";
-import { getAllTasks } from "../store/tasks/actions";
 
 const Calendar = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllTasks());
     dispatch(getAllEvents());
   }, []);
   const [dateNow, setDateNow] = useState(moment().format("DD-MM-YYYY"));
