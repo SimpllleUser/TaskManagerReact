@@ -11,14 +11,14 @@ const ModalEditGlobalTask = ({global_task }) => {
     const submitHandler = (event) => {
         event.preventDefault();
         const { id, title, description } = global_taskForm;
-        if (title.trim() && description.trim()) {
+        // if (title.trim() && description.trim()) {
             const editabelGlobal_task = {
                 id,
                 title,
                 description
             }
             dispatch(editGlobalTask(editabelGlobal_task))
-        }
+        //}
     }
 
     const changeInputHandler = (event) => {
@@ -30,7 +30,6 @@ const ModalEditGlobalTask = ({global_task }) => {
             className={"modal global_task"+global_task.id}
              role="dialog"
         >
-            {console.log('global_task',global_task)}
             <div className="modal-content">
                 <div className="modal-header">
                     <h4 className="modal-title">Create global task</h4>

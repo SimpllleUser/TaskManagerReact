@@ -28,8 +28,8 @@ const Calendar = (props) => {
     "Sunday",
   ];
 
-  const listWeek = daysOfWeek.map((day) => (
-    <div className="week" key={day}>
+  const listWeek = daysOfWeek.map((day, idnex) => (
+    <div className="week" key={idnex}>
       {day}
     </div>
   ));
@@ -56,6 +56,8 @@ const Calendar = (props) => {
     }
     let firstElem = month[0].name;
     let lenthEmptDay = daysOfWeek.findIndex((m) => m === firstElem);
+    console.log('lenthEmptDay',lenthEmptDay)
+
     let prevMonthDay = setPrevMonthDay(lenthEmptDay);
     return prevMonthDay ? [...prevMonthDay, ...month] : month;
   })();
@@ -105,10 +107,10 @@ const Calendar = (props) => {
     setSelectDate(day.num);
   };
 
-  const listDay = month.map((day) => (
+  const listDay = month.map((day, index) => (
     <div
       className={`${day.name} + ${formatClassName(day)}`}
-      key={day.num + day.name}
+      key={index}
       onClick={() => {
         setSelectDay(day);
       }}

@@ -13,7 +13,6 @@ export const createGlobalTask = (id, global_task) => {
 export const getTaskFromGlobalTasks = (global_task) => {
     return async(dispatch, stateEvent) => {
         await axios.put(URL_API + '/global-task/' + global_task._id, { global_task })
-            // dispatch({ type: EDIT_G_TASK, global_task })
     }
 }
 
@@ -24,12 +23,15 @@ export const deleteGlobalTask = (id, global_taskId) => {
     }
 }
 
-export const editGlobalTask = (global_task) => {
-
+export function editGlobalTask(global_task) {
+    const { id, title, description } = global_task
     return async(dispatch, stateTask) => {
-        const res = await axios.put(URL_API + '/global_task/' + global_task.id, { global_task })
-        console.log("RES", res)
-        dispatch({ type: EDIT_G_TASK, global_task: global_task })
+        await axios.put(URL_API + '/global_task/' + id, {
+            title,
+            description,
+        })
+
+        dispatch({ type: EDIT_G_TASK, global_task })
     }
 }
 
@@ -37,19 +39,3 @@ export const setGlobalTasks = (global_tasks) => ({
     type: SET_G_TASKS,
     global_tasks
 })
-
-// export const createTask_inGlobalTask = (id, task) => {
-//     return async(dispatch, stateTask) => {
-//         await axios.post(URL_API + '/global_task/create-task', { id, task })
-//             // dispatch({ type: ADD_TASK_ID, id })
-//         dispatch({ type: CREATE_G_TASK, task })
-
-//     }
-// }
-
-// export const deleteTask_inGlobalTask = (id, task_id) => {
-//     return async(dispatch, stateTask) => {
-//         await axios.delete(URL_API + '/global_task/delete-task', { data: { id, task_id } })
-//         dispatch({ type: DELETE_TASK, id: task_id })
-//     }
-// }
