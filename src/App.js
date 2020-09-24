@@ -15,12 +15,8 @@ function App() {
         >
           <Router>
             {
-              isAuthenticated ? (
-                <Header />
-              ) : (
-                ""
-              ) /* Или передавть пропс в Header*/
-            }
+              isAuthenticated && <Header />}
+
             {routes}
           </Router>
         </AuthContext.Provider>

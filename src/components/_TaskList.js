@@ -1,5 +1,5 @@
 import React from "react";
-import Task from "../Task/Task";
+import TaskCard from "../Task/TaskCard";
 
 const _TaskList = ({global_taskId,tasks}) => {
 
@@ -20,7 +20,7 @@ const _TaskList = ({global_taskId,tasks}) => {
       <h3 className={"el-name-" + el.name}> {el.name} </h3>
       <div className={"list-" + el.name}>
         {el.tasks?.map((task, index) => (
-          <Task task={task} global_taskId ={global_taskId}key={index} />
+          <TaskCard task={task} global_taskId ={global_taskId}key={index} />
         ))}
       </div>
     </div>

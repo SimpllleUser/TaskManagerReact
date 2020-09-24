@@ -6,9 +6,8 @@ import EventList from "../Event/EventList";
 import Modal from "./Modal";
 import { getAllEvents } from "../store/events/actions";
 
-const Calendar = (props) => {
+const Calendar = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getAllEvents());
   }, []);

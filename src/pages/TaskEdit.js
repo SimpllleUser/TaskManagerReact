@@ -5,7 +5,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { saveEditableTask } from "../store/tasks/actions";
 import SelectorForm from "../components/SelectorForm";
 
-const EditTask = (props) => {
+const EditTask = () => {
   let { id } = useParams();
   let [task, setTask] = useState({});
   let [redirect, setRedirect] = useState(false);
@@ -16,7 +16,6 @@ const EditTask = (props) => {
     const getTask = async () => {
       const res = await request("http://localhost:8080/api/tasks/id=" + id);
       setTask(res);
-      console.log("RES",res)
     };
     getTask();
   }, [id, request]);
@@ -71,7 +70,7 @@ const EditTask = (props) => {
             id="title"
             placeholder="название"
             name="title"
-            value={task.title}
+            value={task?.title}
             onChange={changeInputHandler}
           />
           <label htmlFor="description pt-2"> Описание </label>
@@ -83,7 +82,7 @@ const EditTask = (props) => {
             id="description"
             cols="30"
             rows="10"
-            value={task.description}
+            value={task?.description}
           ></textarea>
         </div>
       </div>
@@ -91,17 +90,17 @@ const EditTask = (props) => {
         <SelectorForm
           updateData={updateDataStatus}
           data={"status"}
-          value={task.status}
+          value={task?.status}
         />
         <SelectorForm
           updateData={updateDataType}
           data={"type"}
-          value={task.type}
+          value={task?.type}
         />
         <SelectorForm
           updateData={updateDataPriority}
           data={"priority"}
-          value={task.priority}
+          value={task?.priority}
         />
       </div>
       <button className="btn btn-success" onClick={saveEditTask}>
@@ -110,15 +109,4 @@ const EditTask = (props) => {
     </div>
   );
 };
-// export default EditTask;
-// const mapStateToProps = (state) => {
-//   return {
-//     tasks: state.tasks.tasks,
-//   };
-// };
-
-// const mapDispatchToProps = {
-//   saveEditableTask,
-// };
-// mapStateToProps => GET STATE FROM STORE // mapDispatchToProps IINCLUDE methods REDUX
 export default EditTask;

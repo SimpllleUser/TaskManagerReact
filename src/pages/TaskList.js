@@ -1,7 +1,8 @@
 import React, {useEffect } from "react";
 // import { getAllTasks } from "../store/tasks/actions";
 import {useDispatch, useSelector } from "react-redux";
-import Task from "../Task/Task";
+import Modal from "../Modals/Modal";
+import TaskCard from "../Task/TaskCard";
 
 const TaskList = () => {
   const dispatch = useDispatch();
@@ -27,16 +28,20 @@ const TaskList = () => {
       <h3 className={"el-name-" + el.name}> {el.name} </h3>
       <div className={"list-" + el.name}>
         {el.tasks.map((task, index) => (
-          <Task task={task} key={index} />
+          <TaskCard task={task} key={index} />
         ))}
       </div>
     </div>
   ))
-    ? tasks.map((task, index) => <Task task={task} key={index} />)
+    ? tasks.map((task, index) => <TaskCard task={task} key={index} />)
     : "";
   return (
     <div id="task-dashboard">
-      <h2> Список заданий </h2>
+      <Modal forElement="test" component={<h2> Список заданий </h2>}>
+      </Modal>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#test">
+  Test
+</button>
       <div className="row">
         <div className="col-12 tasks-list">
           {sortedTaskList}

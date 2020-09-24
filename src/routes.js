@@ -8,7 +8,7 @@ import TaskDetail from "./pages/TaskDetail";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import ProjectCreate from "./pages/ProjectCreate";
-import ProjectsList from "./pages/ProjectsList";
+import ProjectsList from "./Project/ProjectList";
 import ProjectDetail from "./pages/ProjectDetail"
 import GlobalTaskDetail from "./pages/GlobalTaskDetail";
 

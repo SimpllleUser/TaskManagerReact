@@ -1,4 +1,4 @@
-import React, { useHistory, useContext } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, NavLink, Redirect } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
