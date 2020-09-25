@@ -26,7 +26,7 @@ const GlobalTaskCard = ({ id, global_taskId, title, description }) => {
         <Modal
           forElement={"edit-global_task" + global_taskId}
           component={
-            <GlobalTaskForm id={id} title={title} description={description} />
+            <GlobalTaskForm id={global_taskId} title={title} description={description} />
           }
         />
         <button

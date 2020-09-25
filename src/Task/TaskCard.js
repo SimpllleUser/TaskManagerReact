@@ -1,13 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Route, NavLink } from "react-router-dom";
-import { Edit2, Trash2 } from "react-feather";
+import { NavLink } from "react-router-dom";
 import Modal from "../Modals/Modal";
 import TaskForm from "./TaskForm";
+import {deleteTaskInGlobal_task} from "../store/tasks/actions"
 // import EditTask from "../pages/TaskEdit";
 import SelectorElement from "../components/SelectorElement";
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ global_taskId,task }) => {
   const dispatch = useDispatch();
 
   return (
@@ -46,6 +46,12 @@ const TaskCard = ({ task }) => {
         data-target={"#edit-task" + task.id}
       >
         Edit
+      </button>
+      <button
+        className="btn btn-danger"
+        onClick={() => {dispatch(deleteTaskInGlobal_task({id:global_taskId,taskId:task.id}))}}
+      >
+        Delete
       </button>
     </div>
   );
