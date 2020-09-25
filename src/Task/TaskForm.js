@@ -11,12 +11,10 @@ const TaskForm = (props) => {
     title: props.title || "",
     description: props.description || "",
     estimate: props.estimate || "",
-    priority: props.priority || "",
-    status: props.status || "",
-    type: props.type || "",
+    priority: props.priority || "Low",
+    status: props.status || "Open",
+    type: props.type || "Feature",
   });
-  const [redirect, setRedirect] = useState(false);
-
   const submitHandler = (event) => {
     event.preventDefault();
     const { title, description, estimate, status, priority, type } = taskForm; // this.state;
@@ -38,7 +36,6 @@ const TaskForm = (props) => {
 
     taskForm.id ? dispatch(saveEditableTask({ task:Task })) : dispatch(createTaskInGlobal_task({ id: props.global_task_id, task:Task }))
     setTaskForm({})
-    // setRedirect(true);
   };
   const changeInputHandler = (event) => {
     setTaskForm({ ...taskForm, [event.target.name]: event.target.value });
@@ -110,12 +107,12 @@ const TaskForm = (props) => {
         <SelectorForm
           updateData={updateDataType}
           data={"type"}
-          value={taskForm.type || "Feature"}
+          value={taskForm.type}
         />
         <SelectorForm
           updateData={updateDataPriority}
           data={"priority"}
-          value={taskForm.priority || "Low"}
+          value={taskForm.priority}
         />
       </div>
     </form>
