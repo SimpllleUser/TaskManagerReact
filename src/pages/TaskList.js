@@ -1,13 +1,12 @@
-import React, {useEffect } from "react";
+import React, { useEffect } from "react";
 // import { getAllTasks } from "../store/tasks/actions";
-import {useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "../Modals/Modal";
 import TaskCard from "../Task/TaskCard";
 
 const TaskList = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-  }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
   const tasks = useSelector((state) => state.tasks.tasks);
 
@@ -37,11 +36,15 @@ const TaskList = () => {
     : "";
   return (
     <div id="task-dashboard">
-      <Modal forElement="test" component={<h2> Список заданий </h2>}>
-      </Modal>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#test">
-  Test
-</button>
+      <Modal forElement="test" component={<h2> Список заданий </h2>}></Modal>
+      <button
+        type="button"
+        className="btn btn-primary"
+        data-toggle="modal"
+        data-target="#test"
+      >
+        Test
+      </button>
       <div className="row">
         <div className="col-12 tasks-list">
           {sortedTaskList}

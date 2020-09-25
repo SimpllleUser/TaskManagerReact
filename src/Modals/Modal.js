@@ -2,7 +2,7 @@ import React from "react"
 
 const Modal = ({size, forElement, title, component}) => {
     return (
-        <div className={"modal fade " + size} id={forElement} aria-hidden="true">
+        <div className={"modal fade " + size || "modal-lg"} id={forElement} aria-hidden="true">
   <div className="modal-dialog" role="document">
     <div className="modal-content">
       <div className="modal-header">

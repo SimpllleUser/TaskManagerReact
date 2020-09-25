@@ -21,7 +21,7 @@ export const createProject = (project) => async(dispatch) => {
             title,
             description
         })
-        dispatch({ type: CREATE_PROJECT, project: response })
+        dispatch({ type: CREATE_PROJECT, project: response.data })
     } catch (err) {
         console.log("ERR", err.message)
     }

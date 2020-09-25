@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import { createProject } from "../store/project/actions";
+// import { Redirect } from "react-router-dom";
 import {useDispatch } from "react-redux";
+import { createProject } from "../store/project/actions";
+import {editProject} from "../store/project/actions"
 
-const ProjectForm = () => {
+const ProjectForm = (props) => {
   const dispatch = useDispatch();
 
   // const [redirect, setRedirect] = useState(false);
   const [projectForm, setProjectForm] = useState({
-    title: "",
-    description: "",
+    id: props.id || '',
+    title: props.title || '',
+    description: props.description || '',
     // status
   });
   const changeInputHandler = (event) => {
@@ -18,17 +20,18 @@ const ProjectForm = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-
-    const { title, description } = projectForm;
+    const {id, title, description } = projectForm;
 
     if (title.trim() && description.trim()) {
-      const newProject = {
+      const Project = {
+        id,
         title,
         description
       }
-      dispatch(createProject(newProject))
-      setProjectForm({})
+      id ? dispatch(editProject(Project)) : dispatch(createProject(Project)) 
     }
+    setProjectForm({})
+
   };
 
   return (
@@ -41,6 +44,7 @@ const ProjectForm = () => {
             type="text"
             name="title"
             id="title"
+            value={projectForm.title}
             onChange={changeInputHandler}
           ></input>
         </div>
@@ -51,10 +55,11 @@ const ProjectForm = () => {
             className="form-control"
             name="description"
             id="description"
+            value={projectForm.description}
             onChange={changeInputHandler}
           ></textarea>
         </div>
-        <button className="btn btn-success m-2">Create</button>
+  <button className="btn btn-success m-2"> {props.id ? "Edit" : "Create" }</button>
       </form>
     </div>
   );

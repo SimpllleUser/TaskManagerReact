@@ -16,17 +16,20 @@ export const createTask = (task) => async(dispatch) => {
     dispatch({ type: CREATE_TASK, task: response.data })
 }
 
-export const createTaskInGlobal_task = (payload) => {
-    const { id, newTask } = payload
-    return async(dispatch, stateTask) => {
+export const createTaskInGlobal_task = (payload) => async(dispatch) => {
+    const { id, task } = payload
+    console.log("TASK", task)
+    try {
         const res = await axios.post(URL_API + '/tasks/create/in_global-task', {
             id,
-            task: newTask
+            task: task
         })
         dispatch({ type: CREATE_TASK, task: res.data })
+    } catch (err) {
+        console.log("Err", err)
     }
-}
 
+}
 export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
     await axios.delete(URL_API + '/tasks/delete/in_global-task', {
         data: {
@@ -37,7 +40,8 @@ export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
     dispatch({ type: DELETE_TASK, id: taskId })
 }
 
-export const saveEditableTask = (task) => async(dispatch) => {
+export const saveEditableTask = ({ task }) => async(dispatch) => {
+    console.log("TASK", task)
     await axios.put(URL_API + '/tasks/' + task.id, {
         title: task.title,
         description: task.description,

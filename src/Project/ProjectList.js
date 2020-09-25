@@ -5,7 +5,7 @@ import { useHttp } from "../hooks/http.hook";
 import { PlusSquare } from "react-feather";
 import Modal from "../Modals/Modal"
 import ProjectForm from "./ProjectForm"
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../Project/ProjectCard";
 
 const ProjectsList = () => {
   const dispatch = useDispatch();

@@ -88,7 +88,6 @@ const TaskForm = ({id}) => {
         </div>
         <button
           className="btn btn-success ml-2"
-          data-dismiss="modal" aria-label="Close"
           onClick={() => {
             submitHandler();
           }}

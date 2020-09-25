@@ -1,18 +1,16 @@
 import React from "react";
-import { Switch, Route, Redirect, useHistory  } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import TaskCreate from "./pages/TaskCreate";
 import TaskList from "./pages/TaskList";
 import EditTask from "./pages/TaskEdit";
 import EventCalendar from "./pages/EventCalendar";
-import TaskDetail from "./pages/TaskDetail";
+import TaskDetail from "./Task/TaskDeatail";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import ProjectCreate from "./pages/ProjectCreate";
 import ProjectsList from "./Project/ProjectList";
-import ProjectDetail from "./pages/ProjectDetail"
-import GlobalTaskDetail from "./pages/GlobalTaskDetail";
-
-
+import ProjectDetail from "./Project/ProjectDeatail"
+import GlobalTaskDetail from "./GlobalTask/GlobalTaskDeatail";
 
 export const useRoutes = (isAuthUser) => {
   if (isAuthUser) {
