@@ -8,7 +8,6 @@ import { AuthContext } from "../context/AuthContext";
 
 const SignIn = () => {
   const [form, setForm] = useState({ login: "", password: "" });
-  // const [user, setUser] = useState("");
   const auth = useContext(AuthContext);
   const [redirect, setRedirect] = useState(false);
   const submitHandler = async (event) => {

@@ -1,31 +1,53 @@
 import React, { useContext } from "react";
 import { BrowserRouter as Router, NavLink, Redirect } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { useSelector } from "react-redux";
+import  Loader from "./Loader";
 
 const Header = () => {
   const auth = useContext(AuthContext);
   const activePage = "active btn btn-light";
   const logoutHandler = () => {
-    auth.logout()
-    return <Redirect to="/"/>
+    auth.logout();
+    return <Redirect to="/" />;
   };
+  const loader = useSelector((state) => state.loader.loader);
+
   return (
     <header className="navbar navbar-dark bg-light">
-            <h3 className="title m-auto" >Task manager
-            <hr/>
-            </h3>
-
+      <h3 className="title m-auto">
+        Task manager
+        <hr />
+      </h3>
+      {loader && <Loader/>}
       <div className="main-links">
-        <NavLink exact to="/tasks-list" activeClassName={activePage} className="btn btn-outline-primary">
+        <NavLink
+          exact
+          to="/tasks-list"
+          activeClassName={activePage}
+          className="btn btn-outline-primary"
+        >
           Список заданий
         </NavLink>
-        <NavLink to="/global_tasks-list" activeClassName={activePage} className="btn btn-outline-primary">
+        <NavLink
+          to="/global_tasks-list"
+          activeClassName={activePage}
+          className="btn btn-outline-primary"
+        >
           Список глобадьных заданий
         </NavLink>
-        <NavLink to="/event-calendar" activeClassName={activePage} className="btn btn-outline-primary">
+        <NavLink
+          to="/event-calendar"
+          activeClassName={activePage}
+          className="btn btn-outline-primary"
+        >
           Календарь событий
         </NavLink>
-        <NavLink to="/projects-list" activeClassName={activePage} className="btn btn-outline-primary">
+        <NavLink
+          to="/projects-list"
+          activeClassName={activePage}
+          className="btn btn-outline-primary"
+        >
           Проекты
         </NavLink>
         <button

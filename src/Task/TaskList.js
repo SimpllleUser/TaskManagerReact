@@ -1,7 +1,7 @@
 import React from "react";
 import TaskCard from "../Task/TaskCard";
 
-const _TaskList = ({global_taskId,tasks}) => {
+const TaskList = ({global_taskId,tasks}) => {
 
   const rowsByStatus = () => {
     var elements = [
@@ -38,4 +38,4 @@ const _TaskList = ({global_taskId,tasks}) => {
   );
 };
 
-export default _TaskList;
+export default TaskList;
