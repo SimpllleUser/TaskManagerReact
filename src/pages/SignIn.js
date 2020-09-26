@@ -2,11 +2,13 @@
 import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
-
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
+import { useHttp } from "../hooks/http.hook";
+
 
 const SignIn = () => {
+  const { request } = useHttp();
   const [form, setForm] = useState({ login: "", password: "" });
   const auth = useContext(AuthContext);
   const [redirect, setRedirect] = useState(false);
@@ -14,12 +16,12 @@ const SignIn = () => {
     event.preventDefault();
     const { login, password } = form;
     if (password.trim().length >= 4 && login.trim().length >= 4) {
-      const res = await axios.post("http://localhost:8080/api/auth/signin", {
+      const res = await request("http://localhost:8080/api/auth/signin","post",{
         password,
         username: login,
-      });
-      auth.login(res.data.accessToken, res.data.id);
-      setRedirect(!!res.data.accessToken && !!res.data.id);
+       })
+      auth.login(res.accessToken, res.id);
+      setRedirect(!!res.accessToken && !!res.id);
     }
   };
 

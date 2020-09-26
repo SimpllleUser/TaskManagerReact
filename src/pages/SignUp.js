@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
-
-import axios from "axios";
+import { useHttp } from "../hooks/http.hook";
 
 const SignUp = () => {
+  const { request } = useHttp();
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [redirect, setRedirect] = useState(false);
-
   const submitHandler = async () => {
     const { username, email, password } = form;
 
     if (password.trim().length >= 4 && username.trim().length >= 4) {
       try {
-        const res = await axios.post("http://localhost:8080/api/auth/signup", {
+        const res = request("http://localhost:8080/api/auth/signup","post", {
           username,
           email,
           password,
         });
-        if(res.data.allow){
+        if(res.allow){
        setRedirect(res.data.allow)
       }
       } catch (err) {

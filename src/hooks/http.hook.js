@@ -13,7 +13,7 @@ export const useHttp = () => {
         setLoading(true)
         try {
             dispatch(showLoader())
-            const res = await axios[method](url)
+            const res = await axios[method](url, body)
             const data = res.data
                 // setLoading(false)
             dispatch(hideLoader())
