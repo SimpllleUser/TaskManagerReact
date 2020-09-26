@@ -1,27 +1,52 @@
 import axios from "axios"
 import { CREATE_G_TASK, DELETE_G_TASK, EDIT_G_TASK, SET_G_TASKS } from "./types";
+import { showLoader, hideLoader } from "../loader/actions"
 
 const URL_API = 'http://localhost:8080/api'
 export const createGlobalTask = (id, global_task) => async(dispatch) => {
-    const res = await axios.post(URL_API + '/project/create/global-task', { id, global_task })
-    console.log("CREATE", res.data)
-    dispatch({ type: CREATE_G_TASK, global_task: res.data })
+    try {
+        dispatch(showLoader())
+        const res = await axios.post(URL_API + '/project/create/global-task', { id, global_task })
+        dispatch({ type: CREATE_G_TASK, global_task: res.data })
+        dispatch(hideLoader())
+    } catch (err) {
+        dispatch(hideLoader())
+        console.log(err)
+    }
+
 }
 
 
 export const deleteGlobalTask = (id, global_taskId) => async(dispatch) => {
-    await axios.delete(URL_API + '/project/delete/global-task', { data: { id, global_taskId } })
-    dispatch({ type: DELETE_G_TASK, id: global_taskId })
+    try {
+        dispatch(showLoader())
+        await axios.delete(URL_API + '/project/delete/global-task', { data: { id, global_taskId } })
+        dispatch({ type: DELETE_G_TASK, id: global_taskId })
+        dispatch(hideLoader())
+    } catch (err) {
+        dispatch(hideLoader())
+        console.log(err)
+    }
+
 }
 
 export const editGlobalTask = (global_task) => async(dispatch) => {
     const { id, title, description } = global_task
-    await axios.put(URL_API + '/global_task/' + id, {
-        title,
-        description,
-    })
+    try {
+        dispatch(showLoader())
+        await axios.put(URL_API + '/global_task/' + id, {
+            title,
+            description,
+        })
 
-    dispatch({ type: EDIT_G_TASK, global_task })
+        dispatch({ type: EDIT_G_TASK, global_task })
+        dispatch(hideLoader())
+
+    } catch (err) {
+        dispatch(hideLoader())
+        console.log(err)
+    }
+
 }
 
 export const setGlobalTasks = (global_tasks) => ({
