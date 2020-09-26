@@ -14,9 +14,11 @@ export const getAllEvents = () => async(dispatch) => {
 }
 
 export const createEvent = (event) => async(dispatch) => {
+
     const response = await axios.post(URL_API + '/calendar-event', {
         event
     })
+    console.log('response', response)
     dispatch({ type: CREATE_CALENDAR_EVENT, event: response.data })
 
 }
@@ -26,7 +28,7 @@ export const deleteEvent = (id) => async(dispatch) => {
     dispatch({ type: DELETE_EVENT, id })
 }
 
-export const saveEditableEvent = (event) => async(dispatch) => {
+export const editEvent = (event) => async(dispatch) => {
     axios.put(URL_API + '/calendar-event/' + event.id, {
         event
     })

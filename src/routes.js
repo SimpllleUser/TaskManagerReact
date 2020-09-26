@@ -1,13 +1,9 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import TaskCreate from "./pages/TaskCreate";
-import TaskList from "./pages/TaskList";
-import EditTask from "./pages/TaskEdit";
 import EventCalendar from "./pages/EventCalendar";
 import TaskDetail from "./Task/TaskDeatail";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
-import ProjectCreate from "./pages/ProjectCreate";
 import ProjectsList from "./Project/ProjectList";
 import ProjectDetail from "./Project/ProjectDeatail"
 import GlobalTaskDetail from "./GlobalTask/GlobalTaskDeatail";
@@ -18,22 +14,10 @@ export const useRoutes = (isAuthUser) => {
 
       <Switch>
         <Route exact path="/">
-          <TaskList />
-        </Route>
-        <Route exact path="/event-calendar">
           <EventCalendar />
-        </Route>
-        <Route path="/edit-task/:id">
-          <EditTask />
         </Route>
         <Route path="/detail-task/:id">
           <TaskDetail />
-        </Route>
-        <Route exact path="/create-task">
-          <TaskCreate />
-        </Route>
-        <Route exact path="/create-project">
-          <ProjectCreate />
         </Route>
         <Route exact path="/projects-list">
           <ProjectsList />

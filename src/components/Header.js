@@ -16,17 +16,14 @@ const Header = () => {
             </h3>
 
       <div className="main-links">
-        <NavLink exact to="/" activeClassName={activePage} className="btn btn-outline-primary">
+        <NavLink exact to="/tasks-list" activeClassName={activePage} className="btn btn-outline-primary">
           Список заданий
         </NavLink>
-        <NavLink to="/create-task" activeClassName={activePage} className="btn btn-outline-primary">
-          Создать задание
+        <NavLink to="/global_tasks-list" activeClassName={activePage} className="btn btn-outline-primary">
+          Список глобадьных заданий
         </NavLink>
         <NavLink to="/event-calendar" activeClassName={activePage} className="btn btn-outline-primary">
           Календарь событий
-        </NavLink>
-        <NavLink to="/create-project" activeClassName={activePage} className="btn btn-outline-primary">
-          Создать проект
         </NavLink>
         <NavLink to="/projects-list" activeClassName={activePage} className="btn btn-outline-primary">
           Проекты
