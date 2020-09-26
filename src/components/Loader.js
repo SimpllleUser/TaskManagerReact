@@ -1,7 +1,9 @@
 import React from "react";
 
-export const Loader = () => (
-  <div className="spinner-border text-primary">
+const Loader = () => (
+  <div className="spinner-border text-primary" id="loader">
     <span className="sr-only"> Loading... </span>
   </div>
 );
+
+export default Loader

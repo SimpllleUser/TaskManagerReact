@@ -20,7 +20,7 @@ const GlobalTaskDetail = () => {
       dispatch(initTasks(res.tasks));
     };
     getGlobalTask();
-  }, [id, request]);
+  }, [dispatch, id, request]);
   const tasks = useSelector((state) => state.tasks.tasks);
   return (
     <div className="global_task--detail">

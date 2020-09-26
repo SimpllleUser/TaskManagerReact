@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import moment from "moment";
 import { ArrowLeft, ArrowRight, PlusCircle } from "react-feather";
 import EventList from "../Event/EventList";
-import Modal from "./Modal";
+import Modal from "../Modals/Modal";
+import EventForm from "../Event/EventForm"
 import { getAllEvents } from "../store/events/actions";
 
 const Calendar = () => {
@@ -145,11 +146,11 @@ const Calendar = () => {
             data-toggle="modal"
             data-target={"#date-" + dayNow}
           >
-            <Modal date={dateNow} forElement="form-create-event" />
+            <Modal forElement="create-event" title="Create event" component={<EventForm event={{ date:dateNow }}/>} />
             <PlusCircle
               size="36"
               data-toggle="modal"
-              data-target=".form-create-event"
+              data-target="#create-event"
             />
           </div>
         </div>
