@@ -6,6 +6,7 @@ import {
     EDIT_TASK,
 } from "./types";
 import { showLoader, hideLoader } from "../loader/actions"
+import { showError } from "../error/actions"
 const URL_API = 'http://localhost:8080/api'
 
 export const createTask = (task) => async(dispatch) => {
@@ -18,7 +19,7 @@ export const createTask = (task) => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
-        console.log("err", err)
+        dispatch(showError(err))
     }
 
 }
@@ -36,8 +37,7 @@ export const createTaskInGlobal_task = (payload) => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
-
-        console.log("Err", err)
+        dispatch(showError(err))
     }
     dispatch(hideLoader())
 
@@ -54,7 +54,7 @@ export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
         dispatch({ type: DELETE_TASK, id: taskId })
     } catch (err) {
         dispatch(hideLoader())
-        console.log('err')
+        dispatch(showError(err))
     }
     dispatch(hideLoader())
 
@@ -75,7 +75,7 @@ export const saveEditableTask = ({ task }) => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
-        console.log("err", err)
+        dispatch(showError(err))
     }
 
 }

@@ -1,5 +1,6 @@
 import axios from "axios"
 import { CREATE_G_TASK, DELETE_G_TASK, EDIT_G_TASK, SET_G_TASKS } from "./types";
+import { showError } from "../error/actions"
 import { showLoader, hideLoader } from "../loader/actions"
 
 const URL_API = 'http://localhost:8080/api'
@@ -11,7 +12,8 @@ export const createGlobalTask = (id, global_task) => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
-        console.log(err)
+        dispatch(showError(err))
+
     }
 
 }
@@ -25,7 +27,8 @@ export const deleteGlobalTask = (id, global_taskId) => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
-        console.log(err)
+        dispatch(showError(err))
+
     }
 
 }
@@ -44,7 +47,8 @@ export const editGlobalTask = (global_task) => async(dispatch) => {
 
     } catch (err) {
         dispatch(hideLoader())
-        console.log(err)
+        dispatch(showError(err))
+
     }
 
 }

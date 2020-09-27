@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState, useCallback } from "react"
 import { useDispatch } from "react-redux";
 import { showLoader, hideLoader } from "../store/loader/actions"
+import { showError } from "../store/error/actions"
 // !FIX useHtpp add useCallback
 export const useHttp = () => {
     const dispatch = useDispatch();
@@ -18,10 +19,10 @@ export const useHttp = () => {
                 // setLoading(false)
             dispatch(hideLoader())
             return data
-        } catch (error) {
+        } catch (err) {
             // setLoading(false)
             dispatch(hideLoader())
-            console.log(error)
+            dispatch(showError(err))
         }
         dispatch(hideLoader())
 
