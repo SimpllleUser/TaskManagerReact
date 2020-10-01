@@ -9,22 +9,22 @@ const SelectProject = () => {
   const dispatch = useDispatch();
   const [project, setProject] = useState({ title: "" });
   const projects = useSelector((state) => state.projects.projects);
-  const [selectedProject, setSelectedProject] = useState('')
+  const [selectedProject, setSelectedProject] = useState('1')
   useEffect(() => {
     const getProjects = async () => {
       dispatch(getAllProjects());
     };
     getProjects();
+
   }, [request]);
   // const projects = useSelector((state) => state.projects.projects);
-  const projectsList = projects.map((project, index) => (
-    <a class="dropdown-item" href="#" key={index} onClick={() => {setSelectedProject(project.title)}}>
+  const projectsList = projects.map((project, index) =>selectedProject != project.title && (
+    <a class={`dropdown-item ${project.title == selectedProject ? 'active' : ''}`} href="#" key={index} onClick={() => {setSelectedProject(project.title)}}>
       {project.title}
     </a>
   ));
   return (
     <div className="selector_project">
-      {console.log('projects.lenght',projects.length)}
       {projects.length <= 1 ? <h3>{projects[0]?.title}</h3> :
       <div className="dropdown">
         <button
