@@ -33,11 +33,11 @@ const Header = () => {
           Список заданий
         </NavLink>
         <NavLink
-          to="/global_tasks-list"
+          to="/global_task-list"
           activeClassName={activePage}
           className="btn btn-outline-primary"
         >
-          Список глобадьных заданий
+          Список глобальных заданий
         </NavLink>
         <NavLink
           to="/event-calendar"

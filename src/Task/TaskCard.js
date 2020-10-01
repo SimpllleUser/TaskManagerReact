@@ -39,7 +39,7 @@ const TaskCard = ({ global_taskId,task }) => {
           />
         }
       />
-
+     { global_taskId && <div>
       <button
         className="btn btn-warning"
         data-toggle="modal"
@@ -53,6 +53,7 @@ const TaskCard = ({ global_taskId,task }) => {
       >
         Delete
       </button>
+      </div>}
     </div>
   );
 };
