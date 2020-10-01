@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useSelector } from "react-redux";
 import  Loader from "./Loader";
 import Toast from "./Toast";
+import SelectProject from "./SelectProject"
 
 const Header = () => {
   const auth = useContext(AuthContext);
@@ -20,6 +21,7 @@ const Header = () => {
         <hr />
       </h3>
       {loader && <Loader/>}
+      <SelectProject/>
       <Toast/>
       <div className="main-links">
         <NavLink

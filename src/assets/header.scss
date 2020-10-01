@@ -1,0 +1,21 @@
+            #selectProject {
+                &:after {
+                    // display: none;
+                    position: absolute;
+                    top: 50%;
+                    opacity: 0;
+                    transition: all .3s;
+                }
+                &:hover {
+                    &:after {
+                        position: relative;
+                        opacity: 1;
+                    }
+                    transition: all .3s;
+                }
+                &.none {
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
