@@ -13,6 +13,7 @@ const SelectProject = () => {
   useEffect(() => {
     const getProjects = async () => {
       dispatch(getAllProjects());
+      setProjectData(JSON.parse(localStorage.getItem('project')))
     };
     getProjects();
   }, [request]);
