@@ -13,9 +13,19 @@ export const getAllProjects = () => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
-        console.log("ERR", err.message)
     }
 
+}
+
+export const getAllDataFromProject = (id) => async(dispatch) => {
+    try {
+        dispatch(showLoader())
+        const response = await axios.get(URL_API + '/project/allData/' + id)
+        console.log('response', response)
+        dispatch(hideLoader())
+    } catch (err) {
+        dispatch(hideLoader())
+    }
 }
 
 export const createProject = (project) => async(dispatch) => {

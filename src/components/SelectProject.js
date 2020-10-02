@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHttp } from "../hooks/http.hook";
-import { getAllProjects } from "../store/project/actions";
+import { getAllProjects,getAllDataFromProject } from "../store/project/actions";
 
 const SelectProject = () => {
   const { request } = useHttp();
@@ -19,13 +19,14 @@ const SelectProject = () => {
   const setProjectData = (project) => {
     localStorage.setItem('project',JSON.stringify({title:project.title,id:project.id}))
     setSelectedProject(project.title)
+    dispatch(getAllDataFromProject(project.id))
   }
 
   const projectsList = projects.map(
     (project, index) =>
       selectedProject != project.title && (
         <a
-          class={"dropdown-item"}
+          className={"dropdown-item"}
           href="#"
           key={index}
           onClick={() => {
@@ -55,7 +56,7 @@ const SelectProject = () => {
             {selectedProject || projects[0]?.title}
           </button>
           {
-            <div class="dropdown-menu" aria-labelledby="selectProject">
+            <div className="dropdown-menu" aria-labelledby="selectProject">
               {projectsList}
             </div>
           }
