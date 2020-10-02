@@ -29,12 +29,13 @@ export const getAllDataFromProject = (id) => async(dispatch) => {
 }
 
 export const createProject = (project) => async(dispatch) => {
-    const { title, description } = project
+    const { title, description, user_id } = project
     try {
         dispatch(showLoader())
         const response = await axios.post(URL_API + '/project', {
             title,
-            description
+            description,
+            user_id
         })
         dispatch({ type: CREATE_PROJECT, project: response.data })
         dispatch(hideLoader())
@@ -44,10 +45,11 @@ export const createProject = (project) => async(dispatch) => {
     }
 }
 
-export const deleteProject = (id) => async(dispatch) => {
+export const deleteProject = ({ id, user_id }) => async(dispatch) => {
     dispatch(showLoader())
+
     try {
-        await axios.delete(URL_API + '/project/' + id)
+        await axios.delete(URL_API + '/project/' + id, { data: { user_id } })
         dispatch({ type: DELETE_PROJECT, id })
         dispatch(hideLoader())
     } catch (err) {
