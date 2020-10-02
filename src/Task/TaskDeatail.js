@@ -14,7 +14,7 @@ const TaskDetail = () => {
     const getTask = async () => {
       const res = await request("http://localhost:8080/api/tasks/id=" + id);
       setTask(res);
-      console.log("RES",res)
+      // ! ADD REQYEST
     };
     getTask();
   }, [id, request]);

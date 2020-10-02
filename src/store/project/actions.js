@@ -1,5 +1,7 @@
 import axios from "axios"
 import { CREATE_PROJECT, GET_PROJECTS, DELETE_PROJECT, EDIT_PROJECT } from "./types";
+import { initTasks } from "../tasks/actions"
+import { setGlobalTasks } from "../global_task/actions"
 import { showLoader, hideLoader } from "../loader/actions"
 const URL_API = 'http://localhost:8080/api'
 
@@ -20,8 +22,9 @@ export const getAllProjects = () => async(dispatch) => {
 export const getAllDataFromProject = (id) => async(dispatch) => {
     try {
         dispatch(showLoader())
-        const response = await axios.get(URL_API + '/project/allData/' + id)
-        console.log('response', response)
+        const res = await axios.get(URL_API + '/project/allData/' + id)
+        dispatch(setGlobalTasks(res.data.global_tasks))
+        dispatch(initTasks(res.data.tasks))
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
@@ -41,7 +44,6 @@ export const createProject = (project) => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
-        console.log("ERR", err.message)
     }
 }
 
@@ -53,7 +55,7 @@ export const deleteProject = ({ id, user_id }) => async(dispatch) => {
         dispatch({ type: DELETE_PROJECT, id })
         dispatch(hideLoader())
     } catch (err) {
-        console.log(err)
+        // ! SHOW TOAST
         dispatch(hideLoader())
 
     }
@@ -72,7 +74,7 @@ export const editProject = (project) => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
-        console.log(err)
+            // ! SHOW TOAST
     }
 
 }

@@ -54,8 +54,6 @@ const Calendar = () => {
     }
     let firstElem = month[0].name;
     let lenthEmptDay = daysOfWeek.findIndex((m) => m === firstElem);
-    console.log('lenthEmptDay',lenthEmptDay)
-
     let prevMonthDay = setPrevMonthDay(lenthEmptDay);
     return prevMonthDay ? [...prevMonthDay, ...month] : month;
   })();

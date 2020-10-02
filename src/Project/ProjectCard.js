@@ -11,7 +11,6 @@ const ProjectCard = ({ title, description, id }) => {
 
   const deleteHundelerProject = (id) => {
     if (!id) {
-      console.log("Err contexnt empty project ID");
       return;
     }
     dispatch(deleteProject(id));

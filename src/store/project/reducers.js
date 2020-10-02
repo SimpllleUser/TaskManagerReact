@@ -8,7 +8,6 @@ const initialState = {
 export const projectsReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_PROJECT:
-            console.log("REDUCER", action.project)
             return {
                 ...state,
                 projects: state.projects.concat([action.project])

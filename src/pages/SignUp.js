@@ -21,7 +21,7 @@ const SignUp = () => {
        setRedirect(res.data.allow)
       }
       } catch (err) {
-        console.log('err',err);
+        // ! SHOW TOAST
       }
     }
   };

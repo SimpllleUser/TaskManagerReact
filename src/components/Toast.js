@@ -13,7 +13,7 @@ const Toast = () => {
       class="alert alert-primary alert-dismissible fade show"
       id="err_block"
       role="alert"
-    >{console.log("ERR",err)}
+    >
       <strong>{err.title}</strong>
       <br />
       {err.body}

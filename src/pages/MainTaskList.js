@@ -11,8 +11,8 @@ const MainTaskList = () => {
   const { request, loading } = useHttp();
   useEffect(() => {
     const getAllTasksProject = async () => {
+      // ! ADD TRY CATCH AND SHOW TOAST
       const tasks = await request("http://localhost:8080/api/tasks/all_tasks/" + id);
-      console.log('res',tasks)
       dispatch(initTasks(tasks));
     };
     getAllTasksProject();

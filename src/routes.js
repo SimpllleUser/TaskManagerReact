@@ -32,6 +32,9 @@ export const useRoutes = (isAuthUser) => {
         <Route exact path="/global_task-list">
           <GlobalTaskList/>
         </Route>
+        <Route exact path="/event-calendar">
+          <EventCalendar/>
+        </Route>
         <Redirect to="/"/>
       </Switch>
     );
