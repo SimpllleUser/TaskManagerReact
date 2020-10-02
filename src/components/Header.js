@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, NavLink, Redirect } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useSelector } from "react-redux";
-import  Loader from "./Loader";
+import Loader from "./Loader";
 import Toast from "./Toast";
+import SelectProject from "./SelectProject";
 
 const Header = () => {
   const auth = useContext(AuthContext);
@@ -15,13 +16,10 @@ const Header = () => {
   const loader = useSelector((state) => state.loader.loader);
   return (
     <header className="navbar navbar-dark bg-light">
-      <h3 className="title m-auto">
-        Task manager
-        <hr />
-      </h3>
-      {loader && <Loader/>}
-      <Toast/>
+      {loader && <Loader />}
+      <Toast />
       <div className="main-links">
+        <SelectProject />
         <NavLink
           exact
           to="/tasks-list"
@@ -31,11 +29,11 @@ const Header = () => {
           Список заданий
         </NavLink>
         <NavLink
-          to="/global_tasks-list"
+          to="/global_task-list"
           activeClassName={activePage}
           className="btn btn-outline-primary"
         >
-          Список глобадьных заданий
+          Список глобальных заданий
         </NavLink>
         <NavLink
           to="/event-calendar"

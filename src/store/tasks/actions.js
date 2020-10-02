@@ -26,7 +26,6 @@ export const createTask = (task) => async(dispatch) => {
 
 export const createTaskInGlobal_task = (payload) => async(dispatch) => {
     const { id, task } = payload
-    console.log("TASK", task)
     try {
         dispatch(showLoader())
         const res = await axios.post(URL_API + '/tasks/create/in_global-task', {

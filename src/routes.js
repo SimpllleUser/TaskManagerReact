@@ -7,14 +7,15 @@ import SignIn from "./pages/SignIn";
 import ProjectsList from "./Project/ProjectList";
 import ProjectDetail from "./Project/ProjectDeatail"
 import GlobalTaskDetail from "./GlobalTask/GlobalTaskDeatail";
-
+import GlobalTaskList from "./GlobalTask/GlobalTaskList"
+import MainTaskList from "./pages/MainTaskList"
 export const useRoutes = (isAuthUser) => {
   if (isAuthUser) {
     return (
 
       <Switch>
         <Route exact path="/">
-          <EventCalendar />
+          <MainTaskList />
         </Route>
         <Route path="/detail-task/:id">
           <TaskDetail />
@@ -28,7 +29,12 @@ export const useRoutes = (isAuthUser) => {
         <Route exact path="/detail-global_task/:id">
           <GlobalTaskDetail/>
         </Route>
-        
+        <Route exact path="/global_task-list">
+          <GlobalTaskList/>
+        </Route>
+        <Route exact path="/event-calendar">
+          <EventCalendar/>
+        </Route>
         <Redirect to="/"/>
       </Switch>
     );

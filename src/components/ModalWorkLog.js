@@ -9,19 +9,20 @@ const ModalWorkLog = (props) => {
     setworkLog(event.target.value);
   };
 
-  const seNewtWorkLog = () => {
+  const seNewtWorkLog = async () => {
     if (!workLog || workLog < 1) {
       return;
     }
     const newWorkLog = +props.workLog + +workLog;
     props.changeWorkLog(newWorkLog);
-    axios
-      .put("http://localhost:8080/api/tasks/work-log/" + props.id, {
+    try {
+      // ! ADD REQUEST
+      await axios.put("http://localhost:8080/api/tasks/work-log/" + props.id, {
         workLog: newWorkLog,
       })
-      .then((response) => {
-        console.log(response);
-      });
+    } catch (err) {
+      // ! FIX ADD SHOW ERR 
+    }
     setworkLog(0);
   };
 

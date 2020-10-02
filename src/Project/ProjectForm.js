@@ -6,7 +6,6 @@ import {editProject} from "../store/project/actions"
 
 const ProjectForm = (props) => {
   const dispatch = useDispatch();
-
   // const [redirect, setRedirect] = useState(false);
   const [projectForm, setProjectForm] = useState({
     id: props.id || '',
@@ -26,7 +25,8 @@ const ProjectForm = (props) => {
       const Project = {
         id,
         title,
-        description
+        description,
+        user_id:JSON.parse(localStorage.getItem('user')).userId
       }
       id ? dispatch(editProject(Project)) : dispatch(createProject(Project)) 
     }

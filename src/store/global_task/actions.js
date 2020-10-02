@@ -13,9 +13,7 @@ export const createGlobalTask = (id, global_task) => async(dispatch) => {
     } catch (err) {
         dispatch(hideLoader())
         dispatch(showError(err))
-
     }
-
 }
 
 
@@ -28,9 +26,7 @@ export const deleteGlobalTask = (id, global_taskId) => async(dispatch) => {
     } catch (err) {
         dispatch(hideLoader())
         dispatch(showError(err))
-
     }
-
 }
 
 export const editGlobalTask = (global_task) => async(dispatch) => {
@@ -41,16 +37,13 @@ export const editGlobalTask = (global_task) => async(dispatch) => {
             title,
             description,
         })
-
         dispatch({ type: EDIT_G_TASK, global_task })
         dispatch(hideLoader())
-
     } catch (err) {
         dispatch(hideLoader())
         dispatch(showError(err))
 
     }
-
 }
 
 export const setGlobalTasks = (global_tasks) => ({

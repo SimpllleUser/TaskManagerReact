@@ -1,5 +1,7 @@
 import axios from "axios"
 import { CREATE_PROJECT, GET_PROJECTS, DELETE_PROJECT, EDIT_PROJECT } from "./types";
+import { initTasks } from "../tasks/actions"
+import { setGlobalTasks } from "../global_task/actions"
 import { showLoader, hideLoader } from "../loader/actions"
 const URL_API = 'http://localhost:8080/api'
 
@@ -13,35 +15,47 @@ export const getAllProjects = () => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
-        console.log("ERR", err.message)
     }
 
 }
 
+export const getAllDataFromProject = (id) => async(dispatch) => {
+    try {
+        dispatch(showLoader())
+        const res = await axios.get(URL_API + '/project/allData/' + id)
+        dispatch(setGlobalTasks(res.data.global_tasks))
+        dispatch(initTasks(res.data.tasks))
+        dispatch(hideLoader())
+    } catch (err) {
+        dispatch(hideLoader())
+    }
+}
+
 export const createProject = (project) => async(dispatch) => {
-    const { title, description } = project
+    const { title, description, user_id } = project
     try {
         dispatch(showLoader())
         const response = await axios.post(URL_API + '/project', {
             title,
-            description
+            description,
+            user_id
         })
         dispatch({ type: CREATE_PROJECT, project: response.data })
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
-        console.log("ERR", err.message)
     }
 }
 
-export const deleteProject = (id) => async(dispatch) => {
+export const deleteProject = ({ id, user_id }) => async(dispatch) => {
     dispatch(showLoader())
+
     try {
-        await axios.delete(URL_API + '/project/' + id)
+        await axios.delete(URL_API + '/project/' + id, { data: { user_id } })
         dispatch({ type: DELETE_PROJECT, id })
         dispatch(hideLoader())
     } catch (err) {
-        console.log(err)
+        // ! SHOW TOAST
         dispatch(hideLoader())
 
     }
@@ -60,7 +74,7 @@ export const editProject = (project) => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
-        console.log(err)
+            // ! SHOW TOAST
     }
 
 }
