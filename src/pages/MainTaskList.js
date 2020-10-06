@@ -19,7 +19,6 @@ const MainTaskList = () => {
   }, [id, request]);
   const tasks = useSelector((state) => state.tasks.tasks);
     return <div id="main-task-list">
-      {JSON.stringify(tasks)}
         <TaskList  tasks={tasks} />
     </div>
 }
