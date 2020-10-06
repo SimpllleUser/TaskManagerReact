@@ -2,23 +2,25 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHttp } from "../hooks/http.hook";
-import { getAllProjects,getAllDataFromProject } from "../store/project/actions";
+import { getAllDataFromProject } from "../store/project/actions";
 
 const SelectProject = () => {
   const { request } = useHttp();
   const dispatch = useDispatch();
-  const [project, setProject] = useState({ title: "" });
-  const projects = useSelector((state) => state.projects.projects);
-  const [selectedProject, setSelectedProject] = useState(JSON.parse(localStorage.getItem('project')).title);
+  const [projects, setProjects] = useState([]);
+  const [selectedProject, setSelectedProject] = useState();
   useEffect(() => {
     const getProjects = async () => {
-      dispatch(getAllProjects());
-      setProjectData(JSON.parse(localStorage.getItem('project')))
+      const res = await request('http://localhost:8080/api/project')
+      setProjects(res)
     };
+    const initProject = JSON.parse(localStorage.getItem('project')) || projects[0]
+    setProjectData(initProject)
     getProjects();
   }, [request]);
-  const setProjectData = (project) => {
-    localStorage.setItem('project',JSON.stringify({title:project.title,id:project.id}))
+  const setProjectData = (project = projects[0]) => {
+    const {title, id} = project
+    localStorage.setItem('project', JSON.stringify({title,id}))
     setSelectedProject(project.title)
     dispatch(getAllDataFromProject(project.id))
   }
@@ -63,6 +65,7 @@ const SelectProject = () => {
           }
         </div>
       )}
+      {console.log()}
     </div>
   );
 };

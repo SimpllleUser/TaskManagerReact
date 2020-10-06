@@ -7,7 +7,7 @@ import { initTasks } from "../store/tasks/actions";
 const MainTaskList = () => {
 
   const dispatch = useDispatch();
-  const { id } = JSON.parse(localStorage.getItem('project'))
+  // const { id } = JSON.parse(localStorage.getItem('project'))
   const { request, loading } = useHttp();
   // useEffect(() => {
   //   const getAllTasksProject = async () => {
