@@ -17,6 +17,15 @@
                 .card-text {
                     height: 100px;
                 }
+                .options-block {
+                    position: absolute;
+                    top: 15px;
+                    right: 10px;
+                    .options-block__body {
+                        top: 30px;
+                        z-index: 999;
+                    }
+                }
             }
         }
     }

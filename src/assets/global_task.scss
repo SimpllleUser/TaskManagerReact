@@ -1,0 +1,15 @@
+.bock_global_task-list_body {
+    position: relative;
+    .options-block {
+        width: 20px;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 999;
+        .options-block__body {
+            position: absolute;
+            top: 25px;
+            left: -90px;
+        }
+    }
+}

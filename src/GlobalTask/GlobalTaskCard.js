@@ -1,4 +1,5 @@
 import React from "react";
+import Options from "../components/Options";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteGlobalTask } from "../store/global_task/actions";
@@ -9,33 +10,44 @@ const GlobalTaskCard = ({ id, global_taskId, title, description }) => {
 
   return (
     <div className="global_task">
-      <h4> 
+      <h4>
         <NavLink to={`/detail-global_task/` + global_taskId}>{title}</NavLink>
       </h4>
       <div>
         <p>{description}</p>
         {/* <span>Progress</span>00% */}
-        <button
-          onClick={() => {
-            dispatch(deleteGlobalTask(id, global_taskId));
-          }}
-          className="btn btn-danger global_task-delete"
-        >
-          &times;
-        </button>
+
+        <Options
+          items={[
+            <div>
+              <div
+                className="list-group-item list-group-item-action"
+                data-toggle="modal"
+                data-target={"#edit-global_task" + global_taskId}
+              >
+                Edit
+              </div>
+              <div
+                className="list-group-item list-group-item-action"
+                onClick={() => {
+                  dispatch(deleteGlobalTask(id, global_taskId));
+                }}
+              >
+                Delete
+              </div>
+            </div>,
+          ]}
+        />
         <Modal
           forElement={"edit-global_task" + global_taskId}
           component={
-            <GlobalTaskForm id={global_taskId} title={title} description={description} />
+            <GlobalTaskForm
+              id={global_taskId}
+              title={title}
+              description={description}
+            />
           }
         />
-        <button
-          className="btn btn-warning"
-          data-toggle="modal"
-          data-target={"#edit-global_task" + global_taskId}
-        >
-          Edit
-        </button>
       </div>
     </div>
   );
