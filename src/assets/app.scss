@@ -32,3 +32,14 @@
     left: 10px;
     position: absolute;
 }
+
+.options-block {
+    position: relative;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    .options-block__body {
+        position: absolute;
+        left: 20px;
+    }
+}

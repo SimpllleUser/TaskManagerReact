@@ -166,6 +166,7 @@
     max-width: 400px;
     min-height: 100px;
     margin-top: 20px;
+    position: relative;
     p.evet-description.card-text {
         padding: 25px;
     }
@@ -184,6 +185,15 @@
                     opacity: 1;
                 }
             }
+        }
+    }
+    .options-block {
+        position: absolute;
+        right: 10px;
+        top: 15px;
+        .options-block__body {
+            top: 30px;
+            left: -70px;
         }
     }
 }

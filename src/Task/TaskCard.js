@@ -1,18 +1,17 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import Options from "../components/Options";
 import Modal from "../Modals/Modal";
 import TaskForm from "./TaskForm";
-import {deleteTaskInGlobal_task} from "../store/tasks/actions"
-// import EditTask from "../pages/TaskEdit";
+import { deleteTaskInGlobal_task } from "../store/tasks/actions";
 import SelectorElement from "../components/SelectorElement";
 
-const TaskCard = ({ global_taskId,task }) => {
+const TaskCard = ({ global_taskId, task }) => {
   const dispatch = useDispatch();
 
   return (
     <div className="task-card card">
-      {/* <Route path="/:id/:param?" component={EditTask} /> */}
       <div className="card-body">
         <div className="card-detail-info">
           <h5 className="card-title ">
@@ -39,21 +38,36 @@ const TaskCard = ({ global_taskId,task }) => {
           />
         }
       />
-     { global_taskId && <div>
-      <button
-        className="btn btn-warning"
-        data-toggle="modal"
-        data-target={"#edit-task" + task.id}
-      >
-        Edit
-      </button>
-      <button
-        className="btn btn-danger"
-        onClick={() => {dispatch(deleteTaskInGlobal_task({id:global_taskId,taskId:task.id}))}}
-      >
-        Delete
-      </button>
-      </div>}
+      {global_taskId && (
+        <div>
+          <Options
+            items={[
+              <div>
+                <div
+                  className="list-group-item list-group-item-action"
+                  data-toggle="modal"
+                  data-target={"#edit-task" + task.id}
+                >
+                  Edit
+                </div>
+                <div
+                  className="list-group-item list-group-item-action"
+                  onClick={() => {
+                    dispatch(
+                      deleteTaskInGlobal_task({
+                        id: global_taskId,
+                        taskId: task.id,
+                      })
+                    );
+                  }}
+                >
+                  Delete
+                </div>
+              </div>,
+            ]}
+          />
+        </div>
+      )}
     </div>
   );
 };

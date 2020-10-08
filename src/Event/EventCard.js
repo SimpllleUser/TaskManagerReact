@@ -1,4 +1,5 @@
 import React from "react";
+import Options from "../components/Options";
 import { useDispatch } from "react-redux";
 import { X, Edit2 } from "react-feather";
 import { deleteEvent } from "../store/events/actions";
@@ -33,21 +34,30 @@ const EventCard = ({ event }) => {
               />
             }
           />
-          <Edit2
-            className="text-primary"
-            data-toggle="modal"
-            data-target={"#edit-event" + id}
-          />
-        </div>
-        <div className="delete_event">
-          <X
-            className="text-danger border border-danger rounded"
-            onClick={() => {
-              dispatch(deleteEvent(event.id));
-            }}
-          />
         </div>
       </div>
+
+      <Options
+        items={[
+          <div>
+            <div
+              className="list-group-item list-group-item-action"
+              data-toggle="modal"
+              data-target={"#edit-event" + id}
+            >
+              Edit
+            </div>
+            <div
+              className="list-group-item list-group-item-action"
+              onClick={() => {
+                dispatch(deleteEvent(event.id));
+              }}
+            >
+              Delete
+            </div>
+          </div>,
+        ]}
+      />
     </div>
   );
 };

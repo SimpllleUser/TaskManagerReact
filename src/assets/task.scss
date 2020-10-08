@@ -25,6 +25,12 @@
     border-radius: 10px;
     transition: .5s;
     position: relative;
+    .options-block {
+        position: absolute;
+        top: 10px;
+        right: 5px;
+        width: 20px;
+    }
     .card-body {
         display: grid;
         //grid-template-columns: repeat(2, 1fr);
