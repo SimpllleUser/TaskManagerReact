@@ -29,13 +29,13 @@ const GlobalTaskDetail = () => {
         <h3>{global_task.title}</h3>
         <p>{global_task.description}</p>
       </div>
-      {/* <ModalCreateTask forElement="create-task" id={id} /> */}
       <Modal title="Create task" forElement="create-task" component={<TaskForm global_task_id={id}/>} />
       <h3>
         Tasks list
         <PlusSquare size="36" data-toggle="modal" data-target="#create-task" />
       </h3>
-      <TaskList global_taskId={id} tasks={tasks} />
+      {tasks.length ? <TaskList global_taskId={id} tasks={tasks} /> : "No tasks" }
+      
     </div>
   );
 };
