@@ -35,10 +35,10 @@ const ProjectsList = () => {
   return (
     <div className="project_list_container">
       {loading && <h3>Loading</h3>}
-      <h3>
+      <h3 className="project_list_title">
         Projects
         <Modal forElement="project-form" title="Create project" component={<ProjectForm/>} />
-        <PlusSquare size="36" data-toggle="modal" data-target="#project-form" />
+        <PlusSquare size="24" className="ml-5" data-toggle="modal" data-target="#project-form" />
       </h3>
 
       <div className="projetcs_list">{projectsList}</div>

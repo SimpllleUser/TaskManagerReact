@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
-import { ArrowLeft, ArrowRight, PlusCircle } from "react-feather";
+import { ArrowLeft, ArrowRight, PlusSquare } from "react-feather";
 import EventList from "../Event/EventList";
 import Modal from "../Modals/Modal";
 import EventForm from "../Event/EventForm";
@@ -153,8 +153,7 @@ const Calendar = () => {
               title="Create event"
               component={<EventForm event={{ date: dateNow }} />}
             />
-            <PlusCircle
-              size="36"
+            <PlusSquare size="24"
               data-toggle="modal"
               data-target="#create-event"
             />

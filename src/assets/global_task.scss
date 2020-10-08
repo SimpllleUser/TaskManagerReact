@@ -1,4 +1,4 @@
-.bock_global_task-list_body {
+.global_task {
     position: relative;
     .options-block {
         width: 20px;
@@ -12,4 +12,8 @@
             left: -90px;
         }
     }
+}
+
+.global-task__detail__title {
+    align-items: center;
 }

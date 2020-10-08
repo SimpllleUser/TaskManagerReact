@@ -45,11 +45,12 @@ const ProjectDetail = () => {
       </div>
 
       <div className="bock_global_task-list">
-        <div className="bock_global_task-list_title">
+        <div className="bock_global_task-list_title mb-2">
           Global tasks
          <Modal title="Create global task" forElement="create-global_task" component={<GlobalTaskForm project_id={id} />} />
           <PlusSquare
-            size="36"
+            className="ml-5"
+            size="24"
             data-toggle="modal" data-target="#create-global_task"
           />
         </div>

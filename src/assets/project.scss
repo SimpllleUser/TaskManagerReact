@@ -8,6 +8,12 @@
     }
     
     .project_list_container {
+        h3 {
+            padding-left: 5px;
+            display: flex;
+            align-items: center;
+            max-width: 817px;
+        }
         .projetcs_list {
             display: flex;
             .project_card {

@@ -44,3 +44,22 @@
         left: 20px;
     }
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background: #6c757d48;
+}
+
+ ::-webkit-scrollbar-thumb {
+    transition: all 0.3s;
+    background: var(--gray);
+    &:hover {
+        background: var(--blue);
+    }
+}
