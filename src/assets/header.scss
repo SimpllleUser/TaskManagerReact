@@ -1,7 +1,8 @@
             #selectProject {
                 border-style: none;
                 border-radius: 0;
-                border-bottom-style: solid;
+                border-left-style: solid;
+                border-right-style: solid;
                 width: 200px;
                 font-size: 32px;
                 &:after {

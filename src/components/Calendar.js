@@ -4,7 +4,7 @@ import moment from "moment";
 import { ArrowLeft, ArrowRight, PlusCircle } from "react-feather";
 import EventList from "../Event/EventList";
 import Modal from "../Modals/Modal";
-import EventForm from "../Event/EventForm"
+import EventForm from "../Event/EventForm";
 import { getAllEvents } from "../store/events/actions";
 
 const Calendar = () => {
@@ -52,7 +52,7 @@ const Calendar = () => {
       let data_day = { num, name };
       month.push(data_day);
     }
-    let firstElem = month[0].name;
+    let firstElem = month[0]?.name;
     let lenthEmptDay = daysOfWeek.findIndex((m) => m === firstElem);
     let prevMonthDay = setPrevMonthDay(lenthEmptDay);
     return prevMonthDay ? [...prevMonthDay, ...month] : month;
@@ -61,13 +61,15 @@ const Calendar = () => {
   const setPrevMonth = () => {
     let prevMonth = +monthNow;
     let prevYear = +yearNow;
-    if (prevMonth <= 1) {
-      setMonthNow(13);
-      prevYear--;
-      setYearNow(prevYear);
+    prevMonth-=1
+    if(prevMonth <= 0){
+      prevMonth = 12
+      prevYear-=1
+      setMonthNow(prevMonth)
+      setYearNow(prevYear)
     }
-    prevMonth--;
     setMonthNow(prevMonth);
+    setYearNow(prevYear);
   };
 
   const setNextMonth = () => {
@@ -75,11 +77,13 @@ const Calendar = () => {
     let nextYear = +yearNow;
     if (nextMonth >= 12) {
       nextMonth = 0;
-      setYearNow(nextYear++);
+      nextYear++;
     }
     nextMonth++;
     setMonthNow(nextMonth);
+    setYearNow(nextYear);
   };
+
 
   const setBorder = (name) => {
     const border = name === "Sunday" ? "danger" : "primary";
@@ -144,7 +148,11 @@ const Calendar = () => {
             data-toggle="modal"
             data-target={"#date-" + dayNow}
           >
-            <Modal forElement="create-event" title="Create event" component={<EventForm event={{ date:dateNow }}/>} />
+            <Modal
+              forElement="create-event"
+              title="Create event"
+              component={<EventForm event={{ date: dateNow }} />}
+            />
             <PlusCircle
               size="36"
               data-toggle="modal"

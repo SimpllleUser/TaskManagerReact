@@ -24,28 +24,28 @@ const Header = () => {
           exact
           to="/"
           activeClassName={activePage}
-          className="nav-link text-white"
+          className="nav-item nav-link text-white"
         >
           Список заданий
         </NavLink>
         <NavLink
           to="/global_task-list"
           activeClassName={activePage}
-          className="nav-link text-white"
+          className="nav-item nav-link text-white"
         >
           Список глобальных заданий
         </NavLink>
         <NavLink
           to="/event-calendar"
           activeClassName={activePage}
-          className="nav-link text-white"
+          className="nav-item nav-link text-white"
         >
           Календарь событий
         </NavLink>
         <NavLink
           to="/projects-list"
           activeClassName={activePage}
-          className="nav-item nav-link text-white"
+          className="nav-item nav-item nav-link text-white"
         >
           Проекты
         </NavLink>
