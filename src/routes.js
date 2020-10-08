@@ -17,7 +17,7 @@ export const useRoutes = (isAuthUser) => {
         <Route exact path="/">
           <MainTaskList />
         </Route>
-        <Route path="/detail-task/:id">
+        <Route exact path="/detail-task/:id">
           <TaskDetail />
         </Route>
         <Route exact path="/projects-list">

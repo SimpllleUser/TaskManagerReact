@@ -22,7 +22,7 @@ const Header = () => {
         <SelectProject />
         <NavLink
           exact
-          to="/tasks-list"
+          to="/"
           activeClassName={activePage}
           className="btn btn-outline-primary"
         >
