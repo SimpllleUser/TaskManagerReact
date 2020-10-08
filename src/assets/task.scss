@@ -3,6 +3,15 @@
     .tasks-list {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        .block {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            .el-name {
+                text-align: center;
+                width: 100%;
+            }
+        }
     }
 }
 

@@ -16,9 +16,9 @@ const TaskList = ({global_taskId,tasks}) => {
     return elements;
   };
   const sortedTaskList = rowsByStatus()?.map((el, index) => (
-    <div className={"block-" + el.name} key={index}>
-      <h3 className={"el-name-" + el.name}> {el.name} </h3>
-      <div className={"list-" + el.name}>
+    <div className={"block " + el.name} key={index}>
+      <h3 className={"el-name " + el.name}> {el.name} </h3>
+      <div className={"list " + el.name}>
         {el.tasks?.map((task, index) => (
           <TaskCard task={task} global_taskId ={global_taskId}key={index} />
         ))}
@@ -27,7 +27,7 @@ const TaskList = ({global_taskId,tasks}) => {
   ))
   return (
     <div id="task-dashboard">
-      <h2> Список заданий </h2>
+      <h2 className="text-center pb-5"> Список заданий </h2>
       <div className="row">
         <div className="col-12 tasks-list">
           {sortedTaskList}

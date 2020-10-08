@@ -15,7 +15,7 @@ const Header = () => {
   };
   const loader = useSelector((state) => state.loader.loader);
   return (
-    <header className="navbar navbar-dark bg-primary">
+    <header className="header navbar navbar-dark bg-primary">
       {loader && <Loader />}
       <Toast />
       <nav id="header_nav" class="navbar">
@@ -51,7 +51,7 @@ const Header = () => {
         </NavLink>
         <button
           type="button"
-          className="btn btn-danger"
+          className="log-out btn btn-danger"
           onClick={() => {
             logoutHandler();
           }}

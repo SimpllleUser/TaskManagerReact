@@ -9,17 +9,15 @@ function App() {
   const isAuthenticated = !!token;
   const routes = useRoutes(isAuthenticated);
   return (
-    <div className="container pt-3">
-        <AuthContext.Provider
-          value={{ token, login, logout, userId, isAuthenticated }}
-        >
-          <Router>
-            {
-              isAuthenticated && <Header />}
-
-            {routes}
-          </Router>
-        </AuthContext.Provider>
+    <div>
+      <AuthContext.Provider
+        value={{ token, login, logout, userId, isAuthenticated }}
+      >
+        <Router>
+          {isAuthenticated && <Header />}
+          <div className="p-5">{routes}</div>
+        </Router>
+      </AuthContext.Provider>
     </div>
   );
 }

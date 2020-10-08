@@ -4,7 +4,7 @@ import Loader from "../components/Loader"
 
 const EventCalebdar = () => (
   <div>
-    <h2>Календарь событий</h2>
+    <h2 className="text-center pb-5 ">Календарь событий</h2>
     <Calendar />
   </div>
 );
