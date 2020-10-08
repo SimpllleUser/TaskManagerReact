@@ -43,11 +43,11 @@ const SelectProject = () => {
   return (
     <div className="selector_project">
       {projects.length <= 1 ? (
-        <h3>{projects[0]?.title}</h3>
+        <h3 className="navbar-brand">{projects[0]?.title}</h3>
       ) : (
         <div className="dropdown">
-          <button
-            className={`btn btn-secondary dropdown-toggle selectedProject ${
+          <a  href="#"
+            className={` btn btn-outline-light ${
               projects.length <= 1 && "none"
             }`}
             type="button"
@@ -57,7 +57,7 @@ const SelectProject = () => {
             aria-expanded="false"
           >
             {selectedProject || projects[0]?.title}
-          </button>
+          </a>
           {
             <div className="dropdown-menu" aria-labelledby="selectProject">
               {projectsList}

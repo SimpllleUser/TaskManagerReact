@@ -1,5 +1,9 @@
             #selectProject {
+                border-style: none;
+                border-radius: 0;
+                border-bottom-style: solid;
                 width: 200px;
+                font-size: 32px;
                 &:after {
                     // display: none;
                     position: absolute;
@@ -9,6 +13,8 @@
                     transition: all .3s;
                 }
                 &:hover {
+                    border-radius: 5px;
+                    color: var(--blue) !important;
                     &:after {
                         opacity: 1;
                     }
@@ -17,6 +23,18 @@
                 &.none {
                     &:after {
                         display: none;
+                    }
+                }
+            }
+            
+            #header_nav {
+                min-width: 100%;
+                .nav-link {
+                    transition: all .3s;
+                    &:hover {
+                        border-radius: 5px;
+                        background-color: white;
+                        color: var(--blue) !important;
                     }
                 }
             }

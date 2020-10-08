@@ -8,57 +8,57 @@ import SelectProject from "./SelectProject";
 
 const Header = () => {
   const auth = useContext(AuthContext);
-  const activePage = "active btn btn-light";
+  const activePage = "active border border-light rounded";
   const logoutHandler = () => {
     auth.logout();
     return <Redirect to="/" />;
   };
   const loader = useSelector((state) => state.loader.loader);
   return (
-    <header className="navbar navbar-dark bg-light">
+    <header className="navbar navbar-dark bg-primary">
       {loader && <Loader />}
       <Toast />
-      <div className="main-links">
+      <nav id="header_nav" class="navbar">
         <SelectProject />
         <NavLink
           exact
           to="/"
           activeClassName={activePage}
-          className="btn btn-outline-primary"
+          className="nav-link text-white"
         >
           Список заданий
         </NavLink>
         <NavLink
           to="/global_task-list"
           activeClassName={activePage}
-          className="btn btn-outline-primary"
+          className="nav-link text-white"
         >
           Список глобальных заданий
         </NavLink>
         <NavLink
           to="/event-calendar"
           activeClassName={activePage}
-          className="btn btn-outline-primary"
+          className="nav-link text-white"
         >
           Календарь событий
         </NavLink>
         <NavLink
           to="/projects-list"
           activeClassName={activePage}
-          className="btn btn-outline-primary"
+          className="nav-item nav-link text-white"
         >
           Проекты
         </NavLink>
         <button
           type="button"
-          className="btn btn-dark btn-logout"
+          className="btn btn-danger"
           onClick={() => {
             logoutHandler();
           }}
         >
           Выход
         </button>
-      </div>
+      </nav>
     </header>
   );
 };
