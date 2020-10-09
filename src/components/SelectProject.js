@@ -19,10 +19,12 @@ const SelectProject = () => {
     getProjects();
   }, [request]);
   const setProjectData = (project = projects[0]) => {
+    if(project){
     const {title, id} = project
     localStorage.setItem('project', JSON.stringify({title,id}))
     setSelectedProject(project.title)
     dispatch(getAllDataFromProject(project.id))
+  }
   }
 
   const projectsList = projects.map(
