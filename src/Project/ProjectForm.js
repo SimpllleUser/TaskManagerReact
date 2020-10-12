@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-// import { Redirect } from "react-router-dom";
 import {useDispatch } from "react-redux";
 import { createProject } from "../store/project/actions";
 import {editProject} from "../store/project/actions"
 
 const ProjectForm = (props) => {
   const dispatch = useDispatch();
-  // const [redirect, setRedirect] = useState(false);
+  const user_id = JSON.parse(localStorage.getItem('user')).userId
   const [projectForm, setProjectForm] = useState({
     id: props.id || '',
     title: props.title || '',
     description: props.description || '',
-    // status
   });
   const changeInputHandler = (event) => {
     setProjectForm({ ...projectForm, [event.target.name]: event.target.value });
@@ -26,7 +24,7 @@ const ProjectForm = (props) => {
         id,
         title,
         description,
-        user_id:JSON.parse(localStorage.getItem('user')).userId
+        user_id
       }
       id ? dispatch(editProject(Project)) : dispatch(createProject(Project)) 
     }
@@ -36,6 +34,7 @@ const ProjectForm = (props) => {
 
   return (
     <div className="project_create">
+      {user_id}
       <form onSubmit={submitHandler}>
         <div className="project_create_title form-group">
           <label htmlFor="title">Title</label>

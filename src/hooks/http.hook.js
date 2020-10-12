@@ -3,6 +3,16 @@ import { useState, useCallback } from "react"
 import { useDispatch } from "react-redux";
 import { showLoader, hideLoader } from "../store/loader/actions"
 import { showError } from "../store/error/actions"
+
+const authHeader = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.token) {
+        return { 'x-access-token': user.token };
+    } else {
+        return {};
+    }
+}
+
 // !FIX useHtpp add useCallback
 export const useHttp = () => {
     const dispatch = useDispatch();
@@ -14,13 +24,13 @@ export const useHttp = () => {
         setLoading(true)
         try {
             dispatch(showLoader())
-            const res = await axios[method](url, body)
+            const res = await axios[method](url, { body, headers: authHeader() })
             const data = res.data
-                // setLoading(false)
+
             dispatch(hideLoader())
             return data
         } catch (err) {
-            // setLoading(false)
+            setLoading(false)
             dispatch(hideLoader())
             dispatch(showError(err))
         }
