@@ -24,7 +24,7 @@ export const useHttp = () => {
         setLoading(true)
         try {
             dispatch(showLoader())
-            const res = await axios[method](url, { body, headers: authHeader() })
+            const res = await axios[method](url, body)
             const data = res.data
 
             dispatch(hideLoader())
