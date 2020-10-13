@@ -24,7 +24,7 @@ const MainTaskList = () => {
         {/* <Options items={
             [<h3 onClick={() => alert()} >Test</h3>]
         } /> */}
-      {tasks.length ? <TaskList tasks={tasks} /> : "No tasks"}
+      {tasks ? <TaskList tasks={tasks} /> : "No tasks"}
     </div>
   );
 };

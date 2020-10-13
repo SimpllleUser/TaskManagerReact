@@ -25,9 +25,10 @@ const GlobalTaskForm = (props) => {
         id,
         title,
         description,
+        project_id:props.project_id
       };
       props.project_id
-        ? dispatch(createGlobalTask({id:props.project_id,global_task:GlobalTask}))
+        ? dispatch(createGlobalTask({global_task:GlobalTask}))
         : dispatch(editGlobalTask(GlobalTask));
 
         setGlobal_taskForm({});

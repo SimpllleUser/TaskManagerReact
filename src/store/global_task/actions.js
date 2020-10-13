@@ -4,10 +4,10 @@ import { showError } from "../error/actions"
 import { showLoader, hideLoader } from "../loader/actions"
 
 const URL_API = 'http://localhost:8080/api'
-export const createGlobalTask = (id, global_task) => async(dispatch) => {
+export const createGlobalTask = (global_task) => async(dispatch) => {
     try {
         dispatch(showLoader())
-        const res = await axios.post(URL_API + '/project/create/global-task', { id, global_task })
+        const res = await axios.post(URL_API + '/global-task', global_task)
         dispatch({ type: CREATE_G_TASK, global_task: res.data })
         dispatch(hideLoader())
     } catch (err) {

@@ -3,7 +3,6 @@ import {useDispatch, useSelector } from "react-redux";
 import { PlusSquare } from "react-feather";
 import { useParams } from "react-router-dom";
 import { useHttp } from "../hooks/http.hook";
-// import ModalCreateGlobalTask from "../components/ModalCreateGlobalTask"
 import { setGlobalTasks } from "../store/global_task/actions";
 import Modal from "../Modals/Modal"
 import GlobalTaskCard from "../GlobalTask/GlobalTaskCard"

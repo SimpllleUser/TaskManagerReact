@@ -24,6 +24,7 @@ export const useHttp = () => {
         setLoading(true)
         try {
             dispatch(showLoader())
+                // ! ADD HEADER TOKEN
             const res = await axios[method](url, body)
             const data = res.data
 
