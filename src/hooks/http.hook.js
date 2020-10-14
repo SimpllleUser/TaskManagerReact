@@ -27,7 +27,6 @@ export const useHttp = () => {
                 // ! ADD HEADER TOKEN
             const res = await axios[method](url, body)
             const data = res.data
-
             dispatch(hideLoader())
             return data
         } catch (err) {
