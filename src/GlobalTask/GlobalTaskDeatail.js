@@ -14,12 +14,13 @@ const GlobalTaskDetail = () => {
   const [global_task, setGlobal_task] = useState({});
   const { request } = useHttp();
   useEffect(() => {
-    const getGlobalTask = async () => {
-      const res = await request("http://localhost:8080/api/global_task/" + id);
-      setGlobal_task(res);
-      dispatch(initTasks(res.tasks));
+    const getData = async () => {
+      const global_tasks = await request("http://localhost:8080/api/global-task/" + id);
+      setGlobal_task(global_tasks)
+      const tasks = await request("http://localhost:8080/api/tasks/all/" + id);
+      dispatch(initTasks(tasks));
     };
-    getGlobalTask();
+    getData();
   }, [dispatch, id, request]);
   const tasks = useSelector((state) => state.tasks.tasks);
   return (
@@ -34,8 +35,8 @@ const GlobalTaskDetail = () => {
         Tasks list
         <PlusSquare size="24" className="ml-5" data-toggle="modal" data-target="#create-task" />
       </h3>
-      {tasks.length ? <TaskList global_taskId={id} tasks={tasks} /> : "No tasks" }
-      
+      {console.log(tasks)}
+      {tasks && tasks.length  ? <TaskList global_taskId={id} tasks={tasks} /> : "No tasks" }      
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { createTaskInGlobal_task } from "../store/tasks/actions";
-import { saveEditableTask} from "../store/tasks/actions";
+import { createTask } from "../store/tasks/actions";
+import { saveEditableTask } from "../store/tasks/actions";
 import SelectorForm from "../components/SelectorForm";
 const TaskForm = (props) => {
   const dispatch = useDispatch();
@@ -33,9 +33,11 @@ const TaskForm = (props) => {
       type,
       date: moment().format("DD-MM-YYYY"),
     };
-
-    taskForm.id ? dispatch(saveEditableTask({ task:Task })) : dispatch(createTaskInGlobal_task({ id: props.global_task_id, task:Task }))
-    setTaskForm({})
+    const user_id = JSON.parse(localStorage.getItem("user")).userId;
+    taskForm.id
+      ? dispatch(saveEditableTask({ task: Task }))
+      : dispatch(createTask({ id: props.global_task_id, task: Task, user_id }));
+    setTaskForm({});
   };
   const changeInputHandler = (event) => {
     setTaskForm({ ...taskForm, [event.target.name]: event.target.value });
@@ -67,7 +69,7 @@ const TaskForm = (props) => {
             className="form-control"
             id="title"
             name="title"
-            value={taskForm.title || ''}
+            value={taskForm.title || ""}
             onChange={changeInputHandler}
           />
           <label htmlFor="description pt-2"> Описание </label>
@@ -78,7 +80,7 @@ const TaskForm = (props) => {
             id="description"
             cols="30"
             rows="10"
-            value={taskForm.description || ''}
+            value={taskForm.description || ""}
           ></textarea>
           <label htmlFor="estimate"> Часов </label>
           <input
@@ -86,17 +88,17 @@ const TaskForm = (props) => {
             className="form-control"
             id="estimate"
             name="estimate"
-            value={taskForm.estimate || ''}
+            value={taskForm.estimate || ""}
             onChange={changeInputHandler}
           />
         </div>
-        <button
-          className="btn btn-success ml-2"
-        >
-         {taskForm.id ? 'Сохранить':'Создать'}
+        <button className="btn btn-success ml-2">
+          
+          {taskForm.id ? "Сохранить" : "Создать"}
         </button>
       </div>
       <div className="selectors-options">
+        
         {taskForm.status && (
           <SelectorForm
             updateData={updateDataStatus}
