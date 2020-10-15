@@ -9,10 +9,11 @@ import { showLoader, hideLoader } from "../loader/actions"
 import { showError } from "../error/actions"
 const URL_API = 'http://localhost:8080/api'
 
-export const createTask = (task) => async(dispatch) => {
+export const createTask = ({ global_taskID, task }) => async(dispatch) => {
     try {
         dispatch(showLoader())
         const response = await axios.post(URL_API + '/tasks', {
+            global_taskID,
             task
         })
         dispatch({ type: CREATE_TASK, task: response.data })
@@ -24,29 +25,31 @@ export const createTask = (task) => async(dispatch) => {
 
 }
 
-export const createTaskInGlobal_task = (payload) => async(dispatch) => {
-    const { id, task } = payload
-    try {
-        dispatch(showLoader())
-        const res = await axios.post(URL_API + '/tasks/create/in_global-task', {
-            id,
-            task: task
-        })
-        dispatch({ type: CREATE_TASK, task: res.data })
-        dispatch(hideLoader())
-    } catch (err) {
-        dispatch(hideLoader())
-        dispatch(showError(err))
-    }
-    dispatch(hideLoader())
+// export const createTaskInGlobal_task = (payload) => async(dispatch) => {
+//     const { id, task } = payload
+//     try {
+//         dispatch(showLoader())
+//         const res = await axios.post(URL_API + '/tasks/create/in_global-task', {
+//             id,
+//             task: task
+//         })
+//         dispatch({ type: CREATE_TASK, task: res.data })
+//         dispatch(hideLoader())
+//     } catch (err) {
+//         dispatch(hideLoader())
+//         dispatch(showError(err))
+//     }
+//     dispatch(hideLoader())
 
-}
+// }
 export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
     try {
+        const author_UserID = JSON.parse(JSON.stringify(localStorage.getItem('user').userId))
         dispatch(showLoader())
         await axios.delete(URL_API + '/tasks/delete/in_global-task', {
             data: {
                 id,
+                author_UserID,
                 taskId
             }
         })
