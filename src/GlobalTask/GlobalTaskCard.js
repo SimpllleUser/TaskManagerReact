@@ -30,7 +30,7 @@ const GlobalTaskCard = ({ id, global_taskId, title, description }) => {
               <div
                 className="list-group-item list-group-item-action"
                 onClick={() => {
-                  dispatch(deleteGlobalTask(id, global_taskId));
+                  dispatch(deleteGlobalTask(global_taskId));
                 }}
               >
                 Delete

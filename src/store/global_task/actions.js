@@ -17,10 +17,10 @@ export const createGlobalTask = (global_task) => async(dispatch) => {
 }
 
 
-export const deleteGlobalTask = (id, global_taskId) => async(dispatch) => {
+export const deleteGlobalTask = (global_taskId) => async(dispatch) => {
     try {
         dispatch(showLoader())
-        await axios.delete(URL_API + '/project/delete/global-task', { data: { id, global_taskId } })
+        await axios.delete(URL_API + '/global-task/' + global_taskId)
         dispatch({ type: DELETE_G_TASK, id: global_taskId })
         dispatch(hideLoader())
     } catch (err) {

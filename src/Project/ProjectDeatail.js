@@ -12,7 +12,7 @@ const ProjectDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [project, setProject] = useState({});
-  const [global_tasks, setGlobalTasks] = useState({});
+  // const [global_tasks, setAllGlobalTasks] = useState({});
 
   const { request, loading } = useHttp();
   useEffect(() => {
@@ -24,14 +24,17 @@ const ProjectDetail = () => {
       const global_tasks = await request(
         "http://localhost:8080/api/global-task/all/" + id
       );
-      setGlobalTasks(global_tasks);
+      // setAllGlobalTasks(global_tasks);
+      console.log('setGlobalTasks',global_tasks)
+      dispatch(setGlobalTasks(global_tasks))
     };
     getProject();
     getGlobalTasks();
   }, [id, request]);
+  const global_tasks = useSelector((state) => state.global_tasks.global_tasks);
 
   const global_tasksList =
-    global_tasks.length &&
+    global_tasks &&
     global_tasks.map((global_task, index) => (
       <li key={index} className="list-group-item">
         <GlobalTaskCard
@@ -54,7 +57,7 @@ const ProjectDetail = () => {
           <li>user -1</li>
         </ul>
       </div>
-
+    {console.log(global_tasks)}
       <div className="bock_global_task-list">
         <div className="bock_global_task-list_title mb-2">
           Global tasks
@@ -72,6 +75,7 @@ const ProjectDetail = () => {
         </div>
         <ul className="bock_global_task-list_body list-group">
           {global_tasksList}
+          {/* {JSON.stringify(global_tasks)} */}
         </ul>
       </div>
     </div>
