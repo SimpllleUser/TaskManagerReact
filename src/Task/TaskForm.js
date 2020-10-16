@@ -34,10 +34,11 @@ const TaskForm = (props) => {
       date: moment().format("DD-MM-YYYY"),
     };
 
+    const author_UserID = JSON.parse(localStorage.getItem("user")).userId
     // taskForm.id ? dispatch(saveEditableTask({ task:Task })) : dispatch(createTaskInGlobal_task({ id: props.global_task_id, task:Task }))
     taskForm.id
       ? dispatch(saveEditableTask({ task: Task }))
-      : dispatch(createTask({ global_taskID: props.global_task_id, task: Task }));
+      : dispatch(createTask({ global_taskID: props.global_task_id, task: Task, author_UserID }));
 
     setTaskForm({});
   };

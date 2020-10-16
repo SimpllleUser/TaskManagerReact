@@ -9,12 +9,13 @@ import { showLoader, hideLoader } from "../loader/actions"
 import { showError } from "../error/actions"
 const URL_API = 'http://localhost:8080/api'
 
-export const createTask = ({ global_taskID, task }) => async(dispatch) => {
+export const createTask = ({ global_taskID, task, author_UserID }) => async(dispatch) => {
     try {
         dispatch(showLoader())
         const response = await axios.post(URL_API + '/tasks', {
             global_taskID,
-            task
+            newTask: task,
+            author_UserID
         })
         dispatch({ type: CREATE_TASK, task: response.data })
         dispatch(hideLoader())
