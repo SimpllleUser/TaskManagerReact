@@ -26,9 +26,14 @@ const ProjectForm = (props) => {
         description,
         user_id,
       };
-      id ? dispatch(editProject(Project)) : dispatch(createProject(Project));
+      if (id) {
+        dispatch(editProject(Project))
+      } else {
+        dispatch(createProject(Project));
+        setProjectForm({});
+      }
     }
-    setProjectForm({});
+    
   };
 
   return (

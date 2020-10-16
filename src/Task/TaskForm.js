@@ -35,12 +35,13 @@ const TaskForm = (props) => {
     };
 
     const author_UserID = JSON.parse(localStorage.getItem("user")).userId
-    // taskForm.id ? dispatch(saveEditableTask({ task:Task })) : dispatch(createTaskInGlobal_task({ id: props.global_task_id, task:Task }))
-    taskForm.id
-      ? dispatch(saveEditableTask({ task: Task }))
-      : dispatch(createTask({ global_taskID: props.global_task_id, task: Task, author_UserID }));
+    if (taskForm.id) {
+      dispatch(saveEditableTask({ task: Task }))
+    } else {
+      dispatch(createTask({ global_taskID: props.global_task_id, task: Task, author_UserID }));
+      setTaskForm({});
 
-    setTaskForm({});
+    }
   };
   const changeInputHandler = (event) => {
     setTaskForm({ ...taskForm, [event.target.name]: event.target.value });
