@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 const SelectorForm = (props) => {
-
   const [selectorData, setSelectorData] = useState({
     "priority-value": "",
     "type-value": "",
@@ -25,7 +24,6 @@ const SelectorForm = (props) => {
       ...selectorData,
       [props.data + "-value"]: event.target.value,
     });
-
   };
 
   const Selector = selectorData[props.data].map((option, index) => (
@@ -35,7 +33,6 @@ const SelectorForm = (props) => {
   ));
   return (
     <div id="selector">
-
       <select
         className="custom-select my-1 mr-sm-1"
         id="priority"

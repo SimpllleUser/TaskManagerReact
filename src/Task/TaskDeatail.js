@@ -3,21 +3,21 @@ import moment from "moment";
 import { Redirect, useParams } from "react-router-dom";
 import SelectorElement from "../components/SelectorElement";
 import SelectorForm from "../components/SelectorForm";
-
+import {saveEditableTask} from "../store/tasks/actions"
+import { useDispatch } from "react-redux";
 import { useHttp } from "../hooks/http.hook";
 
 import ModalWorkLog from "../components/ModalWorkLog";
 
 const TaskDetail = () => {
+  const dispatch = useDispatch();
   let { id } = useParams();
   let [task, setTask] = useState({});
-  const [showSelector, setShowSelector] = useState(false);
   const { request } = useHttp();
   useEffect(() => {
     const getTask = async () => {
       const res = await request("http://localhost:8080/api/tasks/id=" + id);
       setTask(res);
-      // ! ADD REQYEST
     };
     getTask();
   }, [id, request]);
@@ -29,17 +29,20 @@ const TaskDetail = () => {
   };
   const updateDataStatus = (data) => {
     if (task.status != data) {
+      dispatch(saveEditableTask({ task }))
       setTask({ ...task, status: data });
     }
   };
   const updateDataPriority = (data) => {
     if (task.priority != data) {
+      dispatch(saveEditableTask({ task }))
       setTask({ ...task, priority: data });
     }
   };
 
   const updateDataType = (data) => {
     if (task.type != data) {
+      dispatch(saveEditableTask({ task }))
       setTask({ ...task, type: data });
     }
   };

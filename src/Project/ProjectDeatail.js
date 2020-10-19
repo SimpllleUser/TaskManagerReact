@@ -24,8 +24,6 @@ const ProjectDetail = () => {
       const global_tasks = await request(
         "http://localhost:8080/api/global-task/all/" + id
       );
-      // setAllGlobalTasks(global_tasks);
-      console.log('setGlobalTasks',global_tasks)
       dispatch(setGlobalTasks(global_tasks))
     };
     getProject();
@@ -57,7 +55,6 @@ const ProjectDetail = () => {
           <li>user -1</li>
         </ul>
       </div>
-    {console.log(global_tasks)}
       <div className="bock_global_task-list">
         <div className="bock_global_task-list_title mb-2">
           Global tasks
