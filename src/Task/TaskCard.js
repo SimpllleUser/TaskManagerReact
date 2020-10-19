@@ -44,14 +44,14 @@ const TaskCard = ({ global_taskId, task }) => {
             items={[
               <div>
                 <div
-                  className="list-group-item list-group-item-action"
+                  className="list-group-item list-group-item-action bg-warning text-dark"
                   data-toggle="modal"
                   data-target={"#edit-task" + task.id}
                 >
                   Edit
                 </div>
                 <div
-                  className="list-group-item list-group-item-action"
+                  className="list-group-item list-group-item-action bg-danger text-white"
                   onClick={() => {
                     dispatch(
                       deleteTaskInGlobal_task({

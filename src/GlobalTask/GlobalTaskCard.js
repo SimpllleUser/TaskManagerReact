@@ -16,19 +16,18 @@ const GlobalTaskCard = ({ id, global_taskId, title, description }) => {
       <div>
         <p>Desciprion: {description}</p>
         {/* <span>Progress</span>00% */}
-
         <Options
           items={[
             <div>
               <div
-                className="list-group-item list-group-item-action"
+                className="list-group-item list-group-item-action bg-warning text-dark"
                 data-toggle="modal"
                 data-target={"#edit-global_task" + global_taskId}
               >
                 Edit
               </div>
               <div
-                className="list-group-item list-group-item-action"
+                className="list-group-item list-group-item-action bg-danger text-white"
                 onClick={() => {
                   dispatch(deleteGlobalTask(global_taskId));
                 }}

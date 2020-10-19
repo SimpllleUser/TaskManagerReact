@@ -27,14 +27,14 @@ const ProjectCard = ({ title, description, id }) => {
             items={[
               <div>
                 <div
-                  className="list-group-item list-group-item-action"
+                  className="list-group-item list-group-item-action bg-warning text-dark"
                   data-toggle="modal"
                   data-target={"#edit-project" + id}
                 >
                   Edit
                 </div>
                 <div
-                  className="list-group-item list-group-item-action"
+                  className="list-group-item list-group-item-action bg-danger text-white"
                   onClick={() => {
                     deleteHundelerProject({
                       id,
