@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { useHttp } from "../hooks/http.hook";
 
 const ModalWorkLog = (props) => {
+  const { request } = useHttp();
   const [workLog, setworkLog] = useState("");
 
   const changeInputHandler = (event) => {
@@ -15,21 +16,16 @@ const ModalWorkLog = (props) => {
     }
     const newWorkLog = +props.workLog + +workLog;
     props.changeWorkLog(newWorkLog);
-    try {
-      // ! ADD REQUEST
-      await axios.put("http://localhost:8080/api/tasks/work-log/" + props.id, {
-        workLog: newWorkLog,
-      })
-    } catch (err) {
-      // ! FIX ADD SHOW ERR 
-    }
-    setworkLog(0);
+
+    await request("http://localhost:8080/api/tasks/work-log/" + props.id,'put', {
+      workLog: newWorkLog,
+    });
   };
 
   return (
     <div
       className="modal fade modal-worklLog"
-      id={'worklog' + props.id}
+      id={"worklog" + props.id}
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalCenterTitle"
@@ -50,7 +46,7 @@ const ModalWorkLog = (props) => {
           </div>
           <div className="modal-body">
             <div className="modal-workLog">
-            <div class="form-group">
+              <div class="form-group">
                 <label htmlFor="time">Time</label>
                 <input
                   type="number"
