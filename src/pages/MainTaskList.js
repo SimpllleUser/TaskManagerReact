@@ -9,15 +9,7 @@ const MainTaskList = () => {
   const id = JSON.parse(localStorage.getItem("project") || '{}').id;
   // const userId = JSON.parse(localStorage.getItem("user")).userId;
   const { request, loading } = useHttp();
-  useEffect(() => {
-    const getAllData = async () => {
-      const tasks = await request(
-        "http://localhost:8080/api/tasks/all_tasks/" + id
-      );
-      dispatch(initTasks(tasks));
-    };
-    getAllData();
-  }, [id, request]);
+
   const tasks = useSelector((state) => state.tasks.tasks);
   return (
     <div id="main-task-list">
