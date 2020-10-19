@@ -35,9 +35,7 @@ const SelectorForm = (props) => {
   ));
   return (
     <div id="selector">
-      <label className="my-1 mr-2" htmlFor="priority">
-        {props.data}
-      </label>
+
       <select
         className="custom-select my-1 mr-sm-1"
         id="priority"

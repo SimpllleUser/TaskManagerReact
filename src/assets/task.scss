@@ -148,3 +148,66 @@
         right: 10px;
     }
 }
+
+//  ! style options selector in detail task
+.task-elements {
+    .options.selector {
+        .status {
+            &:hover {
+                #selector {
+                    position: relative;
+                    z-index: 999;
+                    opacity: 1;
+                }
+            }
+            #selector {
+                transition: all .3s;
+                position: absolute;
+                z-index: -999999;
+                opacity: 0;
+            }
+        }
+    }
+}
+
+.task-elements {
+    .options.selector {
+        .priority {
+            transition: all 1s;
+            &:hover {
+                #selector {
+                    position: relative;
+                    z-index: 999;
+                    opacity: 1;
+                }
+            }
+            #selector {
+                transition: all .3s;
+                position: absolute;
+                z-index: -999999;
+                opacity: 0;
+            }
+        }
+    }
+}
+
+.task-elements {
+    .options.selector {
+        .type {
+            position: relative;
+            &:hover {
+                #selector {
+                    // position: absolute;
+                    z-index: 999;
+                    opacity: 1;
+                }
+            }
+            #selector {
+                transition: all .3s;
+                position: absolute;
+                z-index: -999999;
+                opacity: 0;
+            }
+        }
+    }
+}

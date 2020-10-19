@@ -61,12 +61,12 @@ const Calendar = () => {
   const setPrevMonth = () => {
     let prevMonth = +monthNow;
     let prevYear = +yearNow;
-    prevMonth-=1
-    if(prevMonth <= 0){
-      prevMonth = 12
-      prevYear-=1
-      setMonthNow(prevMonth)
-      setYearNow(prevYear)
+    prevMonth -= 1;
+    if (prevMonth <= 0) {
+      prevMonth = 12;
+      prevYear -= 1;
+      setMonthNow(prevMonth);
+      setYearNow(prevYear);
     }
     setMonthNow(prevMonth);
     setYearNow(prevYear);
@@ -83,7 +83,6 @@ const Calendar = () => {
     setMonthNow(nextMonth);
     setYearNow(nextYear);
   };
-
 
   const setBorder = (name) => {
     const border = name === "Sunday" ? "danger" : "primary";
@@ -130,6 +129,9 @@ const Calendar = () => {
 
   return (
     <div className="calendar-block">
+             <h3 onClick={alert()} >
+              Test
+            </h3>
       <div className="calnedar">
         <div className="navigation-calendar border-bottom">
           <div className="month-navigation">
@@ -148,17 +150,20 @@ const Calendar = () => {
             data-toggle="modal"
             data-target={"#date-" + dayNow}
           >
-            <Modal
+            {/* <Modal
               forElement="create-event"
               title="Create event"
-              component={<EventForm event={{ date: dateNow }} />}
-            />
-            <PlusSquare size="24"
-              data-toggle="modal"
-              data-target="#create-event"
-            />
+              component={}
+            /> */}
+            {/* <EventForm event={dateNow} /> */}
+            {/* <PlusSquare size="24"
+              // data-toggle="modal"
+              // data-target="#create-event"
+            /> */}
+
           </div>
         </div>
+  
         <div className="month">
           {listWeek} {listDay}
         </div>
