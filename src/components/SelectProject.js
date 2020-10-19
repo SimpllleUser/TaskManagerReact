@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHttp } from "../hooks/http.hook";
 import { getAllDataFromProject } from "../store/project/actions";
 import { setGlobalTasks } from "../store/global_task/actions";
@@ -35,9 +35,9 @@ const SelectProject = () => {
       const tasks = await request(
         "http://localhost:8080/api/tasks/all-tasks/from/globlal-tasks",
         "get",
-        { params:{g_tasksID} }
+        { params: { g_tasksID } }
       );
-      dispatch(initTasks(tasks))
+      dispatch(initTasks(tasks));
     }
   };
 

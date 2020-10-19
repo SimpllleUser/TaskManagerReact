@@ -10,14 +10,17 @@ import { showError } from "../error/actions"
 const URL_API = "http://localhost:8080/api";
 
 export const getAllEvents = () => async(dispatch) => {
-    try {
-        dispatch(showLoader());
-        const response = await axios.get(URL_API + "/calendar-event");
-        dispatch({ type: GET_ALLEVENTS, events: response.data });
-        dispatch(hideLoader());
-    } catch (err) {
-        dispatch(hideLoader());
-        dispatch(showError(err))
+    const user_id = JSON.parse(localStorage.getItem('user')).userId || '';
+    if (user_id) {
+        try {
+            dispatch(showLoader());
+            const response = await axios.get(URL_API + "/calendar-event/" + user_id);
+            dispatch({ type: GET_ALLEVENTS, events: response.data });
+            dispatch(hideLoader());
+        } catch (err) {
+            dispatch(hideLoader());
+            dispatch(showError(err))
+        }
     }
 };
 
