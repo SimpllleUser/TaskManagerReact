@@ -45,7 +45,7 @@ const SelectProject = () => {
     (project, index) =>
       selectedProject != project.title && (
         <a
-          className={"dropdown-item"}
+          className="dropdown-item "
           href="#"
           key={index}
           onClick={() => {

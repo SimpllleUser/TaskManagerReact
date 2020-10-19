@@ -38,7 +38,6 @@ const ProjectForm = (props) => {
 
   return (
     <div className="project_create">
-      {user_id}
       <form onSubmit={submitHandler}>
         <div className="project_create_title form-group">
           <label htmlFor="title">Title</label>

@@ -8,6 +8,9 @@ header.header {
         width: 200px;
         font-size: 32px;
         margin-left: 10px;
+        background-color: whitesmoke;
+        color: var(--bs-blue);
+        border-radius: 5px;
         &:after {
             // display: none;
             position: absolute;
@@ -18,7 +21,8 @@ header.header {
         }
         &:hover {
             border-radius: 5px;
-            color: var(--blue) !important;
+            color: white;
+            background-color: var(--blue) !important;
             &:after {
                 opacity: 1;
             }

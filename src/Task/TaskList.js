@@ -17,7 +17,7 @@ const TaskList = ({global_taskId,tasks}) => {
   };
   const sortedTaskList = rowsByStatus()?.map((el, index) => (
     <div className={"block " + el.name} key={index}>
-      <h3 className={"el-name " + el.name}> {el.name} </h3>
+      <h3 className={"border rounded el-name " + el.name}> {el.name} </h3>
       <div className={"list " + el.name}>
         {el.tasks?.map((task, index) => (
           <TaskCard task={task} global_taskId ={global_taskId}key={index} />
