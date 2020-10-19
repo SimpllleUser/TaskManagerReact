@@ -63,11 +63,6 @@ const TaskDetail = () => {
         <h3 className="title display-4"> {task.title} </h3>
         <hr />
         <p className="description my-4"> {task.description} </p>
-        <ModalWorkLog
-          changeWorkLog={changeWorkLog}
-          id={task.id}
-          workLog={task.workLog}
-        />
       </div>
       <div className="task-elements">
         <div className="options selector">
@@ -124,13 +119,18 @@ const TaskDetail = () => {
           )}
         </div>
         <div className="task-work">
-          <div>estimate: {task.estimate}ч</div>
+          <div>estimate: {task.estimate || 0}ч</div>
           <div>workLog: {task.workLog}ч</div>
+          <ModalWorkLog
+            changeWorkLog={changeWorkLog}
+            id={task.id}
+            workLog={task.workLog}
+          />
           <button
             type="button"
             className="btn btn-primary"
             data-toggle="modal"
-            data-target={"#" + task.id}
+            data-target={"#worklog" + task.id}
           >
             Add work-log
           </button>
@@ -142,9 +142,5 @@ const TaskDetail = () => {
     </div>
   );
 };
-
-// const mapDispatchToProps = {
-//   deleteTask,
-// };
 
 export default TaskDetail;
