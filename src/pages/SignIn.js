@@ -20,7 +20,6 @@ const SignIn = () => {
         password,
         username: login,
        })
-       console.log(form,res)
       auth.login(res.accessToken, res.id);
       setRedirect(!!res.accessToken && !!res.id);
     }

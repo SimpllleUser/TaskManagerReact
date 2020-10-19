@@ -10,7 +10,7 @@ const Toast = () => {
   }
   return (
     <div
-      class="alert alert-primary alert-dismissible fade show"
+    className="alert alert-primary alert-dismissible fade show"
       id="err_block"
       role="alert"
     >
@@ -19,7 +19,7 @@ const Toast = () => {
       {err.body}
       <button
         type="button"
-        class="close"
+        className="close"
         data-dismiss="alert"
         aria-label="Close"
         onClick={()=>{dispatch(hideErr())}}

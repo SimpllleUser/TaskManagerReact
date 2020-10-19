@@ -82,7 +82,6 @@ const SelectProject = () => {
           }
         </div>
       )}
-      {console.log()}
     </div>
   );
 };

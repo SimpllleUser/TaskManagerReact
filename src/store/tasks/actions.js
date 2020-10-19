@@ -7,6 +7,7 @@ import {
 } from "./types";
 import { showLoader, hideLoader } from "../loader/actions"
 import { showError } from "../error/actions"
+import { data } from "jquery";
 const URL_API = 'http://localhost:8080/api'
 
 export const createTask = ({ global_taskID, task, author_UserID }) => async(dispatch) => {
@@ -64,8 +65,9 @@ export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
 
 }
 
-export const saveEditableTask = ({ task }) => async(dispatch) => {
+export const saveEditableTask = (task) => async(dispatch) => {
     try {
+        console.log(task)
         dispatch(showLoader())
         await axios.put(URL_API + '/tasks/' + task.id, {
             title: task.title,
