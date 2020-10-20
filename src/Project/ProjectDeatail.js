@@ -61,7 +61,7 @@ const ProjectDetail = () => {
             component={<GlobalTaskForm project_id={id} />}
           />
         <div className="bock_global_task-list_title mb-2">
-        <h2 className="text-center pb-5">
+        <h2 className="text-center mb-2 pb-1 text-dark border-bottom border-dark">
         Список глобальных заданий
           <PlusSquare
             className="ml-5"

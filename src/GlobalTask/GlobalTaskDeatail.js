@@ -37,8 +37,9 @@ const GlobalTaskDetail = () => {
         forElement="create-task"
         component={<TaskForm global_task_id={id} />}
       />
+      {/* <div class="bg-light">Cras mattis consectetur purus sit amet fermentum.</div> */}
 
-      <h2 className="text-center pb-5">
+      <h2 className="text-center mb-2 pb-1 bg-primary text-white">
         
         Список заданий
         <PlusSquare
