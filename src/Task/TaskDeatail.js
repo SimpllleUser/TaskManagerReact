@@ -13,13 +13,12 @@ const TaskDetail = () => {
   const dispatch = useDispatch();
   let { id } = useParams();
   let [task, setTask] = useState({});
-  // const [test, setTest] = useState("");
   const [canSave, setCanSave] = useState(false);
 
   const { request } = useHttp();
   useEffect(() => {
     const getTask = async () => {
-      const res = await request("http://localhost:8080/api/tasks/id=" + id);
+      const res = await request("/tasks/id=" + id);
       setTask(res);
     };
     getTask();

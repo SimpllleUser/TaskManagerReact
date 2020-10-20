@@ -31,7 +31,7 @@ const ModalWorkLog = (props) => {
       aria-labelledby="exampleModalCenterTitle"
       aria-hidden="true"
     >
-      <div className="modal-dialog modal-dialog-centered" role="document">
+      <div className="modal-dialog modal-sm modal-dialog-centered" role="document">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Work log</h5>

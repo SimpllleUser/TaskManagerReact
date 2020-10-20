@@ -110,10 +110,10 @@
 #task-detail {
     padding: 10px;
     background-color: #e9ecef52;
-    display: grid;
+    // display: grid;
     box-shadow: 0px 16px 24px rgba(50, 50, 71, 0.08), 0px 12px 12px rgba(50, 50, 71, 0.08);
     position: relative;
-    grid-template-columns: repeat(2, 1fr);
+    // grid-template-columns: repeat(2, 1fr);
     .description {
         min-height: 100px;
     }
