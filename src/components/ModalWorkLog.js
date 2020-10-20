@@ -46,7 +46,7 @@ const ModalWorkLog = (props) => {
           </div>
           <div className="modal-body">
             <div className="modal-workLog">
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="time">Time</label>
                 <input
                   type="number"

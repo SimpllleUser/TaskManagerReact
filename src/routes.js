@@ -11,6 +11,7 @@ import GlobalTaskList from "./GlobalTask/GlobalTaskList"
 import MainTaskList from "./pages/MainTaskList"
 export const useRoutes = (isAuthUser) => {
   if (isAuthUser) {
+    console.log('isAuthUser', isAuthUser)
     return (
 
       <Switch>
@@ -41,10 +42,10 @@ export const useRoutes = (isAuthUser) => {
   }
 
   return <Switch>
-       <Route path="/SignIn" exact>
+       <Route path="/SignIn">
           <SignIn />
         </Route>
-        <Route path="/SignUp" exact>
+        <Route path="/SignUp">
           <SignUp />
         </Route>
         <Redirect to="/SignIn"/>
