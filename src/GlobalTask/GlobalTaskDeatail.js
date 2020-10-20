@@ -39,7 +39,7 @@ const GlobalTaskDetail = () => {
       />
       {/* <div class="bg-light">Cras mattis consectetur purus sit amet fermentum.</div> */}
 
-      <h2 className="text-center mb-2 pb-1 bg-primary text-white">
+      <h2 className="text-center mb-2 pb-1 text-dark border-bottom border-dark">
         
         Список заданий
         <PlusSquare
