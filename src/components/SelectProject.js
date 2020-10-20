@@ -12,24 +12,20 @@ const SelectProject = () => {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
   useEffect(() => {
-    const initProject =
-      JSON.parse(localStorage.getItem("project")) || projects[0];
     const getData = async () => {
       const projects = await request("/project");
       setProjects(projects);
+      initializationData(projects[0]);
     };
-    setProjectData(initProject);
     getData();
   }, [request]);
-  const setProjectData = async (project = projects[0]) => {
+  const initializationData = async (project) => {
     if (project) {
       const { title, id } = project;
       localStorage.setItem("project", JSON.stringify({ title, id }));
       setSelectedProject(project.title);
       dispatch(getAllDataFromProject(project.id));
-      const global_tasks = await request(
-        "/global-task/all/" + project.id
-      );
+      const global_tasks = await request("/global-task/all/" + project.id);
       dispatch(setGlobalTasks(global_tasks));
       const g_tasksID = global_tasks.map((g_task) => g_task.id);
       const tasks = await request(
@@ -49,7 +45,7 @@ const SelectProject = () => {
           href="#"
           key={index}
           onClick={() => {
-            setProjectData(project);
+            initializationData(project);
           }}
         >
           {project.title}

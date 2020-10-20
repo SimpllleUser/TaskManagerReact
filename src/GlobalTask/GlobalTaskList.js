@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import GlobalTaskCard from "../GlobalTask/GlobalTaskCard";
 
 const GlobalTaskList = () => {
-  const id = JSON.parse(localStorage.getItem("project")).id;
+  const id = JSON.parse(localStorage.getItem("project"))?.id || '';
   const global_tasks = useSelector((state) => state.global_tasks.global_tasks);
-  const global_tasksList = global_tasks?.map((global_task, index) => (
+  const global_tasksList = global_tasks ? global_tasks?.map((global_task, index) => (
     <li key={index} className="list-group-item">
       <GlobalTaskCard
         id={id}
@@ -14,7 +14,7 @@ const GlobalTaskList = () => {
         description={global_task.description}
       />
     </li>
-  ));
+  )) : 'Список пуст'
   return (
     <div id="global_task-list">
       <h1>GlobalTask List</h1>
