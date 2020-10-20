@@ -6,6 +6,8 @@ import { getAllDataFromProject } from "../store/project/actions";
 import { setGlobalTasks } from "../store/global_task/actions";
 import { initTasks } from "../store/tasks/actions";
 
+// ! CHECK AUTH LOCAL_STORAGE
+
 const SelectProject = () => {
   const storage = localStorage;
   const { request } = useHttp();
