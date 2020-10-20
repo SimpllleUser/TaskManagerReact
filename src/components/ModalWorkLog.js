@@ -34,7 +34,7 @@ const ModalWorkLog = (props) => {
       <div className="modal-dialog modal-sm modal-dialog-centered" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Work log</h5>
+            <h5 className="modal-title">Время работы</h5>
             <button
               type="button"
               className="close"

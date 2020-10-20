@@ -17,7 +17,7 @@ const GlobalTaskList = () => {
   )) : 'Список пуст'
   return (
     <div id="global_task-list">
-      <h1>GlobalTask List</h1>
+      <h1>Глобальный список заданий</h1>
       {global_tasksList}
     </div>
   );

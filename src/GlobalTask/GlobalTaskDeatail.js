@@ -52,7 +52,7 @@ const GlobalTaskDetail = () => {
       {tasks || tasks?.length ? (
         <TaskList global_taskId={id} tasks={tasks} />
       ) : (
-        "No tasks"
+        "Список пуст"
       )}
     </div>
   );

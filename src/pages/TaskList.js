@@ -33,7 +33,7 @@ const TaskList = () => {
     </div>
   ))
     ? tasks.map((task, index) => <TaskCard task={task} key={index} />)
-    : "No tasks";
+    : "Список пуст";
   return (
     <div id="task-dashboard">
       <Modal forElement="test" component={<h2> Список заданий </h2>}></Modal>
