@@ -161,7 +161,6 @@
         .status {
             &:hover {
                 #selector {
-                    position: relative;
                     z-index: 999;
                     opacity: 1;
                 }
@@ -182,7 +181,6 @@
             transition: all 1s;
             &:hover {
                 #selector {
-                    position: relative;
                     z-index: 999;
                     opacity: 1;
                 }
@@ -203,7 +201,6 @@
             position: relative;
             &:hover {
                 #selector {
-                    // position: absolute;
                     z-index: 999;
                     opacity: 1;
                 }
