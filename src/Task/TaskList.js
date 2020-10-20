@@ -27,9 +27,8 @@ const TaskList = ({global_taskId,tasks}) => {
   ))
   return (
     <div id="task-dashboard">
-      <h2 className="text-center pb-5"> Список заданий </h2>
       <div className="row">
-        <div className="col-12 tasks-list">
+        <div className="tasks-list">
           {sortedTaskList}
           <div></div>
         </div>

@@ -12,19 +12,16 @@ const ProjectDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [project, setProject] = useState({});
-  // const [global_tasks, setAllGlobalTasks] = useState({});
 
-  const { request, loading } = useHttp();
+  const { request } = useHttp();
   useEffect(() => {
     const getProject = async () => {
       const project = await request("/project/" + id);
       setProject(project);
     };
     const getGlobalTasks = async () => {
-      const global_tasks = await request(
-        "/global-task/all/" + id
-      );
-      dispatch(setGlobalTasks(global_tasks))
+      const global_tasks = await request("/global-task/all/" + id);
+      dispatch(setGlobalTasks(global_tasks));
     };
     getProject();
     getGlobalTasks();
@@ -46,9 +43,11 @@ const ProjectDetail = () => {
 
   return (
     <div className="project_detail">
-      <div className="base_info_project">
-        <h3>{project.title}</h3>
-        <p>{project.description}</p>
+      <div className="jumbotron jumbotron-fluid">
+        <div className="container">
+          <h3>{project.title}</h3>
+          <p className="lead pl-1">{project.description}</p>
+        </div>
       </div>
       <div className="block_user-list">
         <ul>
@@ -56,19 +55,21 @@ const ProjectDetail = () => {
         </ul>
       </div>
       <div className="bock_global_task-list">
-        <div className="bock_global_task-list_title mb-2">
-          Global tasks
-          <Modal
+      <Modal
             title="Create global task"
             forElement="create-global_task"
             component={<GlobalTaskForm project_id={id} />}
           />
+        <div className="bock_global_task-list_title mb-2">
+        <h2 className="text-center pb-5">
+        Список глобальных заданий
           <PlusSquare
             className="ml-5"
             size="24"
             data-toggle="modal"
             data-target="#create-global_task"
           />
+           </h2>
         </div>
         <ul className="bock_global_task-list_body list-group">
           {global_tasksList}

@@ -5,7 +5,6 @@ const MainTaskList = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
   return (
     <div id="main-task-list">
-
       {tasks ? <TaskList tasks={tasks} /> : "No tasks"}
     </div>
   );

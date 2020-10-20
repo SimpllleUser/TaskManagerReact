@@ -15,9 +15,7 @@ const GlobalTaskDetail = () => {
   const { request } = useHttp();
   useEffect(() => {
     const getGlobalTask = async () => {
-      const global_task = await request(
-        "/global-task/" + id
-      );
+      const global_task = await request("/global-task/" + id);
       setGlobal_task(global_task);
       const tasks = await request("/tasks/all/" + id);
       dispatch(initTasks(tasks));
@@ -26,11 +24,12 @@ const GlobalTaskDetail = () => {
   }, [dispatch, id, request]);
   const tasks = useSelector((state) => state.tasks.tasks);
   return (
-    <div className="global_task--detail">
-      <h1>Detail global_task</h1>
-      <div className="base_info_project">
-        <h3>{global_task.title}</h3>
-        <p>{global_task.description}</p>
+    <div className="global_task">
+      <div className="jumbotron jumbotron-fluid">
+        <div className="container">
+          <h1>{global_task.title}</h1>
+          <p className="lead pl-1">{global_task.description}</p>
+        </div>
       </div>
       <Modal
         title="Create task"
@@ -38,15 +37,18 @@ const GlobalTaskDetail = () => {
         forElement="create-task"
         component={<TaskForm global_task_id={id} />}
       />
-      <h3>
-        Tasks list
+
+      <h2 className="text-center pb-5">
+        
+        Список заданий
         <PlusSquare
           size="24"
           className="ml-5"
           data-toggle="modal"
           data-target="#create-task"
         />
-      </h3>
+      </h2>
+
       {tasks || tasks?.length ? (
         <TaskList global_taskId={id} tasks={tasks} />
       ) : (
