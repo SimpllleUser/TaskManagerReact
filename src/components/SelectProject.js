@@ -15,7 +15,7 @@ const SelectProject = () => {
     const initProject =
       JSON.parse(localStorage.getItem("project")) || projects[0];
     const getData = async () => {
-      const projects = await request("http://localhost:8080/api/project");
+      const projects = await request("/project");
       setProjects(projects);
     };
     setProjectData(initProject);
@@ -28,12 +28,12 @@ const SelectProject = () => {
       setSelectedProject(project.title);
       dispatch(getAllDataFromProject(project.id));
       const global_tasks = await request(
-        "http://localhost:8080/api/global-task/all/" + project.id
+        "/global-task/all/" + project.id
       );
       dispatch(setGlobalTasks(global_tasks));
       const g_tasksID = global_tasks.map((g_task) => g_task.id);
       const tasks = await request(
-        "http://localhost:8080/api/tasks/all-tasks/from/globlal-tasks",
+        "/tasks/all-tasks/from/globlal-tasks",
         "get",
         { params: { g_tasksID } }
       );

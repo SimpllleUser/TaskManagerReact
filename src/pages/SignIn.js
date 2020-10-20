@@ -16,7 +16,7 @@ const SignIn = () => {
     event.preventDefault();
     const { login, password } = form;
     if (password.trim().length >= 4 && login.trim().length >= 4) {
-      const res = await request("http://localhost:8080/api/auth/signin","post",{
+      const res = await request("/auth/signin","post",{
         password,
         username: login,
        })

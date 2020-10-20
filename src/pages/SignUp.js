@@ -12,7 +12,7 @@ const SignUp = () => {
 
     if (password.trim().length >= 4 && username.trim().length >= 4) {
       try {
-        const res = request("http://localhost:8080/api/auth/signup","post", {
+        const res = request("/auth/signup","post", {
           username,
           email,
           password,

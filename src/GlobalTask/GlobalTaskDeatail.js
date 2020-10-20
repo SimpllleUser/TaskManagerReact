@@ -16,10 +16,10 @@ const GlobalTaskDetail = () => {
   useEffect(() => {
     const getGlobalTask = async () => {
       const global_task = await request(
-        "http://localhost:8080/api/global-task/" + id
+        "/global-task/" + id
       );
       setGlobal_task(global_task);
-      const tasks = await request("http://localhost:8080/api/tasks/all/" + id);
+      const tasks = await request("/tasks/all/" + id);
       dispatch(initTasks(tasks));
     };
     getGlobalTask();

@@ -17,7 +17,7 @@ const ModalWorkLog = (props) => {
     const newWorkLog = +props.workLog + +workLog;
     props.changeWorkLog(newWorkLog);
 
-    await request("http://localhost:8080/api/tasks/work-log/" + props.id,'put', {
+    await request("/tasks/work-log/" + props.id,'put', {
       workLog: newWorkLog,
     });
   };

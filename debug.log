@@ -1,0 +1,2 @@
+[1019/180356.969:ERROR:process_reader_win.cc(123)] NtOpenThread: {Отказано в доступе} Процесс запросил доступ к объекту, но права на доступ не предоставлены. (0xc0000022)
+[1019/180356.971:ERROR:exception_snapshot_win.cc(99)] thread ID 4960 not found in process

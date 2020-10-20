@@ -17,12 +17,12 @@ const ProjectDetail = () => {
   const { request, loading } = useHttp();
   useEffect(() => {
     const getProject = async () => {
-      const project = await request("http://localhost:8080/api/project/" + id);
+      const project = await request("/project/" + id);
       setProject(project);
     };
     const getGlobalTasks = async () => {
       const global_tasks = await request(
-        "http://localhost:8080/api/global-task/all/" + id
+        "/global-task/all/" + id
       );
       dispatch(setGlobalTasks(global_tasks))
     };
