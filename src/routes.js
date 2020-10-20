@@ -10,8 +10,8 @@ import GlobalTaskDetail from "./GlobalTask/GlobalTaskDeatail";
 import GlobalTaskList from "./GlobalTask/GlobalTaskList"
 import MainTaskList from "./pages/MainTaskList"
 export const useRoutes = (isAuthUser) => {
+  console.log(isAuthUser)
   if (isAuthUser) {
-    console.log('isAuthUser', isAuthUser)
     return (
 
       <Switch>
@@ -36,18 +36,20 @@ export const useRoutes = (isAuthUser) => {
         {/* <Route exact path="/event-calendar">
           <EventCalendar/>
         </Route> */}
-        <Redirect to="/"/>
+        <Redirect to="/" exact />
       </Switch>
     );
+  }else{
+    return <Switch>
+    <Route path="/SignIn" exact>
+       <SignIn />
+     </Route>
+     <Route path="/SignUp" exact>
+       <SignUp />
+     </Route>
+     <Redirect to="/SignIn" exact/>
+</Switch>;
   }
 
-  return <Switch>
-       <Route path="/SignIn">
-          <SignIn />
-        </Route>
-        <Route path="/SignUp">
-          <SignUp />
-        </Route>
-        <Redirect to="/SignIn"/>
-  </Switch>;
+
 };

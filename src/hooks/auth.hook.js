@@ -3,8 +3,9 @@ import { useState, useCallback, useEffect } from "react"
 export const useAuth = () => {
 
     const storageName = 'user'
-    const [token, setToken] = useState('');
-    const [userId, setUserId] = useState('');
+    const accountData = JSON.parse(localStorage.getItem('user'))
+    const [token, setToken] = useState(accountData.token || '');
+    const [userId, setUserId] = useState(accountData.userId || '');
 
     const login = useCallback((jwtToken, id) => {
         setToken(jwtToken)

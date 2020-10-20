@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios"
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext.js";
 import { useAuth } from "./hooks/auth.hook";
