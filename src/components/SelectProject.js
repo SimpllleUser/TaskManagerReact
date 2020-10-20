@@ -7,22 +7,27 @@ import { setGlobalTasks } from "../store/global_task/actions";
 import { initTasks } from "../store/tasks/actions";
 
 const SelectProject = () => {
+  const storage = localStorage;
   const { request } = useHttp();
   const dispatch = useDispatch();
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
   useEffect(() => {
-    const getData = async () => {
+    const getProjects = async () => {
       const projects = await request("/project");
       setProjects(projects);
-      initializationData(projects[0]);
+      const sorageProject = JSON.parse(storage.getItem('project'))
+      if(!sorageProject){
+        storage.setItem('project',JSON.stringify(projects))
+    }
     };
-    getData();
+    getProjects();
+    initializationData(JSON.parse(storage.getItem('project')));
   }, [request]);
-  const initializationData = async (project) => {
+  const initializationData = async (project = JSON.parse(storage.getItem('project'))[0] ) => {
     if (project) {
       const { title, id } = project;
-      localStorage.setItem("project", JSON.stringify({ title, id }));
+      storage.setItem("project", JSON.stringify({ title, id }));
       setSelectedProject(project.title);
       dispatch(getAllDataFromProject(project.id));
       const global_tasks = await request("/global-task/all/" + project.id);
@@ -54,6 +59,7 @@ const SelectProject = () => {
   );
   return (
     <div className="selector_project">
+      {/* {storage.getItem('project')} */}
       {projects.length <= 1 ? (
         <h3 className="navbar-brand">{projects[0]?.title}</h3>
       ) : (
