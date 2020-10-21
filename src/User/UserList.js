@@ -11,7 +11,7 @@ const UserList = ({ users, project_id }) => {
   const myId = JSON.parse(localStorage.getItem("user")).userId || "";
 
   const changeInputHandler = (event) => {
-    setUserId({ ...user_id, [event.target.name]: event.target.value });
+    setUserId(event.target.value);
   };
 
   const submitHundler = (event) => {
