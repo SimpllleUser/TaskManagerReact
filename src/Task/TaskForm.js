@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { createTask } from "../store/tasks/actions";
@@ -15,6 +15,7 @@ const TaskForm = (props) => {
     status: props.status || "Open",
     type: props.type || "Feature",
   });
+
   const submitHandler = (event) => {
     event.preventDefault();
     const { title, description, estimate, status, priority, type } = taskForm; // this.state;
@@ -38,6 +39,7 @@ const TaskForm = (props) => {
       ? dispatch(saveEditableTask({ task: Task }))
       : dispatch(createTask({ id: props.global_task_id, task: Task, user_id }));
     setTaskForm({});
+
   };
   const changeInputHandler = (event) => {
     setTaskForm({ ...taskForm, [event.target.name]: event.target.value });
@@ -93,7 +95,7 @@ const TaskForm = (props) => {
           />
         </div>
         <button className="btn btn-success ml-2">
-          
+
           {taskForm.id ? "Сохранить" : "Создать"}
         </button>
       </div>

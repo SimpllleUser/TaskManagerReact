@@ -6,7 +6,7 @@ const Options = ({ items }) => {
   const itemsList = items.map((item, index) => <span key={index}>{item}</span>);
   return (
     <div id="options" className="options-block">
-      <ul class="list-group">
+      <ul className="list-group">
         <div className="options-block__title">
           <MoreVertical
             size="24"

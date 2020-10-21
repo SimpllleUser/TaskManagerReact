@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import { useHttp } from "../hooks/http.hook";
+import { showError } from "../store/error/actions"
+import { useDispatch } from "react-redux";
 
 const SignUp = () => {
+  const dispatch = useDispatch()
   const { request } = useHttp();
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [redirect, setRedirect] = useState(false);
@@ -12,7 +15,7 @@ const SignUp = () => {
 
     if (password.trim().length >= 4 && username.trim().length >= 4) {
       try {
-        const res = request("http://localhost:8080/api/auth/signup","post", {
+        const res = request("/auth/signup","post", {
           username,
           email,
           password,
@@ -21,7 +24,7 @@ const SignUp = () => {
        setRedirect(res.data.allow)
       }
       } catch (err) {
-        // ! SHOW TOAST
+        dispatch(showError(err))
       }
     }
   };

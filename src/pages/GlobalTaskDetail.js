@@ -13,7 +13,7 @@ const GlobalTaskDetail = () => {
   const { request, loading } = useHttp();
   useEffect(() => {
     const getGlobalTask = async () => {
-      const res = await request("http://localhost:8080/api/global_task/" + id);
+      const res = await request("/global_task/" + id);
       setGlobal_task(res);
       dispatch(initTasks(res.tasks));
     };

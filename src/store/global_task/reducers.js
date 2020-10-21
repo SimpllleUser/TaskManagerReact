@@ -1,4 +1,3 @@
-// import { CREATE_TASK, DELETE_TASK } from "../tasks/types";
 import { SET_G_TASKS, CREATE_G_TASK, DELETE_G_TASK, EDIT_G_TASK } from "./types";
 
 const initialState = {

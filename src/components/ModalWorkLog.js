@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { useHttp } from "../hooks/http.hook";
 
 const ModalWorkLog = (props) => {
+  const { request } = useHttp();
   const [workLog, setworkLog] = useState("");
 
   const changeInputHandler = (event) => {
@@ -15,30 +16,25 @@ const ModalWorkLog = (props) => {
     }
     const newWorkLog = +props.workLog + +workLog;
     props.changeWorkLog(newWorkLog);
-    try {
-      // ! ADD REQUEST
-      await axios.put("http://localhost:8080/api/tasks/work-log/" + props.id, {
-        workLog: newWorkLog,
-      })
-    } catch (err) {
-      // ! FIX ADD SHOW ERR 
-    }
-    setworkLog(0);
+
+    await request("/tasks/work-log/" + props.id,'put', {
+      workLog: newWorkLog,
+    });
   };
 
   return (
     <div
       className="modal fade modal-worklLog"
-      id={props.id}
+      id={"worklog" + props.id}
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalCenterTitle"
       aria-hidden="true"
     >
-      <div className="modal-dialog modal-dialog-centered" role="document">
+      <div className="modal-dialog modal-sm modal-dialog-centered" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Work log</h5>
+            <h5 className="modal-title">Время работы</h5>
             <button
               type="button"
               className="close"
@@ -50,15 +46,17 @@ const ModalWorkLog = (props) => {
           </div>
           <div className="modal-body">
             <div className="modal-workLog">
-              <div className="task-form">
+              <div className="form-group">
+                <label htmlFor="time">Time</label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   id="workLog"
                   name="workLog"
                   value={workLog}
                   onChange={changeInputHandler}
                 />
+                {/* <textarea name="worklog_commnet" id="" cols="30" rows="10"></textarea> */}
                 <button
                   className="btn btn-success send-task"
                   data-dismiss="modal"

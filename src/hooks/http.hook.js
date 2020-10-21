@@ -13,13 +13,11 @@ const authHeader = () => {
     }
 }
 
-// !FIX useHtpp add useCallback
 export const useHttp = () => {
     const dispatch = useDispatch();
-
+    axios.defaults.baseURL = 'http://localhost:8080/api'
     const [loading, setLoading] = useState(false)
     const [err, setErr] = useState(null)
-
     const request = useCallback(async(url, method = 'get', body = null) => {
         setLoading(true)
         try {

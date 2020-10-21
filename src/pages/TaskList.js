@@ -24,7 +24,7 @@ const TaskList = () => {
   };
   const sortedTaskList = rowsByStatus().map((el, index) => (
     <div className={"block-" + el.name} key={index}>
-      <h3 className={"el-name-" + el.name}> {el.name} </h3>
+      <h3 className={"rounded-top el-name " + el.name}> {el.name} </h3>
       <div className={"list-" + el.name}>
         {el.tasks.map((task, index) => (
           <TaskCard task={task} key={index} />
@@ -33,7 +33,7 @@ const TaskList = () => {
     </div>
   ))
     ? tasks.map((task, index) => <TaskCard task={task} key={index} />)
-    : "No tasks";
+    : "Список пуст";
   return (
     <div id="task-dashboard">
       <Modal forElement="test" component={<h2> Список заданий </h2>}></Modal>

@@ -18,7 +18,7 @@ const Header = () => {
     <header className="header navbar navbar-dark bg-primary">
       {loader && <Loader />}
       <Toast />
-      <nav id="header_nav" class="navbar">
+      <nav id="header_nav" className="navbar">
         <SelectProject />
         <NavLink
           exact
@@ -35,13 +35,13 @@ const Header = () => {
         >
           Список глобальных заданий
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/event-calendar"
           activeClassName={activePage}
           className="nav-item nav-link text-white"
         >
           Календарь событий
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="/projects-list"
           activeClassName={activePage}

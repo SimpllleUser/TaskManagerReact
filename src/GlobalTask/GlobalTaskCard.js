@@ -11,26 +11,25 @@ const GlobalTaskCard = ({ id, global_taskId, title, description }) => {
   return (
     <div className="global_task">
       <h4>
-        <NavLink to={`/detail-global_task/` + global_taskId}>{title}</NavLink>
+        Title: <NavLink to={`/detail-global_task/` + global_taskId}>{title}</NavLink>
       </h4>
       <div>
-        <p>{description}</p>
+        <p>Desciprion: {description}</p>
         {/* <span>Progress</span>00% */}
-
         <Options
           items={[
             <div>
               <div
-                className="list-group-item list-group-item-action"
+                className="list-group-item list-group-item-action bg-warning text-dark"
                 data-toggle="modal"
                 data-target={"#edit-global_task" + global_taskId}
               >
                 Edit
               </div>
               <div
-                className="list-group-item list-group-item-action"
+                className="list-group-item list-group-item-action bg-danger text-white"
                 onClick={() => {
-                  dispatch(deleteGlobalTask(id, global_taskId));
+                  dispatch(deleteGlobalTask(global_taskId));
                 }}
               >
                 Delete

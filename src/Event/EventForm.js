@@ -33,7 +33,7 @@ const CalendarEvent = ({event}) => {
   };
   return (
     <div>
-      {eventForm.id}
+      {event}
       <form className="eventForm" onSubmit={submitHandler}>
         <label htmlFor="title"> Название </label>
         <input

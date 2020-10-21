@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [1002/170048.685:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
 [1002/170048.686:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
 [1002/170048.687:ERROR:process_reader_win.cc(123)] NtOpenThread: {Отказано в доступе} Процесс запросил доступ к объекту, но права на доступ не предоставлены. (0xc0000022)
@@ -11,3 +12,7 @@
 [1002/170048.700:ERROR:process_reader_win.cc(123)] NtOpenThread: {Отказано в доступе} Процесс запросил доступ к объекту, но права на доступ не предоставлены. (0xc0000022)
 [1002/170048.700:ERROR:exception_snapshot_win.cc(99)] thread ID 5456 not found in process
 [1014/124431.072:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+=======
+[1019/180356.969:ERROR:process_reader_win.cc(123)] NtOpenThread: {Отказано в доступе} Процесс запросил доступ к объекту, но права на доступ не предоставлены. (0xc0000022)
+[1019/180356.971:ERROR:exception_snapshot_win.cc(99)] thread ID 4960 not found in process
+>>>>>>> 03cdb8925e833b93dac693ba6cffbf62f594c72d

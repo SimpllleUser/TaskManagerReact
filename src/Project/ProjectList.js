@@ -36,7 +36,7 @@ const ProjectsList = () => {
     <div className="project_list_container">
       {loading && <h3>Loading</h3>}
       <h3 className="project_list_title">
-        Projects
+        Проекты
         <Modal forElement="project-form" title="Create project" component={<ProjectForm/>} />
         <PlusSquare size="24" className="ml-5" data-toggle="modal" data-target="#project-form" />
       </h3>

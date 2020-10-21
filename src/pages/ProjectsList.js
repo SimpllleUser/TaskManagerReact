@@ -34,7 +34,7 @@ const ProjectsList = () => {
   return (
     <div className="project_list_container">
       {loading ? <h3>Loading</h3> : ""}
-      <h3>Projects</h3>
+      <h3>Проекты</h3>
       <div className="projetcs_list">{projectsList}</div>
     </div>
   );
