@@ -3,6 +3,8 @@ import { CREATE_PROJECT, GET_PROJECTS, DELETE_PROJECT, EDIT_PROJECT } from "./ty
 import { initTasks } from "../tasks/actions"
 import { setGlobalTasks } from "../global_task/actions"
 import { showLoader, hideLoader } from "../loader/actions"
+import { showError } from "../error/actions"
+
 const URL_API = 'http://localhost:8080/api'
 
 
@@ -15,6 +17,7 @@ export const getAllProjects = () => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
+        dispatch(showError(err))
     }
 
 }
@@ -28,6 +31,7 @@ export const getAllDataFromProject = (id) => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
+        dispatch(showError(err))
     }
 }
 
@@ -44,6 +48,7 @@ export const createProject = (project) => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
+        dispatch(showError(err))
     }
 }
 
@@ -55,8 +60,8 @@ export const deleteProject = ({ id, user_id }) => async(dispatch) => {
         dispatch({ type: DELETE_PROJECT, id })
         dispatch(hideLoader())
     } catch (err) {
-        // ! SHOW TOAST
         dispatch(hideLoader())
+        dispatch(showError(err))
 
     }
 
@@ -74,7 +79,7 @@ export const editProject = (project) => async(dispatch) => {
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
-            // ! SHOW TOAST
+        dispatch(showError(err))
     }
 
 }
