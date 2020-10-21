@@ -1,20 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import UserCard from "./UserCard";
-const UserList = ({ users }) => {
+import { useDispatch } from "react-redux";
+import { addUser } from "../store/users/actions";
+
+
+const UserList = ({ users, project_id }) => {
+  const [user_id, setUserId] = useState("");
+  const dispatch = useDispatch();
+
   const myId = JSON.parse(localStorage.getItem("user")).userId || "";
+
+  const changeInputHandler = (event) => {
+    setUserId({ ...user_id, [event.target.name]: event.target.value });
+  };
+
   const submitHundler = (event) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+    if (user_id.trim()) {
+        dispatch(addUser(project_id, user_id))
+    }
+    setUserId("");
+  };
   return (
     <div>
       <h1>Списко пользователей</h1>
       <form onSubmit={submitHundler}>
-      <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="User ID" />
-  <div class="input-group-prepend">
-    <button className="btn btn-warning">Search</button>
-  </div>
-</div>
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="User ID"
+            value={user_id}
+            onChange={changeInputHandler}
+          />
+          <div class="input-group-prepend">
+            <button className="btn btn-warning">Search</button>
+          </div>
+        </div>
       </form>
       <div className="list-group">
         {users &&

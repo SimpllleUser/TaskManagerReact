@@ -84,7 +84,7 @@ const ProjectDetail = () => {
       </div>
       </div>
       <div className="col-3">
-      <UserList users={users} />
+      <UserList project_id={id} users={users} />
       </div>
     </div>
   );
