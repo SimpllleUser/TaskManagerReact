@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import UserCard from "./UserCard";
 const UserList = ({ users }) => {
   const myId = JSON.parse(localStorage.getItem("user")).userId || "";
@@ -20,7 +20,7 @@ const UserList = ({ users }) => {
         {users &&
           users.map(
             (user) =>
-              user.id != myId && (
+              user.id !== myId && (
                 <div className="list-group-item list-group-item-action">
                   <UserCard id={user.id} name={user.name} email={user.email} />
                 </div>

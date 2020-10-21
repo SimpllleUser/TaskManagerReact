@@ -18,17 +18,21 @@ const SelectProject = () => {
     const getProjects = async () => {
       const projects = await request("/project");
       setProjects(projects);
-      const sorageProject = JSON.parse(storage.getItem('project'))
-      if(!sorageProject){
-        storage.setItem('project',JSON.stringify(projects))
-    }
+      const sorageProject = JSON.parse(storage.getItem("project"));
+      console.log("TEST",JSON.parse(storage.getItem("project")))
+      if (!sorageProject) {
+        storage.setItem("project", JSON.stringify(projects));
+      }
     };
     getProjects();
-    initializationData(JSON.parse(storage.getItem('project')));
+    initializationData(JSON.parse(storage.getItem("project")));
   }, [request]);
-  const initializationData = async (project = JSON.parse(storage.getItem('project'))[0] ) => {
-    if (project) {
-      const { title, id } = project;
+  const initializationData = async (
+    project = JSON.parse(storage.getItem("project"))[0]
+  ) => {
+          const { title, id } = project;
+    if (title && id) {
+      console.log('title, id',title, id)
       storage.setItem("project", JSON.stringify({ title, id }));
       setSelectedProject(project.title);
       dispatch(getAllDataFromProject(project.id));
@@ -61,7 +65,6 @@ const SelectProject = () => {
   );
   return (
     <div className="selector_project">
-      {/* {storage.getItem('project')} */}
       {projects.length <= 1 ? (
         <h3 className="navbar-brand">{projects[0]?.title}</h3>
       ) : (
