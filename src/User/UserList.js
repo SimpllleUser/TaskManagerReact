@@ -34,7 +34,7 @@ const UserList = ({ users, project_id }) => {
             onChange={changeInputHandler}
           />
           <div class="input-group-prepend">
-            <button className="btn btn-warning">Search</button>
+            <button className="btn btn-warning">Add</button>
           </div>
         </div>
       </form>
@@ -43,8 +43,8 @@ const UserList = ({ users, project_id }) => {
           users.map(
             (user) =>
               user.id !== myId && (
-                <div className="list-group-item list-group-item-action">
-                  <UserCard id={user.id} name={user.name} email={user.email} />
+                <div className="list-group-item list-group-item">
+                  <UserCard project_id={project_id} id={user.id} name={user.name} email={user.email} />
                 </div>
               )
           )}

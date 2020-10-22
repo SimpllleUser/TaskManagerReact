@@ -19,27 +19,24 @@ export const getUsers = ({ project_id }) => async(dispatch) => {
         dispatch(hideLoader())
         dispatch(showError(err))
     }
-
 }
 
-
-export const deleteUeser = ({ project_id, uesr_id }) => async(dispatch) => {
+export const deleteUser = ({ project_id, user_id }) => async(dispatch) => {
+    console.log(user_id)
     try {
         dispatch(showLoader())
         await axios.delete(URL_API + '/user/delete-from-project', {
             data: {
                 project_id,
-                uesr_id,
+                user_id,
             }
         })
-        dispatch({ type: DELETE_USER, uesr_id })
+        dispatch({ type: DELETE_USER, user_id })
     } catch (err) {
         dispatch(hideLoader())
         dispatch(showError(err))
     }
     dispatch(hideLoader())
-
-
 }
 
 export const addUser = ({ user_id, project_id }) => async(dispatch) => {
@@ -57,5 +54,4 @@ export const addUser = ({ user_id, project_id }) => async(dispatch) => {
         dispatch(hideLoader())
         dispatch(showError(err))
     }
-
 }

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
-import { ArrowLeft, ArrowRight, PlusSquare } from "react-feather";
+import { ArrowLeft, ArrowRight } from "react-feather";
 import EventList from "../Event/EventList";
-import Modal from "../Modals/Modal";
-import EventForm from "../Event/EventForm";
+// import Modal from "../Modals/Modal";
+// import EventForm from "../Event/EventForm";
 import { getAllEvents } from "../store/events/actions";
 
 const Calendar = () => {
