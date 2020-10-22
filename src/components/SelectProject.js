@@ -19,7 +19,6 @@ const SelectProject = () => {
       const projects = await request("/project");
       setProjects(projects);
       const sorageProject = JSON.parse(storage.getItem("project"));
-      console.log("TEST",JSON.parse(storage.getItem("project")))
       if (!sorageProject) {
         storage.setItem("project", JSON.stringify(projects));
       }
@@ -32,7 +31,6 @@ const SelectProject = () => {
   ) => {
           const { title, id } = project;
     if (title && id) {
-      console.log('title, id',title, id)
       storage.setItem("project", JSON.stringify({ title, id }));
       setSelectedProject(project.title);
       dispatch(getAllDataFromProject(project.id));

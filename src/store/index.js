@@ -8,6 +8,7 @@ import { global_taskReducer } from "./global_task/reducers";
 import { projectsReducer } from "./project/reducers";
 import { loaderReducer } from "./loader/reducers";
 import { errorReducer } from "./error/reducers"
+import { usersReducer } from "./users/reducers"
 
 const rootReducer = combineReducers({
     tasks: tasksReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     global_tasks: global_taskReducer,
     projects: projectsReducer,
     loader: loaderReducer,
-    err: errorReducer
+    err: errorReducer,
+    usesr: usersReducer
 });
 
 export default function configureStore() {

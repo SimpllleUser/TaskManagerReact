@@ -8,12 +8,12 @@ const initialState = {
     users: []
 };
 
-export const tasksReducer = (state = initialState, action) => {
+export const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_USER:
             return {
                 ...state,
-                users: state.tasks.concat([action.user])
+                users: state.users.concat([action.user])
             };
 
         case DELETE_USER:

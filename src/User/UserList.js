@@ -17,7 +17,7 @@ const UserList = ({ users, project_id }) => {
   const submitHundler = (event) => {
     event.preventDefault();
     if (user_id.trim()) {
-        dispatch(addUser(project_id, user_id))
+        dispatch(addUser({project_id, user_id}))
     }
     setUserId("");
   };

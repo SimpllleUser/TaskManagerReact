@@ -43,13 +43,15 @@ export const deleteUeser = ({ project_id, uesr_id }) => async(dispatch) => {
 }
 
 export const addUser = ({ user_id, project_id }) => async(dispatch) => {
+    console.log('user_id, project_id', user_id, project_id)
     try {
         dispatch(showLoader())
-        const user = await axios.post(URL_API + '/user/addUser', {
+        const res = await axios.post(URL_API + '/user/addUser', {
             user_id,
             project_id
         })
-        dispatch({ type: ADD_USER, user })
+        console.log('res.user', 'res', res.data, res)
+        dispatch({ type: ADD_USER, user: res.data })
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
