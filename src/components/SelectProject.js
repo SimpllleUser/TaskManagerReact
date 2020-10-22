@@ -14,12 +14,12 @@ const SelectProject = () => {
   const dispatch = useDispatch();
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
+  const user_id = JSON.parse(storage.getItem("user")).userId
   useEffect(() => {
     const getProjects = async () => {
-      const projects = await request("/project");
+      const projects = await request("/project/users/" + user_id);
       setProjects(projects);
       const sorageProject = JSON.parse(storage.getItem("project"));
-      console.log("TEST",JSON.parse(storage.getItem("project")))
       if (!sorageProject) {
         storage.setItem("project", JSON.stringify(projects));
       }
@@ -32,7 +32,6 @@ const SelectProject = () => {
   ) => {
           const { title, id } = project;
     if (title && id) {
-      console.log('title, id',title, id)
       storage.setItem("project", JSON.stringify({ title, id }));
       setSelectedProject(project.title);
       dispatch(getAllDataFromProject(project.id));
