@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { PlusSquare } from "react-feather";
 import { useParams } from "react-router-dom";
 import { useHttp } from "../hooks/http.hook";
-import { setGlobalTasks } from "../store/global_task/actions";
 import { getUsers } from "../store/users/actions";
 import Modal from "../Modals/Modal";
 import GlobalTaskCard from "../GlobalTask/GlobalTaskCard";
@@ -14,7 +13,8 @@ const ProjectDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [project, setProject] = useState({});
-  // const [users, setUser] = useState([])
+  const [global_tasks, setGlobal_tasks] = useState([]);
+
   const { request } = useHttp();
   useEffect(() => {
     const getProject = async () => {
@@ -23,18 +23,13 @@ const ProjectDetail = () => {
     };
     const getGlobalTasks = async () => {
       const global_tasks = await request("/global-task/all/" + id);
-      dispatch(setGlobalTasks(global_tasks));
+      setGlobal_tasks(global_tasks);
     };
     dispatch(getUsers({project_id: id}))
-    // const getUsers = async () => {
-    //   const users = await request("/user/all/" + id)
-    //   setUser(users)
-    // }
+
     getProject();
     getGlobalTasks();
-    // getUsers();
   }, [id, request]);
-  const global_tasks = useSelector((state) => state.global_tasks.global_tasks);
   const users = useSelector((state) => state.users.users) ;
 
 
