@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
     projects: projectsReducer,
     loader: loaderReducer,
     err: errorReducer,
-    usesr: usersReducer
+    users: usersReducer
 });
 
 export default function configureStore() {

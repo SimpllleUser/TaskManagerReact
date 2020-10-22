@@ -4,6 +4,7 @@ import { PlusSquare } from "react-feather";
 import { useParams } from "react-router-dom";
 import { useHttp } from "../hooks/http.hook";
 import { setGlobalTasks } from "../store/global_task/actions";
+import { getUsers } from "../store/users/actions";
 import Modal from "../Modals/Modal";
 import GlobalTaskCard from "../GlobalTask/GlobalTaskCard";
 import GlobalTaskForm from "../GlobalTask/GlobalTaskForm";
@@ -13,7 +14,7 @@ const ProjectDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [project, setProject] = useState({});
-  const [users, setUser] = useState([])
+  // const [users, setUser] = useState([])
   const { request } = useHttp();
   useEffect(() => {
     const getProject = async () => {
@@ -24,15 +25,18 @@ const ProjectDetail = () => {
       const global_tasks = await request("/global-task/all/" + id);
       dispatch(setGlobalTasks(global_tasks));
     };
-    const getUsers = async () => {
-      const users = await request("/user/all/" + id)
-      setUser(users)
-    }
+    dispatch(getUsers({project_id: id}))
+    // const getUsers = async () => {
+    //   const users = await request("/user/all/" + id)
+    //   setUser(users)
+    // }
     getProject();
     getGlobalTasks();
-    getUsers();
+    // getUsers();
   }, [id, request]);
   const global_tasks = useSelector((state) => state.global_tasks.global_tasks);
+  const users = useSelector((state) => state.users.users) ;
+
 
   const global_tasksList =
     global_tasks &&

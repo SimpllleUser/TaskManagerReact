@@ -8,7 +8,7 @@ import { showLoader, hideLoader } from "../loader/actions"
 import { showError } from "../error/actions"
 const URL_API = 'http://localhost:8080/api'
 
-export const getUesrs = ({ project_id }) => async(dispatch) => {
+export const getUsers = ({ project_id }) => async(dispatch) => {
 
     try {
         dispatch(showLoader())
