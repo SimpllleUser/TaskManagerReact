@@ -4,6 +4,7 @@ import { Redirect, useParams } from "react-router-dom";
 import SelectorElement from "../components/SelectorElement";
 import SelectorForm from "../components/SelectorForm";
 import { saveEditableTask } from "../store/tasks/actions";
+import { updateOptionTask } from "../store/tasks/actions";
 import { useDispatch } from "react-redux";
 import { useHttp } from "../hooks/http.hook";
 
@@ -13,7 +14,6 @@ const TaskDetail = () => {
   const dispatch = useDispatch();
   let { id } = useParams();
   let [task, setTask] = useState({});
-  const [canSave, setCanSave] = useState(false);
 
   const { request } = useHttp();
   useEffect(() => {
@@ -33,23 +33,21 @@ const TaskDetail = () => {
   const updateDataStatus = (data) => {
     if (task.status != data) {
       setTask({ ...task, status: data });
-      setCanSave(true);
+      dispatch(updateOptionTask({task_id: id,option:{status: data}}))
     }
   };
 
   const updateDataPriority = (data) => {
     if (task.priority != data) {
       setTask({ ...task, priority: data });
-      setCanSave(true);
-      dispatch(saveEditableTask(task));
+      dispatch(updateOptionTask({task_id: id,option:{priority: data}}))
     }
   };
 
   const updateDataType = (data) => {
     if (task.type != data) {
       setTask({ ...task, type: data });
-      setCanSave(true);
-      dispatch(saveEditableTask(task));
+      dispatch(updateOptionTask({task_id: id,option:{type: data}}))
     }
   };
 
@@ -105,17 +103,6 @@ const TaskDetail = () => {
             />
           </div>
           <div className="selectors-options"></div>
-          {canSave && (
-            <button
-              onClick={() => {
-                dispatch(saveEditableTask(task));
-                setCanSave(false);
-              }}
-              className="btn btn-primary ml-5"
-            >
-              Save
-            </button>
-          )}
         </div>
         <div className="task-work">
           <div>estimate: {task.estimate || 0}ч</div>

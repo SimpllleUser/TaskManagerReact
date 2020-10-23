@@ -66,7 +66,19 @@ export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
 
 
 }
+export const updateOptionTask = ({ task_id, option }) => async(dispatch) => {
+    console.log(task_id, option)
+    try {
+        dispatch(showLoader())
+        const res = await axios.put(URL_API + '/tasks/' + task_id, option)
+        dispatch({ type: EDIT_TASK, task: res.data })
+        dispatch(hideLoader())
+    } catch (err) {
+        dispatch(hideLoader())
+        dispatch(showError(err))
+    }
 
+}
 export const saveEditableTask = (task) => async(dispatch) => {
     try {
         console.log(task)
