@@ -1,4 +1,4 @@
-import { CREATE_TASK, FECTH_TASKS, DELETE_TASK, EDIT_TASK, GET_ALLTASKS } from "./types";
+import { CREATE_TASK, FECTH_TASKS, DELETE_TASK, EDIT_TASK, GET_ALLTASKS, SET_WORKLOG } from "./types";
 
 const initialState = {
     tasks: [],
@@ -30,6 +30,15 @@ export const tasksReducer = (state = initialState, action) => {
             return {
                 ...state,
                 tasks: state.tasks = action.tasks
+            }
+        case SET_WORKLOG:
+            {
+                const { task_id, workLog } = action.data
+
+                return {
+                    ...state,
+                    tasks: state.tasks.forEach(task => task.id = task_id ? task.workLog = workLog : task)
+                }
             }
         default:
             return state;

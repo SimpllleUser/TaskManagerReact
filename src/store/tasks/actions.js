@@ -4,10 +4,11 @@ import {
     GET_ALLTASKS,
     DELETE_TASK,
     EDIT_TASK,
+    SET_WORKLOG
 } from "./types";
 import { showLoader, hideLoader } from "../loader/actions"
 import { showError } from "../error/actions"
-import { data } from "jquery";
+const author = JSON.parse(localStorage.getItem("user")).userId
 const URL_API = 'http://localhost:8080/api'
 
 export const createTask = ({ id, task, user_id }) => async(dispatch) => {
@@ -68,7 +69,6 @@ export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
 }
 export const updateOptionTask = ({ task_id, option }) => async(dispatch) => {
     console.log(task_id, option)
-    const author = JSON.parse(localStorage.getItem("user")).userId
     try {
         dispatch(showLoader())
         const res = await axios.put(URL_API + '/tasks/' + task_id, { option, author })
@@ -98,6 +98,20 @@ export const saveEditableTask = (task) => async(dispatch) => {
     }
 
 }
+
+export const setWorkLogToTask = ({ workLog, task_id }) => async(dispatch) => {
+    try {
+        console.log('setWorkLogToTask', workLog, task_id)
+        dispatch(showLoader())
+        await axios.put(URL_API + '/tasks/' + task_id, { workLog, author })
+        dispatch({ type: SET_WORKLOG, data: { workLog, task_id } })
+        dispatch(hideLoader())
+    } catch (err) {
+        dispatch(hideLoader())
+        dispatch(showError(err))
+    }
+}
+
 
 export const initTasks = (tasks) => {
     return {

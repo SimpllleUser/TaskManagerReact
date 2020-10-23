@@ -3,7 +3,6 @@ import moment from "moment";
 import { Redirect, useParams } from "react-router-dom";
 import SelectorElement from "../components/SelectorElement";
 import SelectorForm from "../components/SelectorForm";
-import { saveEditableTask } from "../store/tasks/actions";
 import { updateOptionTask } from "../store/tasks/actions";
 import { useDispatch } from "react-redux";
 import { useHttp } from "../hooks/http.hook";

@@ -1,27 +1,28 @@
 import React, { useState } from "react";
-import { useHttp } from "../hooks/http.hook";
+import { useDispatch } from "react-redux";
+import { setWorkLogToTask } from "../store/tasks/actions";
+
+// import { useHttp } from "../hooks/http.hook";
 
 const ModalWorkLog = (props) => {
-  const { request } = useHttp();
-  const [workLog, setworkLog] = useState("");
+  const dispatch = useDispatch()
+  // const { request } = useHttp();
+  const [workLog, setworkLog] = useState(parseFloat(0));
 
   const changeInputHandler = (event) => {
     event.persist();
     setworkLog(event.target.value);
   };
 
-  const seNewtWorkLog = async () => {
-    if (!workLog || workLog < 1) {
-      return;
-    }
-    const newWorkLog = +props.workLog + +workLog;
-    props.changeWorkLog(newWorkLog);
-    
-    await request("/tasks/work-log/" + props.id,'put', {
-      workLog: newWorkLog,
-    });
-  };
 
+  const seNewtWorkLog = async () => { 
+    if (!workLog || workLog < 1){ return}
+    let newWorkLog = parseFloat(workLog) + parseFloat(props.workLog)
+    dispatch(setWorkLogToTask({workLog: newWorkLog, task_id: props.id}))
+
+    
+
+}
   return (
     <div
       className="modal fade modal-worklLog"
