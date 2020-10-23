@@ -68,9 +68,10 @@ export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
 }
 export const updateOptionTask = ({ task_id, option }) => async(dispatch) => {
     console.log(task_id, option)
+    const author = JSON.parse(localStorage.getItem("user")).userId
     try {
         dispatch(showLoader())
-        const res = await axios.put(URL_API + '/tasks/' + task_id, option)
+        const res = await axios.put(URL_API + '/tasks/' + task_id, { option, author })
         dispatch({ type: EDIT_TASK, task: res.data })
         dispatch(hideLoader())
     } catch (err) {
@@ -81,7 +82,6 @@ export const updateOptionTask = ({ task_id, option }) => async(dispatch) => {
 }
 export const saveEditableTask = (task) => async(dispatch) => {
     try {
-        console.log(task)
         dispatch(showLoader())
         await axios.put(URL_API + '/tasks/' + task.id, {
             title: task.title,
