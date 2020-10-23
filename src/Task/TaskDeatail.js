@@ -6,7 +6,7 @@ import SelectorForm from "../components/SelectorForm";
 import { updateOptionTask } from "../store/tasks/actions";
 import { useDispatch } from "react-redux";
 import { useHttp } from "../hooks/http.hook";
-
+import Comment from "../components/Comment"
 import ModalWorkLog from "../components/ModalWorkLog";
 
 const TaskDetail = () => {
@@ -32,23 +32,33 @@ const TaskDetail = () => {
   const updateDataStatus = (data) => {
     if (task.status != data) {
       setTask({ ...task, status: data });
-      dispatch(updateOptionTask({task_id: id,option:{status: data}}))
+      dispatch(updateOptionTask({ task_id: id, option: { status: data } }));
     }
   };
 
   const updateDataPriority = (data) => {
     if (task.priority != data) {
       setTask({ ...task, priority: data });
-      dispatch(updateOptionTask({task_id: id,option:{priority: data}}))
+      dispatch(updateOptionTask({ task_id: id, option: { priority: data } }));
     }
   };
 
   const updateDataType = (data) => {
     if (task.type != data) {
       setTask({ ...task, type: data });
-      dispatch(updateOptionTask({task_id: id,option:{type: data}}))
+      dispatch(updateOptionTask({ task_id: id, option: { type: data } }));
     }
   };
+  const comnetsList = task.comments
+    ? task.comments.map((comment, index) => 
+        <Comment
+          key={index}
+          author={comment.author}
+          text={comment.text}
+          date={comment.date}
+        />
+    )
+    : "Comments none";
 
   if (task === undefined) {
     return <Redirect to="/" />;
@@ -124,6 +134,7 @@ const TaskDetail = () => {
           {moment(task.createdAt).format("DD-MMMM-YYYY")}
         </small>
       </div>
+      {comnetsList || ""}
     </div>
   );
 };

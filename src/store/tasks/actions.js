@@ -17,7 +17,7 @@ export const createTask = ({ id, task, user_id }) => async(dispatch) => {
         dispatch(showLoader())
         const response = await axios.post(URL_API + '/tasks', {
             globalTaskID: id,
-            task,
+            newTask: task,
             authorID: user_id
 
         })
@@ -101,7 +101,6 @@ export const saveEditableTask = (task) => async(dispatch) => {
 
 export const setWorkLogToTask = ({ workLog, task_id }) => async(dispatch) => {
     try {
-        console.log('setWorkLogToTask', workLog, task_id)
         dispatch(showLoader())
         await axios.put(URL_API + '/tasks/' + task_id, { workLog, author })
         dispatch({ type: SET_WORKLOG, data: { workLog, task_id } })
