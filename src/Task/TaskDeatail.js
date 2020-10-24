@@ -124,7 +124,7 @@ const TaskDetail = () => {
           {moment(task.createdAt).format("DD-MMMM-YYYY")}
         </small>
       </div>
-    <CommnetList comments={task.comments} />
+    <CommnetList task_id={id} comments={task.comments} />
     </div>
   );
 };

@@ -1,7 +1,10 @@
 import React, {useState} from "react";
 import Comment from "./Comment"
+import { useDispatch } from "react-redux";
+import { setCommentToTask } from "../store/tasks/actions";
 
-const CommnetList = ({comments }) => {
+const CommnetList = ({task_id, comments }) => {
+    const dispatch = useDispatch();
     const  [commentInput, setCommentInput] =  useState("")
     const comnetsList = comments
     ? comments.map((comment, index) =>
@@ -20,6 +23,7 @@ const CommnetList = ({comments }) => {
       };
       const setCommnet = () => {
           // setCommentToTask()
+          dispatch(setCommentToTask({task_id,comment:commentInput})) 
           setCommentInput("")
       }
     return (

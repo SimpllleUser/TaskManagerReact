@@ -4,7 +4,8 @@ import {
     GET_ALLTASKS,
     DELETE_TASK,
     EDIT_TASK,
-    SET_WORKLOG
+    SET_WORKLOG,
+    SET_COMMENT
 } from "./types";
 import { showLoader, hideLoader } from "../loader/actions"
 import { showError } from "../error/actions"
@@ -111,6 +112,17 @@ export const setWorkLogToTask = ({ workLog, task_id }) => async(dispatch) => {
     }
 }
 
+export const setCommentToTask = ({ task_id, comment }) => async(dispatch) => {
+    try {
+        dispatch(showLoader())
+        await axios.put(URL_API + '/tasks/comment' + task_id, { comment, author })
+        dispatch({ type: SET_COMMENT, data: { task_id, comment } })
+        dispatch(hideLoader())
+    } catch (err) {
+        dispatch(hideLoader())
+        dispatch(showError(err))
+    }
+}
 
 export const initTasks = (tasks) => {
     return {

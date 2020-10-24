@@ -6,3 +6,4 @@ export const HIDE_LOADER = "APP/HIDE_LOADER";
 export const DELETE_TASK = "APP/DELETE_TASK";
 export const EDIT_TASK = "APP/EDIT_TASK"
 export const SET_WORKLOG = "APP/SET_WORKLOG"
+export const SET_COMMENT = "APP/SET_COMMENT"
