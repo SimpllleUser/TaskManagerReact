@@ -42,6 +42,7 @@ export const tasksReducer = (state = initialState, action) => {
             }
         case SET_COMMENT:
             {
+                console.log(state)
                 const { task_id, comment } = action.data
 
                 return {

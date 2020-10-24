@@ -114,6 +114,10 @@ export const setWorkLogToTask = ({ workLog, task_id }) => async(dispatch) => {
 
 export const setCommentToTask = ({ task_id, comment }) => async(dispatch) => {
     try {
+        console.log(task_id, { comment, author })
+        dispatch({ type: SET_COMMENT, data: { task_id, comment } })
+
+        return
         dispatch(showLoader())
         await axios.put(URL_API + '/tasks/comment' + task_id, { comment, author })
         dispatch({ type: SET_COMMENT, data: { task_id, comment } })
