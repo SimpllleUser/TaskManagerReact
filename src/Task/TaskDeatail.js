@@ -6,7 +6,7 @@ import SelectorForm from "../components/SelectorForm";
 import { updateOptionTask } from "../store/tasks/actions";
 import { useDispatch } from "react-redux";
 import { useHttp } from "../hooks/http.hook";
-import Comment from "../components/Comment"
+import CommnetList from "../components/CommnetList"
 import ModalWorkLog from "../components/ModalWorkLog";
 
 const TaskDetail = () => {
@@ -49,18 +49,6 @@ const TaskDetail = () => {
       dispatch(updateOptionTask({ task_id: id, option: { type: data } }));
     }
   };
-  const comnetsList = task.comments
-    ? task.comments.map((comment, index) =>
-    <li class="list-group-item ml-2 mt-3 border border-secondary rounded">
-        <Comment
-          key={index}
-          author={comment.author}
-          text={comment.text}
-          date={comment.date}
-        />
-      </li>
-    )
-    : "Comments none";
 
   if (task === undefined) {
     return <Redirect to="/" />;
@@ -136,9 +124,7 @@ const TaskDetail = () => {
           {moment(task.createdAt).format("DD-MMMM-YYYY")}
         </small>
       </div>
-      <ul class="list-group">
-      {comnetsList || ""}
-      </ul>
+    <CommnetList comments={task.comments} />
     </div>
   );
 };
