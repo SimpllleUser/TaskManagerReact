@@ -50,13 +50,15 @@ const TaskDetail = () => {
     }
   };
   const comnetsList = task.comments
-    ? task.comments.map((comment, index) => 
+    ? task.comments.map((comment, index) =>
+    <li class="list-group-item ml-2 mt-3 border border-secondary rounded">
         <Comment
           key={index}
           author={comment.author}
           text={comment.text}
           date={comment.date}
         />
+      </li>
     )
     : "Comments none";
 
@@ -134,7 +136,9 @@ const TaskDetail = () => {
           {moment(task.createdAt).format("DD-MMMM-YYYY")}
         </small>
       </div>
+      <ul class="list-group">
       {comnetsList || ""}
+      </ul>
     </div>
   );
 };
