@@ -50,6 +50,11 @@ const TaskDetail = () => {
     }
   };
 
+  const updateCommentsList = () => {}
+  const updateWorkLog = () => {}
+  //updateCommentsList()
+  //updateWorkLog()
+
   if (task === undefined) {
     return <Redirect to="/" />;
   }
@@ -110,6 +115,7 @@ const TaskDetail = () => {
             changeWorkLog={changeWorkLog}
             id={task.id}
             workLog={task.workLog}
+            updateWorkLog={updateWorkLog}
           />
           <button
             type="button"
@@ -124,7 +130,7 @@ const TaskDetail = () => {
           {moment(task.createdAt).format("DD-MMMM-YYYY")}
         </small>
       </div>
-    <CommnetList task_id={id} comments={task.comments} />
+    <CommnetList updateCommentsList ={updateCommentsList}task_id={id} comments={task.comments} />
     </div>
   );
 };
