@@ -1,8 +1,8 @@
 import React from "react";
-import Options from "../components/Options";
+import Options from "../Options";
 import { useDispatch } from "react-redux";
 import { X, Edit2 } from "react-feather";
-import { deleteEvent } from "../store/events/actions";
+import { deleteEvent } from "../../store/events/actions";
 // import EventEdit from './EventEdit'
 import Modal from "../Modals/Modal";
 import EventForm from "./EventForm";

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import GlobalTaskCard from "../GlobalTask/GlobalTaskCard";
+import GlobalTaskCard from "./GlobalTaskCard";
 
 const GlobalTaskList = () => {
   const id = JSON.parse(localStorage.getItem("project"))?.id || '';

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllEvents } from "../store/events/actions";
+import { getAllEvents } from "../../store/events/actions";
 
 import EventCard from "./EventCard";
 import { useEffect } from "react";

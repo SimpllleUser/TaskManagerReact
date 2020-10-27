@@ -1,9 +1,9 @@
 import React, { useEffect,useState } from "react";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { createTask } from "../store/tasks/actions";
-import { saveEditableTask } from "../store/tasks/actions";
-import SelectorForm from "../components/SelectorForm";
+import { createTask } from "../../store/tasks/actions";
+import { saveEditableTask } from "../../store/tasks/actions";
+import SelectorForm from "../SelectorForm";
 const TaskForm = (props) => {
   const dispatch = useDispatch();
   const [taskForm, setTaskForm] = useState({

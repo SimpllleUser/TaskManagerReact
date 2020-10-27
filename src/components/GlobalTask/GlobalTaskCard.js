@@ -1,8 +1,8 @@
 import React from "react";
-import Options from "../components/Options";
+import Options from "../Options";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteGlobalTask } from "../store/global_task/actions";
+import { deleteGlobalTask } from "../../store/global_task/actions";
 import Modal from "../Modals/Modal";
 import GlobalTaskForm from "./GlobalTaskForm";
 const GlobalTaskCard = ({ id, global_taskId, title, description }) => {

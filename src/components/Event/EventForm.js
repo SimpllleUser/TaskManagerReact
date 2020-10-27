@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createEvent } from "../store/events/actions";
-import {editEvent} from "../store/events/actions"
+import { createEvent } from "../../store/events/actions";
+import {editEvent} from "../../store/events/actions"
 const CalendarEvent = ({event}) => {
   const dispatch = useDispatch();
   const [eventForm, setEventFrom] = useState({

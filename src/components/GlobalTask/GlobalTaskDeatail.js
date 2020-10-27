@@ -5,7 +5,7 @@ import Modal from "../Modals/Modal";
 import TaskList from "../Task/TaskList";
 import TaskForm from "../Task/TaskForm";
 import { useDispatch } from "react-redux";
-import { useHttp } from "../hooks/http.hook";
+import { useHttp } from "../../hooks/http.hook";
 const GlobalTaskDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();

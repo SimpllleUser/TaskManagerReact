@@ -1,13 +1,13 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import EventCalendar from "./pages/EventCalendar";
-import TaskDetail from "./Task/TaskDeatail";
+import TaskDetail from "./components/Task/TaskDeatail";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
-import ProjectsList from "./Project/ProjectList";
-import ProjectDetail from "./Project/ProjectDeatail"
-import GlobalTaskDetail from "./GlobalTask/GlobalTaskDeatail";
-import GlobalTaskList from "./GlobalTask/GlobalTaskList"
+import ProjectsList from "./components/Project/ProjectList";
+import ProjectDetail from "./components/Project/ProjectDeatail"
+import GlobalTaskDetail from "./components/GlobalTask/GlobalTaskDeatail";
+import GlobalTaskList from "./components/GlobalTask/GlobalTaskList"
 import MainTaskList from "./pages/MainTaskList"
 export const useRoutes = (isAuthUser) => {
   console.log(isAuthUser)

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProjects } from "../store/project/actions";
-import { useHttp } from "../hooks/http.hook";
+import { getAllProjects } from "../../store/project/actions";
+import { useHttp } from "../../hooks/http.hook";
 import { PlusSquare } from "react-feather";
 import Modal from "../Modals/Modal"
 import ProjectForm from "./ProjectForm"
-import ProjectCard from "../Project/ProjectCard";
+import ProjectCard from "./ProjectCard";
 
 const ProjectsList = () => {
   const dispatch = useDispatch();

@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteProject } from "../store/project/actions";
+import { deleteProject } from "../../store/project/actions";
 import Modal from "../Modals/Modal";
 import ProjectForm from "./ProjectForm";
-import Options from "../components/Options";
+import Options from "../Options";
 
 const ProjectCard = ({ title, description, id }) => {
   const dispatch = useDispatch();

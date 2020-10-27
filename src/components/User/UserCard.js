@@ -1,7 +1,7 @@
 import React from "react";
 import { XSquare } from "react-feather";
 import { useDispatch } from "react-redux";
-import { deleteUser } from "../store/users/actions";
+import { deleteUser } from "../../store/users/actions";
 
 const UserCard = ({ project_id, id, name, email }) => {
   const dispatch = useDispatch();

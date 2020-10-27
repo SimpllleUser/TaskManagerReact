@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { Redirect, useParams } from "react-router-dom";
-import SelectorElement from "../components/SelectorElement";
-import SelectorForm from "../components/SelectorForm";
-import { updateOptionTask } from "../store/tasks/actions";
+import SelectorElement from "../SelectorElement";
+import SelectorForm from "../SelectorForm";
+import { updateOptionTask } from "../../store/tasks/actions";
 import { useDispatch } from "react-redux";
-import { useHttp } from "../hooks/http.hook";
-import CommnetList from "../components/CommnetList"
-import ModalWorkLog from "../components/ModalWorkLog";
+import { useHttp } from "../../hooks/http.hook";
+import CommnetList from "../CommnetList"
+import ModalWorkLog from "../ModalWorkLog";
 
 const TaskDetail = () => {
   const dispatch = useDispatch();

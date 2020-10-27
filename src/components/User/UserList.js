@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import UserCard from "./UserCard";
 import { useDispatch } from "react-redux";
-import { addUser } from "../store/users/actions";
+import { addUser } from "../../store/users/actions";
 
 
 const UserList = ({ users, project_id }) => {

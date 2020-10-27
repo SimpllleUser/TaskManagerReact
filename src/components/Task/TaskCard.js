@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import Options from "../components/Options";
+import Options from "../Options";
 import Modal from "../Modals/Modal";
 import TaskForm from "./TaskForm";
-import { deleteTaskInGlobal_task } from "../store/tasks/actions";
-import SelectorElement from "../components/SelectorElement";
+import { deleteTaskInGlobal_task } from "../../store/tasks/actions";
+import SelectorElement from "../SelectorElement";
 
 const TaskCard = ({ global_taskId, task }) => {
   const dispatch = useDispatch();

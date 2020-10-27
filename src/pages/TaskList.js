@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 // import { getAllTasks } from "../store/tasks/actions";
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "../Modals/Modal";
-import TaskCard from "../Task/TaskCard";
+import Modal from "../components/Modals/Modal";
+import TaskCard from "../components/Task/TaskCard";
 
 const TaskList = () => {
   const dispatch = useDispatch();

@@ -1,5 +1,5 @@
 import React from "react";
-import TaskCard from "../Task/TaskCard";
+import TaskCard from "./TaskCard";
 
 const TaskList = ({global_taskId,tasks}) => {
 

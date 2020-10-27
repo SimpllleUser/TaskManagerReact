@@ -1,43 +1,45 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createProject } from "../store/project/actions";
-import { editProject } from "../store/project/actions";
+import { createGlobalTask } from "../../store/global_task/actions";
+import { editGlobalTask } from "../../store/global_task/actions";
 
-const ProjectForm = (props) => {
+const GlobalTaskForm = (props) => {
   const dispatch = useDispatch();
-  const user_id = JSON.parse(localStorage.getItem("user")).userId;
-  const [projectForm, setProjectForm] = useState({
+
+  const [global_taskForm, setGlobal_taskForm] = useState({
     id: props.id || "",
     title: props.title || "",
     description: props.description || "",
+    // status
   });
   const changeInputHandler = (event) => {
-    setProjectForm({ ...projectForm, [event.target.name]: event.target.value });
+    setGlobal_taskForm({ ...global_taskForm, [event.target.name]: event.target.value });
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const { id, title, description } = projectForm;
+    const { id, title, description } = global_taskForm;
 
     if (title.trim() && description.trim()) {
-      const Project = {
+      const GlobalTask = {
         id,
         title,
         description,
-        user_id,
+        project_id:props.project_id
       };
-      if (id) {
-        dispatch(editProject(Project))
-      } else {
-        dispatch(createProject(Project));
-        setProjectForm({});
+      if(id){
+        dispatch(editGlobalTask(GlobalTask));
       }
+      else{
+        dispatch(createGlobalTask({global_task:GlobalTask}))
+        setGlobal_taskForm({});
+      }
+
     }
-    
   };
 
   return (
-    <div className="project_create">
+    <div className="global_task-create">
       <form onSubmit={submitHandler}>
         <div className="project_create_title form-group">
           <label htmlFor="title">Title</label>
@@ -46,7 +48,7 @@ const ProjectForm = (props) => {
             type="text"
             name="title"
             id="title"
-            value={projectForm.title}
+            value={global_taskForm.title || ''}
             onChange={changeInputHandler}
           ></input>
         </div>
@@ -57,12 +59,11 @@ const ProjectForm = (props) => {
             className="form-control"
             name="description"
             id="description"
-            value={projectForm.description}
+            value={global_taskForm.description || ''}
             onChange={changeInputHandler}
           ></textarea>
         </div>
         <button className="btn btn-success m-2">
-          
           {props.id ? "Edit" : "Create"}
         </button>
       </form>
@@ -70,4 +71,4 @@ const ProjectForm = (props) => {
   );
 };
 
-export default ProjectForm;
+export default GlobalTaskForm;
