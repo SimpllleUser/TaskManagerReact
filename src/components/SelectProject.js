@@ -14,25 +14,30 @@ const SelectProject = () => {
   const dispatch = useDispatch();
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
-  const user_id = JSON.parse(storage.getItem("user")).userId
+  const getStore = (key) => JSON.parse(storage.getItem(key))
+  const setStore = (key, value) => {storage.setItem(key, JSON.stringify(value))} 
+  const user_id = getStore("user").userId
   useEffect(() => {
     const getProjects = async () => {
       const projects = await request("/project/users/" + user_id);
       setProjects(projects);
       const sorageProject = JSON.parse(storage.getItem("project"));
       if (!sorageProject) {
-        storage.setItem("project", JSON.stringify(projects));
+        setStore("project", projects)
+        // storage.setItem("project", JSON.stringify(projects));
       }
     };
     getProjects();
     initializationData(JSON.parse(storage.getItem("project")));
   }, [request]);
   const initializationData = async (
-    project = JSON.parse(storage.getItem("project"))[0]
+    // project = JSON.parse(storage.getItem("project"))[0]
+    project = getStore("project")[0]
   ) => {
           const { title, id } = project;
     if (title && id) {
-      storage.setItem("project", JSON.stringify({ title, id })); // setSelectProject to localStorage
+      //storage.setItem("project", JSON.stringify({ title, id })); // setSelectProject to localStorage
+      setStore("project", { title, id })
       setSelectedProject(project.title); // setState selectProject
       dispatch(getAllDataFromProject(project.id)); // get all data by project
       const global_tasks = await request("/global-task/all/" + project.id); // get global tasks

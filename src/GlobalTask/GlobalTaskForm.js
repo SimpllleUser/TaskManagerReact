@@ -41,7 +41,6 @@ const GlobalTaskForm = (props) => {
   return (
     <div className="global_task-create">
       <form onSubmit={submitHandler}>
-        {props.project_id}
         <div className="project_create_title form-group">
           <label htmlFor="title">Title</label>
           <input

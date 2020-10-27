@@ -31,7 +31,7 @@ const ProjectDetail = () => {
     getGlobalTasks();
   }, [id, request]);
   const users = useSelector((state) => state.users.users) ;
-
+  //const _global_tasks = useSelector((state) => state.global_tasks.global_tasks).filter(g_task => g_task.projectID == id);
 
   const global_tasksList =
     global_tasks &&
@@ -48,6 +48,7 @@ const ProjectDetail = () => {
 
   return (
     <div className="project_detail row">
+      {/* {JSON.stringify(_global_tasks)} */}
       <div className="col-9">
       <div className="jumbotron jumbotron-fluid">
         <div className="container">

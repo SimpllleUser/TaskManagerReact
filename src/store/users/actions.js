@@ -55,3 +55,5 @@ export const addUser = ({ user_id, project_id }) => async(dispatch) => {
         dispatch(showError(err))
     }
 }
+
+export const initUsers = (users) => ({ type: GET_USERS, users })

@@ -81,5 +81,6 @@ export const editProject = (project) => async(dispatch) => {
         dispatch(hideLoader())
         dispatch(showError(err))
     }
-
 }
+
+export const initProjects = (projects) => ({ type: GET_PROJECTS, projects })
