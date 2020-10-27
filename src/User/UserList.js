@@ -25,15 +25,15 @@ const UserList = ({ users, project_id }) => {
     <div>
       <h1>Списко пользователей</h1>
       <form onSubmit={submitHundler}>
-        <div class="input-group mb-3">
+        <div className="input-group mb-3">
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             placeholder="User ID"
             value={user_id}
             onChange={changeInputHandler}
           />
-          <div class="input-group-prepend">
+          <div className="input-group-prepend">
             <button className="btn btn-warning">Add</button>
           </div>
         </div>

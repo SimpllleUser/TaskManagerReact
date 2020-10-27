@@ -1,14 +1,14 @@
 import React from "react";
 
 const Comment = ({ author, text, date }) => (
-  <div class="media">
-    <div class="media-body">
-      <h5 class="badge badge-danger">
+  <div className="media">
+    <div className="media-body">
+      <h5 className="badge badge-danger">
           {author.name}
       </h5>
       <p>{text}</p>
     </div>
-    <span class="badge badge-secondary">{date}</span>
+    <span className="badge badge-secondary">{date}</span>
   </div>
 );
 

@@ -27,7 +27,7 @@ const GlobalTaskForm = (props) => {
         description,
         project_id:props.project_id
       };
-      if(props.project_id){
+      if(id){
         dispatch(editGlobalTask(GlobalTask));
       }
       else{
