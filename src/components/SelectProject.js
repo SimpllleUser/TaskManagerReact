@@ -32,12 +32,12 @@ const SelectProject = () => {
   ) => {
           const { title, id } = project;
     if (title && id) {
-      storage.setItem("project", JSON.stringify({ title, id }));
-      setSelectedProject(project.title);
-      dispatch(getAllDataFromProject(project.id));
-      const global_tasks = await request("/global-task/all/" + project.id);
-      dispatch(setGlobalTasks(global_tasks));
-      const g_tasksID = global_tasks.map((g_task) => g_task.id);
+      storage.setItem("project", JSON.stringify({ title, id })); // setSelectProject to localStorage
+      setSelectedProject(project.title); // setState selectProject
+      dispatch(getAllDataFromProject(project.id)); // get all data by project
+      const global_tasks = await request("/global-task/all/" + project.id); // get global tasks
+      dispatch(setGlobalTasks(global_tasks)); // set state global tasks
+      const g_tasksID = global_tasks.map((g_task) => g_task.id); 
       const tasks = await request(
         "/tasks/all-tasks/from/globlal-tasks",
         "get",

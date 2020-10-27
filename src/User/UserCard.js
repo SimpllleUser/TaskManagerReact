@@ -9,8 +9,8 @@ const UserCard = ({ project_id, id, name, email }) => {
   return (
     <div className="card">
       <div className="card-body">
-        <div class="card-header d-flex align-items-center">
-          ID: <span class="badge badge-success ml-1">{id}</span>
+        <div className="card-header d-flex align-items-center">
+          ID: <span className="badge badge-success ml-1">{id}</span>
           <div
             className="ml-auto"
             onClick={() => {
@@ -20,8 +20,8 @@ const UserCard = ({ project_id, id, name, email }) => {
             <XSquare size="18" />
           </div>
         </div>
-        <h3 class="card-title">{name}</h3>
-        Email: <span class="badge badge-pill badge-dark">{email}</span>
+        <h3 className="card-title">{name}</h3>
+        Email: <span className="badge badge-pill badge-dark">{email}</span>
       </div>
     </div>
   );
