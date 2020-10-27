@@ -43,12 +43,12 @@ const SelectProject = () => {
       const global_tasks = await request("/global-task/all/" + project.id); // get global tasks
       dispatch(setGlobalTasks(global_tasks)); // set state global tasks
       const g_tasksID = global_tasks.map((g_task) => g_task.id); 
-      const tasks = await request(
-        "/tasks/all-tasks/from/globlal-tasks",
-        "get",
-        { params: { g_tasksID } }
-      );
-      dispatch(initTasks(tasks));
+      // const tasks = await request(
+      //   "/tasks/all-tasks/from/globlal-tasks",
+      //   "get",
+      //   { params: { g_tasksID } }
+      // );
+      // dispatch(initTasks(tasks));
     }
   };
 

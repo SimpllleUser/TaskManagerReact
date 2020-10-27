@@ -8,12 +8,13 @@ import Modal from "../Modals/Modal";
 import GlobalTaskCard from "../GlobalTask/GlobalTaskCard";
 import GlobalTaskForm from "../GlobalTask/GlobalTaskForm";
 import UserList from "../User/UserList"
+import {setGlobalTasks} from "../../store/global_task/actions"
 
 const ProjectDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [project, setProject] = useState({});
-  const [global_tasks, setGlobal_tasks] = useState([]);
+  // const [global_tasks, setGlobal_tasks] = useState([]);
 
   const { request } = useHttp();
   useEffect(() => {
@@ -23,15 +24,15 @@ const ProjectDetail = () => {
     };
     const getGlobalTasks = async () => {
       const global_tasks = await request("/global-task/all/" + id);
-      setGlobal_tasks(global_tasks);
+      dispatch(setGlobalTasks(global_tasks))
     };
     dispatch(getUsers({project_id: id}))
 
     getProject();
     getGlobalTasks();
-  }, [id, request]);
+  }, [dispatch, id, request]);
   const users = useSelector((state) => state.users.users) ;
-  //const _global_tasks = useSelector((state) => state.global_tasks.global_tasks).filter(g_task => g_task.projectID == id);
+  const global_tasks = useSelector((state) => state.global_tasks.global_tasks)
 
   const global_tasksList =
     global_tasks &&

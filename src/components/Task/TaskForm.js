@@ -38,7 +38,7 @@ const TaskForm = (props) => {
     taskForm.id
       ? dispatch(saveEditableTask({ task: Task }))
       : dispatch(createTask({ id: props.global_task_id, task: Task, user_id }));
-    setTaskForm({});
+    setTaskForm({id:"",title:"",description:"",estimate:"",priority:"",status:"",type:""});
 
   };
   const changeInputHandler = (event) => {
