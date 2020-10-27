@@ -5,6 +5,7 @@ import { showLoader, hideLoader } from "../loader/actions"
 
 const URL_API = 'http://localhost:8080/api'
 export const createGlobalTask = (global_task) => async(dispatch) => {
+
     try {
         dispatch(showLoader())
         const res = await axios.post(URL_API + '/global-task', global_task)
@@ -33,7 +34,7 @@ export const editGlobalTask = (global_task) => async(dispatch) => {
     const { id, title, description } = global_task
     try {
         dispatch(showLoader())
-        await axios.put(URL_API + '/global_task/' + id, {
+        await axios.put(URL_API + '/global-task/' + id, {
             title,
             description,
         })
