@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useHttp } from "../hooks/http.hook";
 import { getAllDataFromProject } from "../store/project/actions";
 import { setAllGlobalTasks } from "../store/global_task/actions";
-import { initTasks } from "../store/tasks/actions";
+import { setAllTasks } from "../store/tasks/actions";
 
 // ! CHECK AUTH LOCAL_STORAGE
 
@@ -45,12 +45,12 @@ const SelectProject = () => {
       const global_tasks = await request("/global-task/all/" + project.id); // get global tasks
       dispatch(setAllGlobalTasks(global_tasks)); // set state global tasks
       const g_tasksID = global_tasks.map((g_task) => g_task.id);
-      // const tasks = await request(
-      //   "/tasks/all-tasks/from/globlal-tasks",
-      //   "get",
-      //   { params: { g_tasksID } }
-      // );
-      // dispatch(initTasks(tasks));
+      const tasks = await request(
+        "/tasks/all-tasks/from/globlal-tasks",
+        "get",
+        { params: { g_tasksID } }
+      );
+      dispatch(setAllTasks(tasks));
     }
   };
 

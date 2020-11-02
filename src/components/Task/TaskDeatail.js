@@ -3,11 +3,14 @@ import moment from "moment";
 import { Redirect, useParams } from "react-router-dom";
 import SelectorElement from "../SelectorElement";
 import SelectorForm from "../SelectorForm";
+import { useSelector } from "react-redux";
+
 import { updateOptionTask } from "../../store/tasks/actions";
 import { useDispatch } from "react-redux";
 import { useHttp } from "../../hooks/http.hook";
-import CommnetList from "../CommnetList"
+import CommnetList from "../CommnetList";
 import ModalWorkLog from "../ModalWorkLog";
+import {setTask} from "../../store/tasks/actions"
 
 const TaskDetail = () => {
   const dispatch = useDispatch();
@@ -18,10 +21,13 @@ const TaskDetail = () => {
   useEffect(() => {
     const getTask = async () => {
       const res = await request("/tasks/id=" + id);
-      setTask(res);
+      (setTask(res));
     };
     getTask();
   }, [id, request]);
+
+  const tasks = useSelector((state) => state.tasks.tasks);
+
 
   const changeWorkLog = (data) => {
     if (task.workLog != data) {
@@ -50,16 +56,18 @@ const TaskDetail = () => {
     }
   };
 
-  const updateCommentsList = () => {}
-  const updateWorkLog = () => {}
+  const updateCommentsList = () => {};
+  const updateWorkLog = () => {};
   //updateCommentsList()
   //updateWorkLog()
 
+  const _task = tasks && tasks.filter((task) => task.id == "5f9fc2c31632924138e002af")
   if (task === undefined) {
     return <Redirect to="/" />;
   }
   return (
     <div className="jumbotron" id="task-detail">
+      {JSON.stringify(_task)}
       <div className="task-body">
         <h3 className="title display-4"> {task.title} </h3>
         <hr />
@@ -130,7 +138,11 @@ const TaskDetail = () => {
           {moment(task.createdAt).format("DD-MMMM-YYYY")}
         </small>
       </div>
-    <CommnetList updateCommentsList ={updateCommentsList}task_id={id} comments={task.comments} />
+      <CommnetList
+        updateCommentsList={updateCommentsList}
+        task_id={id}
+        comments={task.comments}
+      />
     </div>
   );
 };

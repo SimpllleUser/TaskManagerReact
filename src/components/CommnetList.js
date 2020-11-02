@@ -9,7 +9,7 @@ const CommnetList = ({ task_id, comments }) => {
   const comnetsList = comments
     ? comments.map((comment, index) => (
         <li
-          class="list-group-item ml-2 mt-3 border border-secondary rounded"
+          className="list-group-item ml-2 mt-3 border border-secondary rounded"
           key={index}
         >
           <Comment
@@ -30,10 +30,10 @@ const CommnetList = ({ task_id, comments }) => {
   return (
     <div className="comment-block">
       <h3>Commebt</h3>
-      <div class="form-group d-flex flex-wrap">
+      <div className="form-group d-flex flex-wrap">
         <label for="comment-form">Comment</label>
         <textarea
-          class="form-control"
+          className="form-control"
           id="comment-form"
           value={commentInput}
           onChange={changeInputHandler}
@@ -51,7 +51,7 @@ const CommnetList = ({ task_id, comments }) => {
           Add
         </button>
       </div>
-      <ul class="list-group">{comnetsList || ""}</ul>
+      <ul className="list-group">{comnetsList || ""}</ul>
     </div>
   );
 };
