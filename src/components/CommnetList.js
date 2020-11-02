@@ -24,7 +24,7 @@ const CommnetList = ({ task_id, comments }) => {
     setCommentInput(event.target.value);
   };
   const setCommnet = () => {
-    dispatch(setCommentToTask({ task_id, comment: commentInput }));
+    dispatch(setCommentToTask({ task_id, comment: [commentInput] }));
     setCommentInput("");
   };
   return (
@@ -51,6 +51,7 @@ const CommnetList = ({ task_id, comments }) => {
           Add
         </button>
       </div>
+      {console.log(comments)}
       <ul className="list-group">{comnetsList || ""}</ul>
     </div>
   );
