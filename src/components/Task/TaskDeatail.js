@@ -70,7 +70,6 @@ const TaskDetail = () => {
   }
   return (
     <div className="jumbotron" id="task-detail">
-      <button onClick={() => { setTask({...task, comments: {text:"Test"}}) }} >TEST</button>
       <div className="task-body">
         <h3 className="title display-4"> {task.title} </h3>
         <hr />
