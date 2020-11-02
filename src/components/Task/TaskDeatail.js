@@ -15,7 +15,6 @@ const TaskDetail = () => {
   const dispatch = useDispatch();
   let { id } = useParams();
   let [task, setTask] = useState({});
-
   const { request } = useHttp();
   useEffect(() => {
     const getTask = async () => {

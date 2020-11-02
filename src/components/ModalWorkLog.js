@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setWorkLogToTask } from "../store/tasks/actions";
 
-// import { useHttp } from "../hooks/http.hook";
+import { useHttp } from "../hooks/http.hook";
 
 const ModalWorkLog = (props) => {
   const dispatch = useDispatch();
-  // const { request } = useHttp();
+  const author = JSON.parse(localStorage.getItem("user")).userId;
+  const { request } = useHttp();
   const [workLog, setworkLog] = useState(parseFloat(0));
 
   const changeInputHandler = (event) => {
@@ -20,7 +21,10 @@ const ModalWorkLog = (props) => {
     }
     let newWorkLog = parseFloat(workLog) + parseFloat(props.workLog);
     dispatch(setWorkLogToTask({ workLog: newWorkLog, task_id: props.id }));
-    props.updateWorkLog(newWorkLog);
+    console.log('newWorkLog',newWorkLog,author)
+    const test = await request("/tasks/" + props.id,'put' ,{ workLog:newWorkLog, author });
+
+    props.updateWorkLog(newWorkLog,test);
   };
   return (
     <div
