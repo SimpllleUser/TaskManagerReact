@@ -37,13 +37,9 @@ export const tasksReducer = (state = initialState, action) => {
             {
                 const { task_id, workLog } = action.data
 
-                console.log(task_id, workLog)
-
                 return {
                     ...state,
-
                     tasks: state.tasks.map(task => task.id === task_id ? {...task, workLog: workLog } : task)
-
                 }
 
             }

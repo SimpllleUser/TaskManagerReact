@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import { useHttp } from "../../hooks/http.hook";
 import CommnetList from "../CommnetList";
 import ModalWorkLog from "../ModalWorkLog";
-import {setTask} from "../../store/tasks/actions"
 
 const TaskDetail = () => {
   const dispatch = useDispatch();
@@ -21,13 +20,12 @@ const TaskDetail = () => {
   useEffect(() => {
     const getTask = async () => {
       const res = await request("/tasks/id=" + id);
-      (setTask(res));
+      setTask(res);
     };
     getTask();
   }, [id, request]);
 
   const tasks = useSelector((state) => state.tasks.tasks);
-
 
   const changeWorkLog = (data) => {
     if (task.workLog != data) {
@@ -57,17 +55,17 @@ const TaskDetail = () => {
   };
 
   const updateCommentsList = () => {};
-  const updateWorkLog = () => {};
-  //updateCommentsList()
-  //updateWorkLog()
+  const updateWorkLog = (newWorkLg) => {
+    setTask({ ...task, workLog: newWorkLg });
+  };
 
-  const _task = tasks && tasks.filter((task) => task.id == "5f9fc2c31632924138e002af")
+  const _task =
+    tasks && tasks.filter((task) => task.id == "5f9fc2c31632924138e002af");
   if (task === undefined) {
     return <Redirect to="/" />;
   }
   return (
     <div className="jumbotron" id="task-detail">
-      {JSON.stringify(_task)}
       <div className="task-body">
         <h3 className="title display-4"> {task.title} </h3>
         <hr />
