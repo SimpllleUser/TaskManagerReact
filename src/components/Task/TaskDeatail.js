@@ -25,7 +25,6 @@ const TaskDetail = () => {
     getTask();
   }, [id, request]);
 
-  const tasks = useSelector((state) => state.tasks.tasks);
 
   const changeWorkLog = (data) => {
     if (task.workLog != data) {
@@ -59,8 +58,7 @@ const TaskDetail = () => {
     setTask({ ...task, workLog: newWorkLg });
   };
 
-  const _task =
-    tasks && tasks.filter((task) => task.id == "5f9fc2c31632924138e002af");
+
   if (task === undefined) {
     return <Redirect to="/" />;
   }
