@@ -41,15 +41,9 @@ export const tasksReducer = (state = initialState, action) => {
 
                 return {
                     ...state,
-                    tasks: state.tasks.map(task => {
-                        if (task.id === task_id) {
-                            return {
-                                ...task,
-                                workLog: workLog,
-                            }
-                        }
-                        return task;
-                    })
+
+                    tasks: state.tasks.map(task => task.id === task_id ? {...task, workLog: workLog } : task)
+
                 }
 
             }
