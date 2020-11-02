@@ -1,9 +1,9 @@
-import { CREATE_TASK, FECTH_TASKS, DELETE_TASK, EDIT_TASK, GET_ALLTASKS, SET_WORKLOG, SET_COMMENT } from "./types";
+import { CREATE_TASK, FECTH_TASKS, DELETE_TASK, EDIT_TASK, GET_ALLTASKS, SET_WORKLOG, SET_COMMENT, GET_TASKS } from "./types";
 
 const initialState = {
     tasks: [],
     fetchedTasks: [],
-    selectEditableTask: {}
+    allTasks: []
 };
 
 export const tasksReducer = (state = initialState, action) => {
@@ -26,11 +26,15 @@ export const tasksReducer = (state = initialState, action) => {
                 ...state,
                 tasks: state.tasks.map(p => p.id === task.id ? task : p)
             };
-        case GET_ALLTASKS:
-            console.log("GET_ALLTASKS", action)
+        case GET_TASKS:
             return {
                 ...state,
                 tasks: action.tasks
+            }
+        case GET_ALLTASKS:
+            return {
+                ...state,
+                allTasks: action.tasks
             }
         case SET_WORKLOG:
             {

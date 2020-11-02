@@ -1,5 +1,5 @@
 import axios from "axios"
-import { CREATE_G_TASK, DELETE_G_TASK, EDIT_G_TASK, SET_G_TASKS } from "./types";
+import { CREATE_G_TASK, DELETE_G_TASK, EDIT_G_TASK, SET_G_TASKS, SET_All_GTASKS } from "./types";
 import { showError } from "../error/actions"
 import { showLoader, hideLoader } from "../loader/actions"
 
@@ -49,5 +49,10 @@ export const editGlobalTask = (global_task) => async(dispatch) => {
 
 export const setGlobalTasks = (global_tasks) => ({
     type: SET_G_TASKS,
+    global_tasks
+})
+
+export const setAllGlobalTasks = (global_tasks) => ({
+    type: SET_All_GTASKS,
     global_tasks
 })

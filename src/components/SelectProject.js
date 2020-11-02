@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHttp } from "../hooks/http.hook";
 import { getAllDataFromProject } from "../store/project/actions";
-import { setGlobalTasks } from "../store/global_task/actions";
+import { setAllGlobalTasks } from "../store/global_task/actions";
 import { initTasks } from "../store/tasks/actions";
 
 // ! CHECK AUTH LOCAL_STORAGE
@@ -14,16 +14,18 @@ const SelectProject = () => {
   const dispatch = useDispatch();
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
-  const getStore = (key) => JSON.parse(storage.getItem(key))
-  const setStore = (key, value) => {storage.setItem(key, JSON.stringify(value))} 
-  const user_id = getStore("user").userId
+  const getStore = (key) => JSON.parse(storage.getItem(key));
+  const setStore = (key, value) => {
+    storage.setItem(key, JSON.stringify(value));
+  };
+  const user_id = getStore("user").userId;
   useEffect(() => {
     const getProjects = async () => {
       const projects = await request("/project/users/" + user_id);
       setProjects(projects);
       const sorageProject = JSON.parse(storage.getItem("project"));
       if (!sorageProject) {
-        setStore("project", projects)
+        setStore("project", projects);
         // storage.setItem("project", JSON.stringify(projects));
       }
     };
@@ -34,15 +36,15 @@ const SelectProject = () => {
     // project = JSON.parse(storage.getItem("project"))[0]
     project = getStore("project")[0]
   ) => {
-          const { title, id } = project;
+    const { title, id } = project;
     if (title && id) {
       //storage.setItem("project", JSON.stringify({ title, id })); // setSelectProject to localStorage
-      setStore("project", { title, id })
+      setStore("project", { title, id });
       setSelectedProject(project.title); // setState selectProject
       dispatch(getAllDataFromProject(project.id)); // get all data by project
       const global_tasks = await request("/global-task/all/" + project.id); // get global tasks
-      dispatch(setGlobalTasks(global_tasks)); // set state global tasks
-      const g_tasksID = global_tasks.map((g_task) => g_task.id); 
+      dispatch(setAllGlobalTasks(global_tasks)); // set state global tasks
+      const g_tasksID = global_tasks.map((g_task) => g_task.id);
       // const tasks = await request(
       //   "/tasks/all-tasks/from/globlal-tasks",
       //   "get",
@@ -57,7 +59,7 @@ const SelectProject = () => {
       selectedProject != project.title && (
         <a
           className="dropdown-item "
-          href="#"
+          href=""
           key={index}
           onClick={() => {
             initializationData(project);
@@ -74,7 +76,7 @@ const SelectProject = () => {
       ) : (
         <div className="dropdown">
           <a
-            href="#"
+            href=""
             className={` btn btn-outline-light ${
               projects.length <= 1 && "none"
             }`}
