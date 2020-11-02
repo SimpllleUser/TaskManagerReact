@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setWorkLogToTask } from "../store/tasks/actions";
 
-// import { useHttp } from "../hooks/http.hook";
+import { useHttp } from "../hooks/http.hook";
 
 const ModalWorkLog = (props) => {
-  const dispatch = useDispatch()
-  // const { request } = useHttp();
+  const dispatch = useDispatch();
+  const author = JSON.parse(localStorage.getItem("user")).userId;
+  const { request } = useHttp();
   const [workLog, setworkLog] = useState(parseFloat(0));
 
   const changeInputHandler = (event) => {
@@ -14,15 +15,15 @@ const ModalWorkLog = (props) => {
     setworkLog(event.target.value);
   };
 
+  const seNewtWorkLog = async () => {
+    if (!workLog || workLog < 1) {
+      return;
+    }
+    let newWorkLog = parseFloat(workLog) + parseFloat(props.workLog);
+    dispatch(setWorkLogToTask({ workLog: newWorkLog, task_id: props.id }));
 
-  const seNewtWorkLog = async () => { 
-    if (!workLog || workLog < 1){ return}
-    let newWorkLog = parseFloat(workLog) + parseFloat(props.workLog)
-    dispatch(setWorkLogToTask({workLog: newWorkLog, task_id: props.id}))
-
-    
-
-}
+    props.updateWorkLog(newWorkLog);
+  };
   return (
     <div
       className="modal fade modal-worklLog"
@@ -32,7 +33,10 @@ const ModalWorkLog = (props) => {
       aria-labelledby="exampleModalCenterTitle"
       aria-hidden="true"
     >
-      <div className="modal-dialog modal-sm modal-dialog-centered" role="document">
+      <div
+        className="modal-dialog modal-sm modal-dialog-centered"
+        role="document"
+      >
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Время работы</h5>

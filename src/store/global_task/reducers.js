@@ -1,7 +1,8 @@
-import { SET_G_TASKS, CREATE_G_TASK, DELETE_G_TASK, EDIT_G_TASK } from "./types";
+import { SET_G_TASKS, CREATE_G_TASK, DELETE_G_TASK, EDIT_G_TASK, SET_All_GTASKS } from "./types";
 
 const initialState = {
-    global_tasks: []
+    global_tasks: [],
+    allGlobalTasks: []
 }
 
 export const global_taskReducer = (state = initialState, action) => {
@@ -15,6 +16,11 @@ export const global_taskReducer = (state = initialState, action) => {
             return {
                 ...state,
                 global_tasks: state.global_tasks = action.global_tasks
+            }
+        case SET_All_GTASKS:
+            return {
+                ...state,
+                allGlobalTasks: state.allGlobalTasks = action.global_tasks
             }
         case DELETE_G_TASK:
             return {

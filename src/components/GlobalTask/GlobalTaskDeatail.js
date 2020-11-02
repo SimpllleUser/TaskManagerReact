@@ -7,26 +7,25 @@ import TaskList from "../Task/TaskList";
 import TaskForm from "../Task/TaskForm";
 import { useDispatch } from "react-redux";
 import { useHttp } from "../../hooks/http.hook";
-import {initTasks} from "../../store/tasks/actions"
+import { setAllTasks } from "../../store/tasks/actions";
 const GlobalTaskDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [global_task, setGlobal_task] = useState({});
-  // const [tasks, setTasks] = useState([])
   const { request } = useHttp();
   useEffect(() => {
     const getData = async () => {
-      const global_tasks = await request("http://localhost:8080/api/global-task/" + id);
-      setGlobal_task(global_tasks)
+      const global_tasks = await request(
+        "http://localhost:8080/api/global-task/" + id
+      );
+      setGlobal_task(global_tasks);
       const tasks = await request("http://localhost:8080/api/tasks/all/" + id);
-      // setTasks(tasks)
-      dispatch(initTasks(tasks))
+      dispatch(setAllTasks(tasks));
     };
     getData();
   }, [dispatch, id, request]);
-  
-  const tasks = useSelector((state) => state.tasks.tasks);
 
+  const tasks = useSelector((state) => state.tasks.tasks);
 
   return (
     <div className="global_task">
@@ -36,14 +35,26 @@ const GlobalTaskDetail = () => {
           <p className="lead pl-1">{global_task.description}</p>
         </div>
       </div>
-      <Modal title="Create task" className="global-task__detail__title ml-5" forElement="create-task" component={<TaskForm global_task_id={id}/>} />
+      <Modal
+        title="Create task"
+        className="global-task__detail__title ml-5"
+        forElement="create-task"
+        component={<TaskForm global_task_id={id} />}
+      />
       <h3>
         Tasks list
-        <PlusSquare size="24" className="ml-5" data-toggle="modal" data-target="#create-task" />
+        <PlusSquare
+          size="24"
+          className="ml-5"
+          data-toggle="modal"
+          data-target="#create-task"
+        />
       </h3>
-      {console.log(tasks)}
-      {tasks && tasks.length  ? <TaskList global_taskId={id} tasks={tasks} /> : "No tasks" }      
-
+      {tasks && tasks.length ? (
+        <TaskList global_taskId={id} tasks={tasks} />
+      ) : (
+        "No tasks"
+      )}
     </div>
   );
 };

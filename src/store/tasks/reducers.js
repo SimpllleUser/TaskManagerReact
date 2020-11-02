@@ -1,6 +1,7 @@
 import { CREATE_TASK, FECTH_TASKS, DELETE_TASK, EDIT_TASK, GET_ALLTASKS, SET_WORKLOG, SET_COMMENT } from "./types";
 
 const initialState = {
+    task: [],
     tasks: [],
     fetchedTasks: [],
     selectEditableTask: {}
@@ -27,7 +28,6 @@ export const tasksReducer = (state = initialState, action) => {
                 tasks: state.tasks.map(p => p.id === task.id ? task : p)
             };
         case GET_ALLTASKS:
-            console.log("GET_ALLTASKS", action)
             return {
                 ...state,
                 tasks: action.tasks
@@ -38,8 +38,9 @@ export const tasksReducer = (state = initialState, action) => {
 
                 return {
                     ...state,
-                    tasks: state.tasks.forEach(task => task.id = task_id ? task.workLog = workLog : task)
+                    tasks: state.tasks.map(task => task.id === task_id ? {...task, workLog: workLog } : task)
                 }
+
             }
         case SET_COMMENT:
             {
@@ -48,7 +49,7 @@ export const tasksReducer = (state = initialState, action) => {
 
                 return {
                     ...state,
-                    tasks: state.tasks.forEach(task => task.id = task_id ? task.comments.push(comment) : task)
+                    tasks: state.tasks.forEach(task => task.id == task_id ? task.comments.push(comment) : task)
                 }
             }
         default:

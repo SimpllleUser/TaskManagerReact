@@ -5,6 +5,7 @@ import {
     DELETE_TASK,
     EDIT_TASK,
     SET_WORKLOG,
+    GET_TASKS
 } from "./types";
 import { showLoader, hideLoader } from "../loader/actions";
 import { showError } from "../error/actions";
@@ -28,23 +29,6 @@ export const createTask = ({ id, task, user_id }) => async(dispatch) => {
     }
 };
 
-// export const createTaskInGlobal_task = (payload) => async(dispatch) => {
-//     const { id, task } = payload
-//     try {
-//         dispatch(showLoader())
-//         const res = await axios.post(URL_API + '/tasks/create/in_global-task', {
-//             id,
-//             task: task
-//         })
-//         dispatch({ type: CREATE_TASK, task: res.data })
-//         dispatch(hideLoader())
-//     } catch (err) {
-//         dispatch(hideLoader())
-//         dispatch(showError(err))
-//     }
-//     dispatch(hideLoader())
-
-// }
 export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
     console.log("id, taskId", id, taskId)
     try {
@@ -67,7 +51,6 @@ export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
     dispatch(hideLoader());
 };
 export const updateOptionTask = ({ task_id, option }) => async(dispatch) => {
-    console.log(task_id, option);
     try {
         dispatch(showLoader());
         const res = await axios.put(URL_API + "/tasks/" + task_id, {
@@ -115,6 +98,12 @@ export const setCommentToTask = () => {
 }
 
 export const initTasks = (tasks) => ({
+    type: GET_TASKS,
+    tasks,
+});
+
+
+export const setAllTasks = (tasks) => ({
     type: GET_ALLTASKS,
     tasks,
 });

@@ -3,17 +3,20 @@ import moment from "moment";
 import { Redirect, useParams } from "react-router-dom";
 import SelectorElement from "../SelectorElement";
 import SelectorForm from "../SelectorForm";
+import { useSelector } from "react-redux";
+
 import { updateOptionTask } from "../../store/tasks/actions";
 import { useDispatch } from "react-redux";
 import { useHttp } from "../../hooks/http.hook";
-import CommnetList from "../CommnetList"
+import CommnetList from "../CommnetList";
 import ModalWorkLog from "../ModalWorkLog";
 
 const TaskDetail = () => {
+  const author = JSON.parse(localStorage.getItem("user")).userId;
+
   const dispatch = useDispatch();
   let { id } = useParams();
   let [task, setTask] = useState({});
-
   const { request } = useHttp();
   useEffect(() => {
     const getTask = async () => {
@@ -22,6 +25,7 @@ const TaskDetail = () => {
     };
     getTask();
   }, [id, request]);
+
 
   const changeWorkLog = (data) => {
     if (task.workLog != data) {
@@ -50,10 +54,17 @@ const TaskDetail = () => {
     }
   };
 
-  const updateCommentsList = () => {}
-  const updateWorkLog = () => {}
-  //updateCommentsList()
-  //updateWorkLog()
+  const updateCommentsList = () => {};
+  const setNewWorkLog = async (newWorkLg) => {
+    if(newWorkLg > 1){
+    const newTask = await request("/tasks/" + id,'put' ,{ workLog:newWorkLg, author });
+    console.log('newTask',newTask)
+    setTask({...task, comments:newTask.comments})
+
+    setTask({ ...task, workLog: newWorkLg });
+  }
+  };
+
 
   if (task === undefined) {
     return <Redirect to="/" />;
@@ -115,7 +126,7 @@ const TaskDetail = () => {
             changeWorkLog={changeWorkLog}
             id={task.id}
             workLog={task.workLog}
-            updateWorkLog={updateWorkLog}
+            updateWorkLog={setNewWorkLog}
           />
           <button
             type="button"
@@ -130,7 +141,11 @@ const TaskDetail = () => {
           {moment(task.createdAt).format("DD-MMMM-YYYY")}
         </small>
       </div>
-    <CommnetList updateCommentsList ={updateCommentsList}task_id={id} comments={task.comments} />
+      <CommnetList
+        updateCommentsList={updateCommentsList}
+        task_id={id}
+        comments={task.comments}
+      />
     </div>
   );
 };
