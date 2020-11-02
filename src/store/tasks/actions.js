@@ -46,6 +46,7 @@ export const createTask = ({ id, task, user_id }) => async(dispatch) => {
 
 // }
 export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
+    console.log("id, taskId", id, taskId)
     try {
         const author_UserID = JSON.parse(
             JSON.stringify(localStorage.getItem("user").userId)

@@ -11,7 +11,7 @@ import { initTasks } from "../store/tasks/actions";
 const SelectProject = () => {
   const storage = localStorage;
   const { request } = useHttp();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
   const getStore = (key) => JSON.parse(storage.getItem(key))
@@ -20,37 +20,31 @@ const SelectProject = () => {
   useEffect(() => {
     const getProjects = async () => {
       const projects = await request("/project/users/" + user_id);
-      setProjects(projects);
-      const sorageProject = JSON.parse(storage.getItem("project"));
-      if (!sorageProject) {
-        setStore("project", projects)
-        // storage.setItem("project", JSON.stringify(projects));
-      }
+      initializationData(projects)
+      // setProjects(projects);
+      // const sorageProject = JSON.parse(storage.getItem("project"));
+      // if (!sorageProject) {
+      //   setStore("project", projects)
+      //   // storage.setItem("project", JSON.stringify(projects));
+      // }
     };
     getProjects();
     initializationData(JSON.parse(storage.getItem("project")));
   }, [request]);
-  const initializationData = async (
-    // project = JSON.parse(storage.getItem("project"))[0]
-    project = getStore("project")[0]
-  ) => {
-          const { title, id } = project;
-    if (title && id) {
-      //storage.setItem("project", JSON.stringify({ title, id })); // setSelectProject to localStorage
-      setStore("project", { title, id })
-      setSelectedProject(project.title); // setState selectProject
-      dispatch(getAllDataFromProject(project.id)); // get all data by project
-      const global_tasks = await request("/global-task/all/" + project.id); // get global tasks
-      dispatch(setGlobalTasks(global_tasks)); // set state global tasks
-      const g_tasksID = global_tasks.map((g_task) => g_task.id); 
-      // const tasks = await request(
-      //   "/tasks/all-tasks/from/globlal-tasks",
-      //   "get",
-      //   { params: { g_tasksID } }
-      // );
-      // dispatch(initTasks(tasks));
-    }
-  };
+  const initializationData = (projects = getStore("project")[0]) => {
+    console.log(getStore("project"))
+
+    // const selectProject  = !projects ? getStore("project")[0] || {title:"None project"} : projects[0]
+    // console.log("selectProject",selectProject)
+
+    // setSelectedProject(selectProject)
+    // setStore("project",selectProject) 
+  //         const { title, id } = project;
+  //   if (title && id) {
+  //     setStore("project", { title, id })
+  //     setSelectedProject(project.title)
+  // };
+}
 
   const projectsList = projects.map(
     (project, index) =>

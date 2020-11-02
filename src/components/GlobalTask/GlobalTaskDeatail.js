@@ -30,7 +30,6 @@ const GlobalTaskDetail = () => {
 
   return (
     <div className="global_task">
-      {JSON.stringify(tasks)}
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
           <h1>{global_task.title}</h1>

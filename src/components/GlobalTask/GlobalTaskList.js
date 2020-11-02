@@ -5,7 +5,7 @@ import GlobalTaskCard from "./GlobalTaskCard";
 const GlobalTaskList = () => {
   const id = JSON.parse(localStorage.getItem("project"))?.id || '';
   const global_tasks = useSelector((state) => state.global_tasks.global_tasks);
-  const global_tasksList = global_tasks ? global_tasks?.map((global_task, index) => (
+  const global_tasksList = id && global_tasks ? global_tasks?.map((global_task, index) => (
     <li key={index} className="list-group-item">
       <GlobalTaskCard
         id={id}
