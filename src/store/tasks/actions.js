@@ -5,7 +5,8 @@ import {
     DELETE_TASK,
     EDIT_TASK,
     SET_WORKLOG,
-    GET_TASKS
+    GET_TASKS,
+    SET_TASK
 } from "./types";
 import { showLoader, hideLoader } from "../loader/actions";
 import { showError } from "../error/actions";
@@ -57,7 +58,7 @@ export const updateOptionTask = ({ task_id, option }) => async(dispatch) => {
             option,
             author,
         });
-        dispatch({ type: EDIT_TASK, task: res.data });
+        dispatch({ type: SET_TASK, task: res.data });
         dispatch(hideLoader());
     } catch (err) {
         dispatch(hideLoader());
@@ -82,11 +83,12 @@ export const saveEditableTask = (task) => async(dispatch) => {
     }
 };
 
+
 export const setWorkLogToTask = ({ workLog, task_id }) => async(dispatch) => {
     try {
         dispatch(showLoader());
-        await axios.put(URL_API + "/tasks/" + task_id, { workLog, author });
-        dispatch({ type: SET_WORKLOG, data: { workLog, task_id } });
+       const res =  await axios.put(URL_API + "/tasks/" + task_id, { workLog, author });
+        dispatch({ type: SET_TASK, task: res.data });
         dispatch(hideLoader());
     } catch (err) {
         dispatch(hideLoader());
@@ -102,6 +104,10 @@ export const initTasks = (tasks) => ({
     tasks,
 });
 
+export const setTask = (task) => ({
+    type: SET_TASK,
+    task,
+});
 
 export const setAllTasks = (tasks) => ({
     type: GET_ALLTASKS,

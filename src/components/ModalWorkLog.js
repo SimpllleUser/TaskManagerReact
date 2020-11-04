@@ -21,7 +21,7 @@ const ModalWorkLog = (props) => {
     }
     let newWorkLog = parseFloat(workLog) + parseFloat(props.workLog);
     dispatch(setWorkLogToTask({ workLog: newWorkLog, task_id: props.id }));
-    props.updateWorkLog(newWorkLog);
+    // props.updateWorkLog(newWorkLog);
     setworkLog(0)
   };
   return (

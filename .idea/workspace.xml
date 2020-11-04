@@ -20,30 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2accb887-0526-44f4-b70f-b750ab184fa2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Event/EventCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Event/EventCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Event/EventForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Event/EventForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Event/EventList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Event/EventList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Event/Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Event/Form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GlobalTask/GlobalTaskCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GlobalTask/GlobalTaskCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GlobalTask/GlobalTaskDeatail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GlobalTask/GlobalTaskDeatail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GlobalTask/GlobalTaskForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GlobalTask/GlobalTaskForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GlobalTask/GlobalTaskList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GlobalTask/GlobalTaskList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modals/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modals/Modal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Project/ProjectCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Project/ProjectCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Project/ProjectDeatail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Project/ProjectDeatail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Project/ProjectForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Project/ProjectForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Project/ProjectList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Project/ProjectList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Task/TaskCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/TaskCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Task/TaskDeatail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/TaskDeatail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Task/TaskForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/TaskForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Task/TaskList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/TaskList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User/UserCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/UserCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User/UserList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/UserList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Calendar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/MainTaskList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainTaskList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TaskList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TaskList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ModalWorkLog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ModalWorkLog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Task/TaskDeatail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/TaskDeatail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/tasks/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/tasks/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/reducers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +36,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="HTTP Request" />
       </list>
     </option>
   </component>
@@ -72,6 +55,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -80,6 +64,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -88,6 +73,7 @@
       <recent name="C:\Sandbox\Projects\TaskManager\front\src\Event" />
     </key>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -112,11 +98,12 @@
       <workItem from="1603820697154" duration="20000" />
       <workItem from="1603820739742" duration="408000" />
       <workItem from="1603821560331" duration="70000" />
+      <workItem from="1604474530835" duration="1957000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
