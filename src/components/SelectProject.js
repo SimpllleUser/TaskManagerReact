@@ -18,7 +18,7 @@ const SelectProject = () => {
   const setStore = (key, value) => {
     storage.setItem(key, JSON.stringify(value));
   };
-  const user_id = getStore("user").userId;
+  const user_id = getStore("user") && getStore("user").userId ;
   useEffect(() => {
     const getProjects = async () => {
       const projects = await request("/project/users/" + user_id);
