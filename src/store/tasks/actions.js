@@ -88,6 +88,7 @@ export const setWorkLogToTask = ({ workLog, task_id }) => async(dispatch) => {
     try {
         dispatch(showLoader());
        const res =  await axios.put(URL_API + "/tasks/" + task_id, { workLog, author });
+       console.log('Worklog', res.data)
         dispatch({ type: SET_TASK, task: res.data });
         dispatch(hideLoader());
     } catch (err) {
