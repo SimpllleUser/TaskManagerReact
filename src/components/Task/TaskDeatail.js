@@ -4,65 +4,76 @@ import { Redirect, useParams } from "react-router-dom";
 import SelectorElement from "../SelectorElement";
 import SelectorForm from "../SelectorForm";
 import { useSelector } from "react-redux";
-
 import { updateOptionTask } from "../../store/tasks/actions";
 import { useDispatch } from "react-redux";
 import { useHttp } from "../../hooks/http.hook";
 import CommnetList from "../CommnetList";
 import ModalWorkLog from "../ModalWorkLog";
+import {setTask} from "../../store/tasks/actions"
 
 const TaskDetail = () => {
   const author = JSON.parse(localStorage.getItem("user")).userId;
 
   const dispatch = useDispatch();
   let { id } = useParams();
-  let [task, setTask] = useState({});
+  // let [task, setTask] = useState({});
   const { request } = useHttp();
   useEffect(() => {
     const getTask = async () => {
       const res = await request("/tasks/id=" + id);
-      setTask(res);
+      dispatch(setTask(res));
     };
     getTask();
   }, [id, request]);
+  const task = useSelector((state) => state.tasks.task)
 
-
-  const changeWorkLog = (data) => {
-    if (task.workLog != data) {
-      setTask({ ...task, workLog: data });
-    }
-  };
+  // const changeWorkLog = (data) => {
+  //   if (task.workLog != data) {
+  //     // setTask({ ...task, workLog: data });
+  //   }
+  // };
 
   const updateDataStatus = (data) => {
-    if (task.status != data) {
-      setTask({ ...task, status: data });
+        if (task.status != data) {
       dispatch(updateOptionTask({ task_id: id, option: { status: data } }));
     }
+    // setTask({ ...task, status: data });
+
+    // if (task.status != data) {
+    //   setTask({ ...task, status: data });
+    //   dispatch(updateOptionTask({ task_id: id, option: { status: data } }));
+    // }
   };
 
   const updateDataPriority = (data) => {
     if (task.priority != data) {
-      setTask({ ...task, priority: data });
-      dispatch(updateOptionTask({ task_id: id, option: { priority: data } }));
+      dispatch(updateOptionTask({task_id: id, option: {priority: data}}));
     }
+    //   setTask({ ...task, priority: data });
+    //   dispatch(updateOptionTask({ task_id: id, option: { priority: data } }));
+    // }
   };
 
   const updateDataType = (data) => {
-    if (task.type != data) {
-      setTask({ ...task, type: data });
-      dispatch(updateOptionTask({ task_id: id, option: { type: data } }));
-    }
+     if (task.type != data) {
+       dispatch(updateOptionTask({task_id: id, option: {type: data}}));
+     }
+
+    // if (task.type != data) {
+    //   setTask({ ...task, type: data });
+    //   dispatch(updateOptionTask({ task_id: id, option: { type: data } }));
+    // }
   };
 
-  const updateCommentsList = () => {};
-  const setNewWorkLog = async (newWorkLg) => {
-    if(newWorkLg > 1){
-    const newTask = await request("/tasks/" + id,'put' ,{ workLog:newWorkLg, author });
-    console.log('newTask',newTask)
+  // const updateCommentsList = () => {};
+  // const setNewWorkLog = async (newWorkLg) => {
+  //   if(newWorkLg > 1){
+  //   // const newTask = await request("/tasks/" + id,'put' ,{ workLog:newWorkLg, author });
+  //   // console.log('newTask',newTask)
 
-    setTask({ ...task, workLog: newWorkLg });
-  }
-  };
+  //   setTask({ ...task, workLog: newWorkLg });
+  // }
+  // };
 
 
   if (task === undefined) {
@@ -70,6 +81,7 @@ const TaskDetail = () => {
   }
   return (
     <div className="jumbotron" id="task-detail">
+      {task.comments?.length}
       <div className="task-body">
         <h3 className="title display-4"> {task.title} </h3>
         <hr />
@@ -122,10 +134,8 @@ const TaskDetail = () => {
           <div>estimate: {task.estimate || 0}ч</div>
           <div>workLog: {task.workLog}ч</div>
           <ModalWorkLog
-            changeWorkLog={changeWorkLog}
             id={task.id}
             workLog={task.workLog}
-            updateWorkLog={setNewWorkLog}
           />
           <button
             type="button"
@@ -140,8 +150,7 @@ const TaskDetail = () => {
           {moment(task.createdAt).format("DD-MMMM-YYYY")}
         </small>
       </div>
-      <CommnetList
-        updateCommentsList={updateCommentsList}
+       <CommnetList
         task_id={id}
         comments={task.comments}
       />
