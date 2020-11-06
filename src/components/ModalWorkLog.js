@@ -6,7 +6,7 @@ import { useHttp } from "../hooks/http.hook";
 
 const ModalWorkLog = (props) => {
   const dispatch = useDispatch();
-  const author = JSON.parse(localStorage.getItem("user")).userId;
+  const author = JSON.parse(localStorage.getItem("user"));
   const { request } = useHttp();
   const [workLog, setworkLog] = useState(parseFloat(0));
 

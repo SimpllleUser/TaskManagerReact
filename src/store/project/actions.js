@@ -36,7 +36,7 @@ export const getAllDataFromProject = (id) => async(dispatch) => {
 }
 
 export const createProject = (project) => async(dispatch) => {
-    const { title, description, user_id } = project
+    const { title, description } = project
     try {
         dispatch(showLoader())
         const response = await axios.post(URL_API + '/project', {

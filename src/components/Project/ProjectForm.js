@@ -5,7 +5,7 @@ import { editProject } from "../../store/project/actions";
 
 const ProjectForm = (props) => {
   const dispatch = useDispatch();
-  const user_id = JSON.parse(localStorage.getItem("user")).userId;
+  const user_id = JSON.parse(localStorage.getItem("user"));
   const [projectForm, setProjectForm] = useState({
     id: props.id || "",
     title: props.title || "",
@@ -30,7 +30,7 @@ const ProjectForm = (props) => {
         dispatch(editProject(Project))
       } else {
         dispatch(createProject(Project));
-        setProjectForm({});
+        setProjectForm({id:"",title:"",description:""});
       }
     }
     
