@@ -21,9 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2accb887-0526-44f4-b70f-b750ab184fa2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GlobalTask/GlobalTaskForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GlobalTask/GlobalTaskForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Project/ProjectForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Project/ProjectForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Task/TaskForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/TaskForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Task/TaskCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/TaskCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/tasks/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/tasks/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/reducers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,9 +161,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603821145788" />
-    <state x="673" y="118" width="1026" height="801" key="find.popup" timestamp="1595959582767">
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1604674038286">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="673" y="118" width="1026" height="801" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1595959582767" />
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604674038286" />
   </component>
 </project>

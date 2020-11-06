@@ -17,6 +17,7 @@ export const tasksReducer = (state = initialState, action) => {
         case FECTH_TASKS:
             return {...state, fetchedTasks: action.payload };
         case DELETE_TASK:
+            console.log('DELETE_TASK',action.id)
             return {
                 ...state,
                 tasks: state.tasks.filter(task => task.id != action.id)

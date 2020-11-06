@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Options from "../Options";
 import Modal from "../Modals/Modal";
 import TaskForm from "./TaskForm";
-import { deleteTaskInGlobal_task } from "../../store/tasks/actions";
+import { deleteTask } from "../../store/tasks/actions";
 import SelectorElement from "../SelectorElement";
 
 const TaskCard = ({ global_taskId, task }) => {
@@ -54,9 +54,8 @@ const TaskCard = ({ global_taskId, task }) => {
                   className="list-group-item list-group-item-action bg-danger text-white"
                   onClick={() => {
                     dispatch(
-                      deleteTaskInGlobal_task({
-                        id: global_taskId,
-                        taskId: task.id,
+                        deleteTask({
+                            id: task.id,
                       })
                     );
                   }}

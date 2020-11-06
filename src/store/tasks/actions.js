@@ -30,21 +30,17 @@ export const createTask = ({ id, task, user_id }) => async(dispatch) => {
     }
 };
 
-export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
-    console.log("id, taskId", id, taskId)
+export const deleteTask = ({ id }) => async(dispatch) => {
+
     try {
-        const author_UserID = JSON.parse(
-            JSON.stringify(localStorage.getItem("user").userId)
-        );
+
         dispatch(showLoader());
-        await axios.delete(URL_API + "/tasks/delete/in_global-task", {
+        await axios.delete(URL_API + "/tasks/delete", {
             data: {
-                id,
-                author_UserID,
-                taskId,
+                id
             },
         });
-        dispatch({ type: DELETE_TASK, id: taskId });
+        dispatch({ type: DELETE_TASK, id });
     } catch (err) {
         dispatch(hideLoader());
         dispatch(showError(err));
