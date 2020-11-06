@@ -20,12 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2accb887-0526-44f4-b70f-b750ab184fa2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ModalWorkLog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ModalWorkLog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Task/TaskDeatail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/TaskDeatail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/tasks/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/tasks/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/reducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GlobalTask/GlobalTaskForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GlobalTask/GlobalTaskForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Project/ProjectForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Project/ProjectForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Task/TaskForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/TaskForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +71,23 @@
       <recent name="C:\Sandbox\Projects\TaskManager\front\src\Event" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
@@ -99,6 +114,7 @@
       <workItem from="1603820739742" duration="408000" />
       <workItem from="1603821560331" duration="70000" />
       <workItem from="1604474530835" duration="1957000" />
+      <workItem from="1604561112584" duration="544000" />
     </task>
     <servers />
   </component>
@@ -125,6 +141,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603820811234" />
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1604561157121">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604561157121" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1604561157120">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604561157120" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1604561157120">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604561157120" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1604561157121">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604561157121" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1603821145788">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

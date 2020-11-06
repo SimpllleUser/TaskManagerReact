@@ -16,8 +16,8 @@ const TaskForm = (props) => {
     type: props.type || "Feature",
   });
 
-  const submitHandler = (event) => {
-    event.preventDefault();
+  const submitHandler = () => {
+    // event.preventDefault();
     const { title, description, estimate, status, priority, type } = taskForm; // this.state;
 
     if (!title && !description) {
@@ -62,7 +62,7 @@ const TaskForm = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler} className="task-form">
+    <form  className="task-form">
       <div className="inputs-text">
         <div className="form-group">
           <label htmlFor="title"> Название </label>
@@ -94,7 +94,7 @@ const TaskForm = (props) => {
             onChange={changeInputHandler}
           />
         </div>
-        <button className="btn btn-success ml-2">
+        <button className="btn btn-success ml-2" onClick={() => {submitHandler()}} data-dismiss="modal" aria-label="Close">
 
           {taskForm.id ? "Сохранить" : "Создать"}
         </button>

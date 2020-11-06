@@ -16,8 +16,8 @@ const GlobalTaskForm = (props) => {
     setGlobal_taskForm({ ...global_taskForm, [event.target.name]: event.target.value });
   };
 
-  const submitHandler = (event) => {
-    event.preventDefault();
+  const submitHandler = () => {
+    // event.preventDefault();
     const { id, title, description } = global_taskForm;
 
     if (title.trim() && description.trim()) {
@@ -40,7 +40,7 @@ const GlobalTaskForm = (props) => {
 
   return (
     <div className="global_task-create">
-      <form onSubmit={submitHandler}>
+      <form >
         <div className="project_create_title form-group">
           <label htmlFor="title">Title</label>
           <input
@@ -63,7 +63,7 @@ const GlobalTaskForm = (props) => {
             onChange={changeInputHandler}
           ></textarea>
         </div>
-        <button className="btn btn-success m-2">
+        <button className="btn btn-success m-2" onClick={() => {submitHandler()}} data-dismiss="modal" aria-label="Close">
           {props.id ? "Edit" : "Create"}
         </button>
       </form>
