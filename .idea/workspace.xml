@@ -16,14 +16,19 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/PreLastChange" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2accb887-0526-44f4-b70f-b750ab184fa2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Task/TaskCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/TaskCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/tasks/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/tasks/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/reducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GlobalTask/GlobalTaskList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GlobalTask/GlobalTaskList.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +131,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/PreLastChange" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -137,6 +154,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1604674743752">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604674743752" />
     <state x="740" y="261" key="FileChooserDialogImpl" timestamp="1603820811234">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -161,9 +182,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603821145788" />
-    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1604674038286">
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1604674905408">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604674038286" />
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604674905408" />
   </component>
 </project>
