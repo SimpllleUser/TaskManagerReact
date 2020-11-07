@@ -1,8 +1,9 @@
-import { CREATE_TASK, FECTH_TASKS, DELETE_TASK, EDIT_TASK, GET_ALLTASKS, SET_WORKLOG, SET_COMMENT, SET_TASK } from "./types";
+import { CREATE_TASK, FECTH_TASKS, DELETE_TASK, EDIT_TASK, SET_ALLTASKS, SET_TASKS, SET_COMMENT, SET_TASK } from "./types";
 
 const initialState = {
     task: [],
     tasks: [],
+    allTasks:[],
     fetchedTasks: [],
     selectEditableTask: {}
 };
@@ -27,35 +28,10 @@ export const tasksReducer = (state = initialState, action) => {
                 ...state,
                 tasks: state.tasks.map(p => p.id === task.id ? task : p)
             };
-        case GET_ALLTASKS:
-            return {
-                ...state,
-                tasks: action.tasks
-            }
-            // case SET_WORKLOG:
-            //     {
-            //         const { task_id, workLog } = action.data
 
-            //         return {
-            //             ...state,
-            //             tasks: state.tasks.map(task => task.id === task_id ? {...task, workLog: workLog } : task)
-            //         }
-
-            //     }
-        // case SET_WORKLOG:
-        //     {
-        //         const { task, workLog } = action.data
-        //         console.log('SET_WORKLOG', workLog)
-        //
-        //         return {
-        //             ...state,
-        //             task: action.data.task
-        //         }
-        //
-        //     }
         case SET_COMMENT:
             {
-                const { task_id, comment } = action
+                const {  comment } = action
                 console.log('SET_COMMENT', comment)
 
                 return {
@@ -63,22 +39,26 @@ export const tasksReducer = (state = initialState, action) => {
                     task: {...state.task.comments, comment }
                 }
             }
-            // case SET_COMMENT:
-            //     {
-            //         console.log(state)
-            //         const { task_id, comment } = action.data
 
-            //         return {
-            //             ...state,
-            //             tasks: state.tasks.forEach(task => task.id == task_id ? task.comments.push(comment) : task)
-            //         }
-            //     }
+        case SET_ALLTASKS:
+
+            return {
+                ...state,
+                allTasks: action.tasks
+            }
+        case SET_TASKS:
+            const { tasks } = action.tasks
+
+            return {
+                ...state,
+                tasks
+            }
         case SET_TASK:
             {
                 const { task } = action
                 return {
                     ...state,
-                    task: task
+                    task
                 }
 
             }

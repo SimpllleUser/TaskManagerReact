@@ -5,7 +5,7 @@ import ModalCreateTask from "../components/ModalCreateTask";
 import _TaskList from "../components/_TaskList";
 import { useDispatch, useSelector } from "react-redux";
 import { useHttp } from "../hooks/http.hook";
-import { initTasks } from "../store/tasks/actions";
+import { setTasks } from "../store/tasks/actions";
 const GlobalTaskDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -15,7 +15,7 @@ const GlobalTaskDetail = () => {
     const getGlobalTask = async () => {
       const res = await request("/global_task/" + id);
       setGlobal_task(res);
-      dispatch(initTasks(res.tasks));
+      dispatch(setTasks(res.tasks));
     };
     getGlobalTask();
   }, [id, request]);

@@ -1,11 +1,11 @@
 import axios from "axios";
 import {
     CREATE_TASK,
-    GET_ALLTASKS,
     DELETE_TASK,
     EDIT_TASK,
     SET_WORKLOG,
-    GET_TASKS,
+    SET_ALLTASKS,
+    SET_TASKS,
     SET_TASK
 } from "./types";
 import { showLoader, hideLoader } from "../loader/actions";
@@ -100,8 +100,8 @@ export const setCommentToTask = () => {
 
 }
 
-export const initTasks = (tasks) => ({
-    type: GET_TASKS,
+export const setTasks = (tasks) => ({
+    type: SET_TASKS,
     tasks,
 });
 
@@ -111,6 +111,6 @@ export const setTask = (task) => ({
 });
 
 export const setAllTasks = (tasks) => ({
-    type: GET_ALLTASKS,
+    type: SET_ALLTASKS,
     tasks,
 });

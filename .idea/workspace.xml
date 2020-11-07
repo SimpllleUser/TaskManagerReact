@@ -20,12 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2accb887-0526-44f4-b70f-b750ab184fa2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ModalWorkLog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ModalWorkLog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Task/TaskDeatail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/TaskDeatail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/GlobalTaskDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/GlobalTaskDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/project/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/project/actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/tasks/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/tasks/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/reducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/tasks/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/types.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,9 +129,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603821145788" />
-    <state x="673" y="118" width="1026" height="801" key="find.popup" timestamp="1595959582767">
+    <state x="760" y="232" width="585" height="554" key="find.popup" timestamp="1604783276953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="673" y="118" width="1026" height="801" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1595959582767" />
+    <state x="760" y="232" width="585" height="554" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604783276953" />
   </component>
 </project>
