@@ -31,7 +31,7 @@ export const tasksReducer = (state = initialState, action) => {
 
         case SET_COMMENT:
             {
-                const {  comment } = action
+                const { comment } = action
                 console.log('SET_COMMENT', comment)
 
                 return {
@@ -41,24 +41,21 @@ export const tasksReducer = (state = initialState, action) => {
             }
 
         case SET_ALLTASKS:
-
             return {
                 ...state,
                 allTasks: action.tasks
             }
         case SET_TASKS:
-            const { tasks } = action.tasks
 
             return {
                 ...state,
-                tasks
+                tasks:action.tasks
             }
         case SET_TASK:
             {
-                const { task } = action
                 return {
                     ...state,
-                    task
+                    task:action.task
                 }
 
             }

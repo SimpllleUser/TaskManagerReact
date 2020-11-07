@@ -7,7 +7,7 @@ import TaskList from "../Task/TaskList";
 import TaskForm from "../Task/TaskForm";
 import { useDispatch } from "react-redux";
 import { useHttp } from "../../hooks/http.hook";
-import { setAllTasks } from "../../store/tasks/actions";
+import { setTasks } from "../../store/tasks/actions";
 const GlobalTaskDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -20,7 +20,7 @@ const GlobalTaskDetail = () => {
       );
       setGlobal_task(global_tasks);
       const tasks = await request("http://localhost:8080/api/tasks/all/" + id);
-      dispatch(setAllTasks(tasks));
+      dispatch(setTasks(tasks));
     };
     getData();
   }, [dispatch, id, request]);
