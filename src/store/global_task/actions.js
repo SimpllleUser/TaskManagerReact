@@ -1,5 +1,5 @@
 import axios from "axios"
-import { CREATE_G_TASK, DELETE_G_TASK, EDIT_G_TASK, SET_G_TASKS, SET_All_GTASKS } from "./types";
+import { CREATE_GTASKS, DELETE_GTASKS, EDIT_GTASKS, SET_GTASKS, SET_All_GTASKS } from "./types";
 import { showError } from "../error/actions"
 import { showLoader, hideLoader } from "../loader/actions"
 
@@ -9,7 +9,7 @@ export const createGlobalTask = (global_task) => async(dispatch) => {
     try {
         dispatch(showLoader())
         const res = await axios.post(URL_API + '/global-task', global_task)
-        dispatch({ type: CREATE_G_TASK, global_task: res.data })
+        dispatch({ type: CREATE_GTASKS, global_task: res.data })
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
@@ -22,7 +22,7 @@ export const deleteGlobalTask = (global_taskId) => async(dispatch) => {
     try {
         dispatch(showLoader())
         await axios.delete(URL_API + '/global-task/' + global_taskId)
-        dispatch({ type: DELETE_G_TASK, id: global_taskId })
+        dispatch({ type: DELETE_GTASKS, id: global_taskId })
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
@@ -38,7 +38,7 @@ export const editGlobalTask = (global_task) => async(dispatch) => {
             title,
             description,
         })
-        dispatch({ type: EDIT_G_TASK, global_task })
+        dispatch({ type: EDIT_GTASKS, global_task })
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
@@ -48,7 +48,7 @@ export const editGlobalTask = (global_task) => async(dispatch) => {
 }
 
 export const setGlobalTasks = (global_tasks) => ({
-    type: SET_G_TASKS,
+    type: SET_GTASKS,
     global_tasks
 })
 
