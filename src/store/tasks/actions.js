@@ -21,6 +21,7 @@ export const createTask = ({ id, task, user_id }) => async(dispatch) => {
             newTask: task,
             authorID: user_id,
         });
+
         dispatch({ type: CREATE_TASK, task: response.data });
         dispatch(hideLoader());
     } catch (err) {

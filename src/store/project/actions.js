@@ -7,6 +7,7 @@ import { showError } from "../error/actions"
 
 const URL_API = 'http://localhost:8080/api'
 const userStorage = JSON.parse(localStorage.getItem("user"))
+const selectProjectStorage = JSON.parse(localStorage.getItem("project")) || {}
 const user_id = userStorage && userStorage.userId;
 
 export const getAllProjects = () => async(dispatch) => {
@@ -45,6 +46,9 @@ export const createProject = (project) => async(dispatch) => {
             description,
             user_id
         })
+        if (!selectProjectStorage.title) {
+            localStorage.setItem('project', JSON.stringify(response.data))
+        }
         dispatch({ type: CREATE_PROJECT, project: response.data })
         dispatch(hideLoader())
     } catch (err) {

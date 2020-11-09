@@ -27,7 +27,6 @@ const SelectProject = () => {
       const projects = await request("/project/users/" + user_id);
       setProjects(projects);
       const storageProject = getStore("project") || "";
-      console.log('storageProject',storageProject)
       if (!storageProject.title) {
         setStore("project", projects[0]);
       }
