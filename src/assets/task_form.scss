@@ -1,16 +1,20 @@
 .task-form {
-    //max-width: 500px;
+    max-width: 1000px;
+    padding: 20px 0;
     display: flex;
-    flex-wrap: wrap;
-    div {
-        width: 500px;
-        margin: 10px;
+    justify-content: space-around;
+    .inputs-text {
+        width: 600px;
+        margin: 5px;
     }
     .selectors-options {
-        padding-top: 5px;
+        width: 200px;
+        margin: 5px;
     }
     .send-task {
-        margin-left: 20px;
+        margin: 0;
+        margin: 0 auto;
+        width: 100px;
     }
 }
 

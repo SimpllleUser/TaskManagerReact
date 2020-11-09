@@ -1,3 +1,27 @@
+// TASK-DASHBOARD
+#task-dashboard {
+    .tasks-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        .block {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0 10px;
+            .el-name {
+                text-align: center;
+                width: 100%;
+                height: 50px;
+                line-height: 40px;
+            }
+            .list {
+                height: 250px;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+
 // TASK CARD
 .task-card {
     margin-top: 5px;
@@ -5,9 +29,17 @@
     background: #FFFFFF;
     box-shadow: 0px 16px 24px rgba(50, 50, 71, 0.08), 0px 12px 12px rgba(50, 50, 71, 0.08);
     border-radius: 10px;
+    transition: .5s;
+    position: relative;
+    .options-block {
+        position: absolute;
+        top: 10px;
+        right: 5px;
+        width: 20px;
+    }
     .card-body {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        //grid-template-columns: repeat(2, 1fr);
         padding: 10px;
         .card-title {
             a {
@@ -17,23 +49,52 @@
         }
     }
     .options {
-        width: 200px;
+        //width: 200px;
         display: flex;
         justify-content: space-between;
         div {
             width: 95px;
         }
     }
+    &:hover {
+        .actions {
+            transition: .5s;
+            display: flex;
+            position: absolute;
+            flex-wrap: wrap;
+            z-index: 9999;
+            right: 0;
+            max-width: 35px;
+        }
+    }
     .actions {
-        display: flex;
-        flex-wrap: wrap;
-        width: 25px;
+        transition: .5s;
+        display: none;
+        width: 100%;
         align-items: center;
-        margin-left: auto;
+        top: 0;
+        height: 100%;
+        background-color: rgba(78, 78, 78, 0.965);
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
         div {
             width: 100%;
             display: flex;
             justify-content: center;
+            svg {
+                stroke: white;
+                transition: .5s;
+            }
+        }
+        .delete_task:hover {
+            svg {
+                stroke: rgba(255, 0, 0, 0.815);
+            }
+        }
+        .edit_task:hover {
+            svg {
+                stroke: rgb(255, 179, 0);
+            }
         }
     }
 }
@@ -49,16 +110,17 @@
 #task-detail {
     padding: 10px;
     background-color: #e9ecef52;
-    display: grid;
+    // display: grid;
     box-shadow: 0px 16px 24px rgba(50, 50, 71, 0.08), 0px 12px 12px rgba(50, 50, 71, 0.08);
-    grid-template-columns: repeat(2, 1fr);
+    position: relative;
+    // grid-template-columns: repeat(2, 1fr);
     .description {
         min-height: 100px;
     }
     .options {
         display: flex;
         justify-content: space-between;
-        max-width: 210px;
+        max-width: 350px;
         div {
             width: 100px;
             .badge.badge-pill {
@@ -68,16 +130,87 @@
     }
     .actions {
         margin-left: auto;
-        height: 200px;
+        top: 10px;
+        right: 10px;
+        height: 150px;
         display: flex;
         flex-wrap: wrap;
         width: 25px;
+        position: absolute;
         div {
             width: 100%;
         }
     }
+    .task-work {
+        margin-top: 25px;
+        button {
+            margin-top: 25px;
+        }
+    }
     .date-created {
-        margin-top: 10px;
+        position: absolute;
         opacity: .5;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+//  ! style options selector in detail task
+.task-elements {
+    .options.selector {
+        .status {
+            &:hover {
+                #selector {
+                    z-index: 999;
+                    opacity: 1;
+                }
+            }
+            #selector {
+                transition: all .3s;
+                position: absolute;
+                z-index: -999999;
+                opacity: 0;
+            }
+        }
+    }
+}
+
+.task-elements {
+    .options.selector {
+        .priority {
+            transition: all 1s;
+            &:hover {
+                #selector {
+                    z-index: 999;
+                    opacity: 1;
+                }
+            }
+            #selector {
+                transition: all .3s;
+                position: absolute;
+                z-index: -999999;
+                opacity: 0;
+            }
+        }
+    }
+}
+
+.task-elements {
+    .options.selector {
+        .type {
+            position: relative;
+            &:hover {
+                #selector {
+                    z-index: 999;
+                    opacity: 1;
+                }
+            }
+            #selector {
+                transition: all .3s;
+                position: absolute;
+                z-index: -999999;
+                opacity: 0;
+            }
+        }
     }
 }

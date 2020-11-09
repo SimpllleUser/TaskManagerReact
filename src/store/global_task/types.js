@@ -1,0 +1,7 @@
+export const CREATE_GTASKS = "GTASKS/CREATE"
+export const GET_GTASKSS = "GTASKS/GET_ALL"
+export const DELETE_GTASKS = "GTASKS/DELETE"
+export const EDIT_GTASKS = "GTASKS/EDIT"
+export const SET_GTASKS = "GTASKSS/SET_TASKS"
+export const SET_All_GTASKS = "GTASKSS/SET_All"
+    // export const ADD_TASK_ID = "GTASKS/ADD_TASK_ID"

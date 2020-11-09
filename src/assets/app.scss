@@ -1,29 +1,65 @@
+@import './bootstrap/bootstrap.scss';
 @import 'task_form';
 @import 'task_list';
 @import 'task';
+@import 'global_task';
 @import 'calendar';
+@import 'project';
+@import 'header';
 .main-links {
+    display: flex;
+    align-items: center;
+    width: 100%;
     a {
         display: inline-block;
-        font-weight: 400;
-        color: #212529;
-        text-align: center;
-        vertical-align: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        background-color: transparent;
-        border: 1px solid transparent;
-        padding: .375rem .75rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        border-radius: .25rem;
-        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-        //background-color: #007bff;
-        border: 1px solid #007bff;
-        color: #007bff;
-        text-decoration: none;
         margin: 10px;
+    }
+    .btn-logout {
+        margin-left: auto;
+        margin-right: 10px;
+    }
+}
+
+.auth-form {
+    margin-top: 200px;
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+#loader {
+    top: 10px;
+    left: 10px;
+    position: absolute;
+}
+
+.options-block {
+    position: relative;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    .options-block__body {
+        position: absolute;
+        left: 20px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background: #6c757d48;
+}
+
+ ::-webkit-scrollbar-thumb {
+    transition: all 0.3s;
+    background: var(--gray);
+    &:hover {
+        background: var(--blue);
     }
 }
