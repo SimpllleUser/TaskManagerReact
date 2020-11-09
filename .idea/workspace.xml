@@ -20,9 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2accb887-0526-44f4-b70f-b750ab184fa2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/tasks/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/tasks/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/reducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/tasks/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/types.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,9 +127,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603821145788" />
-    <state x="673" y="118" width="1026" height="801" key="find.popup" timestamp="1595959582767">
+    <state x="667" y="243" width="585" height="554" key="find.popup" timestamp="1604931232898">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="673" y="118" width="1026" height="801" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1595959582767" />
+    <state x="667" y="243" width="585" height="554" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604931232898" />
   </component>
 </project>

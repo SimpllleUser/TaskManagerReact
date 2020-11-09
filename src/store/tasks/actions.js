@@ -1,11 +1,10 @@
 import axios from "axios";
 import {
     CREATE_TASK,
-    GET_ALLTASKS,
     DELETE_TASK,
     EDIT_TASK,
-    SET_WORKLOG,
-    GET_TASKS,
+    SET_ALLTASKS,
+    SET_TASKS,
     SET_TASK
 } from "./types";
 import { showLoader, hideLoader } from "../loader/actions";
@@ -54,7 +53,7 @@ export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
 export const updateOptionTask = ({ task_id, option }) => async(dispatch) => {
     try {
         dispatch(showLoader());
-        const res = await axios.put(URL_API + "/tasks/" + task_id, {
+        const res = await axios.put(URL_API + "/tasks/option/" + task_id, {
             option,
             author,
         });
@@ -87,8 +86,8 @@ export const saveEditableTask = (task) => async(dispatch) => {
 export const setWorkLogToTask = ({ workLog, task_id }) => async(dispatch) => {
     try {
         dispatch(showLoader());
-       const res =  await axios.put(URL_API + "/tasks/" + task_id, { workLog, author });
-       console.log('Worklog', res.data)
+        const res =  await axios.put(URL_API + "/tasks/work-log/" + task_id, { workLog, author });
+        console.log('Worklog', res.data)
         dispatch({ type: SET_TASK, task: res.data });
         dispatch(hideLoader());
     } catch (err) {
@@ -100,8 +99,8 @@ export const setCommentToTask = () => {
 
 }
 
-export const initTasks = (tasks) => ({
-    type: GET_TASKS,
+export const setTasks = (tasks) => ({
+    type: SET_TASKS,
     tasks,
 });
 
@@ -111,6 +110,6 @@ export const setTask = (task) => ({
 });
 
 export const setAllTasks = (tasks) => ({
-    type: GET_ALLTASKS,
+    type: SET_ALLTASKS,
     tasks,
 });
