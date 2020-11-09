@@ -25,13 +25,16 @@ const SelectProject = () => {
   useEffect(() => {
     const getProjects = async () => {
       const projects = await request("/project/users/" + user_id);
+      if(projects.length){
       setProjects(projects);
       const storageProject = getStore("project") || "";
       if (!storageProject.title) {
         setStore("project", projects[0]);
       }
       initializationData(getStore("project"));
-
+    }else{
+      setStore('project', {})
+    }
     };
     getProjects();
   }, [request]);
