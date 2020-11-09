@@ -54,7 +54,7 @@ export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
 export const updateOptionTask = ({ task_id, option }) => async(dispatch) => {
     try {
         dispatch(showLoader());
-        const res = await axios.put(URL_API + "/tasks/" + task_id, {
+        const res = await axios.put(URL_API + "/tasks/option/" + task_id, {
             option,
             author,
         });
@@ -87,7 +87,7 @@ export const saveEditableTask = (task) => async(dispatch) => {
 export const setWorkLogToTask = ({ workLog, task_id }) => async(dispatch) => {
     try {
         dispatch(showLoader());
-       const res =  await axios.put(URL_API + "/tasks/" + task_id, { workLog, author });
+       const res =  await axios.put(URL_API + "/tasks/work-log/" + task_id, { workLog, author });
        console.log('Worklog', res.data)
         dispatch({ type: SET_TASK, task: res.data });
         dispatch(hideLoader());

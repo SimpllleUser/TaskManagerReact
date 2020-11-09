@@ -21,11 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2accb887-0526-44f4-b70f-b750ab184fa2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GlobalTask/GlobalTaskList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GlobalTask/GlobalTaskList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SelectProject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SelectProject.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/global_task/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/global_task/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/global_task/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/global_task/reducers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/global_task/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/global_task/types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/tasks/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/actions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
