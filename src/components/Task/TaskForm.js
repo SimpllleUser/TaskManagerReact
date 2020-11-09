@@ -38,7 +38,7 @@ const TaskForm = (props) => {
     taskForm.id
       ? dispatch(saveEditableTask({ task: Task }))
       : dispatch(createTask({ id: props.global_task_id, task: Task, user_id }));
-    setTaskForm({id:"",title:"",description:"",estimate:"",priority:"",status:"",type:""});
+    setTaskForm({id:"",title:"",description:"",estimate:"",priority:"Low",status:"Open",type:"Feature"});
 
   };
   const changeInputHandler = (event) => {
@@ -101,7 +101,7 @@ const TaskForm = (props) => {
       </div>
       <div className="selectors-options">
         
-        {taskForm.status && (
+        {taskForm.id && taskForm.status && (
           <SelectorForm
             updateData={updateDataStatus}
             data={"status"}
