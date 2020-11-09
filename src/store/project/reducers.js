@@ -1,4 +1,4 @@
-import { CREATE_PROJECT, GET_PROJECTS, DELETE_PROJECT, EDIT_PROJECT } from "./types";
+import { CREATE_PROJECT, SET_PROJECTS, DELETE_PROJECT, EDIT_PROJECT } from "./types";
 
 
 const initialState = {
@@ -12,7 +12,7 @@ export const projectsReducer = (state = initialState, action) => {
                 ...state,
                 projects: state.projects.concat([action.project])
             }
-        case GET_PROJECTS:
+        case SET_PROJECTS:
             return {
                 ...state,
                 projects: state.projects = action.projects
