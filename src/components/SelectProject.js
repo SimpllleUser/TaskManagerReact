@@ -31,7 +31,8 @@ const SelectProject = () => {
       // setProjects(projects);
       const storageProject = getStore("project") || "";
       if (!storageProject.title) {
-        setStore("project", projects[0]);
+        const {title, description } = projects[0]
+        setStore("project", {title, description});
       }
       initializationData(getStore("project"));
     }else{
