@@ -49,7 +49,7 @@ const SelectProject = () => {
   ) => {
     if (project) {
       setStore('project',project) 
-      setSelectedProject(project.title || ''); // setState selectProject
+      setSelectedProject(project.title); // setState selectProject
       dispatch(getAllDataFromProject(project.id)); // get all data by project
       const global_tasks = await request("/global-task/all/" + project.id); // get global tasks
       dispatch(setAllGlobalTasks(global_tasks)); // set state global tasks

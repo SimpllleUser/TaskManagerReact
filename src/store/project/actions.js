@@ -47,7 +47,7 @@ export const createProject = (project) => async(dispatch) => {
             user_id
         })
         if (!selectProjectStorage.title) {
-            localStorage.setItem('project', JSON.stringify(project))
+            localStorage.setItem('project', JSON.stringify({ title, description }))
         }
         dispatch({ type: CREATE_PROJECT, project: response.data })
         dispatch(hideLoader())
