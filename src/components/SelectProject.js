@@ -15,6 +15,7 @@ const SelectProject = () => {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
   const getStore = (key) => JSON.parse(storage.getItem(key));
+  // ! FIX SET ALL STATE AND SET PROJECT TO LOCAL STORAGE
   const setStore = (key, value) => {
     storage.setItem(key, JSON.stringify(value));
   };
@@ -23,10 +24,10 @@ const SelectProject = () => {
     const getProjects = async () => {
       const projects = await request("/project/users/" + user_id);
       setProjects(projects);
-      const sorageProject = JSON.parse(storage.getItem("project"));
-      if (!sorageProject) {
+      const storageProject = JSON.parse(storage.getItem("project"));
+      if (!storageProject) {
         setStore("project", projects);
-        // storage.setItem("project", JSON.stringify(projects));
+        storage.setItem("project", JSON.stringify(projects));
       }
     };
     getProjects();

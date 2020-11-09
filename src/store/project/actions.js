@@ -1,6 +1,6 @@
 import axios from "axios"
 import { CREATE_PROJECT, GET_PROJECTS, DELETE_PROJECT, EDIT_PROJECT } from "./types";
-import { initTasks } from "../tasks/actions"
+import { setTasks } from "../tasks/actions"
 import { setGlobalTasks } from "../global_task/actions"
 import { showLoader, hideLoader } from "../loader/actions"
 import { showError } from "../error/actions"
@@ -27,7 +27,7 @@ export const getAllDataFromProject = (id) => async(dispatch) => {
         dispatch(showLoader())
         const res = await axios.get(URL_API + '/project/allData/' + id)
         dispatch(setGlobalTasks(res.data.global_tasks))
-        dispatch(initTasks(res.data.tasks))
+        dispatch(setTasks(res.data.tasks))
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())

@@ -3,6 +3,10 @@ import {
     CREATE_TASK,
     DELETE_TASK,
     EDIT_TASK,
+<<<<<<< HEAD
+=======
+    SET_WORKLOG,
+>>>>>>> 5d960c47a8849178212615e6de2d457d372cd4c7
     SET_ALLTASKS,
     SET_TASKS,
     SET_TASK
@@ -86,8 +90,13 @@ export const saveEditableTask = (task) => async(dispatch) => {
 export const setWorkLogToTask = ({ workLog, task_id }) => async(dispatch) => {
     try {
         dispatch(showLoader());
+<<<<<<< HEAD
         const res =  await axios.put(URL_API + "/tasks/work-log/" + task_id, { workLog, author });
         console.log('Worklog', res.data)
+=======
+       const res =  await axios.put(URL_API + "/tasks/work-log/" + task_id, { workLog, author });
+       console.log('Worklog', res.data)
+>>>>>>> 5d960c47a8849178212615e6de2d457d372cd4c7
         dispatch({ type: SET_TASK, task: res.data });
         dispatch(hideLoader());
     } catch (err) {
