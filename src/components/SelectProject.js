@@ -47,9 +47,8 @@ const SelectProject = () => {
   const initializationData = async (
     project 
   ) => {
-
     if (project) {
-      console.log('initializationData project', project)
+      setStore('project',project) 
       setSelectedProject(project.title || ''); // setState selectProject
       dispatch(getAllDataFromProject(project.id)); // get all data by project
       const global_tasks = await request("/global-task/all/" + project.id); // get global tasks
