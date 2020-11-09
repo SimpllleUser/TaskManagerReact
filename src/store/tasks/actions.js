@@ -9,7 +9,7 @@ import {
 } from "./types";
 import { showLoader, hideLoader } from "../loader/actions";
 import { showError } from "../error/actions";
-const author = JSON.parse(localStorage.getItem("user")).userId;
+const author = JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user")).userId;
 const URL_API = "http://localhost:8080/api";
 
 export const createTask = ({ id, task, user_id }) => async(dispatch) => {
