@@ -6,7 +6,8 @@ import { showLoader, hideLoader } from "../loader/actions"
 import { showError } from "../error/actions"
 
 const URL_API = 'http://localhost:8080/api'
-const user_id = JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user")).userId;
+const userStorage = JSON.parse(localStorage.getItem("user"))
+const user_id = userStorage && userStorage.userId;
 
 export const getAllProjects = () => async(dispatch) => {
 

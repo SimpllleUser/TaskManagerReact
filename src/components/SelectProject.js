@@ -5,6 +5,8 @@ import { useHttp } from "../hooks/http.hook";
 import { getAllDataFromProject } from "../store/project/actions";
 import { setAllGlobalTasks } from "../store/global_task/actions";
 import { setAllTasks } from "../store/tasks/actions";
+import Modal from "./Modals/Modal";
+import ProjectForm from "../components/Project/ProjectForm";
 
 // ! CHECK AUTH LOCAL_STORAGE
 
@@ -16,32 +18,32 @@ const SelectProject = () => {
   const [selectedProject, setSelectedProject] = useState();
   const getStore = (key) => JSON.parse(storage.getItem(key));
   // ! FIX SET ALL STATE AND SET PROJECT TO LOCAL STORAGE
-  const setStore = (key, value) => {
+  const setStore = (key, value = {}) => {
     storage.setItem(key, JSON.stringify(value));
   };
-  const user_id = getStore("user") && getStore("user").userId ;
+  const user_id = getStore("user") && getStore("user").userId;
   useEffect(() => {
     const getProjects = async () => {
       const projects = await request("/project/users/" + user_id);
       setProjects(projects);
-      const storageProject = JSON.parse(storage.getItem("project"));
-      if (!storageProject) {
-        setStore("project", projects);
-        storage.setItem("project", JSON.stringify(projects));
+      const storageProject = getStore("project") || "";
+      console.log('storageProject',storageProject)
+      if (!storageProject.title) {
+        setStore("project", projects[0]);
       }
+      initializationData(getStore("project"));
+
     };
     getProjects();
-    initializationData(JSON.parse(storage.getItem("project")));
   }, [request]);
+  
   const initializationData = async (
-    // project = JSON.parse(storage.getItem("project"))[0]
-    project = getStore("project")[0]
+    project 
   ) => {
-    const { title, id } = project;
-    if (title && id) {
-      //storage.setItem("project", JSON.stringify({ title, id })); // setSelectProject to localStorage
-      setStore("project", { title, id });
-      setSelectedProject(project.title); // setState selectProject
+
+    if (project) {
+      console.log('initializationData project', project)
+      setSelectedProject(project.title || ''); // setState selectProject
       dispatch(getAllDataFromProject(project.id)); // get all data by project
       const global_tasks = await request("/global-task/all/" + project.id); // get global tasks
       dispatch(setAllGlobalTasks(global_tasks)); // set state global tasks
@@ -55,21 +57,42 @@ const SelectProject = () => {
     }
   };
 
-  const projectsList = projects.map(
-    (project, index) =>
-      selectedProject != project.title && (
-        <a
-          className="dropdown-item "
-          href=""
-          key={index}
-          onClick={() => {
-            initializationData(project);
-          }}
+  const projectsList =
+    projects.length &&
+    projects.map(
+      (project, index) =>
+        selectedProject != project.title && (
+          <a
+            className="dropdown-item "
+            href=""
+            key={index}
+            onClick={() => {
+              initializationData(project);
+            }}
+          >
+            {project.title}
+          </a>
+        )
+    );
+  if (!selectedProject) {
+    return (
+      <div>
+        <Modal
+          forElement="project-form"
+          title="Create project"
+          component={<ProjectForm />}
+        />
+        <button
+          className="btn btn-success"
+          data-toggle="modal"
+          data-target="#project-form"
         >
-          {project.title}
-        </a>
-      )
-  );
+          Создать проект
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="selector_project">
       {projects.length <= 1 ? (
