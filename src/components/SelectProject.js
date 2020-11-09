@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHttp } from "../hooks/http.hook";
+import { setProjects } from "../store/project/actions";
 import { getAllDataFromProject } from "../store/project/actions";
 import { setAllGlobalTasks } from "../store/global_task/actions";
 import { setAllTasks } from "../store/tasks/actions";
@@ -14,7 +15,7 @@ const SelectProject = () => {
   const storage = localStorage;
   const { request } = useHttp();
   const dispatch = useDispatch();
-  const [projects, setProjects] = useState([]);
+  // const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
   const getStore = (key) => JSON.parse(storage.getItem(key));
   // ! FIX SET ALL STATE AND SET PROJECT TO LOCAL STORAGE
@@ -26,7 +27,8 @@ const SelectProject = () => {
     const getProjects = async () => {
       const projects = await request("/project/users/" + user_id);
       if(projects.length){
-      setProjects(projects);
+        dispatch(setProjects(projects))
+      // setProjects(projects);
       const storageProject = getStore("project") || "";
       if (!storageProject.title) {
         setStore("project", projects[0]);
@@ -39,6 +41,9 @@ const SelectProject = () => {
     getProjects();
   }, [request]);
   
+  const projects = useSelector((state) => state.projects.projects);
+
+
   const initializationData = async (
     project 
   ) => {
@@ -58,6 +63,7 @@ const SelectProject = () => {
       dispatch(setAllTasks(tasks));
     }
   };
+
 
   const projectsList =
     projects.length &&

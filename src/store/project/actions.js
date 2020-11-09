@@ -1,5 +1,5 @@
 import axios from "axios"
-import { CREATE_PROJECT, GET_PROJECTS, DELETE_PROJECT, EDIT_PROJECT } from "./types";
+import { CREATE_PROJECT, SET_PROJECTS, DELETE_PROJECT, EDIT_PROJECT } from "./types";
 import { setTasks } from "../tasks/actions"
 import { setGlobalTasks } from "../global_task/actions"
 import { showLoader, hideLoader } from "../loader/actions"
@@ -15,7 +15,7 @@ export const getAllProjects = () => async(dispatch) => {
     try {
         dispatch(showLoader())
         const response = await axios.get(URL_API + '/project/users/' + user_id)
-        dispatch({ type: GET_PROJECTS, projects: response.data })
+        dispatch({ type: SET_PROJECTS, projects: response.data })
         dispatch(hideLoader())
     } catch (err) {
         dispatch(hideLoader())
@@ -88,4 +88,4 @@ export const editProject = (project) => async(dispatch) => {
     }
 }
 
-export const initProjects = (projects) => ({ type: GET_PROJECTS, projects })
+export const setProjects = (projects) => ({ type: SET_PROJECTS, projects })
