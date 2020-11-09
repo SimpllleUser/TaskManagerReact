@@ -3,7 +3,7 @@ import { CREATE_TASK, FECTH_TASKS, DELETE_TASK, EDIT_TASK, SET_ALLTASKS, SET_TAS
 const initialState = {
     task: [],
     tasks: [],
-    allTasks:[],
+    allTasks: [],
     fetchedTasks: [],
     selectEditableTask: {}
 };
@@ -18,6 +18,7 @@ export const tasksReducer = (state = initialState, action) => {
         case FECTH_TASKS:
             return {...state, fetchedTasks: action.payload };
         case DELETE_TASK:
+            console.log('DELETE_TASK', action.id)
             return {
                 ...state,
                 tasks: state.tasks.filter(task => task.id != action.id)
@@ -28,17 +29,7 @@ export const tasksReducer = (state = initialState, action) => {
                 ...state,
                 tasks: state.tasks.map(p => p.id === task.id ? task : p)
             };
-<<<<<<< HEAD
-        case SET_ALLTASKS:
-            return {
-                ...state,
-                allTasks: action.tasks
-            }
-            // case SET_WORKLOG:
-            //     {
-            //         const { task_id, workLog } = action.data
-=======
->>>>>>> 5d960c47a8849178212615e6de2d457d372cd4c7
+
 
         case SET_COMMENT:
             {
@@ -60,13 +51,13 @@ export const tasksReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                tasks:action.tasks
+                tasks: action.tasks
             }
         case SET_TASK:
             {
                 return {
                     ...state,
-                    task:action.task
+                    task: action.task
                 }
 
             }

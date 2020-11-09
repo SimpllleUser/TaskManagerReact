@@ -3,10 +3,6 @@ import {
     CREATE_TASK,
     DELETE_TASK,
     EDIT_TASK,
-<<<<<<< HEAD
-=======
-    SET_WORKLOG,
->>>>>>> 5d960c47a8849178212615e6de2d457d372cd4c7
     SET_ALLTASKS,
     SET_TASKS,
     SET_TASK
@@ -33,21 +29,17 @@ export const createTask = ({ id, task, user_id }) => async(dispatch) => {
     }
 };
 
-export const deleteTaskInGlobal_task = ({ id, taskId }) => async(dispatch) => {
-    console.log("id, taskId", id, taskId)
+export const deleteTask = ({ id }) => async(dispatch) => {
+
     try {
-        const author_UserID = JSON.parse(
-            JSON.stringify(localStorage.getItem("user").userId)
-        );
+
         dispatch(showLoader());
-        await axios.delete(URL_API + "/tasks/delete/in_global-task", {
+        await axios.delete(URL_API + "/tasks/delete", {
             data: {
-                id,
-                author_UserID,
-                taskId,
+                id
             },
         });
-        dispatch({ type: DELETE_TASK, id: taskId });
+        dispatch({ type: DELETE_TASK, id });
     } catch (err) {
         dispatch(hideLoader());
         dispatch(showError(err));
@@ -90,13 +82,9 @@ export const saveEditableTask = (task) => async(dispatch) => {
 export const setWorkLogToTask = ({ workLog, task_id }) => async(dispatch) => {
     try {
         dispatch(showLoader());
-<<<<<<< HEAD
-        const res =  await axios.put(URL_API + "/tasks/work-log/" + task_id, { workLog, author });
-        console.log('Worklog', res.data)
-=======
-       const res =  await axios.put(URL_API + "/tasks/work-log/" + task_id, { workLog, author });
-       console.log('Worklog', res.data)
->>>>>>> 5d960c47a8849178212615e6de2d457d372cd4c7
+
+        const res = await axios.put(URL_API + "/tasks/work-log/" + task_id, { workLog, author });
+
         dispatch({ type: SET_TASK, task: res.data });
         dispatch(hideLoader());
     } catch (err) {

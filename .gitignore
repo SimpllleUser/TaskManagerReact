@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-node_modules
-debug
-.idea
-=======
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+//help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
@@ -29,4 +24,3 @@ yarn-error.log*
 
 debug.log
 .idea
->>>>>>> 5d960c47a8849178212615e6de2d457d372cd4c7

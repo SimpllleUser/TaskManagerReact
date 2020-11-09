@@ -16,7 +16,7 @@ const ProjectForm = (props) => {
   };
 
   const submitHandler = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     const { id, title, description } = projectForm;
 
     if (title.trim() && description.trim()) {
@@ -38,7 +38,7 @@ const ProjectForm = (props) => {
 
   return (
     <div className="project_create">
-      <form onSubmit={submitHandler}>
+      <form >
         <div className="project_create_title form-group">
           <label htmlFor="title">Title</label>
           <input
@@ -61,7 +61,7 @@ const ProjectForm = (props) => {
             onChange={changeInputHandler}
           ></textarea>
         </div>
-        <button className="btn btn-success m-2">
+        <button className="btn btn-success m-2"  onClick={() => {submitHandler()}} data-dismiss="modal" aria-label="Close">
           
           {props.id ? "Edit" : "Create"}
         </button>
