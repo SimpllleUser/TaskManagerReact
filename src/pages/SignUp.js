@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { BrowserRouter as Router, NavLink } from "react-router-dom";
+import {useHistory , BrowserRouter as Router, NavLink } from "react-router-dom";
 import { useHttp } from "../hooks/http.hook";
 import { showError } from "../store/error/actions"
 import { useDispatch } from "react-redux";
 
-const SignUp = () => {
+const SignUp = (props) => {
   const dispatch = useDispatch()
+  const history = useHistory();
   const { request } = useHttp();
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [redirect, setRedirect] = useState(false);
@@ -15,14 +16,13 @@ const SignUp = () => {
 
     if (password.trim().length >= 4 && username.trim().length >= 4) {
       try {
-        const res = request("/auth/signup","post", {
+      request("/auth/signup","post", {
           username,
           email,
           password,
         });
-        if(res.allow){
-       setRedirect(res.data.allow)
-      }
+        history.push("/SignIn");
+
       } catch (err) {
         dispatch(showError(err))
       }
@@ -38,6 +38,7 @@ const SignUp = () => {
 
   return (
     <div className="auth-form">
+      {}
       <h1 className="text-center"> SignUp </h1>
       <form onSubmit={submitHandler}>
         <label htmlFor="login"> Login </label>
