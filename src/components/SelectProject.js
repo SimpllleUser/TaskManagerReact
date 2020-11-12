@@ -28,11 +28,10 @@ const SelectProject = () => {
       const projects = await request("/project/users/" + user_id);
       if(projects.length){
         dispatch(setProjects(projects))
-      // setProjects(projects);
       const storageProject = getStore("project") || "";
       if (!storageProject.title) {
-        const {title, description } = projects[0]
-        setStore("project", {title, description});
+        const {id,title, description } = projects[0]
+        setStore("project", {id,title, description});
       }
       initializationData(getStore("project"));
     }else{
@@ -48,11 +47,14 @@ const SelectProject = () => {
   const initializationData = async (
     project 
   ) => {
+    console.log('project',project)
     if (project) {
       setStore('project',project) 
       setSelectedProject(project.title); // setState selectProject
       dispatch(getAllDataFromProject(project.id)); // get all data by project
       const global_tasks = await request("/global-task/all/" + project.id); // get global tasks
+      console.log('TEST global_tasks', global_tasks)
+
       dispatch(setAllGlobalTasks(global_tasks)); // set state global tasks
       const g_tasksID = global_tasks.map((g_task) => g_task.id);
       const tasks = await request(
@@ -60,6 +62,7 @@ const SelectProject = () => {
         "get",
         { params: { g_tasksID } }
       );
+      console.log('TEST TASK', tasks)
       dispatch(setAllTasks(tasks));
     }
   };
