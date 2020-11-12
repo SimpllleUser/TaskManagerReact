@@ -13,6 +13,7 @@ import {setTask} from "../../store/tasks/actions"
 
 const TaskDetail = () => {
   const author = JSON.parse(localStorage.getItem("user")).userId;
+  // const tets = useSelector((state) => state.tasks.allTasks.filter(item => item.id == '5fad612d7b53c6292012ad18'))[0]
 
   const dispatch = useDispatch();
   let { id } = useParams();
@@ -25,7 +26,10 @@ const TaskDetail = () => {
     };
     getTask();
   }, [id, request]);
-  const task = useSelector((state) => state.tasks.task)
+  // const task = useSelector((state) => state.tasks.task)
+
+  const task = useSelector((state) => state.tasks.allTasks.filter(task => task.id == id)[0])
+
 
   // const changeWorkLog = (data) => {
   //   if (task.workLog != data) {
@@ -81,6 +85,7 @@ const TaskDetail = () => {
   }
   return (
     <div className="jumbotron" id="task-detail">
+      {/*{console.log('!!!!!!',test)}*/}
       {task.comments?.length}
       <div className="task-body">
         <h3 className="title display-4"> {task.title} </h3>

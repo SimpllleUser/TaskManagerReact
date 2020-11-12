@@ -57,7 +57,7 @@ export const tasksReducer = (state = initialState, action) => {
             {
                 return {
                     ...state,
-                    task: action.task
+                    allTasks: state.allTasks.map(task => task.id == action.task.id ? action.task : task ),
                 }
 
             }
