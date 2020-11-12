@@ -99,7 +99,7 @@ const TaskForm = (props) => {
           {taskForm.id ? "Сохранить" : "Создать"}
         </button>
       </div>
-      <div className="selectors-options">
+      <div className="selectors-options mt-3 pt-3">
         
         {taskForm.id && taskForm.status && (
           <SelectorForm
@@ -109,6 +109,7 @@ const TaskForm = (props) => {
           />
         )}
         <SelectorForm
+            className="mt-2"
           updateData={updateDataType}
           data={"type"}
           value={taskForm.type}
