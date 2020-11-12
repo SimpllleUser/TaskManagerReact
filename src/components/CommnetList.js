@@ -51,7 +51,6 @@ const CommnetList = ({ task_id, comments }) => {
           Add
         </button>
       </div>
-      {console.log(comments)}
       <ul className="list-group">{comnetsList || ""}</ul>
     </div>
   );

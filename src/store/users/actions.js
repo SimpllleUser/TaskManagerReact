@@ -22,7 +22,6 @@ export const getUsers = ({ project_id }) => async(dispatch) => {
 }
 
 export const deleteUser = ({ project_id, user_id }) => async(dispatch) => {
-    console.log(user_id)
     try {
         dispatch(showLoader())
         await axios.delete(URL_API + '/user/delete-from-project', {
@@ -40,14 +39,12 @@ export const deleteUser = ({ project_id, user_id }) => async(dispatch) => {
 }
 
 export const addUser = ({ user_id, project_id }) => async(dispatch) => {
-    console.log('user_id, project_id', user_id, project_id)
     try {
         dispatch(showLoader())
         const res = await axios.post(URL_API + '/user/addUser', {
             user_id,
             project_id
         })
-        console.log('res.user', 'res', res.data, res)
         dispatch({ type: ADD_USER, user: res.data })
         dispatch(hideLoader())
     } catch (err) {

@@ -10,7 +10,6 @@ import GlobalTaskDetail from "./components/GlobalTask/GlobalTaskDeatail";
 import GlobalTaskList from "./components/GlobalTask/GlobalTaskList"
 import MainTaskList from "./pages/MainTaskList"
 export const useRoutes = (isAuthUser) => {
-  console.log(isAuthUser)
   if (isAuthUser) {
     return (
 

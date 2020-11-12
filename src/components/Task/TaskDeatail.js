@@ -85,7 +85,6 @@ const TaskDetail = () => {
   }
   return (
     <div className="jumbotron" id="task-detail">
-      {/*{console.log('!!!!!!',test)}*/}
       {task.comments?.length}
       <div className="task-body">
         <h3 className="title display-4"> {task.title} </h3>
