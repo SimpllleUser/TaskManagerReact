@@ -86,9 +86,6 @@ const SelectProject = () => {
         )
     );
   if (!projects.length) {
-
-    setStore('project', {})
-
     return (
       <div>
         <Modal
