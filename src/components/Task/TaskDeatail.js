@@ -137,6 +137,7 @@ const TaskDetail = () => {
         <div className="task-work">
           <div>estimate: {task.estimate || 0}ч</div>
           <div>workLog: {task.workLog}ч</div>
+          <div><span className="badge badge-success">Responsible: </span> {task?.responsible_User.name}</div>
           <ModalWorkLog
             id={task.id}
             workLog={task.workLog}
