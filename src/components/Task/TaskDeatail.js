@@ -85,7 +85,7 @@ const TaskDetail = () => {
   }
   return (
     <div className="jumbotron" id="task-detail">
-      {task.comments?.length}
+      {task?.author_User}
       <div className="task-body">
         <h3 className="title display-4"> {task.title} </h3>
         <hr />
