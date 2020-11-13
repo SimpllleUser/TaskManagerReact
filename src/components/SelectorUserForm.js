@@ -8,9 +8,11 @@ const SelectorUserForm = (props) => {
     const initUsers = async () => {
       const users = await request('/user/all/' + props.projectID)
       setUsers(users);
+      props.updateData(users[0])
+      setSelectorData(users[0])
     };
     initUsers();
-  }, [props]);
+  }, [props.projectID]);
 
   const SelectorHandler = (event) => {
     setSelectorData(event.target.value);
@@ -23,6 +25,12 @@ const SelectorUserForm = (props) => {
       {option.name}
     </option>
   ));
+  if(users.length < 2){
+    return (
+        <div id="selector" >
+          {users[0]?.name}
+        </div>)
+  }
   return (
     <div id="selector">
       <select
