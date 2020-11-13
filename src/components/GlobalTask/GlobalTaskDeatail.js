@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { PlusSquare } from "react-feather";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
 import Modal from "../Modals/Modal";
 import TaskList from "../Task/TaskList";
 import TaskForm from "../Task/TaskForm";
-import { useDispatch } from "react-redux";
+import ProgressBar from "../ProgressBar"
 import { useHttp } from "../../hooks/http.hook";
 import { setTasks } from "../../store/tasks/actions";
 const GlobalTaskDetail = () => {
@@ -26,9 +28,11 @@ const GlobalTaskDetail = () => {
   }, [dispatch, id, request]);
 
   const tasks = useSelector((state) => state.tasks.tasks);
-
+  const done = tasks?.filter(task => task.status == 'Done')
+  const progress = 100 * done?.length / tasks?.length
   return (
     <div className="global_task">
+      {progress ? <ProgressBar progress={progress}/> : ''}
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
           <h1>{global_task.title}</h1>

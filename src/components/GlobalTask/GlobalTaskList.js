@@ -7,11 +7,7 @@ import {setAllGlobalTasks} from "../../store/global_task/actions";
 const GlobalTaskList = () => {
     const {request} = useHttp();
     const dispatch = useDispatch();
-
-    // const id = JSON.parse(localStorage.getItem("project"))?.id || "";
-    // const user = JSON.parse(localStorage.getItem("user"))
     const project = JSON.parse(localStorage.getItem("project"))
-    // const user_id = user && user.userId
     useEffect(() => {
         const getGlobalTasks = async () => {
             const global_tasks = await request("/global-task/all/" + project.id);
