@@ -51,7 +51,7 @@ const GlobalTaskDetail = () => {
         />
       </h3>
       {tasks && tasks.length ? (
-        <TaskList global_taskId={id} tasks={tasks} />
+        <TaskList projectID={global_task.projectID} global_taskId={id} tasks={tasks} />
       ) : (
         "No tasks"
       )}

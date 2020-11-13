@@ -36,7 +36,7 @@ const SelectorUserForm = (props) => {
       <select
         className="custom-select my-1 mr-sm-1"
         id="priority"
-        value={selectorData}
+        value={props.value || selectorData}
         onChange={SelectorHandler}
       >
         {Selector}

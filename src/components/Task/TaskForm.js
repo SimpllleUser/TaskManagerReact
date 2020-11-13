@@ -16,6 +16,7 @@ const TaskForm = (props) => {
         priority: props.priority || "Low",
         status: props.status || "Open",
         type: props.type || "Feature",
+        responsible_User: props.responsible_User || 'none'
     });
 
     const submitHandler = () => {
@@ -74,7 +75,6 @@ const TaskForm = (props) => {
     };
 
     const updateDataUser = (data) => {
-        console.log('data',data)
         if (taskForm.responsible_User != data) {
             setTaskForm({...taskForm, responsible_User: data});
         }
@@ -140,11 +140,10 @@ const TaskForm = (props) => {
                     data={"priority"}
                     value={taskForm.priority}
                 />
-
                 <SelectorUserForm
                     projectID={props.projectID}
                     updateData={updateDataUser}
-                    value={taskForm.type}
+                    value={props.responsible_User?.id}
                 />
             </div>
         </form>

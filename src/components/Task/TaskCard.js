@@ -7,7 +7,7 @@ import TaskForm from "./TaskForm";
 import { deleteTask } from "../../store/tasks/actions";
 import SelectorElement from "../SelectorElement";
 
-const TaskCard = ({ global_taskId, task }) => {
+const TaskCard = ({ projectID,global_taskId, task }) => {
   const dispatch = useDispatch();
 
   return (
@@ -35,6 +35,8 @@ const TaskCard = ({ global_taskId, task }) => {
             status={task.status}
             type={task.type}
             priority={task.priority}
+            projectID={projectID}
+            responsible_User={task.responsible_User}
           />
         }
       />

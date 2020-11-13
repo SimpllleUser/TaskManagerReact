@@ -1,7 +1,7 @@
 import React from "react";
 import TaskCard from "./TaskCard";
 
-const TaskList = ({global_taskId,tasks}) => {
+const TaskList = ({projectID,global_taskId,tasks}) => {
 
   const rowsByStatus = () => {
     var elements = [
@@ -20,7 +20,7 @@ const TaskList = ({global_taskId,tasks}) => {
       <h3 className={"border rounded el-name " + el.name}> {el.name} </h3>
       <div className={"list " + el.name}>
         {el.tasks?.map((task, index) => (
-          <TaskCard task={task} global_taskId ={global_taskId}key={index} />
+          <TaskCard task={task} projectID={projectID} global_taskId ={global_taskId}key={index} />
         ))}
       </div>
     </div>
