@@ -143,7 +143,7 @@ const TaskForm = (props) => {
                 <SelectorUserForm
                     projectID={props.projectID}
                     updateData={updateDataUser}
-                    value={props.responsible_User?.id}
+                    value={taskForm.responsible_User?.id}
                 />
             </div>
         </form>
