@@ -14,11 +14,12 @@ const SelectorUserForm = (props) => {
 
   const SelectorHandler = (event) => {
     setSelectorData(event.target.value);
-    // props.updateData(event.target.value);
+    const user = users.filter(user => user.id == event.target.value)[0]
+    props.updateData(user);
   };
 
   const Selector = users?.map((option, index) => (
-    <option key={index} value={option.name}>
+    <option key={index} value={option.id}>
       {option.name}
     </option>
   ));

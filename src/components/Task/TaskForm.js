@@ -65,7 +65,6 @@ const TaskForm = (props) => {
   return (
     <form  className="task-form">
       <div className="inputs-text">
-        {props.projectID}
         <div className="form-group">
           <label htmlFor="title"> Название </label>
           <input
