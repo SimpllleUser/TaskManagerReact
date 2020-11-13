@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { createTask } from "../../store/tasks/actions";
 import { saveEditableTask } from "../../store/tasks/actions";
 import SelectorForm from "../SelectorForm";
+import SelectorUserForm from "../SelectorUserForm"
 const TaskForm = (props) => {
   const dispatch = useDispatch();
   const [taskForm, setTaskForm] = useState({
@@ -64,6 +65,7 @@ const TaskForm = (props) => {
   return (
     <form  className="task-form">
       <div className="inputs-text">
+        {props.projectID}
         <div className="form-group">
           <label htmlFor="title"> Название </label>
           <input
@@ -113,6 +115,13 @@ const TaskForm = (props) => {
           updateData={updateDataType}
           data={"type"}
           value={taskForm.type}
+        />
+
+        <SelectorUserForm
+            projectID = {props.projectID}
+            updateData={updateDataType}
+            data={"type"}
+            value={taskForm.type}
         />
         <SelectorForm
           updateData={updateDataPriority}

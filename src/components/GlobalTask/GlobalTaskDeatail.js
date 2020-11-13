@@ -39,7 +39,7 @@ const GlobalTaskDetail = () => {
         title="Create task"
         className="global-task__detail__title ml-5"
         forElement="create-task"
-        component={<TaskForm global_task_id={id} />}
+        component={<TaskForm projectID={global_task.projectID} global_task_id={id} />}
       />
       <h3>
         Tasks list
