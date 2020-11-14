@@ -1,12 +1,26 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import Options from "../Options";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteGlobalTask } from "../../store/global_task/actions";
+import {deleteGlobalTask, setGlobalTasks} from "../../store/global_task/actions";
 import Modal from "../Modals/Modal";
 import GlobalTaskForm from "./GlobalTaskForm";
+import {useHttp} from "../../hooks/http.hook";
+import {getUsers} from "../../store/users/actions";
+import ProgressBar from "../ProgressBar";
 const GlobalTaskCard = ({ id, global_taskId, title, description }) => {
   const dispatch = useDispatch();
+
+    const { request } = useHttp();
+    const [progress, setProgress] = useState(0)
+    useEffect(() => {
+        const getProgress = async () => {
+            const res = await request('/global-task/progress/' + global_taskId)
+            setProgress(res.progress)
+            console.log('progress!', progress)
+        }
+        getProgress();
+    },[global_taskId,request]);
 
   return (
     <div className="global_task">
@@ -16,7 +30,9 @@ const GlobalTaskCard = ({ id, global_taskId, title, description }) => {
       <div>
         <p>Desciprion: {description}</p>
         {/* <span>Progress</span>00% */}
-        <Options
+          <ProgressBar progress={progress}/>
+
+          <Options
           items={[
             <div>
               <div
@@ -34,6 +50,7 @@ const GlobalTaskCard = ({ id, global_taskId, title, description }) => {
               >
                 Delete
               </div>
+
             </div>,
           ]}
         />

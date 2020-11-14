@@ -56,7 +56,7 @@ const ProjectDetail = () => {
   return (
     <div className="project_detail row">
       <div className="col-9">
-          <ProgressBar progress={project.progress} />
+          <ProgressBar progress={project.progress}  height={25}/>
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
           <h3>{project.title}</h3>
