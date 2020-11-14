@@ -9,6 +9,8 @@ import GlobalTaskCard from "../GlobalTask/GlobalTaskCard";
 import GlobalTaskForm from "../GlobalTask/GlobalTaskForm";
 import UserList from "../User/UserList"
 import {setGlobalTasks} from "../../store/global_task/actions"
+import ProgressBar from "../ProgressBar"
+
 
 const ProjectDetail = () => {
   const dispatch = useDispatch();
@@ -54,6 +56,7 @@ const ProjectDetail = () => {
   return (
     <div className="project_detail row">
       <div className="col-9">
+          <ProgressBar progress={project.progress} />
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
           <h3>{project.title}</h3>
