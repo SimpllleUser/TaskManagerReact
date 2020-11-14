@@ -17,7 +17,6 @@ const GlobalTaskCard = ({ id, global_taskId, title, description }) => {
         const getProgress = async () => {
             const res = await request('/global-task/progress/' + global_taskId)
             setProgress(res.progress)
-            console.log('progress!', progress)
         }
         getProgress();
     },[global_taskId,request]);

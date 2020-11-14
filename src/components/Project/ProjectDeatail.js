@@ -23,7 +23,6 @@ const ProjectDetail = () => {
     const getProject = async () => {
       const project = await request("/project/" + id);
       const progress = await request('/project/progress/' + id)
-        console.log('progress',progress)
         project.progress = progress.projectProgress
       setProject(project);
     };

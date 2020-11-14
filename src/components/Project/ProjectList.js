@@ -14,7 +14,6 @@ const ProjectsList = () => {
   useEffect(() => {
     const getProjects = async () => {
       const projects = await  request('/project/users/' + userId)
-      console.log('projects',projects)
       dispatch(setProjects(projects));
     };
     getProjects();
