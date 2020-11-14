@@ -20,6 +20,9 @@ const ProjectDetail = () => {
   useEffect(() => {
     const getProject = async () => {
       const project = await request("/project/" + id);
+      const progress = await request('/project/progress/' + id)
+        console.log('progress',progress)
+        project.progress = progress.projectProgress
       setProject(project);
     };
     const getGlobalTasks = async () => {
@@ -33,7 +36,7 @@ const ProjectDetail = () => {
   }, [dispatch, id, request]);
   const users = useSelector((state) => state.users.users) ;
   const global_tasks = useSelector((state) => state.global_tasks.global_tasks)
-
+  const getDatatObject = (data) => {console.log('data',data)}
   const global_tasksList =
     global_tasks &&
     global_tasks.map((global_task, index) => (
@@ -43,13 +46,13 @@ const ProjectDetail = () => {
           global_taskId={global_task.id}
           title={global_task.title}
           description={global_task.description}
+          getData={getDatatObject}
         />
       </li>
     ));
 
   return (
     <div className="project_detail row">
-      {/* {JSON.stringify(_global_tasks)} */}
       <div className="col-9">
       <div className="jumbotron jumbotron-fluid">
         <div className="container">

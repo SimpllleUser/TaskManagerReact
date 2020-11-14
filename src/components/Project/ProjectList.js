@@ -1,23 +1,25 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProjects } from "../../store/project/actions";
+import { setProjects } from "../../store/project/actions";
 import { useHttp } from "../../hooks/http.hook";
 import { PlusSquare } from "react-feather";
 import Modal from "../Modals/Modal"
 import ProjectForm from "./ProjectForm"
 import ProjectCard from "./ProjectCard";
-
 const ProjectsList = () => {
   const dispatch = useDispatch();
-
-  const { request, loading } = useHttp();
-
+  const { request } = useHttp();
+  const user = JSON.parse(localStorage.getItem('user'))
+  const userId = user && user.userId
   useEffect(() => {
     const getProjects = async () => {
-      dispatch(getAllProjects());
+      const projects = await  request('/project/users/' + userId)
+      console.log('projects',projects)
+      dispatch(setProjects(projects));
     };
     getProjects();
-  }, [request]); // !FIX useHtpp
+  }, [request]);
+
   const projects = useSelector((state) => state.projects.projects);
   const projectsList = projects ? (
     projects.map((project, index) => (
@@ -34,7 +36,6 @@ const ProjectsList = () => {
 
   return (
     <div className="project_list_container">
-      {loading && <h3>Loading</h3>}
       <h3 className="project_list_title">
         Проекты
         <Modal forElement="project-form" title="Create project" component={<ProjectForm/>} />
