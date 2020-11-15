@@ -35,7 +35,7 @@ const ProjectCard = ({ title, description, id }) => {
       <div className="card-body">
           <span class="text-dark font-weight-bold">Description</span>
         <p className="card-text">{description}</p>
-         <div className="progress-block"><span>Progress </span> <RoundedProgressBar progress={progress} /></div>
+         <div className="progress-block"><span className="badge badge-dark">Progress</span> <RoundedProgressBar progress={progress} /></div>
         <div className="actions">
           <Options
             items={[
