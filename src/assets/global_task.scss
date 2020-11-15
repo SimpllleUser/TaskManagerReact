@@ -1,5 +1,13 @@
 .global_task {
     position: relative;
+    display: flex;
+    .main-info{
+        max-width: 320px;
+        min-width: 150px;
+    }
+    #rounded-progress{
+        margin-left: 50px;
+    }
     .options-block {
         width: 20px;
         position: absolute;

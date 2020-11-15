@@ -8,6 +8,7 @@ import GlobalTaskForm from "./GlobalTaskForm";
 import {useHttp} from "../../hooks/http.hook";
 import {getUsers} from "../../store/users/actions";
 import ProgressBar from "../ProgressBar";
+import RoundedProgressBar from "../RoundedProgressBar"
 const GlobalTaskCard = ({ id, global_taskId, title, description }) => {
   const dispatch = useDispatch();
 
@@ -23,14 +24,18 @@ const GlobalTaskCard = ({ id, global_taskId, title, description }) => {
 
   return (
     <div className="global_task">
+        <div className="main-info">
       <h4>
         Title: <NavLink to={`/detail-global_task/` + global_taskId}>{title}</NavLink>
       </h4>
-      <div>
-        <p>Desciprion: {description}</p>
-        {/* <span>Progress</span>00% */}
-          <ProgressBar progress={progress}/>
+            <p>Desciprion: {description}</p>
 
+        </div>
+        <RoundedProgressBar progress={progress} />
+
+        <div>
+        {/* <span>Progress</span>00% */}
+        {/*  <ProgressBar progress={progress}/>*/}
           <Options
           items={[
             <div>
