@@ -10,6 +10,7 @@ import GlobalTaskForm from "../GlobalTask/GlobalTaskForm";
 import UserList from "../User/UserList"
 import {setGlobalTasks} from "../../store/global_task/actions"
 import ProgressBar from "../ProgressBar"
+import RoundedProgressBar from "../RoundedProgressBar"
 
 
 const ProjectDetail = () => {
@@ -54,6 +55,7 @@ const ProjectDetail = () => {
 
   return (
     <div className="project_detail row">
+        <RoundedProgressBar progress={project.progress} />
       <div className="col-9">
           <ProgressBar progress={project.progress}  height={25}/>
       <div className="jumbotron jumbotron-fluid">

@@ -32,6 +32,7 @@ const GlobalTaskDetail = () => {
   const progress = 100 * done?.length / tasks?.length
   return (
     <div className="global_task">
+        {/*Add rounded progress bar https://codepen.io/simpllleuser/pen/wvWNEbq*/}
       <ProgressBar progress={progress} height={25}/>
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
