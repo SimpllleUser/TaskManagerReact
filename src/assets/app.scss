@@ -7,6 +7,7 @@
 @import 'project';
 @import 'header';
 @import 'roundedProgresBar';
+
 .main-links {
     display: flex;
     align-items: center;
@@ -40,6 +41,13 @@
     width: 20px;
     display: flex;
     justify-content: center;
+    .dropdown-toggle::after{
+        content: none;
+    }
+    .dropdown-menu {
+        width: 100px;
+    }
+    //100px
     .options-block__body {
         position: absolute;
         left: 20px;

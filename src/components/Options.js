@@ -7,19 +7,23 @@ const Options = ({ items }) => {
   return (
     <div id="options" className="options-block">
       <ul className="list-group">
-        <div className="options-block__title">
-          <MoreVertical
-            size="24"
-            onClick={() => {
-              setTogleState(!togleState);
-            }}
-          />
-        </div>
-        {togleState && (
-          <div className="options-block__body">
-            <div onClick={() => {setTogleState(false)}}>{items && itemsList}</div>
+
+          <div className="dropdown">
+              <a className="btn btn-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <MoreVertical
+                      size="24"
+                      onClick={() => {
+                          setTogleState(!togleState);
+                      }}
+                  />
+              </a>
+
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  {items && itemsList}
+              </div>
           </div>
-        )}
+
       </ul>
     </div>
   );
