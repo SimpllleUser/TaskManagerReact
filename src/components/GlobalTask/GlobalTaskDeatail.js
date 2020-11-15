@@ -31,8 +31,7 @@ const GlobalTaskDetail = () => {
   const done = tasks?.filter(task => task.status == 'Done')
   const progress = 100 * done?.length / tasks?.length
   return (
-    <div className="global_task">
-        {/*Add rounded progress bar https://codepen.io/simpllleuser/pen/wvWNEbq*/}
+    <div className="global_task-detail">
       <ProgressBar progress={progress} height={25}/>
       <div className="jumbotron jumbotron-fluid">
         <div className="container">

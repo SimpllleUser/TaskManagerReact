@@ -1,13 +1,25 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteProject } from "../../store/project/actions";
 import Modal from "../Modals/Modal";
 import ProjectForm from "./ProjectForm";
 import Options from "../Options";
+import {useHttp} from "../../hooks/http.hook";
+import RoundedProgressBar from "../RoundedProgressBar";
 
 const ProjectCard = ({ title, description, id }) => {
   const dispatch = useDispatch();
+
+    const { request } = useHttp();
+    const [progress, setProgress] = useState(0)
+    useEffect(() => {
+        const getProgress = async () => {
+            const res = await request('/project/progress/' + id)
+            setProgress(res.progress)
+        }
+        getProgress();
+    },[id,request]);
 
   const deleteHundelerProject = (id) => {
     if (!id) {
@@ -21,7 +33,9 @@ const ProjectCard = ({ title, description, id }) => {
         <NavLink to={`/detail-project/${id}`}>{title || "None title"}</NavLink>
       </h3>
       <div className="card-body">
+          <span class="text-dark font-weight-bold">Description</span>
         <p className="card-text">{description}</p>
+         <div className="progress-block"><span>Progress </span> <RoundedProgressBar progress={progress} /></div>
         <div className="actions">
           <Options
             items={[

@@ -20,8 +20,15 @@
                 width: 400px;
                 height: 200px;
                 margin: 5px;
+                .progress-block{
+                    display: flex;
+                    align-items: center;
+                    #rounded-progress{
+                        margin-left: 10px;
+                    }
+                }
                 .card-text {
-                    height: 100px;
+                    max-height: 100px;
                 }
                 .options-block {
                     position: absolute;
