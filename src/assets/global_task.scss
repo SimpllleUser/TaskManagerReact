@@ -1,27 +1,31 @@
 .global_task {
-    position: relative;
-    display: flex;
-    .main-info{
-        max-width: 320px;
-        min-width: 150px;
+  position: relative;
+  display: flex;
+
+  .main-info {
+    max-width: 320px;
+    min-width: 150px;
+  }
+
+  #rounded-progress {
+    margin-left: 50px;
+  }
+
+  .options-block {
+    width: 20px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 999;
+
+    .options-block__body {
+      position: absolute;
+      top: 25px;
+      left: -90px;
     }
-    #rounded-progress{
-        margin-left: 50px;
-    }
-    .options-block {
-        width: 20px;
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        z-index: 999;
-        .options-block__body {
-            position: absolute;
-            top: 25px;
-            left: -90px;
-        }
-    }
+  }
 }
 
 .global-task__detail__title {
-    align-items: center;
+  align-items: center;
 }
