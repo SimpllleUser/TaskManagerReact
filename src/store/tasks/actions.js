@@ -9,7 +9,8 @@ import {
 } from "./types";
 import { showLoader, hideLoader } from "../loader/actions";
 import { showError } from "../error/actions";
-const author = JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user")).userId;
+const user = JSON.parse(localStorage.getItem("user"))
+const author = user && user.userId;
 const URL_API = "http://localhost:8080/api";
 
 export const createTask = ({ id, task, user_id }) => async(dispatch) => {
@@ -93,8 +94,16 @@ export const setWorkLogToTask = ({ workLog, task_id }) => async(dispatch) => {
         dispatch(showError(err));
     }
 };
-export const setCommentToTask = () => {
-
+export const setCommentToTask = ({task_id, comment}) => async (dispatch) => {
+    try {
+        dispatch(showLoader());
+        const res = await axios.post(URL_API + "/tasks/comment", { task_id, comment,author });
+        dispatch({ type: SET_TASK, task: res.data.task });
+        dispatch(hideLoader());
+    } catch (err) {
+        dispatch(hideLoader());
+        dispatch(showError(err));
+    }
 }
 
 export const setTasks = (tasks) => ({

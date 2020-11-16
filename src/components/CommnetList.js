@@ -24,12 +24,11 @@ const CommnetList = ({ task_id, comments }) => {
     setCommentInput(event.target.value);
   };
   const setCommnet = () => {
-    dispatch(setCommentToTask({ task_id, comment: [commentInput] }));
+    dispatch(setCommentToTask({ task_id, comment: commentInput }));
     setCommentInput("");
   };
   return (
-    <div className="comment-block">
-      <h3>Commebt</h3>
+    <div className="mt-5 comment-block">
       <div className="form-group d-flex flex-wrap">
         <label for="comment-form">Comment</label>
         <textarea

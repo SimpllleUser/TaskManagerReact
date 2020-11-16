@@ -1,6 +1,6 @@
 import React from "react";
 
-const Comment = ({ author, text, date }) => (
+const Comment = ({ author='', text='', date='' }) => (
   <div className="media">
     <div className="media-body">
       <h5 className="badge badge-danger">
