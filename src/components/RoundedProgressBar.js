@@ -10,7 +10,7 @@ const size = {
 
 const RoundedProgressBar = ({progress = 0, height = 5}) => (
     <div id="rounded-progress" style={{width: size.low, height: size.low}}>
-        <div className="progress" data-percentage={progress.toFixed(0)} style={{width: size.low, height: size.low}}>
+        <div className="progress" data-percentage={progress && progress.toFixed(0)} style={{width: size.low, height: size.low}}>
 		<span className="progress-left">
 			<span className="progress-bar" style={{borderColor: success}}></span>
 		</span>
