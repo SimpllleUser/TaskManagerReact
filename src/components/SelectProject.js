@@ -26,9 +26,9 @@ const SelectProject = () => {
     useEffect(() => {
         const getProjects = async () => {
             const projects = await request("/project/users/" + user_id);
-            if (projects.length) {
+            if (projects.length > 0) {
                 dispatch(setProjects(projects))
-                const storageProject = getStore("project") || "";
+                const storageProject = getStore("project");
                 if (!storageProject.title) {
                     const {id, title, description} = projects[0]
                     setStore("project", {id, title, description});

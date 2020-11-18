@@ -10,7 +10,7 @@ const MainTaskList = () => {
 
   useEffect(() => {
     const getTasks = async () => {
-      const global_tasks = await request("/global-task/all/" + project.id);
+      const global_tasks = await request("/global-task/all/" + project?.id);
       const g_tasksID = global_tasks.map((g_task) => g_task.id);
       const tasks = await request(
           "/tasks/all-tasks/from/globlal-tasks",

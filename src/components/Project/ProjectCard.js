@@ -33,7 +33,7 @@ const ProjectCard = ({title, description, id}) => {
                 <NavLink to={`/detail-project/${id}`}>{title || "None title"}</NavLink>
             </h3>
             <div className="card-body">
-                <span class="text-dark font-weight-bold">Description</span>
+                <span className="text-dark font-weight-bold">Description</span>
                 <p className="card-text">{description}</p>
                 <div className="progress-block"><span className="badge badge-dark">Progress</span> <RoundedProgressBar
                     progress={progress}/></div>

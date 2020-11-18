@@ -33,7 +33,7 @@ const SignIn = () => {
     return (
       <Redirect
         to={{
-          pathname: "/",
+          pathname: "/projects-list",
         }}
       />
     );

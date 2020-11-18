@@ -23,8 +23,8 @@ const ProjectDetail = () => {
     useEffect(() => {
         const getProject = async () => {
             const project = await request("/project/" + id);
-            const progress = await request('/project/progress/' + id)
-            project.progress = progress.projectProgress
+            const res = await request('/project/progress/' + id)
+            project.progress = res.progress
             setProject(project);
         };
         const getGlobalTasks = async () => {
@@ -57,7 +57,6 @@ const ProjectDetail = () => {
 
     return (
         <div className="project_detail row">
-            {/*<RoundedProgressBar progress={project.progress} />*/}
             <div className="col-9">
                 <ProgressBar progress={project.progress} height={25}/>
                 <div className="jumbotron jumbotron-fluid">
