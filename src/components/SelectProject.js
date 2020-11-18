@@ -25,7 +25,6 @@ const SelectProject = () => {
     const user_id = getStore("user") && getStore("user").userId;
     useEffect(() => {
         const getProjects = async () => {
-            console.log(process.env)
             const projects = await request("/project/users/" + user_id);
             if (projects.length) {
                 dispatch(setProjects(projects))
