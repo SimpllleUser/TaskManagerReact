@@ -15,7 +15,7 @@ const authHeader = () => {
 
 export const useHttp = () => {
     const dispatch = useDispatch();
-    axios.defaults.baseURL = 'http://localhost:8080/api'
+    axios.defaults.baseURL = process.env.REACT_APP_API_URL + 'api'
     if(user){
     axios.interceptors.request.use(
         config => {

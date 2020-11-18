@@ -11,7 +11,7 @@ import { showLoader, hideLoader } from "../loader/actions";
 import { showError } from "../error/actions";
 const user = JSON.parse(localStorage.getItem("user"))
 const author = user && user.userId;
-const URL_API = "http://localhost:8080/api";
+const URL_API = process.env.REACT_APP_API_URL+'api';
 
 export const createTask = ({ id, task, user_id }) => async(dispatch) => {
 

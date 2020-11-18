@@ -3,7 +3,7 @@ import { CREATE_GTASKS, DELETE_GTASKS, EDIT_GTASKS, SET_GTASKS, SET_All_GTASKS }
 import { showError } from "../error/actions"
 import { showLoader, hideLoader } from "../loader/actions"
 
-const URL_API = 'http://localhost:8080/api'
+const URL_API = process.env.REACT_APP_API_URL+'api'
 export const createGlobalTask = (global_task) => async(dispatch) => {
 
     try {

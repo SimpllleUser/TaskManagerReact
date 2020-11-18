@@ -7,7 +7,7 @@ import {
 } from "./types";
 import { showLoader, hideLoader } from "../loader/actions";
 import { showError } from "../error/actions"
-const URL_API = "http://localhost:8080/api";
+const URL_API = process.env.REACT_APP_API_URL+'api';
 
 export const getAllEvents = () => async(dispatch) => {
     const user_id = JSON.parse(localStorage.getItem('user')).userId || '';

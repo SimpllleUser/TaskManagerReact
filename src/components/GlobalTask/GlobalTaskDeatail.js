@@ -19,10 +19,10 @@ const GlobalTaskDetail = () => {
     useEffect(() => {
         const getData = async () => {
             const global_tasks = await request(
-                "http://localhost:8080/api/global-task/" + id
+                "https://testmernapps.herokuapp.com/api/global-task/" + id
             );
             setGlobal_task(global_tasks);
-            const tasks = await request("http://localhost:8080/api/tasks/all/" + id);
+            const tasks = await request("https://testmernapps.herokuapp.com/api/tasks/all/" + id);
             dispatch(setTasks(tasks));
         };
         getData();

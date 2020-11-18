@@ -5,7 +5,7 @@ import { setGlobalTasks } from "../global_task/actions"
 import { showLoader, hideLoader } from "../loader/actions"
 import { showError } from "../error/actions"
 
-const URL_API = 'http://localhost:8080/api'
+const URL_API = process.env.REACT_APP_API_URL+'api'
 const userStorage = JSON.parse(localStorage.getItem("user"))
 const selectProjectStorage = JSON.parse(localStorage.getItem("project")) || {}
 const user_id = userStorage && userStorage.userId;
