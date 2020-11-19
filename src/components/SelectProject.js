@@ -9,33 +9,32 @@ import {setAllTasks} from "../store/tasks/actions";
 import Modal from "./Modals/Modal";
 import ProjectForm from "../components/Project/ProjectForm";
 
-// ! CHECK AUTH LOCAL_STORAGE
-
 const SelectProject = () => {
     const storage = localStorage;
     const {request} = useHttp();
     const dispatch = useDispatch();
-    // const [projects, setProjects] = useState([]);
+    const userStore = useSelector((state) => state.users.user)
     const [selectedProject, setSelectedProject] = useState();
     const getStore = (key) => JSON.parse(storage.getItem(key));
-    // ! FIX SET ALL STATE AND SET PROJECT TO LOCAL STORAGE
     const setStore = (key, value = {}) => {
         storage.setItem(key, JSON.stringify(value));
     };
-    const user_id = getStore("user") && getStore("user").userId;
+    const localUserId = getStore("user") && getStore("user").userId;
+
     useEffect(() => {
         const getProjects = async () => {
-            const projects = await request("/project/users/" + user_id);
+            const user_id = userStore.id || localUserId
+            const projects = await request("/project/users/" +user_id);
             if (projects.length > 0) {
                 dispatch(setProjects(projects))
-                const storageProject = getStore("project");
+                const storageProject = getStore("project") || {};
                 if (!storageProject.title) {
                     const {id, title, description} = projects[0]
                     setStore("project", {id, title, description});
+                }else
+                {
+                    await initializationData(getStore("project"));
                 }
-                initializationData(getStore("project"));
-            } else {
-                setStore('project', {})
             }
         };
         getProjects();

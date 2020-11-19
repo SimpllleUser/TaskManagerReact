@@ -16,7 +16,7 @@ const SignUp = (props) => {
 
     if (password.trim().length >= 4 && username.trim().length >= 4) {
       try {
-      request("/auth/signup","post", {
+      await request("/auth/signup","post", {
           username,
           email,
           password,

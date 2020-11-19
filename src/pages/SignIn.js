@@ -3,15 +3,18 @@ import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import axios from "axios";
+import {setUser} from "../store/users/actions";
 import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
-
+import {useDispatch} from "react-redux";
 
 const SignIn = () => {
   const { request } = useHttp();
+  const dispatch = useDispatch()
   const [form, setForm] = useState({ login: "", password: "" });
   const auth = useContext(AuthContext);
   const [redirect, setRedirect] = useState(false);
+
   const submitHandler = async (event) => {
     event.preventDefault();
     const { login, password } = form;
@@ -20,6 +23,7 @@ const SignIn = () => {
         password,
         username: login,
        })
+      dispatch(setUser(res))
       auth.login(res.accessToken, res.id);
       setRedirect(!!res.accessToken && !!res.id);
     }

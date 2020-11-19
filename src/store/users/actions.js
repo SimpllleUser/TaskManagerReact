@@ -3,6 +3,7 @@ import {
     GET_USERS,
     ADD_USER,
     DELETE_USER,
+    SET_USER
 } from "./types";
 import { showLoader, hideLoader } from "../loader/actions"
 import { showError } from "../error/actions"
@@ -52,5 +53,10 @@ export const addUser = ({ user_id, project_id }) => async(dispatch) => {
         dispatch(showError(err))
     }
 }
+
+export const setUser = (user) => ({
+    type: SET_USER,
+    user
+})
 
 export const initUsers = (users) => ({ type: GET_USERS, users })

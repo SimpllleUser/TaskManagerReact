@@ -1,11 +1,12 @@
 import {
     GET_USERS,
     ADD_USER,
-    DELETE_USER,
+    DELETE_USER, SET_USER,
 } from "./types";
 
 const initialState = {
-    users: []
+    users: [],
+    user:{}
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -27,6 +28,13 @@ export const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users = action.users
             }
+        case SET_USER:
+            console.log('action',action)
+            return {
+                ...state,
+                user: action.user
+            }
+
         default:
             return state;
     }
