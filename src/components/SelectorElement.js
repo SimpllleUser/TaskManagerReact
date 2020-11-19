@@ -25,6 +25,9 @@ const SelectorElement = (props) => {
 
   return select_element ? (
     <div className="selected-element-option">
+        <div className="type-element-option badge badge-light">
+            {props.type}
+        </div>
       <div
         className={"badge badge-pill badge-" + select_element.class}
         data-toggle="tooltip"

@@ -84,7 +84,7 @@ const TaskForm = (props) => {
         <form className="task-form">
             <div className="inputs-text">
                 <div className="form-group">
-                    <label htmlFor="title"> Название </label>
+                    <label htmlFor="title" className='badge badge-light'> Title </label>
                     <input
                         type="text"
                         className="form-control"
@@ -93,9 +93,9 @@ const TaskForm = (props) => {
                         value={taskForm.title || ""}
                         onChange={changeInputHandler}
                     />
-                    <label htmlFor="description pt-2"> Описание </label>
+                    <label htmlFor="description pt-2" className='badge badge-light'> Description </label>
                     <textarea
-                        className="form-control"
+                        className="form-control "
                         onChange={changeInputHandler}
                         name="description"
                         id="description"
@@ -103,7 +103,7 @@ const TaskForm = (props) => {
                         rows="10"
                         value={taskForm.description || ""}
                     ></textarea>
-                    <label htmlFor="estimate"> Часов </label>
+                    <label htmlFor="estimate" className='badge badge-light'> Estimate </label>
                     <input
                         type="number"
                         className="form-control"
@@ -120,7 +120,7 @@ const TaskForm = (props) => {
                     {taskForm.id ? "Сохранить" : "Создать"}
                 </button>
             </div>
-            <div className="selectors-options mt-3 pt-3">
+            <div className="selectors-options">
 
                 {taskForm.id && taskForm.status && (
                     <SelectorForm

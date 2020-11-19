@@ -33,6 +33,9 @@ const SelectorForm = (props) => {
   ));
   return (
     <div id="selector">
+      <div className="selector-name badge badge-light">
+        {props.data}
+      </div>
       <select
         className="custom-select my-1 mr-sm-1"
         id="priority"

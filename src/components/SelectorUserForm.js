@@ -25,22 +25,25 @@ const SelectorUserForm = (props) => {
       {option.name}
     </option>
   ));
-  if(users.length < 2){
-    return (
-        <div id="selector" >
-          {users[0]?.name}
-        </div>)
-  }
+
+  const selector =   <select
+      className="custom-select my-1 mr-sm-1"
+      id="priority"
+      value={props.value || selectorData}
+      onChange={SelectorHandler}
+  >
+    {Selector}
+  </select>
+
   return (
     <div id="selector">
-      <select
-        className="custom-select my-1 mr-sm-1"
-        id="priority"
-        value={props.value || selectorData}
-        onChange={SelectorHandler}
-      >
-        {Selector}
-      </select>
+      <div className="selector-name badge badge-light">
+        user
+      </div>
+      {
+        users.length > 2 ? selector : <div className='border rounded p-2' > {users[0]?.name}</div>
+      }
+
     </div>
   );
 };
