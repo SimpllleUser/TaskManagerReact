@@ -17,7 +17,6 @@ const GlobalTaskForm = (props) => {
   };
 
   const submitHandler = () => {
-    // event.preventDefault();
     const { id, title, description } = global_taskForm;
 
     if (title.trim() && description.trim()) {
@@ -42,7 +41,7 @@ const GlobalTaskForm = (props) => {
     <div className="global_task-create">
       <form >
         <div className="project_create_title form-group">
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title" className='badge badge-light'>Title</label>
           <input
             className="form-control"
             type="text"
@@ -54,7 +53,7 @@ const GlobalTaskForm = (props) => {
         </div>
 
         <div className="project_create_description form-group">
-          <label htmlFor="description">Description</label>
+          <label htmlFor="description" className='badge badge-light'>Description</label>
           <textarea
             className="form-control"
             name="description"
