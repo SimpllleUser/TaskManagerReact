@@ -16,7 +16,7 @@ const SelectorUserForm = (props) => {
 
   const SelectorHandler = (event) => {
     setSelectorData(event.target.value);
-    const user = users.filter(user => user.id == event.target.value)[0]
+    const user = users.filter(user => user.id === event.target.value)[0]
     props.updateData(user);
   };
 

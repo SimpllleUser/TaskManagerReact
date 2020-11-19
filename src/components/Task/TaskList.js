@@ -11,7 +11,7 @@ const TaskList = ({projectID,global_taskId,tasks}) => {
     ];
 
     elements.forEach(
-      (el) => (el.tasks = tasks?.filter((task) => task.status == el.name))
+      (el) => (el.tasks = tasks?.filter((task) => task.status === el.name))
     );
     return elements;
   };

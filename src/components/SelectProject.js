@@ -31,10 +31,8 @@ const SelectProject = () => {
                 if (!storageProject.title) {
                     const {id, title, description} = projects[0]
                     setStore("project", {id, title, description});
-                }else
-                {
-                    await initializationData(getStore("project"));
                 }
+                    await initializationData(getStore("project"));
             }
         };
         getProjects();
