@@ -12,16 +12,15 @@ const RoundedProgressBar = ({progress = 0, height = 5}) => (
     <div id="rounded-progress" style={{width: size.low, height: size.low}}>
         <div className="progress" data-percentage={progress && progress.toFixed(0)} style={{width: size.low, height: size.low}}>
 		<span className="progress-left">
-			<span className="progress-bar" style={{borderColor: success}}></span>
+			<span className="progress-bar" style={{borderColor: progress >= 50 ? success :warning }}></span>
 		</span>
 
             <span className="progress-right">
-			<span className="progress-bar" style={{borderColor: success}}></span>
+			<span className="progress-bar" style={{borderColor: progress >= 50 ? success :warning}}></span>
 		</span>
             <div className="progress-value">
                 <div>
-                    {progress}%<br/>
-                    {/*<span>completed</span>*/}
+                    {progress.toFixed(0)}%<br/>
                 </div>
             </div>
         </div>

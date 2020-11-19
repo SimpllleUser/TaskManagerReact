@@ -63,7 +63,7 @@ const ProjectForm = (props) => {
         </div>
         <button className="btn btn-success m-2"  onClick={() => {submitHandler()}} data-dismiss="modal" aria-label="Close">
           
-          {props.id ? "Edit" : "Create"}
+          {props.id ? "Save" : "Create"}
         </button>
       </form>
     </div>

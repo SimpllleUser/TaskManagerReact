@@ -25,7 +25,17 @@
     }
   }
 }
-
+.progress-block{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span{
+    height: 20px;
+  }
+  #rounded-progress{
+    margin-left: 25px;
+  }
+}
 .global-task__detail__title {
   align-items: center;
 }

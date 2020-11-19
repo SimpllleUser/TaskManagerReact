@@ -32,11 +32,11 @@ const GlobalTaskCard = ({id, global_taskId, title, description}) => {
                 <p>Desciprion: {description}</p>
 
             </div>
-            <RoundedProgressBar progress={progress}/>
+            <div className="progress-block"><span className="badge badge-dark">Progress</span> <RoundedProgressBar
+                progress={progress}/></div>
 
             <div>
-                {/* <span>Progress</span>00% */}
-                {/*  <ProgressBar progress={progress}/>*/}
+
                 <Options
                     items={[
                         <div>
