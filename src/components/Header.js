@@ -13,10 +13,8 @@ const Header = () => {
     auth.logout();
     return <Redirect to="/" />;
   };
-  const loader = useSelector((state) => state.loader.loader);
   return (
     <header className="header navbar navbar-dark bg-primary">
-      {loader && <Loader />}
       <Toast />
       <nav id="header_nav" className="navbar">
         <SelectProject />
