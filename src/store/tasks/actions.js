@@ -62,7 +62,7 @@ export const updateOptionTask = ({ task_id, option }) => async(dispatch) => {
         dispatch(showError(err));
     }
 };
-export const saveEditableTask = (task) => async(dispatch) => {
+export const saveEditableTask = ({task}) => async(dispatch) => {
     try {
         dispatch(showLoader());
         await axios.put(URL_API + "/tasks/" + task.id, {

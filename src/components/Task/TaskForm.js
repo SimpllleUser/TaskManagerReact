@@ -117,7 +117,7 @@ const TaskForm = (props) => {
                     submitHandler()
                 }} data-dismiss="modal" aria-label="Close">
 
-                    {taskForm.id ? "Сохранить" : "Создать"}
+                    {taskForm.id ? "Save" : "Create"}
                 </button>
             </div>
             <div className="selectors-options">
