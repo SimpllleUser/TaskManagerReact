@@ -57,7 +57,7 @@ const ProjectDetail = () => {
 
     return (
         <div className="project_detail row">
-            <div className="col-9">
+            <div className="col-md-8 col-lg-8 col-xl-9">
                 <ProgressBar progress={project.progress} height={25}/>
                 <div className="jumbotron jumbotron-fluid">
                     <div className="container">
@@ -92,7 +92,7 @@ const ProjectDetail = () => {
                     </ul>
                 </div>
             </div>
-            <div className="col-3">
+            <div className="col-12 col-md-4 col-lg-4 col-xl-3">
                 <UserList project_id={id} users={users}/>
             </div>
         </div>
