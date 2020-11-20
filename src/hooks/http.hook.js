@@ -3,15 +3,17 @@ import { useState, useCallback } from "react"
 import { useDispatch } from "react-redux";
 import { showLoader, hideLoader } from "../store/loader/actions"
 import { showError } from "../store/error/actions"
+// import {config} from "dotenv";
 const user = JSON.parse(localStorage.getItem('user'));
-const authHeader = () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.token) {
-        return { 'x-access-token': user.token };
-    } else {
-        return {};
+
+axios.interceptors.request.use(config => {
+    config.headers.authorization = `Bearer ${user.token}`
+    return config
+},
+    err => {
+        return Promise.reject(err)
     }
-}
+)
 
 export const useHttp = () => {
     const dispatch = useDispatch();
