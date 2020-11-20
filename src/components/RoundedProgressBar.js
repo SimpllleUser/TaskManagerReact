@@ -20,7 +20,7 @@ const RoundedProgressBar = ({progress = 0, height = 5}) => (
 		</span>
             <div className="progress-value">
                 <div>
-                    {progress.toFixed(0)}%<br/>
+                    {progress > 0 ? progress.toFixed(0) : 0}%<br/>
                 </div>
             </div>
         </div>

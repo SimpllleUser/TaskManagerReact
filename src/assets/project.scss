@@ -16,12 +16,35 @@
   }
 
   .projetcs_list {
-    display: flex;
-
+    //display: flex;
+    //flex-wrap: wrap;
+    //justify-content: ;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 5px;
+    @include xl{
+    grid-template-columns: repeat(4, 1fr);
+    }
+    @include lg{
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include md{
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include sm{
+      grid-template-columns: repeat(1, 1fr);
+    }
     .project_card {
-      width: 400px;
-      height: 200px;
-      margin: 5px;
+      margin: 0 5px !important;
+      display: flex;
+      flex-wrap: wrap;
+      &__title{
+        width: 50%;
+      }
+      .progress-block{
+        margin-left: 0;
+        margin-right: auto;
+      }
 
       .progress-block {
         display: flex;

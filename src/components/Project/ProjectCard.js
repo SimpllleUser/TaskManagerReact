@@ -28,13 +28,15 @@ const ProjectCard = ({title, description, id}) => {
         dispatch(deleteProject(id));
     };
     return (
-        <div className="project_card card p-2">
+        <div className="
+        project_card card p-2">
+            <div className="project_card__title">
             <h3>
                 <NavLink to={`/detail-project/${id}`}>{title || "None title"}</NavLink>
             </h3>
-            <div className="card-body">
-                <span className="text-dark font-weight-bold">Description</span>
-                <p className="card-text">{description}</p>
+            </div>
+                {/*<span className="text-dark font-weight-bold">Description</span>*/}
+                {/*<p className="card-text">{description}</p>*/}
                 <div className="progress-block"><span className="badge badge-dark">Progress</span> <RoundedProgressBar
                     progress={progress}/></div>
                 <div className="actions">
@@ -69,7 +71,7 @@ const ProjectCard = ({title, description, id}) => {
                             <ProjectForm title={title} description={description} id={id}/>
                         }
                     />
-                </div>
+
             </div>
         </div>
     );

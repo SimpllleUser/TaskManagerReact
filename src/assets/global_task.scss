@@ -1,6 +1,15 @@
+#global_task-list{
+  @include md{
+    padding: 10px;
+  }
+}
+
 .global_task {
   position: relative;
   display: flex;
+  @include sm{
+    flex-wrap: wrap;
+  }
 
   .main-info {
     max-width: 320px;
@@ -32,8 +41,13 @@
   span{
     height: 20px;
   }
+  @include sm{
+    width: 190px;
+    justify-content: initial;
+  }
   #rounded-progress{
     margin-left: 25px;
+
   }
 }
 .global-task__detail__title {

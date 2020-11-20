@@ -41,7 +41,7 @@ const ProjectsList = () => {
         <PlusSquare size="24" className="ml-5" data-toggle="modal" data-target="#project-form" />
       </h3>
 
-      <div className="projetcs_list">{projectsList}</div>
+      <div className="projetcs_list row">{projectsList}</div>
     </div>
   );
   // }
