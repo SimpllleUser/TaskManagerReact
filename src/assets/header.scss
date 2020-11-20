@@ -52,6 +52,20 @@ header.header {
         .log-out {
             margin-left: auto;
             margin-right: 10px;
+            @include xl{
+                display: block;
+                margin-left: auto;
+                margin-right: 0px;
+                margin-top: 25px;
+            }
+        }
+        #navbarContent{
+            text-align: center;
+            @include xl{
+                .nav-item{
+                    margin: 20px auto;
+                }
+            }
         }
     }
 }
