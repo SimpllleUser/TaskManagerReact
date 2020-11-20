@@ -41,7 +41,7 @@ const SelectorUserForm = (props) => {
         user
       </div>
       {
-        users.length > 2 ? selector : <div className='border rounded p-2' > {users[0]?.name}</div>
+        users.length >= 2 ? selector : <div className='border rounded p-2' > {users[0]?.name}</div>
       }
 
     </div>
