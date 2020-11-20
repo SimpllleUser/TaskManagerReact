@@ -99,29 +99,19 @@ const SelectProject = () => {
     }
 
     return (
-        <div className="selector_project">
+        <div className="selector_project nav-item dropdown">
             {projects.length <= 1 ? (
-                <h3 className="navbar-brand">{projects[0]?.title}</h3>
+                <a className="navbar-brand h4 text-white border rounded">{projects[0]?.title}</a>
             ) : (
-                <div className="dropdown">
-                    <a
-                        href=""
-                        className={` btn btn-outline-light ${
-                            projects.length <= 1 && "none"
-                        }`}
-                        type="button"
-                        id="selectProject"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                    >
-                        {selectedProject || projects[0]?.title}
+
+                <div className="nav-item dropdown">
+                    <a className="h4 text-white nav-link dropdown-toggle border rounded" href="#" id="dropdownProject" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {selectedProject}
                     </a>
-                    {
-                        <div className="dropdown-menu" aria-labelledby="selectProject">
-                            {projectsList}
-                        </div>
-                    }
+                    <div className="dropdown-menu" aria-labelledby="dropdownProject">
+                        {projectsList}
+                    </div>
                 </div>
             )}
         </div>

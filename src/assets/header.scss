@@ -1,16 +1,16 @@
 header.header {
     min-width: 100%;
     #selectProject {
-        border-style: none;
-        border-radius: 0;
-        border-bottom-style: solid;
-        border-width: 2px;
-        width: 200px;
-        font-size: 32px;
+        //border-style: none;
+        //border-radius: 0;
+        //border-bottom-style: solid;
+        //border-width: 2px;
+        //width: 200px;
+        //font-size: 32px;
         margin-left: 10px;
-        background-color: whitesmoke;
+        //background-color: whitesmoke;
         color: var(--bs-blue);
-        border-radius: 5px;
+        //border-radius: 5px;
         &:after {
             // display: none;
             position: absolute;
@@ -40,11 +40,11 @@ header.header {
         .nav-link {
             transition: all .3s;
             margin: 0 10px;
-            &:hover {
-                border-radius: 5px;
-                background-color: white;
-                color: var(--blue) !important;
-            }
+            //&:hover {
+            //    border-radius: 5px;
+            //    background-color: white;
+            //    color: var(--blue) !important;
+            //}
         }
         .selector_project {
             margin-right: 5%;

@@ -8,6 +8,20 @@
 @import 'project';
 @import 'header';
 @import 'roundedProgresBar';
+@import 'main-tasks-list';
+.main-body{
+  padding: 25px;
+
+  @include  lg{
+    padding: 25px;
+  }
+  @include  xl{
+    padding: 25px;
+  }
+  @include  md{
+    padding: 5px;
+  }
+}
 .main-links {
   display: flex;
   align-items: center;

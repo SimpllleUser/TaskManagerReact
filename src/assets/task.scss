@@ -3,10 +3,16 @@
     .tasks-list {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        @include lg{
+            display: block;
+        }
         .block {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
+            @include  lg{
+                padding: 0px;
+            }
             padding: 0 10px;
             .el-name {
                 text-align: center;
@@ -15,7 +21,8 @@
                 line-height: 40px;
             }
             .list {
-                height: 250px;
+                min-height: 165px;
+                //height: 250px;
                 border-radius: 5px;
             }
         }

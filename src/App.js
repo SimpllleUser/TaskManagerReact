@@ -20,7 +20,7 @@ function App() {
         <Router>
           {isAuthenticated && <Header />}
             {loader && <Loader />}
-            {<div className={"p-5 " + `${loader ? 'loading-content': ''}`}>{routes}</div>}
+            {<div className={"main-body " + `${loader ? 'loading-content': ''}`}>{routes}</div>}
         </Router>
       </AuthContext.Provider>
     </div>
