@@ -23,6 +23,7 @@ const SignIn = () => {
         password,
         username: login,
        })
+       console.log('res',res)
       dispatch(setUser(res))
       auth.login(res.accessToken, res.id);
       setRedirect(!!res.accessToken && !!res.id);
