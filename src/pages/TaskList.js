@@ -6,7 +6,7 @@ import TaskCard from "../components/Task/TaskCard";
 
 const TaskList = () => {
   const dispatch = useDispatch();
-  useEffect(() => {}, [dispatch]);
+  useEffect(() => {}, []);
 
   const tasks = useSelector((state) => state.tasks.tasks);
 

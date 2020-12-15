@@ -19,7 +19,7 @@ const ProjectCard = ({title, description, id}) => {
             setProgress(res.progress)
         }
         getProgress();
-    }, [id, request]);
+    }, []);
 
     const deleteHundelerProject = (id) => {
         if (!id) {

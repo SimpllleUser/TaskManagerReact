@@ -21,7 +21,7 @@ const GlobalTaskCard = ({id, global_taskId, title, description}) => {
             setProgress(res.progress)
         }
         getProgress();
-    }, [global_taskId, request]);
+    }, []);
 
     return (
         <div className="global_task">

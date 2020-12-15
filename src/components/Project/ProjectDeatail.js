@@ -35,7 +35,7 @@ const ProjectDetail = () => {
 
         getProject();
         getGlobalTasks();
-    }, [dispatch, id, request]);
+    }, []);
     const users = useSelector((state) => state.users.users);
     const global_tasks = useSelector((state) => state.global_tasks.global_tasks)
     const getDatatObject = (data) => {

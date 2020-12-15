@@ -36,7 +36,7 @@ const SelectProject = () => {
             }
         };
         getProjects();
-    }, [request]);
+    }, []);
 
     const projects = useSelector((state) => state.projects.projects);
 

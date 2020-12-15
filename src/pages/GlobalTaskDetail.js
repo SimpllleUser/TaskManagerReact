@@ -18,7 +18,7 @@ const GlobalTaskDetail = () => {
       dispatch(setTasks(res.tasks));
     };
     getGlobalTask();
-  }, [id, request]);
+  }, []);
   const tasks = useSelector((state) => state.tasks.tasks);
   return (
     <div className="global_task--detail">

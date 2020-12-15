@@ -25,7 +25,7 @@ const TaskDetail = () => {
       dispatch(setTask(res));
     };
     getTask();
-  }, [id, request]);
+  }, []);
   // const task = useSelector((state) => state.tasks.task)
 
   const task = useSelector((state) => state.tasks.allTasks.filter(task => task.id == id)[0])

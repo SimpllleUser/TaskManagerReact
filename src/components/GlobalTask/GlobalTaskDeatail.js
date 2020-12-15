@@ -26,7 +26,7 @@ const GlobalTaskDetail = () => {
             dispatch(setTasks(tasks));
         };
         getData();
-    }, [dispatch, id, request]);
+    }, []);
 
     const tasks = useSelector((state) => state.tasks.tasks);
     const done = tasks?.filter(task => task.status == 'Done')

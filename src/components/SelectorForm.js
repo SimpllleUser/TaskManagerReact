@@ -16,7 +16,7 @@ const SelectorForm = (props) => {
       }
     };
     initSelector();
-  }, [props]);
+  }, []);
 
   const SelectorHandler = (event) => {
     setSelectorData({

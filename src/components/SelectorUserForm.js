@@ -12,7 +12,7 @@ const SelectorUserForm = (props) => {
       setSelectorData(users[0])
     };
     initUsers();
-  }, [props.projectID]);
+  }, []);
 
   const SelectorHandler = (event) => {
     setSelectorData(event.target.value);

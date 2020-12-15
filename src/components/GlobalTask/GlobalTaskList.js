@@ -14,7 +14,7 @@ const GlobalTaskList = () => {
             dispatch(setAllGlobalTasks(global_tasks));
         };
         getGlobalTasks();
-    }, [request]);
+    }, []);
 
 
   const global_tasks = useSelector(

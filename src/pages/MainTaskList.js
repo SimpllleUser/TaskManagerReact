@@ -20,7 +20,7 @@ const MainTaskList = () => {
       dispatch(setAllTasks(tasks));
     };
     getTasks();
-  }, [request]);
+  }, []);
 
   const tasks = useSelector((state) => state.tasks.allTasks);
   return (

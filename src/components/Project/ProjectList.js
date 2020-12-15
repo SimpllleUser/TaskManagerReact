@@ -17,7 +17,7 @@ const ProjectsList = () => {
       dispatch(setProjects(projects));
     };
     getProjects();
-  }, [request]);
+  }, []);
 
   const projects = useSelector((state) => state.projects.projects);
   const projectsList = projects ? (
