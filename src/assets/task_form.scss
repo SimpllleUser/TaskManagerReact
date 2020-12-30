@@ -1,0 +1,32 @@
+.task-form {
+    max-width: 1000px;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    .inputs-text {
+        width: 600px;
+        margin: 5px;
+    }
+    .selectors-options {
+        width: 200px;
+        //margin: 5px;
+        margin-top: 7px;
+    }
+    .send-task {
+        margin: 0;
+        margin: 0 auto;
+        width: 100px;
+    }
+}
+
+.task-edit {
+    .options {
+        display: flex;
+        max-width: 400px;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        div {
+            width: 180px;
+        }
+    }
+}

@@ -1,0 +1,55 @@
+#global_task-list{
+  @include md{
+    padding: 10px;
+  }
+}
+
+.global_task {
+  position: relative;
+  display: flex;
+  @include sm{
+    flex-wrap: wrap;
+  }
+
+  .main-info {
+    max-width: 320px;
+    min-width: 150px;
+  }
+
+  #rounded-progress {
+    margin-left: 50px;
+  }
+
+  .options-block {
+    width: 20px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 999;
+
+    .options-block__body {
+      position: absolute;
+      top: 25px;
+      left: -90px;
+    }
+  }
+}
+.progress-block{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span{
+    height: 20px;
+  }
+  @include sm{
+    width: 190px;
+    justify-content: initial;
+  }
+  #rounded-progress{
+    margin-left: 25px;
+
+  }
+}
+.global-task__detail__title {
+  align-items: center;
+}
