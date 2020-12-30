@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Pane, Text, Badge, Pill, Heading } from "evergreen-ui";
 import { setProjects } from "../../store/project/actions";
 import { useHttp } from "../../hooks/http.hook";
-// import { PlusSquare } from "react-feather";
-// import Modal from "../Modals/Modal";
-import ProjectForm from "./ProjectForm";
+
 import ProjectCard from "./ProjectCard";
 const ProjectsList = () => {
   const dispatch = useDispatch();
