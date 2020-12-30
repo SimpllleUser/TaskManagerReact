@@ -1,74 +1,94 @@
-import React, {useContext} from "react";
-import {BrowserRouter as Router, NavLink, Redirect} from "react-router-dom";
-import {AuthContext} from "../context/AuthContext";
-import {useSelector} from "react-redux";
-import Loader from "./Loader";
+import React, { useState, useContext } from "react";
+import { BrowserRouter as Router, NavLink, Redirect } from "react-router-dom";
+import { Button, Pane } from "evergreen-ui";
+import { AuthContext } from "../context/AuthContext";
 import Toast from "./Toast";
 import SelectProject from "./SelectProject";
 
 const Header = () => {
-    const auth = useContext(AuthContext);
-    const activePage = "active border border-light rounded bg-white text-primary font-weight-bold";
-    const border = "border-bottom border-white"
-    const logoutHandler = () => {
-        auth.logout();
-        return <Redirect to="/"/>;
-    };
-    return (
-        <header className="header navbar navbar-dark bg-primary">
-            <Toast/>
-            <nav id="header_nav" className="navbar navbar-expand-lg">
-                <div className="navbar-brand">
-                    <SelectProject/>
-                </div>
+  const auth = useContext(AuthContext);
+  const activePage =
+    "active border border-light rounded bg-white text-primary font-weight-bold";
+  const border = "border-bottom border-white";
+  const [links, setLinks] = useState([
+    {
+      name: "Список заданий",
+      path: "/",
+      active: false,
+    },
+    {
+      name: "Список глобальных заданий",
+      path: "/global_task-list",
+      active: false,
+    },
+    {
+      name: "Список глобальных заданий",
+      path: "/projects-list",
+      active: false,
+    },
+  ]);
+  
+  const statusLink = (active) => active ? "primary" : "none" 
 
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
-                        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarContent">
+  const list_link = links.map((link, index) => (
+    <NavLink to={link.path} key={index}>
+      <Button
+        intent={statusLink(!link.active)}
+        appearance={statusLink(link.active)}
+        onClick={() => {
+          toggleActiveLink(link.path);
+        }}
+      >
+        {link.name}
+      </Button>
+    </NavLink>
+  ));
+  const toggleActiveLink = (path) => {
+    const updatedActiveLink = links.map((link) => ({
+      ...link,
+      active: link.path === path ? true : false,
+    }));
+    setLinks(updatedActiveLink);
+  };
 
-                    <NavLink
-                        exact
-                        to="/"
-                        activeClassName={activePage}
-                        className={"nav-item nav-item nav-link text-white text-white " + border}
-                    >
-                        Список заданий
-                    </NavLink>
-                    <NavLink
-                        to="/global_task-list"
-                        activeClassName={activePage}
-                        className={"nav-item nav-item nav-link text-white text-white " + border}
-                    >
-                        Список глобальных заданий
-                    </NavLink>
-                    {/* <NavLink
-          to="/event-calendar"
-          activeClassName={activePage}
-          className="nav-item nav-link text-white"
+  const logoutHandler = () => {
+    auth.logout();
+    return <Redirect to="/" />;
+  };
+  return (
+    <Pane border  background="blueTint" elevation={0}>
+      <Toast />
+      <nav id="header_nav" className="navbar navbar-expand-lg">
+        <div className="navbar-brand">
+          <SelectProject />
+        </div>
+
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          Календарь событий
-        </NavLink> */}
-                    <NavLink
-                        to="/projects-list"
-                        activeClassName={activePage}
-                        className={"nav-item nav-item nav-link text-white text-white " + border}
-                    >
-                        Проекты
-                    </NavLink>
-                    <button
-                        type="button"
-                        className="log-out btn btn-danger"
-                        onClick={() => {
-                            logoutHandler();
-                        }}
-                    >
-                        Выход
-                    </button>
-                </div>
-            </nav>
-        </header>
-    );
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarContent">
+          {list_link}
+   
+          <Button
+            appearance="primary"
+            intent="danger"
+            onClick={() => {
+              logoutHandler();
+            }}
+          >
+            Выход
+          </Button>
+        </div>
+      </nav>
+      </Pane>
+  );
 };
 export default Header;

@@ -1,6 +1,8 @@
 import React, {useEffect} from "react";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import { Button } from "evergreen-ui";
+
 import {useHttp} from "../hooks/http.hook";
 import {setProjects} from "../store/project/actions";
 import {getAllDataFromProject} from "../store/project/actions";
@@ -87,13 +89,13 @@ const SelectProject = () => {
                     title="Create project"
                     component={<ProjectForm/>}
                 />
-                <button
-                    className="btn btn-success"
-                    data-toggle="modal"
+                <Button
+                   appearance="primary"
+                    intent="success"
                     data-target="#project-form"
                 >
                     Создать проект
-                </button>
+                </Button>
             </div>
         );
     }
