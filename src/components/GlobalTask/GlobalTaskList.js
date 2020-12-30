@@ -10,7 +10,7 @@ const GlobalTaskList = () => {
     const project = JSON.parse(localStorage.getItem("project"))
     useEffect(() => {
         const getGlobalTasks = async () => {
-            const global_tasks = await request("/global-task/all/" + project.id);
+            const global_tasks = await request("/global-task/all/" + project?.id);
             dispatch(setAllGlobalTasks(global_tasks));
         };
         getGlobalTasks();
@@ -21,7 +21,7 @@ const GlobalTaskList = () => {
     (state) => state.global_tasks.allGlobalTasks
   );
   const global_tasksList =
-      project.id && global_tasks
+      project?.id && global_tasks
       ? global_tasks?.map((global_task, index) => (
           <li key={index} className="list-group-item">
             <GlobalTaskCard
