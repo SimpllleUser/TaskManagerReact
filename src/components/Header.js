@@ -1,5 +1,10 @@
-import React, { useEffect,useState, useContext } from "react";
-import { BrowserRouter as Router, NavLink, Redirect, useRouteMatch } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Redirect,
+  useLocation,
+} from "react-router-dom";
 import { Button, Pane } from "evergreen-ui";
 import { AuthContext } from "../context/AuthContext";
 import Toast from "./Toast";
@@ -7,9 +12,10 @@ import SelectProject from "./SelectProject";
 
 const Header = () => {
   const auth = useContext(AuthContext);
-    // useEffect(() => {
-    //   const test = useRouteMatch()
-    // }, [test]);
+  const route = useLocation();
+  useEffect(() => {
+    toggleActiveLink(route.pathname);
+  }, []);
   const activePage =
     "active border border-light rounded bg-white text-primary font-weight-bold";
   const border = "border-bottom border-white";
@@ -30,8 +36,8 @@ const Header = () => {
       active: false,
     },
   ]);
-  
-  const statusLink = (active) => active ? "primary" : "none" 
+
+  const statusLink = (active) => (active ? "primary" : "none");
   const list_link = links.map((link, index) => (
     <NavLink to={link.path} key={index}>
       <Button
@@ -57,10 +63,8 @@ const Header = () => {
     auth.logout();
     return <Redirect to="/" />;
   };
-  let match = useRouteMatch();
   return (
-    <Pane border  background="blueTint" elevation={0}>
-      {JSON.stringify(match)}
+    <Pane border background="blueTint" elevation={0}>
       <Toast />
       <nav id="header_nav" className="navbar navbar-expand-lg">
         <div className="navbar-brand">
@@ -80,7 +84,7 @@ const Header = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarContent">
           {list_link}
-   
+
           <Button
             appearance="primary"
             intent="danger"
@@ -92,7 +96,7 @@ const Header = () => {
           </Button>
         </div>
       </nav>
-      </Pane>
+    </Pane>
   );
 };
 export default Header;
