@@ -1,8 +1,9 @@
 import React from "react";
+import { Pane, Heading } from "evergreen-ui";
 import TaskCard from "./TaskCard";
+import EmptContent from "../../components/EmptContent";
 
-const TaskList = ({projectID,global_taskId,tasks}) => {
-
+const TaskList = ({ projectID, global_taskId, tasks }) => {
   const rowsByStatus = () => {
     var elements = [
       { name: "Open", tasks: [] },
@@ -15,20 +16,36 @@ const TaskList = ({projectID,global_taskId,tasks}) => {
     );
     return elements;
   };
-  const sortedTaskList = rowsByStatus()?.map((el, index) => (
-    <div className={"block " + el.name} key={index}>
-      <h3 className={"border rounded el-name " + el.name}> <span> {el.name}</span> <span className="badge badge-light mr-0 ml-auto">{el.tasks.length}</span></h3>
-      <div className={"list " + el.name}>
-        {el.tasks?.map((task, index) => (
-          <TaskCard task={task} projectID={projectID} global_taskId ={global_taskId}key={index} />
-        ))}
+  const sortedTaskList = tasks?.length ? (
+    rowsByStatus()?.map((el, index) => (
+      <div className={"block " + el.name} key={index}>
+        <h3 className={"border rounded el-name " + el.name}>
+          <span> {el.name}</span>
+          <span className="badge badge-light mr-0 ml-auto">
+            {el.tasks.length}
+          </span>
+        </h3>
+        <div className={"list " + el.name}>
+          {el.tasks?.map((task, index) => (
+            <TaskCard
+              task={task}
+              projectID={projectID}
+              global_taskId={global_taskId}
+              key={index}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  ))
+    ))
+  ) : (
+    <Pane display="flex" justifyContent="center">
+    <EmptContent object_name="tasks" />
+    </Pane>
+  );
   return (
     <div id="task-dashboard">
       <div className="row">
-        <div className="tasks-list">
+        <div>
           {sortedTaskList}
           <div></div>
         </div>
