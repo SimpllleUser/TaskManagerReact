@@ -41,6 +41,8 @@ const Header = () => {
   const list_link = links.map((link, index) => (
     <NavLink to={link.path} key={index}>
       <Button
+        height={32}
+        marginRight={16}
         intent={statusLink(!link.active)}
         appearance={statusLink(link.active)}
         onClick={() => {
@@ -85,15 +87,19 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarContent">
           {list_link}
 
-          <Button
-            appearance="primary"
-            intent="danger"
-            onClick={() => {
-              logoutHandler();
-            }}
-          >
-            Выход
-          </Button>
+          <div className="btn-exit">
+            
+            <Button
+              appearance="primary"
+              intent="danger"
+              height={32}
+              onClick={() => {
+                logoutHandler();
+              }}
+            >
+              Выход
+            </Button>
+          </div>
         </div>
       </nav>
     </Pane>
