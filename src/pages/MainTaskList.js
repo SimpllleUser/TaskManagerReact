@@ -24,6 +24,7 @@ const MainTaskList = () => {
   }, []);
 
   const tasks = useSelector((state) => state?.tasks.allTasks);
+  
   return (
     <div>
       <Pane display="flex" justifyContent="center">
