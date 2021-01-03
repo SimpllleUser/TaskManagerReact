@@ -3,27 +3,36 @@ import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import axios from "axios";
-import {setUser} from "../store/users/actions";
+import { setUser } from "../store/users/actions";
 import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
+import {config} from "dotenv";
 
 const SignIn = () => {
   const { request } = useHttp();
-  const dispatch = useDispatch()
-  const [form, setForm] = useState({ login: "", password: "" });
+  const dispatch = useDispatch();
+  const [form, setForm] = useState({ username: "", password: "" });
   const auth = useContext(AuthContext);
   const [redirect, setRedirect] = useState(false);
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    const { login, password } = form;
-    if (password.trim().length >= 4 && login.trim().length >= 4) {
-      let res = await axios.post('http://localhost:8080/api/auth/signin',{username:login, password})
-      res = res.data;
-      dispatch(setUser(res))
-      auth.login(res.accessToken, res.id);
-      setRedirect(!!res.accessToken && !!res.id);
+    const { username, password } = form;
+    if (password.trim().length >= 4 && username.trim().length >= 4) {
+      try {
+        const res = await axios.post("http://localhost:8080/api/auth/signin", {
+          username,
+          password,
+        });
+        console.log('!!!',res )
+        const { accessToken, id } = res.data;
+        dispatch(setUser(res));
+        auth.login(accessToken, id);
+        setRedirect(!!accessToken && !!id);
+      } catch (error) {
+        console.log(error)
+      }
     }
   };
 
@@ -44,12 +53,12 @@ const SignIn = () => {
     <div className="auth-form">
       <h1 className="text-center">SignIn</h1>
       <form onSubmit={submitHandler}>
-        <label htmlFor="login"> Login </label>
+        <label htmlFor="username"> username </label>
         <input
           type="text"
           className="form-control"
-          id="login"
-          name="login"
+          id="username"
+          name="username"
           onChange={changeInputHandler}
         />
         <label htmlFor="password"> Password </label>

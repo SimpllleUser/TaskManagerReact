@@ -6,14 +6,14 @@ import { showError } from "../store/error/actions"
 // import {config} from "dotenv";
 const user = JSON.parse(localStorage.getItem('user'));
 
-axios.interceptors.request.use(config => {
-        config.headers.authorization = `Bearer ${user.token}`
-        return config
-    },
-    err => {
-        return Promise.reject(err)
-    }
-)
+// axios.interceptors.request.use(config => {
+//         config.headers.authorization = `Bearer ${user.token}`
+//         return config
+//     },
+//     err => {
+//         return Promise.reject(err)
+//     }
+// )
 
 export const useHttp = () => {
     const dispatch = useDispatch();
